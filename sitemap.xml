@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://kyxie.github.io/search/</loc>
-    <lastmod>2022-04-14T21:49:55-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.github.io/</loc>
-    <lastmod>2022-04-13T14:39:53-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.github.io/project/</loc>
-    <lastmod>2022-04-13T14:39:53-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.github.io/project/projects/</loc>
-    <lastmod>2022-04-13T14:39:53-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.github.io/about/about/</loc>
-    <lastmod>2022-04-13T14:39:46-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.github.io/about/</loc>
-    <lastmod>2022-04-13T14:39:46-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.github.io/categories/</loc>
-  </url><url>
-    <loc>https://kyxie.github.io/series/</loc>
-  </url><url>
-    <loc>https://kyxie.github.io/tags/</loc>
-  </url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>https://kyxie.github.io/en/sitemap.xml</loc>
+    
+      <lastmod>2022-04-13T14:39:53-04:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://kyxie.github.io/zh/sitemap.xml</loc>
+    
+      <lastmod>2022-04-13T14:39:53-04:00</lastmod>
+    
+  </sitemap>
+  
+</sitemapindex>

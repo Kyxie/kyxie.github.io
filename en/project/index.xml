@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Projects on Kyrie Xie</title>
+    <link>https://kyxie.github.io/en/project/</link>
+    <description>Recent content in Projects on Kyrie Xie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-ca</language>
+    <lastBuildDate>Wed, 13 Apr 2022 14:39:53 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/en/project/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Projects 👨‍💻</title>
+      <link>https://kyxie.github.io/en/project/projects/</link>
+      <pubDate>Wed, 13 Apr 2022 14:39:53 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/en/project/projects/</guid>
+      <description>Graduate Projects Turbo Wallet Jan. - Mar. 2022
+ GitHub (Front End): https://github.com/Kyxie/money-management.git
+GitHub (Back End): https://github.com/Kyxie/money-back.git
+  It&amp;rsquo;s money management app for mobiles base on React. We can add, edit and delete expense and income records. It can generate line and pie charts based on our spending levels over a period of time.   Traffic Monitoring System Sep. - Dec. 2021
+ GitHub: https://github.com/Kyxie/Traffic.git
+     My Personal Website Aug.</description>
+    </item>
+    
+  </channel>
+</rss>
