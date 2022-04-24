@@ -32,8 +32,7 @@
       <pubDate>Wed, 13 Apr 2022 14:39:46 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/about/about/</guid>
-      <description> I&amp;rsquo;m Kunyang Xie, and you can call me Kyrie. I&amp;rsquo;m currently a master student in software from University of Waterloo.
-  </description>
+      <description>1 2 3 4 5 6 7 8 9 10  class Me:  def __init__(self):  self.name = &amp;#34;Kunyang Xie&amp;#34;  self.prefer-name = &amp;#34;Kyrie&amp;#34;  self.born-year = 1999  self.height = 181  self.hometown = &amp;#34;Weifang, Shandong, China&amp;#34;  self.grad-school = &amp;#34;University of Waterloo&amp;#34;  self.undergrad-school = &amp;#34;UESTC, UoG&amp;#34;  self.fav-sport = &amp;#34;Cycling, Basketball&amp;#34;    </description>
     </item>
     
   </channel>
