@@ -8,12 +8,12 @@
     <language>en-ca</language>
     <lastBuildDate>Fri, 15 Apr 2022 00:28:55 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>First Blog</title>
-      <link>https://kyxie.github.io/zh/blog/first-blog/</link>
+      <title>Hugo &#43; PaperMod搭建博客</title>
+      <link>https://kyxie.github.io/zh/blog/papermod/</link>
       <pubDate>Fri, 15 Apr 2022 00:28:55 -0400</pubDate>
       
-      <guid>https://kyxie.github.io/zh/blog/first-blog/</guid>
-      <description></description>
+      <guid>https://kyxie.github.io/zh/blog/papermod/</guid>
+      <description>安装过程 首先需要[安装Hugo](Install Hugo | Hugo (gohugo.io))，对于Windows系统Hugo推荐了两个包管理工具，Choc</description>
     </item>
     
     
