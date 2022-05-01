@@ -2,6 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://kyxie.github.io/en/</loc>
+    <lastmod>2022-05-01T12:44:55-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.github.io/zh/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.github.io/en/"
+                />
+  </url><url>
+    <loc>https://kyxie.github.io/en/music/</loc>
+    <lastmod>2022-05-01T12:44:55-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.github.io/en/music/music/</loc>
+    <lastmod>2022-05-01T12:44:55-04:00</lastmod>
+  </url><url>
     <loc>https://kyxie.github.io/en/search/</loc>
     <lastmod>2022-04-14T21:49:55-04:00</lastmod>
     <xhtml:link
@@ -13,19 +32,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://kyxie.github.io/en/search/"
-                />
-  </url><url>
-    <loc>https://kyxie.github.io/en/</loc>
-    <lastmod>2022-04-13T14:39:53-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.github.io/zh/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.github.io/en/"
                 />
   </url><url>
     <loc>https://kyxie.github.io/en/project/</loc>

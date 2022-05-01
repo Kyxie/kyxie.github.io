@@ -3,13 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kyxie.github.io/zh/blog/</loc>
-    <lastmod>2022-04-15T00:28:55-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.github.io/zh/blog/papermod/</loc>
-    <lastmod>2022-04-15T00:28:55-04:00</lastmod>
+    <lastmod>2022-05-01T12:44:55-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/</loc>
-    <lastmod>2022-04-15T00:28:55-04:00</lastmod>
+    <lastmod>2022-05-01T12:44:55-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -20,6 +17,12 @@
                 hreflang="zh"
                 href="https://kyxie.github.io/zh/"
                 />
+  </url><url>
+    <loc>https://kyxie.github.io/zh/blog/music/</loc>
+    <lastmod>2022-05-01T12:44:55-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.github.io/zh/blog/papermod/</loc>
+    <lastmod>2022-04-15T00:28:55-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/search/</loc>
     <lastmod>2022-04-14T21:49:55-04:00</lastmod>
