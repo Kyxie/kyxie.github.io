@@ -202,10 +202,26 @@
 
 
 
-  </footer><link rel="stylesheet" crossorigin="anonymous" href="/stylesheets/themes/github-dark/utterances.css">
-<script src="https://utteranc.es/client.js" repo="kyxie/kyxie.github.io" issue-term="pathname"
-    label="Tell me something..."  crossorigin="anonymous" async>
-</script>
+  </footer>
+
+
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.4.11/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
 </article>
     </main>
     
