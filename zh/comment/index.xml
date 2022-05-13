@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Comments on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.github.io/zh/comment/</link>
+    <description>Recent content in Comments on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-ca</language>
+    <lastBuildDate>Thu, 12 May 2022 21:33:11 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/comment/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>留言板 📋</title>
+      <link>https://kyxie.github.io/zh/comment/comments/</link>
+      <pubDate>Thu, 12 May 2022 21:33:11 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/comment/comments/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

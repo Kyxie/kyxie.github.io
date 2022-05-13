@@ -66,10 +66,10 @@
 </script>
 </head>
 
-<body class="list dark" id="top">
+<body class="list" id="top">
 <script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
     }
 
 </script>
@@ -126,6 +126,11 @@
             <li>
                 <a href="https://kyxie.github.io/zh/blog" title="博客">
                     <span class="active">博客</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/comment/comments" title="留言板">
+                    <span>留言板</span>
                 </a>
             </li>
             <li>
