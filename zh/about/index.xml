@@ -13,7 +13,7 @@
       <pubDate>Wed, 13 Apr 2022 14:39:46 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/about/about/</guid>
-      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 class Me: def __init__(self): self.name = &amp;#34;Kunyang Xie&amp;#34; self.prefer_name = &amp;#34;Kyrie&amp;#34; self.born_year = 1999 self.height = 181 self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.grad_school = &amp;#34;uWaterloo&amp;#34; self.undergrad_school = &amp;#34;UESTC, UofG&amp;#34; self.curr_location = &amp;#34;Waterloo, ON, CA&amp;#34; def favs(self): self.fav_sport = &amp;#34;cycling, basketball&amp;#34; self.fav_series =</description>
+      <description>class Me: def __init__(self): self.name = &amp;#34;Kunyang Xie&amp;#34; self.prefer_name = &amp;#34;Kyrie&amp;#34; self.born_year = 1999 self.height = 181 self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.grad_school = &amp;#34;uWaterloo&amp;#34; self.undergrad_school = &amp;#34;UESTC, UofG&amp;#34; self.curr_location = &amp;#34;Waterloo, ON, CA&amp;#34; def favs(self): self.fav_sport = &amp;#34;cycling, basketball&amp;#34; self.fav_series = &amp;#34;Better Call Saul&amp;#34; self.fav_color = &amp;#34;Macaroon Colors&amp;#34; self.fav_band = &amp;#34;the Chainsmokers&amp;#34; self.fav_city = &amp;#34;Chengdu&amp;#34; self.fav_cat = &amp;#34;ragdoll&amp;#34; self.fav_dog = &amp;#34;golden retriever&amp;#34; def contact_info(self): self.github = &amp;#34;Kyxie&amp;#34; self.instagram =</description>
     </item>
     
   </channel>
