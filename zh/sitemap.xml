@@ -2,8 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://kyxie.github.io/zh/blog/</loc>
+    <lastmod>2022-05-27T17:28:17-04:00</lastmod>
+  </url><url>
     <loc>https://kyxie.github.io/zh/</loc>
-    <lastmod>2022-05-21T21:50:30-04:00</lastmod>
+    <lastmod>2022-05-27T17:28:17-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -14,6 +17,9 @@
                 hreflang="zh"
                 href="https://kyxie.github.io/zh/"
                 />
+  </url><url>
+    <loc>https://kyxie.github.io/zh/blog/backpack/</loc>
+    <lastmod>2022-05-27T17:28:17-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/link/</loc>
     <lastmod>2022-05-21T21:50:30-04:00</lastmod>
@@ -26,9 +32,6 @@
   </url><url>
     <loc>https://kyxie.github.io/zh/comment/comments/</loc>
     <lastmod>2022-05-12T21:33:11-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.github.io/zh/blog/</loc>
-    <lastmod>2022-05-01T12:44:55-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/music/</loc>
     <lastmod>2022-05-01T12:44:55-04:00</lastmod>

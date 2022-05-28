@@ -6,7 +6,16 @@
     <description>Recent content in Blogs on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-ca</language>
-    <lastBuildDate>Sun, 01 May 2022 12:44:55 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 May 2022 17:28:17 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>背包问题</title>
+      <link>https://kyxie.github.io/zh/blog/backpack/</link>
+      <pubDate>Fri, 27 May 2022 17:28:17 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/backpack/</guid>
+      <description>这几天要被背包问题给搞疯了，打算写篇文章仔细回顾回顾这一类问题。 01背包 背包问题是指，有n件物品和最大容量为w的背包，每件物品的质量被记录在</description>
+    </item>
+    
     <item>
       <title>最近爱听</title>
       <link>https://kyxie.github.io/zh/blog/music/</link>
