@@ -5,15 +5,14 @@
     <link>https://kyxie.github.io/en/</link>
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-ca</language>
-    <lastBuildDate>Wed, 13 Apr 2022 14:39:53 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-ca</language><atom:link href="https://kyxie.github.io/en/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Projects 👨‍💻</title>
-      <link>https://kyxie.github.io/en/project/projects/</link>
+      <link>https://kyxie.github.io/en/projects/</link>
       <pubDate>Wed, 13 Apr 2022 14:39:53 -0400</pubDate>
       
-      <guid>https://kyxie.github.io/en/project/projects/</guid>
+      <guid>https://kyxie.github.io/en/projects/</guid>
       <description>Graduate Projects Turbo Wallet - Money Management App Jan. - Mar. 2022, JavaScript
  GitHub (Front End): https://github.com/Kyxie/money-management.git
 GitHub (Back End): https://github.com/Kyxie/money-back.git
@@ -22,10 +21,10 @@ GitHub (Back End): https://github.com/Kyxie/money-back.git
     
     <item>
       <title>About Me 👋</title>
-      <link>https://kyxie.github.io/en/about/about/</link>
+      <link>https://kyxie.github.io/en/about/</link>
       <pubDate>Wed, 13 Apr 2022 14:39:46 -0400</pubDate>
       
-      <guid>https://kyxie.github.io/en/about/about/</guid>
+      <guid>https://kyxie.github.io/en/about/</guid>
       <description>class Me:  def __init__(self):  self.name = &amp;#34;Kunyang Xie&amp;#34;  self.prefer_name = &amp;#34;Kyrie&amp;#34;  self.born_year = 1999  self.height = 181  self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34;  self.grad_school = &amp;#34;uWaterloo&amp;#34;  self.undergrad_school = &amp;#34;UESTC, UofG&amp;#34;  self.curr_location = &amp;#34;Waterloo, ON, CA&amp;#34;   def favs(self):  self.fav_sport = &amp;#34;cycling, basketball&amp;#34;  self.fav_series = &amp;#34;Better Call Saul&amp;#34;  self.fav_color = &amp;#34;Macaroon Colors&amp;#34;  self.fav_band = &amp;#34;the Chainsmokers&amp;#34;  self.fav_city = &amp;#34;Chengdu&amp;#34;  self.</description>
     </item>
     

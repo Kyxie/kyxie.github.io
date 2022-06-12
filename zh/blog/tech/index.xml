@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>技术 🔧 on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.github.io/zh/blog/tech/</link>
+    <description>Recent content in 技术 🔧 on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-ca</language>
+    <lastBuildDate>Sat, 11 Jun 2022 21:59:32 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/blog/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo &#43; PaperMod搭建技术博客</title>
+      <link>https://kyxie.github.io/zh/blog/tech/papermod/</link>
+      <pubDate>Fri, 15 Apr 2022 00:28:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/papermod/</guid>
+      <description>安装过程 首先需要安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo推荐了两个包管理工具，Chocolatey和</description>
+    </item>
+    
+    <item>
+      <title>二分查找</title>
+      <link>https://kyxie.github.io/zh/blog/tech/binarysearch/</link>
+      <pubDate>Tue, 07 Jun 2022 09:17:27 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/binarysearch/</guid>
+      <description>左闭右闭 704. 二分查找 - 力扣（LeetCode）这是最基本的二分法，左闭右闭的意思是左边边界和右边边界都是可以取到的，比如[1, 1]是一个合法的</description>
+    </item>
+    
+    <item>
+      <title>Java的坑</title>
+      <link>https://kyxie.github.io/zh/blog/tech/java/</link>
+      <pubDate>Mon, 06 Jun 2022 22:58:36 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/java/</guid>
+      <description>Math double Math.ceil(double a); // 原函数 Math.ceil(24 / 23); // 1.0 Math.ceil(22 / 23); // 0.0 Math.ceil((double) 24 / 23); // 2.0 (int) Math.ceil((double) 24 / 23); // 2 互相转换： // int转String int i; String str = String.valueOf(i); // String转int String str; int a = Integer.parseInt(str);</description>
+    </item>
+    
+    <item>
+      <title>背包问题</title>
+      <link>https://kyxie.github.io/zh/blog/tech/backpack/</link>
+      <pubDate>Fri, 27 May 2022 17:28:17 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/backpack/</guid>
+      <description>这几天要被背包问题给搞疯了，打算写篇文章仔细回顾回顾这一类问题。 01背包 背包问题是指，有n件物品和最大容量为w的背包，每件物品的质量被记录在</description>
+    </item>
+    
+  </channel>
+</rss>
