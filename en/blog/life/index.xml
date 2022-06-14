@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Life 🏞️ on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.github.io/en/blog/life/</link>
+    <description>Recent content in Life 🏞️ on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-ca</language>
+    <lastBuildDate>Sat, 11 Jun 2022 21:59:32 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/en/blog/life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fav Music</title>
+      <link>https://kyxie.github.io/en/blog/life/music/</link>
+      <pubDate>Sun, 01 May 2022 12:44:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/en/blog/life/music/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

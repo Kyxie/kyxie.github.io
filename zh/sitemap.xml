@@ -4,12 +4,42 @@
   <url>
     <loc>https://kyxie.github.io/zh/blog/tech/</loc>
     <lastmod>2022-06-11T21:59:32-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.github.io/en/blog/tech/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.github.io/zh/blog/tech/"
+                />
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/tech/papermod/</loc>
     <lastmod>2022-04-15T00:28:55-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.github.io/en/blog/tech/papermod/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.github.io/zh/blog/tech/papermod/"
+                />
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/life/</loc>
     <lastmod>2022-06-11T21:59:32-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.github.io/en/blog/life/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.github.io/zh/blog/life/"
+                />
   </url><url>
     <loc>https://kyxie.github.io/zh/</loc>
     <lastmod>2022-06-11T21:59:32-04:00</lastmod>
@@ -26,12 +56,19 @@
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/</loc>
     <lastmod>2022-06-11T21:59:32-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.github.io/en/blog/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.github.io/zh/blog/"
+                />
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/tech/binarysearch/</loc>
     <lastmod>2022-06-07T09:17:27-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.github.io/zh/blog/tech/java/</loc>
-    <lastmod>2022-06-06T22:58:36-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/tech/backpack/</loc>
     <lastmod>2022-05-27T17:28:17-04:00</lastmod>
@@ -47,6 +84,16 @@
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/life/music/</loc>
     <lastmod>2022-05-01T12:44:55-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.github.io/en/blog/life/music/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.github.io/zh/blog/life/music/"
+                />
   </url><url>
     <loc>https://kyxie.github.io/zh/search/</loc>
     <lastmod>2022-04-14T21:49:55-04:00</lastmod>
@@ -98,6 +145,8 @@
                 hreflang="zh"
                 href="https://kyxie.github.io/zh/categories/"
                 />
+  </url><url>
+    <loc>https://kyxie.github.io/zh/blog/tech/java/</loc>
   </url><url>
     <loc>https://kyxie.github.io/zh/series/</loc>
     <xhtml:link

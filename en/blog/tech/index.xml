@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tech 🔧 on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.github.io/en/blog/tech/</link>
+    <description>Recent content in Tech 🔧 on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-ca</language>
+    <lastBuildDate>Sat, 11 Jun 2022 21:59:32 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/en/blog/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a website using Hugo &#43; PaperMod</title>
+      <link>https://kyxie.github.io/en/blog/tech/papermod/</link>
+      <pubDate>Fri, 15 Apr 2022 00:28:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/en/blog/tech/papermod/</guid>
+      <description>Installation process First of all, installing Hugo is required. Installing Hugo needs to use a package management tool. For the Windows system, I recommend using Scoop. Here introduced how to install Scoop. Hogo&amp;rsquo;s tutorial introduces how to create a project. Among them, Step2 (.yml&amp;rsquo;s config file) and Step3 (download theme) should be configured according to the guide of Papermod. File introduction content: used to put blog content data: don&amp;rsquo;t care</description>
+    </item>
+    
+  </channel>
+</rss>
