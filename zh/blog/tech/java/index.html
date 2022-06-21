@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Java | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Java">
-<meta name="description" content="Math double Math.ceil(double a); // 原函数 Math.ceil(24 / 23); // 1.0 Math.ceil(22 / 23); // 0.0 Math.ceil((double) 24 / 23); // 2.0 (int) Math.ceil((double) 24 / 23); // 2 Character 判断是否为字母或数字： boolean = Character.isLetterOrDigit(char); 转小写： char = Character.toLowerCase(char); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; Array">
+<meta name="description" content="Character 判断是否为字母或数字： boolean = Character.isLetterOrDigit(char); 转小写： char = Character.toLowerCase(char); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; Array 创建数组： int[] array = new int[5]; int[] array = new int[]{1,2,3,4}; int[] array = {1,2,3,4}; 引用： array[3]; 获取长度： array.length; 排序">
 <meta name="author" content="Kyrie">
 <link rel="canonical" href="https://kyxie.github.io/zh/blog/tech/java/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.da272d648a17576ac92aa4919be1a8e4f6f2c166e5f3fdbfdf15113def069ef7.css" integrity="sha256-2ictZIoXV2rJKqSRm&#43;Go5PbywWbl8/2/3xURPe8Gnvc=" rel="preload stylesheet" as="style">
@@ -42,7 +42,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"><meta property="og:title" content="Java" />
-<meta property="og:description" content="Math double Math.ceil(double a); // 原函数 Math.ceil(24 / 23); // 1.0 Math.ceil(22 / 23); // 0.0 Math.ceil((double) 24 / 23); // 2.0 (int) Math.ceil((double) 24 / 23); // 2 Character 判断是否为字母或数字： boolean = Character.isLetterOrDigit(char); 转小写： char = Character.toLowerCase(char); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; Array" />
+<meta property="og:description" content="Character 判断是否为字母或数字： boolean = Character.isLetterOrDigit(char); 转小写： char = Character.toLowerCase(char); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; Array 创建数组： int[] array = new int[5]; int[] array = new int[]{1,2,3,4}; int[] array = {1,2,3,4}; 引用： array[3]; 获取长度： array.length; 排序" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.github.io/zh/blog/tech/java/" /><meta property="article:section" content="blog" />
 
@@ -50,7 +50,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java"/>
-<meta name="twitter:description" content="Math double Math.ceil(double a); // 原函数 Math.ceil(24 / 23); // 1.0 Math.ceil(22 / 23); // 0.0 Math.ceil((double) 24 / 23); // 2.0 (int) Math.ceil((double) 24 / 23); // 2 Character 判断是否为字母或数字： boolean = Character.isLetterOrDigit(char); 转小写： char = Character.toLowerCase(char); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; Array"/>
+<meta name="twitter:description" content="Character 判断是否为字母或数字： boolean = Character.isLetterOrDigit(char); 转小写： char = Character.toLowerCase(char); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; Array 创建数组： int[] array = new int[5]; int[] array = new int[]{1,2,3,4}; int[] array = {1,2,3,4}; 引用： array[3]; 获取长度： array.length; 排序"/>
 
 
 <script type="application/ld+json">
@@ -85,12 +85,12 @@
   "@type": "BlogPosting",
   "headline": "Java",
   "name": "Java",
-  "description": "Math double Math.ceil(double a); // 原函数 Math.ceil(24 / 23); // 1.0 Math.ceil(22 / 23); // 0.0 Math.ceil((double) 24 / 23); // 2.0 (int) Math.ceil((double) 24 / 23); // 2 Character 判断是否为字母或数字： boolean = Character.isLetterOrDigit(char); 转小写： char = Character.toLowerCase(char); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; Array",
+  "description": "Character 判断是否为字母或数字： boolean = Character.isLetterOrDigit(char); 转小写： char = Character.toLowerCase(char); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; Array 创建数组： int[] array = new int[5]; int[] array = new int[]{1,2,3,4}; int[] array = {1,2,3,4}; 引用： array[3]; 获取长度： array.length; 排序",
   "keywords": [
     "Java"
   ],
-  "articleBody": "Math double Math.ceil(double a);\t// 原函数 Math.ceil(24 / 23);\t// 1.0 Math.ceil(22 / 23);\t// 0.0 Math.ceil((double) 24 / 23);\t// 2.0 (int) Math.ceil((double) 24 / 23);\t// 2 Character 判断是否为字母或数字：\nboolean = Character.isLetterOrDigit(char); 转小写：\nchar = Character.toLowerCase(char); Integer 最大值最小值：\nint max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; Array 创建数组：\nint[] array = new int[5]; int[] array = new int[]{1,2,3,4}; int[] array = {1,2,3,4}; 引用：\narray[3]; 获取长度：\narray.length; 排序：\nArrays.sort(array); 打印：\nSystem.out.println(Arrays.toString(array)); 填满：\nint[] array = new int[]; int num; Arrays.fill(array, num);\t// array全部元素等于num String 创建字符串：\nString string = \"java\"; 指定位置的字符\nchar charAt3 = string.charAt(3);\t// charAt3 = 'a' 字符串相等：\nString string1 = \"abc\"; String string2 = \"abc\"; string1.equals(string2); 字符串转整数：\nString string = \"123\"; int integer = Integer.parseInt(string); 字符串长度：\nint length = string.length(); 截取字符串：\nString sb = \"abc\"; String str = sb.substring(0, 1);\t// str = \"a\"; 字符的位置：\nString str = \"abc\"; int index = str.indexOf(b);\t// index = 1 字符串转字符数组：\nString str; char[] temp = str.toCharArray(); Stack 创建 stack：\nDequeInteger stack = new ArrayDequeInteger(); 栈顶：\nstack.peek() 入栈：\nstack.push(); 出栈：\nstack.pop(); 栈是否为空：\nstack.isEmpty(); 栈的长度：\nstack.size(); ArrayList 创建列表：\nListInteger array = new ArrayListInteger(); 添加元素：\narray.add(1); 指定位置的元素：\narray.get(0); 列表中是否存在某元素：\narray.contains(0); 删除列表元素：\narray.remove(0);\t// 删除array[0] array.remove(Integer.valueOf(0));\t// 删除元素0 列表大小：\narray.size(); 判断列表是否为空：\narray.isEmpty(); 清空列表：\narray.clear(); 升序排列：\narray.sort(Comparator.naturalOrder()); 降序排列：\narray.sort(Comparator.reverseOrder()); 修改值：\narray.set(int index, int value); 关于二维数组：\nListint[] arrayList = new ArrayListint[] ();\t// 新建二维数组 ...\t// 对arrayList进行赋值 int[][] array = new int[arrayList.size()][length]; for (int i = 0; i  arrayList.size(); i++) {  // 转化的时候先新建一个int[][]  // 然后再从arrayList向array赋值 } Hashmap 创建一个哈希映射：\nMapInteger, Integer map = new HashMapInteger, Integer(); 存储键值对（修改键值对）：\nmap.put(key, value); 获取 key 的内容：\nmap.get(key); 如果不知道有没有内容：\nmap.getOrDefault(key, default); // 如果存在key，返回key的值 // 如果不存在key，返回default 查询是否存在 key：\nmap.containsKey(key); 遍历键值对：\n// 遍历key for (Integer key : map.keySet()) { } // 遍历value for (Integer value : map.values()) { } 是否为空：\nmap.isEmpty(); 排序：\nMapInteger, Integer map = new HashMapInteger, Integer();\t// 创建一个哈希映射 ListMap.EntryInteger, Integer mapList = new ArrayListMap.EntryInteger, Integer(map.entrySet());\t// 我们无法对HashMap排序，需要把HashMap转换为ArrayList再排序 Collections.sort(mapList, new ComparatorMap.EntryInteger, Integer() {  public int compare(Map.EntryInteger, Integer o1, Map.EntryInteger, Integer o2) {  return (o2.getValue() - o1.getValue());\t// 按照值的大小，从大到小排序  }  }); mapList.get(i).getKey();\t// 排序后第i个的键 mapList.get(i).getValue();\t// 排序后第i个的值 HashSet 创建哈希表：\nSetInteger set = new HashSetInteger(); 添加元素：\nset.add(); 判断元素是否存在：\nset.contains(); 删除元素：\nset.remove(); 清空：\nset.clear(); StringBuilder 创建 StringBuilder：\nStringBuilder sb = new StringBuilder(); 在末尾添加字符：\nsb.append(char); 在末尾删除字符：\nsb.deleteCharAt(sb.length() - 1); 长度：\nsb.length(); 转化为 String：\nsb.toString(); 取反：\nsb.reverse(); 插入：\nsb.insert(0, \"abcd\");\t// 在第0个元素插入\"abcd\" 清空：\nsb.setLength(0); 取字符：\nsb.charAt(i); 互相转换 // int转String int i; String str = String.valueOf(i);  // String转int String str; int a = Integer.parseInt(str);  // char转int char ch; int i = ch - '0';  // int转char int i; char ch = (char) i;  // String转char[] String str; char[] ch = str.toCharArray();  // char[]转String char[] ch; String str = String.valueOf(ch); ",
-  "wordCount" : "996",
+  "articleBody": "Character 判断是否为字母或数字：\nboolean = Character.isLetterOrDigit(char); 转小写：\nchar = Character.toLowerCase(char); Integer 最大值最小值：\nint max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; Array 创建数组：\nint[] array = new int[5]; int[] array = new int[]{1,2,3,4}; int[] array = {1,2,3,4}; 引用：\narray[3]; 获取长度：\narray.length; 排序：\nArrays.sort(array); 打印：\nSystem.out.println(Arrays.toString(array)); 填满：\nint[] array = new int[]; int num; Arrays.fill(array, num);\t// array全部元素等于num String 创建字符串：\nString string = \"java\"; 指定位置的字符\nchar charAt3 = string.charAt(3);\t// charAt3 = 'a' 字符串相等：\nString string1 = \"abc\"; String string2 = \"abc\"; string1.equals(string2); 字符串转整数：\nString string = \"123\"; int integer = Integer.parseInt(string); 字符串长度：\nint length = string.length(); 截取字符串：\nString sb = \"abc\"; String str = sb.substring(0, 1);\t// str = \"a\"; 字符的位置：\nString str = \"abc\"; int index = str.indexOf(b);\t// index = 1 字符串转字符数组：\nString str; char[] temp = str.toCharArray(); Stack 创建 stack：\nDequeInteger stack = new ArrayDequeInteger(); 栈顶：\nstack.peek() 入栈：\nstack.push(); 出栈：\nstack.pop(); 栈是否为空：\nstack.isEmpty(); 栈的长度：\nstack.size(); ArrayList 创建列表：\nListInteger array = new ArrayListInteger(); 添加元素：\narray.add(1); 指定位置的元素：\narray.get(0); 列表中是否存在某元素：\narray.contains(0); 删除列表元素：\narray.remove(0);\t// 删除array[0] array.remove(Integer.valueOf(0));\t// 删除元素0 列表大小：\narray.size(); 判断列表是否为空：\narray.isEmpty(); 清空列表：\narray.clear(); 升序排列：\narray.sort(Comparator.naturalOrder()); 降序排列：\narray.sort(Comparator.reverseOrder()); 修改值：\narray.set(int index, int value); 关于二维数组：\nListint[] arrayList = new ArrayListint[] ();\t// 新建二维数组 ...\t// 对arrayList进行赋值 int[][] array = new int[arrayList.size()][length]; for (int i = 0; i  arrayList.size(); i++) {  // 转化的时候先新建一个int[][]  // 然后再从arrayList向array赋值 } Hashmap 创建一个哈希映射：\nMapInteger, Integer map = new HashMapInteger, Integer(); 存储键值对（修改键值对）：\nmap.put(key, value); 获取 key 的内容：\nmap.get(key); 如果不知道有没有内容：\nmap.getOrDefault(key, default); // 如果存在key，返回key的值 // 如果不存在key，返回default 查询是否存在 key：\nmap.containsKey(key); 遍历键值对：\n// 遍历key for (Integer key : map.keySet()) { } // 遍历value for (Integer value : map.values()) { } 是否为空：\nmap.isEmpty(); 排序：\nMapInteger, Integer map = new HashMapInteger, Integer();\t// 创建一个哈希映射 ListMap.EntryInteger, Integer mapList = new ArrayListMap.EntryInteger, Integer(map.entrySet());\t// 我们无法对HashMap排序，需要把HashMap转换为ArrayList再排序 Collections.sort(mapList, new ComparatorMap.EntryInteger, Integer() {  public int compare(Map.EntryInteger, Integer o1, Map.EntryInteger, Integer o2) {  return (o2.getValue() - o1.getValue());\t// 按照值的大小，从大到小排序  }  }); mapList.get(i).getKey();\t// 排序后第i个的键 mapList.get(i).getValue();\t// 排序后第i个的值 HashSet 创建哈希表：\nSetInteger set = new HashSetInteger(); 添加元素：\nset.add(); 判断元素是否存在：\nset.contains(); 删除元素：\nset.remove(); 清空：\nset.clear(); StringBuilder 创建 StringBuilder：\nStringBuilder sb = new StringBuilder(); 在末尾添加字符或字符串：\nsb.append(char); 在末尾删除字符：\nsb.deleteCharAt(sb.length() - 1); 长度：\nsb.length(); 转化为 String：\nsb.toString(); 取反：\nsb.reverse(); 插入：\nsb.insert(0, \"abcd\");\t// 在第0个元素插入\"abcd\" 清空：\nsb.setLength(0); 取字符：\nsb.charAt(i); Queue 创建queue:\nQueueInteger queue = new ArrayDequeInteger();\t// 和stack相同，都是用ArrayDeque 加入元素：\nqueue.add(1); 删除元素（先进先出）：\nqueue.poll(); 队列大小：\nqueue.size(); 互相转换 // int转String int i; String str = String.valueOf(i);  // String转int String str; int a = Integer.parseInt(str);  // char转int char ch; int i = ch - '0';  // int转char int i; char ch = (char) i;  // String转char[] String str; char[] ch = str.toCharArray();  // char[]转String char[] ch; String str = String.valueOf(ch);  // char转String char ch = 'a'; String str = ch + \"\"; 坑 Math：\ndouble Math.ceil(double a);\t// 原函数 Math.ceil(24 / 23);\t// 1.0 Math.ceil(22 / 23);\t// 0.0 Math.ceil((double) 24 / 23);\t// 2.0 (int) Math.ceil((double) 24 / 23);\t// 2 char转String：\nchar ch = 'a'; String str = ch + \"\"; ",
+  "wordCount" : "1110",
   "inLanguage": "zh",
   "datePublished": "0001-01-01T00:00:00Z",
   "dateModified": "0001-01-01T00:00:00Z",
@@ -202,7 +202,7 @@
     <h1 class="post-title">
       Java
     </h1>
-    <div class="post-meta">2 分钟&nbsp;·&nbsp;Kyrie
+    <div class="post-meta">3 分钟&nbsp;·&nbsp;Kyrie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -213,8 +213,6 @@
                 </summary>
 
                 <div class="inner"><ul>
-                        <li>
-                            <a href="#math" aria-label="Math">Math</a></li>
                         <li>
                             <a href="#character" aria-label="Character">Character</a></li>
                         <li>
@@ -234,7 +232,11 @@
                         <li>
                             <a href="#stringbuilder" aria-label="StringBuilder">StringBuilder</a></li>
                         <li>
-                            <a href="#%e4%ba%92%e7%9b%b8%e8%bd%ac%e6%8d%a2" aria-label="互相转换">互相转换</a>
+                            <a href="#queue" aria-label="Queue">Queue</a></li>
+                        <li>
+                            <a href="#%e4%ba%92%e7%9b%b8%e8%bd%ac%e6%8d%a2" aria-label="互相转换">互相转换</a></li>
+                        <li>
+                            <a href="#%e5%9d%91" aria-label="坑">坑</a>
                         </li>
                     </ul>
                 </div>
@@ -300,13 +302,7 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="math">Math<a hidden class="anchor" aria-hidden="true" href="#math">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">(</span><span style="color:#66d9ef">double</span> a<span style="color:#f92672">);</span>	<span style="color:#75715e">// 原函数
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">(</span>24 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 1.0
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">(</span>22 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 0.0
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">((</span><span style="color:#66d9ef">double</span><span style="color:#f92672">)</span> 24 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 2.0
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">((</span><span style="color:#66d9ef">double</span><span style="color:#f92672">)</span> 24 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 2
-</span></span></span></code></pre></div><h3 id="character">Character<a hidden class="anchor" aria-hidden="true" href="#character">#</a></h3>
+  <div class="post-content"><h3 id="character">Character<a hidden class="anchor" aria-hidden="true" href="#character">#</a></h3>
 <p>判断是否为字母或数字：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">boolean</span> <span style="color:#f92672">=</span> Character<span style="color:#f92672">.</span><span style="color:#a6e22e">isLetterOrDigit</span><span style="color:#f92672">(</span><span style="color:#66d9ef">char</span><span style="color:#f92672">);</span>
 </span></span></code></pre></div><p>转小写：</p>
@@ -446,7 +442,7 @@
 </span></span></code></pre></div><h3 id="stringbuilder">StringBuilder<a hidden class="anchor" aria-hidden="true" href="#stringbuilder">#</a></h3>
 <p>创建 StringBuilder：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
-</span></span></code></pre></div><p>在末尾添加字符：</p>
+</span></span></code></pre></div><p>在末尾添加字符或字符串：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#66d9ef">char</span><span style="color:#f92672">);</span>
 </span></span></code></pre></div><p>在末尾删除字符：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">deleteCharAt</span><span style="color:#f92672">(</span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> 1<span style="color:#f92672">);</span>
@@ -462,6 +458,15 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">setLength</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
 </span></span></code></pre></div><p>取字符：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">charAt</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+</span></span></code></pre></div><h3 id="queue">Queue<a hidden class="anchor" aria-hidden="true" href="#queue">#</a></h3>
+<p>创建queue:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Queue<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> queue <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayDeque<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;();</span>	<span style="color:#75715e">// 和stack相同，都是用ArrayDeque
+</span></span></span></code></pre></div><p>加入元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>queue<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>删除元素（先进先出）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>queue<span style="color:#f92672">.</span><span style="color:#a6e22e">poll</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>队列大小：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>queue<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span>
 </span></span></code></pre></div><h3 id="互相转换">互相转换<a hidden class="anchor" aria-hidden="true" href="#互相转换">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// int转String
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">;</span>
@@ -486,6 +491,20 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// char[]转String
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> ch<span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>ch<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// char转String
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> ch <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">;</span>
+</span></span></code></pre></div><h3 id="坑">坑<a hidden class="anchor" aria-hidden="true" href="#坑">#</a></h3>
+<p>Math：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">(</span><span style="color:#66d9ef">double</span> a<span style="color:#f92672">);</span>	<span style="color:#75715e">// 原函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">(</span>24 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">(</span>22 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 0.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">((</span><span style="color:#66d9ef">double</span><span style="color:#f92672">)</span> 24 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 2.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">((</span><span style="color:#66d9ef">double</span><span style="color:#f92672">)</span> 24 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 2
+</span></span></span></code></pre></div><p>char转String：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> ch <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">;</span>
 </span></span></code></pre></div>
 
   </div>
