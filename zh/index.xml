@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-ca</language>
-    <lastBuildDate>Sat, 11 Jun 2022 21:59:32 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Jul 2022 00:00:17 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo &#43; PaperMod搭建技术博客</title>
       <link>https://kyxie.github.io/zh/blog/tech/papermod/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://kyxie.github.io/zh/blog/tech/papermod/</guid>
       <description>安装过程 首先需要安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo推荐了两个包管理工具，Chocolatey和</description>
+    </item>
+    
+    <item>
+      <title>Automator</title>
+      <link>https://kyxie.github.io/zh/blog/tech/automator/</link>
+      <pubDate>Sun, 24 Jul 2022 00:00:17 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/automator/</guid>
+      <description>体验了一段时间的MacOs，不得不说MacOs真的是傻逼，右键在特定文件夹打开Terminal和新建文件这两个功能都没有，好在Mac有Aut</description>
     </item>
     
     <item>
