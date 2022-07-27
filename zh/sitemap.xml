@@ -41,6 +41,8 @@
                 href="https://kyxie.github.io/zh/blog/life/"
                 />
   </url><url>
+    <loc>https://kyxie.github.io/zh/blog/tech/java/</loc>
+  </url><url>
     <loc>https://kyxie.github.io/zh/blog/tech/automator/</loc>
     <lastmod>2022-07-24T00:00:17-04:00</lastmod>
   </url><url>
@@ -148,8 +150,6 @@
                 hreflang="zh"
                 href="https://kyxie.github.io/zh/categories/"
                 />
-  </url><url>
-    <loc>https://kyxie.github.io/zh/blog/tech/java/</loc>
   </url><url>
     <loc>https://kyxie.github.io/zh/series/</loc>
     <xhtml:link
