@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>算法和数据结构 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Algorithm, Data Structure">
+<meta name="description" content="链表 数据结构 public class ListNode { int val; ListNode next; ListNode() {} ListNode (int val) { this.val = val; } ListNode (int val, ListNode next) { this.val = val; this.next = next; } } 树 数据结构 public class TreeNode { int val; TreeNode left; TreeNode right; TreeNode() {} TreeNode(int val) { this.val = val; } TreeNode (int val, TreeNode left, TreeNode right) {">
+<meta name="author" content="Kyrie">
+<link rel="canonical" href="https://kyxie.github.io/zh/blog/tech/algorithm/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.da272d648a17576ac92aa4919be1a8e4f6f2c166e5f3fdbfdf15113def069ef7.css" integrity="sha256-2ictZIoXV2rJKqSRm&#43;Go5PbywWbl8/2/3xURPe8Gnvc=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.c22f3df7cfe21865b4ec6534be756e2552b1add9b56cb8072b03a6618f25ad97.js" integrity="sha256-wi8998/iGGW07GU0vnVuJVKxrdm1bLgHKwOmYY8lrZc="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.github.io/k-48.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.github.io/k-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.github.io/k-48.png">
+<link rel="apple-touch-icon" href="https://kyxie.github.io/k-48.png">
+<link rel="mask-icon" href="https://kyxie.github.io/k-48.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kyxie.github.io/zh/blog/tech/algorithm/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"><meta property="og:title" content="算法和数据结构" />
+<meta property="og:description" content="链表 数据结构 public class ListNode { int val; ListNode next; ListNode() {} ListNode (int val) { this.val = val; } ListNode (int val, ListNode next) { this.val = val; this.next = next; } } 树 数据结构 public class TreeNode { int val; TreeNode left; TreeNode right; TreeNode() {} TreeNode(int val) { this.val = val; } TreeNode (int val, TreeNode left, TreeNode right) {" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.github.io/zh/blog/tech/algorithm/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2022-07-30T22:56:48-04:00" />
+<meta property="article:modified_time" content="2022-07-30T22:56:48-04:00" /><meta property="og:site_name" content="Kyrie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="算法和数据结构"/>
+<meta name="twitter:description" content="链表 数据结构 public class ListNode { int val; ListNode next; ListNode() {} ListNode (int val) { this.val = val; } ListNode (int val, ListNode next) { this.val = val; this.next = next; } } 树 数据结构 public class TreeNode { int val; TreeNode left; TreeNode right; TreeNode() {} TreeNode(int val) { this.val = val; } TreeNode (int val, TreeNode left, TreeNode right) {"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "博客 📒",
+      "item": "https://kyxie.github.io/zh/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "技术 🔧",
+      "item": "https://kyxie.github.io/zh/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "算法和数据结构",
+      "item": "https://kyxie.github.io/zh/blog/tech/algorithm/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "算法和数据结构",
+  "name": "算法和数据结构",
+  "description": "链表 数据结构 public class ListNode { int val; ListNode next; ListNode() {} ListNode (int val) { this.val = val; } ListNode (int val, ListNode next) { this.val = val; this.next = next; } } 树 数据结构 public class TreeNode { int val; TreeNode left; TreeNode right; TreeNode() {} TreeNode(int val) { this.val = val; } TreeNode (int val, TreeNode left, TreeNode right) {",
+  "keywords": [
+    "Algorithm", "Data Structure"
+  ],
+  "articleBody": "链表 数据结构\npublic class ListNode {  int val;  ListNode next;  ListNode() {}  ListNode (int val) {  this.val = val;  }  ListNode (int val, ListNode next) {  this.val = val;  this.next = next;  } } 树 数据结构\npublic class TreeNode {  int val;  TreeNode left;  TreeNode right;  TreeNode() {}  TreeNode(int val) {  this.val = val;  }  TreeNode (int val, TreeNode left, TreeNode right) {  this.val = val;  this.left = left;  this.right = right;  } } 前序遍历\nListInteger res = new ArrayListInteger();  public ListInteger preTrav(TreeNode root) {  backTrack(root);  return res; }  public void backTrack(TreeNode root) {  if (root == null) {  return;  }  res.add(root.val);  backTrack(root.left);  backTrack(root.right); } 层序遍历\npublic ListListInteger levelTrav(TreeNode root) {  ListListInteger res = new ArrayListListInteger();  QueueTreeNode queue = new ArrayDequeTreeNode();  if (root != null) {  queue.offer(root);  }  while (!queue.isEmpty()) {  int n = queue.size();  ListInteger level = new ArrayListInteger();  for (int i = 0; i  n; i++) {  TreeNode node = queue.poll();  level.add(node.val);  if (node.left != null) {  queue.offer(node.left);  }  if (node.right != null) {  queue.offer(node.right);  }  }  res.add(level);  }  return res; } 字典树 class Trie {  class TrieNode {  boolean end;  boolean[] next = new TrieNode[26];  }   TireNode root;  public Trie() {  root = new TrieNode();  }   public void insert(String word) {  TrieNode p = root;  for (int i = 0; i  word.length(); i++) {  int cur = word.charAt(i) - 'a';  if (p.next[cur] == null) {  p.next[cur] = new TrieNode();  }  p = p.next[cur];  }  p.end = true;  }   public boolean search(String word) {  TrieNode p = root;  for (int i = 0; i  word.length(); i++) {  int cur = word.charAt(i) - 'a';  if (p.next[cur] == null) {  return false;  }  p = p.next[cur];  }  return p.end;  } } 二分法 public int search(int[] nums, int target) {  int left = 0;  int right = nums.length - 1;  while (left  right) {\t// 左闭右闭这里用 int mid = left + (right - left) / 2;  if (nums[mid]  target) {  left = mid + 1;  // 由于上一行已经考虑了mid的值是不合适的，因此新的区间不能再包含mid  } else if (nums[mid]  target) {  right = mid - 1;  } else if (nums[mid] == target) {  return mid;  }  }  return -1; } 数组最大公约数 public int arrayGCD(int[] nums) {  int gcd = 0;\t// 一定要初始化为0  for (int num : numsDivide) {  gcd = getGCD(num, gcd);  }  return gcd; }  public int getGCD(int max, int min) {  return min == 0 ? max : getGCD(min, max % min); } 质数 public boolean isPrime(int n) {  if (n == 1) {  return false;  }  for (int i = 2; i * i  n; i++) {  if (n % i == 0) {  return false;  }  }  return true; } ",
+  "wordCount" : "518",
+  "inLanguage": "zh",
+  "datePublished": "2022-07-30T22:56:48-04:00",
+  "dateModified": "2022-07-30T22:56:48-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyrie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.github.io/zh/blog/tech/algorithm/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.github.io/k-48.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.github.io/zh/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.github.io/en/" title="English🇨🇦"
+                            aria-label="English🇨🇦">English🇨🇦</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kyxie.github.io/zh/about" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/projects" title="项目">
+                    <span>项目</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/resume.pdf" title="简历">
+                    <span>简历</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/blog" title="博客">
+                    <span>博客</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/comment/comments" title="留言板">
+                    <span>留言板</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/links" title="友链">
+                    <span>友链</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/search" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.github.io/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/tech/">技术 🔧</a></div>
+    <h1 class="post-title">
+      算法和数据结构
+    </h1>
+    <div class="post-meta"><span title='2022-07-30 22:56:48 -0400 EDT'>2022-07-30</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;Kyrie
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">目录</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#%e9%93%be%e8%a1%a8" aria-label="链表">链表</a></li>
+                        <li>
+                            <a href="#%e6%a0%91" aria-label="树">树</a></li>
+                        <li>
+                            <a href="#%e5%ad%97%e5%85%b8%e6%a0%91" aria-label="字典树">字典树</a></li>
+                        <li>
+                            <a href="#%e4%ba%8c%e5%88%86%e6%b3%95" aria-label="二分法">二分法</a></li>
+                        <li>
+                            <a href="#%e6%95%b0%e7%bb%84%e6%9c%80%e5%a4%a7%e5%85%ac%e7%ba%a6%e6%95%b0" aria-label="数组最大公约数">数组最大公约数</a></li>
+                        <li>
+                            <a href="#%e8%b4%a8%e6%95%b0" aria-label="质数">质数</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h3 id="链表">链表<a hidden class="anchor" aria-hidden="true" href="#链表">#</a></h3>
+<p>数据结构</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ListNode</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> val<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode next<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">()</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>    ListNode <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> val<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">val</span> <span style="color:#f92672">=</span> val<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    ListNode <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> val<span style="color:#f92672">,</span> ListNode next<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">val</span> <span style="color:#f92672">=</span> val<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">next</span> <span style="color:#f92672">=</span> next<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="树">树<a hidden class="anchor" aria-hidden="true" href="#树">#</a></h3>
+<p>数据结构</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TreeNode</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> val<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    TreeNode left<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    TreeNode right<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">()</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> val<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">val</span> <span style="color:#f92672">=</span> val<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    TreeNode <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> val<span style="color:#f92672">,</span> TreeNode left<span style="color:#f92672">,</span> TreeNode right<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">val</span> <span style="color:#f92672">=</span> val<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">left</span> <span style="color:#f92672">=</span> left<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">right</span> <span style="color:#f92672">=</span> right<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>前序遍历</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> res <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">preTrav</span><span style="color:#f92672">(</span>TreeNode root<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    backTrack<span style="color:#f92672">(</span>root<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> res<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">backTrack</span><span style="color:#f92672">(</span>TreeNode root<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>root <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    res<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>root<span style="color:#f92672">.</span><span style="color:#a6e22e">val</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    backTrack<span style="color:#f92672">(</span>root<span style="color:#f92672">.</span><span style="color:#a6e22e">left</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    backTrack<span style="color:#f92672">(</span>root<span style="color:#f92672">.</span><span style="color:#a6e22e">right</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>层序遍历</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">levelTrav</span><span style="color:#f92672">(</span>TreeNode root<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;&gt;</span> res <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;&gt;();</span>
+</span></span><span style="display:flex;"><span>    Queue<span style="color:#f92672">&lt;</span>TreeNode<span style="color:#f92672">&gt;</span> queue <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayDeque<span style="color:#f92672">&lt;</span>TreeNode<span style="color:#f92672">&gt;();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>root <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        queue<span style="color:#f92672">.</span><span style="color:#a6e22e">offer</span><span style="color:#f92672">(</span>root<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(!</span>queue<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> level <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> n<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            TreeNode node <span style="color:#f92672">=</span> queue<span style="color:#f92672">.</span><span style="color:#a6e22e">poll</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            level<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>node<span style="color:#f92672">.</span><span style="color:#a6e22e">val</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>node<span style="color:#f92672">.</span><span style="color:#a6e22e">left</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                queue<span style="color:#f92672">.</span><span style="color:#a6e22e">offer</span><span style="color:#f92672">(</span>node<span style="color:#f92672">.</span><span style="color:#a6e22e">left</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>node<span style="color:#f92672">.</span><span style="color:#a6e22e">right</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                queue<span style="color:#f92672">.</span><span style="color:#a6e22e">offer</span><span style="color:#f92672">(</span>node<span style="color:#f92672">.</span><span style="color:#a6e22e">right</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        res<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>level<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> res<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="字典树">字典树<a hidden class="anchor" aria-hidden="true" href="#字典树">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Trie</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TrieNode</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">boolean</span> end<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">boolean</span><span style="color:#f92672">[]</span> next <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TrieNode<span style="color:#f92672">[</span>26<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    TireNode root<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Trie</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        root <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TrieNode<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insert</span><span style="color:#f92672">(</span>String word<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        TrieNode p <span style="color:#f92672">=</span> root<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> word<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> word<span style="color:#f92672">.</span><span style="color:#a6e22e">charAt</span><span style="color:#f92672">(</span>i<span style="color:#f92672">)</span> <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">[</span>cur<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">[</span>cur<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TrieNode<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            p <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">[</span>cur<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        p<span style="color:#f92672">.</span><span style="color:#a6e22e">end</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">search</span><span style="color:#f92672">(</span>String word<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        TrieNode p <span style="color:#f92672">=</span> root<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> word<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> word<span style="color:#f92672">.</span><span style="color:#a6e22e">charAt</span><span style="color:#f92672">(</span>i<span style="color:#f92672">)</span> <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">[</span>cur<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            p <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">[</span>cur<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> p<span style="color:#f92672">.</span><span style="color:#a6e22e">end</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="二分法">二分法<a hidden class="anchor" aria-hidden="true" href="#二分法">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">search</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> target<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> left <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> right <span style="color:#f92672">=</span> nums<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>left <span style="color:#f92672">&lt;=</span> right<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>	<span style="color:#75715e">// 左闭右闭这里用&lt;=
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> left <span style="color:#f92672">+</span> <span style="color:#f92672">(</span>right <span style="color:#f92672">-</span> left<span style="color:#f92672">)</span> <span style="color:#f92672">/</span> 2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>nums<span style="color:#f92672">[</span>mid<span style="color:#f92672">]</span> <span style="color:#f92672">&lt;</span> target<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            left <span style="color:#f92672">=</span> mid <span style="color:#f92672">+</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 由于上一行已经考虑了mid的值是不合适的，因此新的区间不能再包含mid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>nums<span style="color:#f92672">[</span>mid<span style="color:#f92672">]</span> <span style="color:#f92672">&gt;</span> target<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            right <span style="color:#f92672">=</span> mid <span style="color:#f92672">-</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>nums<span style="color:#f92672">[</span>mid<span style="color:#f92672">]</span> <span style="color:#f92672">==</span> target<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> mid<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span>1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="数组最大公约数">数组最大公约数<a hidden class="anchor" aria-hidden="true" href="#数组最大公约数">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">arrayGCD</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> nums<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> gcd <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>	<span style="color:#75715e">// 一定要初始化为0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> num <span style="color:#f92672">:</span> numsDivide<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        gcd <span style="color:#f92672">=</span> getGCD<span style="color:#f92672">(</span>num<span style="color:#f92672">,</span> gcd<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> gcd<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getGCD</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> max<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> min<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> min <span style="color:#f92672">==</span> 0 <span style="color:#f92672">?</span> max <span style="color:#f92672">:</span> getGCD<span style="color:#f92672">(</span>min<span style="color:#f92672">,</span> max <span style="color:#f92672">%</span> min<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="质数">质数<a hidden class="anchor" aria-hidden="true" href="#质数">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isPrime</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> n<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>n <span style="color:#f92672">==</span> 1<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span> i <span style="color:#f92672">*</span> i <span style="color:#f92672">&lt;=</span> n<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>n <span style="color:#f92672">%</span> i <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.github.io/zh/blog/tech/java/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Java</span>
+  </a>
+  <a class="next" href="https://kyxie.github.io/zh/blog/tech/automator/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>Automator</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://kyxie.github.io/zh/">Kunyang&#39;s Blog</a></span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        Visitors: <span id="busuanzi_value_site_uv"></span>
+        Views: <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

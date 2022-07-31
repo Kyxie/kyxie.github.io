@@ -26,6 +26,15 @@
     </item>
     
     <item>
+      <title>算法和数据结构</title>
+      <link>https://kyxie.github.io/zh/blog/tech/algorithm/</link>
+      <pubDate>Sat, 30 Jul 2022 22:56:48 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/algorithm/</guid>
+      <description>链表 数据结构 public class ListNode { int val; ListNode next; ListNode() {} ListNode (int val) { this.val = val; } ListNode (int val, ListNode next) { this.val = val; this.next = next; } } 树 数据结构 public class TreeNode { int val; TreeNode left; TreeNode right; TreeNode() {} TreeNode(int val) { this.val = val; } TreeNode (int val, TreeNode left, TreeNode right) {</description>
+    </item>
+    
+    <item>
       <title>Automator</title>
       <link>https://kyxie.github.io/zh/blog/tech/automator/</link>
       <pubDate>Sun, 24 Jul 2022 00:00:17 -0400</pubDate>

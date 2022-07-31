@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-ca</language>
-    <lastBuildDate>Sun, 24 Jul 2022 00:00:17 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Jul 2022 22:56:48 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo &#43; PaperMod搭建技术博客</title>
       <link>https://kyxie.github.io/zh/blog/tech/papermod/</link>
@@ -23,6 +23,15 @@
       
       <guid>https://kyxie.github.io/zh/blog/tech/java/</guid>
       <description>Character 判断是否为字母或数字： boolean = Character.isLetterOrDigit(char); 转小写： char = Character.toLowerCase(char); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等： Integer a = 1; Integer b = 1; a == b; // true Integer c = 200; Integer d = 200; c == d; // false Objects.equals(c,</description>
+    </item>
+    
+    <item>
+      <title>算法和数据结构</title>
+      <link>https://kyxie.github.io/zh/blog/tech/algorithm/</link>
+      <pubDate>Sat, 30 Jul 2022 22:56:48 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/algorithm/</guid>
+      <description>链表 数据结构 public class ListNode { int val; ListNode next; ListNode() {} ListNode (int val) { this.val = val; } ListNode (int val, ListNode next) { this.val = val; this.next = next; } } 树 数据结构 public class TreeNode { int val; TreeNode left; TreeNode right; TreeNode() {} TreeNode(int val) { this.val = val; } TreeNode (int val, TreeNode left, TreeNode right) {</description>
     </item>
     
     <item>
