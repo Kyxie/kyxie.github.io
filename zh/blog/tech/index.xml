@@ -31,7 +31,25 @@
       <pubDate>Sat, 30 Jul 2022 22:56:48 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/algorithm/</guid>
-      <description>链表 数据结构 public class ListNode { int val; ListNode next; ListNode() {} ListNode (int val) { this.val = val; } ListNode (int val, ListNode next) { this.val = val; this.next = next; } } 树 数据结构 public class TreeNode { int val; TreeNode left; TreeNode right; TreeNode() {} TreeNode(int val) { this.val = val; } TreeNode (int val, TreeNode left, TreeNode right) {</description>
+      <description>链表 数据结构 public class ListNode { int val; ListNode next; ListNode() {} ListNode (int val) { this.val = val; } ListNode (int val, ListNode next) { this.val = val; this.next = next; } } 反转链表： public ListNode reverse(ListNode head) { ListNode prev = null; ListNode curr = head; while (curr != null) { ListNode temp = curr.next; curr.next = prev; prev =</description>
+    </item>
+    
+    <item>
+      <title>Cpp</title>
+      <link>https://kyxie.github.io/zh/blog/tech/cpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/cpp/</guid>
+      <description>char 转大小写： char ch = &amp;#39;a&amp;#39;; ch = (char) toupper(ch); ch = (char) tolower(ch); 下一个字符： &amp;#39;b&amp;#39; == (&amp;#39;a&amp;#39; + 1); int 最大值最小值： int MAX = INT_MAX; int MIN = INT_MIN; array 创建数组： int array [4]; // 如果不初始化则值随机 int array[] = {1,2,3,4}; int</description>
+    </item>
+    
+    <item>
+      <title>Vim</title>
+      <link>https://kyxie.github.io/zh/blog/tech/vim/</link>
+      <pubDate>Wed, 19 Oct 2022 00:28:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/vim/</guid>
+      <description>复制 复制当前行：yy 复制当前行以下3行：3yy 复制当前词：yiw 删除 剪切当前行：dd 剪切当前行以下3行：3dd 复制当前词：yiw 撤销 撤销：u</description>
     </item>
     
     <item>

@@ -46,8 +46,10 @@
     <loc>https://kyxie.github.io/zh/blog/tech/algorithm/</loc>
     <lastmod>2022-07-30T22:56:48-04:00</lastmod>
   </url><url>
+    <loc>https://kyxie.github.io/zh/blog/tech/cpp/</loc>
+  </url><url>
     <loc>https://kyxie.github.io/zh/</loc>
-    <lastmod>2022-07-30T22:56:48-04:00</lastmod>
+    <lastmod>2022-10-19T00:28:55-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -58,6 +60,9 @@
                 hreflang="zh"
                 href="https://kyxie.github.io/zh/"
                 />
+  </url><url>
+    <loc>https://kyxie.github.io/zh/blog/tech/vim/</loc>
+    <lastmod>2022-10-19T00:28:55-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/tech/automator/</loc>
     <lastmod>2022-07-24T00:00:17-04:00</lastmod>
