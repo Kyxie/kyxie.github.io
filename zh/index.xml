@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-ca</language>
-    <lastBuildDate>Wed, 19 Oct 2022 00:28:55 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Jul 2022 22:56:48 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo &#43; PaperMod搭建技术博客</title>
       <link>https://kyxie.github.io/zh/blog/tech/papermod/</link>
@@ -41,15 +41,6 @@
       
       <guid>https://kyxie.github.io/zh/blog/tech/algorithm/</guid>
       <description>链表 数据结构 public class ListNode { int val; ListNode next; ListNode() {} ListNode (int val) { this.val = val; } ListNode (int val, ListNode next) { this.val = val; this.next = next; } } 反转链表： public ListNode reverse(ListNode head) { ListNode prev = null; ListNode curr = head; while (curr != null) { ListNode temp = curr.next; curr.next = prev; prev =</description>
-    </item>
-    
-    <item>
-      <title>Vim</title>
-      <link>https://kyxie.github.io/zh/blog/tech/vim/</link>
-      <pubDate>Wed, 19 Oct 2022 00:28:55 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/tech/vim/</guid>
-      <description>复制 复制当前行：yy 复制当前行以下3行：3yy 复制当前词：yiw 删除 剪切当前行：dd 剪切当前行以下3行：3dd 复制当前词：yiw 撤销 撤销：u</description>
     </item>
     
     <item>
@@ -122,7 +113,7 @@
       <pubDate>Wed, 13 Apr 2022 14:39:46 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/about/</guid>
-      <description>class Me: def __init__(self): self.name = &amp;#34;Kunyang Xie&amp;#34; self.prefer_name = &amp;#34;Kyrie&amp;#34; self.born_year = 1999 self.height = 181 self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.grad_school = &amp;#34;uWaterloo&amp;#34; self.undergrad_school = &amp;#34;UESTC, UofG&amp;#34; self.curr_location = &amp;#34;Waterloo, ON, CA&amp;#34; def favs(self): self.fav_sport = &amp;#34;cycling, basketball&amp;#34; self.fav_series = &amp;#34;Better Call Saul&amp;#34; self.fav_color = &amp;#34;Macaroon Colors&amp;#34; self.fav_band = &amp;#34;the Chainsmokers&amp;#34; self.fav_city = &amp;#34;Chengdu&amp;#34; self.fav_cat = &amp;#34;ragdoll&amp;#34; self.fav_dog = &amp;#34;golden retriever&amp;#34; def contact_info(self): self.github = &amp;#34;Kyxie&amp;#34; self.instagram =</description>
+      <description>class Me: def __init__(self): self.name = &amp;#34;Kunyang Xie&amp;#34; self.prefer_name = &amp;#34;Kyrie&amp;#34; self.born_year = 1999 self.height = 181 self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.grad_school = &amp;#34;uWaterloo&amp;#34; self.undergrad_school = &amp;#34;UESTC, UofG&amp;#34; self.curr_location = &amp;#34;Waterloo, ON, CA&amp;#34;</description>
     </item>
     
   </channel>

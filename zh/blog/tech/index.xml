@@ -44,15 +44,6 @@
     </item>
     
     <item>
-      <title>Vim</title>
-      <link>https://kyxie.github.io/zh/blog/tech/vim/</link>
-      <pubDate>Wed, 19 Oct 2022 00:28:55 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/tech/vim/</guid>
-      <description>复制 复制当前行：yy 复制当前行以下3行：3yy 复制当前词：yiw 删除 剪切当前行：dd 剪切当前行以下3行：3dd 复制当前词：yiw 撤销 撤销：u</description>
-    </item>
-    
-    <item>
       <title>Automator</title>
       <link>https://kyxie.github.io/zh/blog/tech/automator/</link>
       <pubDate>Sun, 24 Jul 2022 00:00:17 -0400</pubDate>
