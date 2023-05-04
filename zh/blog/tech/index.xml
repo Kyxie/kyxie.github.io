@@ -26,6 +26,15 @@
     </item>
     
     <item>
+      <title>Cpp</title>
+      <link>https://kyxie.github.io/zh/blog/tech/cpp/</link>
+      <pubDate>Mon, 02 May 2022 17:28:17 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/cpp/</guid>
+      <description>char 转大小写： char ch = &amp;#39;a&amp;#39;; ch = (char) toupper(ch); ch = (char) tolower(ch); 下一个字符： &amp;#39;b&amp;#39; == (&amp;#39;a&amp;#39; + 1); int 最大值最小值： int MAX = INT_MAX; int MIN = INT_MIN; array 创建数组： int array [4]; // 如果不初始化则值随机 int array[] = {1,2,3,4}; int</description>
+    </item>
+    
+    <item>
       <title>Windows 11 打造个性化终端</title>
       <link>https://kyxie.github.io/zh/blog/tech/bash/</link>
       <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>
