@@ -44,7 +44,7 @@ GitHub (Back End): https://github.com/Kyxie/money-back.git
       <pubDate>Wed, 13 Apr 2022 14:39:46 -0400</pubDate>
       
       <guid>https://kyxie.github.io/en/about/</guid>
-      <description>class Me:  def __init__(self):  self.name = &amp;#34;Kunyang Xie&amp;#34;  self.prefer_name = &amp;#34;Kyrie&amp;#34;  self.born_year = 1999  self.height = 181  self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34;  self.grad_school = &amp;#34;uWaterloo&amp;#34;  self.undergrad_school = &amp;#34;UESTC, UofG&amp;#34;  self.curr_location = &amp;#34;Waterloo, ON, CA&amp;#34; </description>
+      <description>class Me:  def __init__(self):  self.name = &amp;#34;Kunyang Xie&amp;#34;  self.prefer_name = &amp;#34;Kyrie&amp;#34;  self.born_year = 1999  self.MBTI = ISTJ  self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34;  self.curr_location = &amp;#34;Richmond Hill, ON, CA&amp;#34;  self.grad_school = &amp;#34;uWaterloo&amp;#34;  self.undergrad_school = &amp;#34;UESTC, UofG&amp;#34; </description>
     </item>
     
   </channel>
