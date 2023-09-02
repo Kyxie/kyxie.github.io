@@ -5,7 +5,7 @@
     <link>https://kyxie.github.io/en/</link>
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-ca</language>
+    <language>en</language>
     <lastBuildDate>Sat, 11 Jun 2022 21:59:32 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Building a website using Hugo &#43; PaperMod</title>
@@ -33,9 +33,9 @@
       
       <guid>https://kyxie.github.io/en/projects/</guid>
       <description>Graduate Projects Turbo Wallet - Money Management App Jan. - Mar. 2022, JavaScript
- GitHub (Front End): https://github.com/Kyxie/money-management.git
+GitHub (Front End): https://github.com/Kyxie/money-management.git
 GitHub (Back End): https://github.com/Kyxie/money-back.git
-  A money management app helps us to track household expenses and incomes. The front-end is based on React.js while the back-end uses Express.js framework and interacts with database of MongoDB. We can add, edit and delete the expense and income records, and the app creates a series of charts based on recent records to help analyze economic conditions.</description>
+A money management app helps us to track household expenses and incomes. The front-end is based on React.js while the back-end uses Express.js framework and interacts with database of MongoDB. We can add, edit and delete the expense and income records, and the app creates a series of charts based on recent records to help analyze economic conditions.</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@ GitHub (Back End): https://github.com/Kyxie/money-back.git
       <pubDate>Wed, 13 Apr 2022 14:39:46 -0400</pubDate>
       
       <guid>https://kyxie.github.io/en/about/</guid>
-      <description>class Me:  def __init__(self):  self.name = &amp;#34;Kunyang Xie&amp;#34;  self.prefer_name = &amp;#34;Kyrie&amp;#34;  self.born_year = 1999  self.MBTI = ISTJ  self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34;  self.curr_location = &amp;#34;Richmond Hill, ON, CA&amp;#34;  self.grad_school = &amp;#34;uWaterloo&amp;#34;  self.undergrad_school = &amp;#34;UESTC, UofG&amp;#34; </description>
+      <description>class Me: def __init__(self): self.name = &amp;#34;Kunyang Xie&amp;#34; self.prefer_name = &amp;#34;Kyrie&amp;#34; self.born_year = 1999 self.MBTI = ISTJ self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.curr_location = &amp;#34;Richmond Hill, ON, CA&amp;#34; self.grad_school = &amp;#34;uWaterloo&amp;#34; self.undergrad_school = &amp;#34;UESTC, UofG&amp;#34; </description>
     </item>
     
   </channel>
