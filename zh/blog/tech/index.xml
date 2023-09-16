@@ -43,14 +43,5 @@
       <description>前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo</description>
     </item>
     
-    <item>
-      <title>Leetcode会员题目</title>
-      <link>https://kyxie.github.io/zh/blog/tech/leetcode/</link>
-      <pubDate>Sun, 03 Sep 2023 00:07:17 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/tech/leetcode/</guid>
-      <description>Leetcode会员题目 以免会员过期了没法看了 156 - Binary Tree Upside Down Given the root of a binary tree, turn the tree upside down and return the new root. You can turn a binary tree upside down with the following steps: The original left child becomes the new root. The original root becomes</description>
-    </item>
-    
   </channel>
 </rss>
