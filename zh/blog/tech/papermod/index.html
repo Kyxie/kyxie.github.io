@@ -333,7 +333,7 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h2 id="安装过程">安装过程<a hidden class="anchor" aria-hidden="true" href="#安装过程">#</a></h2>
+  <div class="post-content"><h3 id="安装过程">安装过程<a hidden class="anchor" aria-hidden="true" href="#安装过程">#</a></h3>
 <ol>
 <li>
 <p>首先需要<a href="https://gohugo.io/getting-started/installing">安装Hugo</a>，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo可以直接用<code>Winget</code>来安装，打开终端输入</p>
@@ -344,7 +344,7 @@
 <p>Hugo的<a href="https://gohugo.io/getting-started/quick-start/">tutorial</a>介绍了如何创建一个项目，其中step2（.yml的config文件）和step3（下载主题）要根据PaperMod的<a href="https://github.com/adityatelange/hugo-PaperMod/wiki/Installation">guide</a>来配置。</p>
 </li>
 </ol>
-<h2 id="文件介绍">文件介绍<a hidden class="anchor" aria-hidden="true" href="#文件介绍">#</a></h2>
+<h3 id="文件介绍">文件介绍<a hidden class="anchor" aria-hidden="true" href="#文件介绍">#</a></h3>
 <ul>
 <li><code>content</code>：用于放博客内容</li>
 <li><code>data</code>：不用管</li>
@@ -359,23 +359,23 @@
 <li><code>assets</code>：PaperMod的CSS和JavaScript代码</li>
 <li><code>layouts</code>：PaperMod的HTML</li>
 </ul>
-<h2 id="configyml">Config.yml<a hidden class="anchor" aria-hidden="true" href="#configyml">#</a></h2>
+<h3 id="configyml">Config.yml<a hidden class="anchor" aria-hidden="true" href="#configyml">#</a></h3>
 <p>建议直接按照<a href="https://www.sulvblog.cn/posts/blog/build_hugo/">【置顶】hugo博客搭建 | PaperMod主题 | Sulv&rsquo;s Blog (sulvblog.cn)</a>进行配置。</p>
-<h2 id="创建文章">创建文章<a hidden class="anchor" aria-hidden="true" href="#创建文章">#</a></h2>
+<h3 id="创建文章">创建文章<a hidden class="anchor" aria-hidden="true" href="#创建文章">#</a></h3>
 <p>在终端输入<code>hugo new 文章名称.md</code>就会在<code>content</code>文件夹下创建markdown文件，文章头部信息可以修改这篇文章的属性，建议按照<a href="https://www.sulvblog.cn/posts/blog/build_hugo/">【置顶】hugo博客搭建 | PaperMod主题 | Sulv&rsquo;s Blog (sulvblog.cn)</a>进行配置。</p>
-<h2 id="本地预览">本地预览<a hidden class="anchor" aria-hidden="true" href="#本地预览">#</a></h2>
+<h3 id="本地预览">本地预览<a hidden class="anchor" aria-hidden="true" href="#本地预览">#</a></h3>
 <ol>
 <li>在终端输入<code>hugo server -D</code>启动，建议新建一个.bat文件执行这条指令。</li>
 <li>启动服务器后，打开浏览器，本地预览网址为<code>localhost:1313</code>。</li>
 </ol>
-<h2 id="网站部署">网站部署<a hidden class="anchor" aria-hidden="true" href="#网站部署">#</a></h2>
+<h3 id="网站部署">网站部署<a hidden class="anchor" aria-hidden="true" href="#网站部署">#</a></h3>
 <p>我用的是GitHub Page。</p>
 <ol>
 <li>在GitHub里创建一个仓库，名称叫做<code>你的名字.github.io</code>。</li>
 <li>当我们本地预览没问题了的时候，在终端输入<code>hugo -F --cleanDestinationDir</code>，在<code>public</code>文件夹下就会生成输出文件。</li>
 <li>我们将<code>public</code>文件夹作为GitHub Page的本地仓库，每次生成输出文件就推送到GitHub上，GitHub Page就会自动帮我们部署了。</li>
 </ol>
-<h2 id="多语言">多语言<a hidden class="anchor" aria-hidden="true" href="#多语言">#</a></h2>
+<h3 id="多语言">多语言<a hidden class="anchor" aria-hidden="true" href="#多语言">#</a></h3>
 <ul>
 <li>如果我们想要使用多语言（中英为例），就需要在<code>content</code>文件夹下准备两个文件夹，例如<code>Chinese</code>和<code>English</code>，一个放中文，另一个放英文。</li>
 <li>在<code>config.yml</code>中需要做以下修改：</li>
@@ -393,7 +393,7 @@
 </span></span></code></pre></div><ul>
 <li>可以用<a href="https://github.com/Kyxie/markdown-translate">它</a>将中文翻译为英文。</li>
 </ul>
-<h2 id="搜索功能">搜索功能<a hidden class="anchor" aria-hidden="true" href="#搜索功能">#</a></h2>
+<h3 id="搜索功能">搜索功能<a hidden class="anchor" aria-hidden="true" href="#搜索功能">#</a></h3>
 <ul>
 <li>分别在中英文的文件夹下创建<code>search.md</code>（<code>hugo new search.md</code>），修改文件头为：</li>
 </ul>
@@ -410,7 +410,7 @@
 </span></span><span style="display:flex;"><span>		<span style="color:#f92672">name</span>: <span style="color:#ae81ff">Search</span>
 </span></span><span style="display:flex;"><span>		<span style="color:#f92672">url</span>: <span style="color:#ae81ff">search</span>
 </span></span><span style="display:flex;"><span>		<span style="color:#f92672">weight</span>: <span style="color:#ae81ff">...</span>
-</span></span></code></pre></div><h2 id="hover">Hover<a hidden class="anchor" aria-hidden="true" href="#hover">#</a></h2>
+</span></span></code></pre></div><h3 id="hover">Hover<a hidden class="anchor" aria-hidden="true" href="#hover">#</a></h3>
 <p>主要在<code>themes/PaperMod/assets/css/common/header.css</code>中修改。</p>
 <ul>
 <li>左上角Home的hover：</li>
@@ -467,7 +467,7 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* box-shadow: 0 0 0 1px grey; */</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">transform</span>: scale(<span style="color:#ae81ff">1.1</span>) translateZ(<span style="color:#ae81ff">0</span>) translate3d(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>) rotate(<span style="color:#ae81ff">0.01</span><span style="color:#66d9ef">deg</span>);
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="自定义社交媒体图标">自定义社交媒体图标<a hidden class="anchor" aria-hidden="true" href="#自定义社交媒体图标">#</a></h2>
+</span></span></code></pre></div><h3 id="自定义社交媒体图标">自定义社交媒体图标<a hidden class="anchor" aria-hidden="true" href="#自定义社交媒体图标">#</a></h3>
 <ol>
 <li>利用SVG图标制作网站，比如<a href="https://icons8.com/">icons8</a>，找到我们需要的图标，例如<a href="https://icons8.com/icons/set/wechat">微信</a>。</li>
 <li>可以利用左侧菜单栏的Stroke调节线条粗细。</li>
@@ -493,11 +493,11 @@
 </span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">g</span>&gt;
 </span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">path</span> <span style="color:#a6e22e">d</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#a6e22e">fill</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;none&#34;</span>&gt;&lt;/<span style="color:#f92672">path</span>&gt;
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">svg</span>&gt;
-</span></span></code></pre></div><h2 id="目录栏目放侧边">目录栏目放侧边<a hidden class="anchor" aria-hidden="true" href="#目录栏目放侧边">#</a></h2>
+</span></span></code></pre></div><h3 id="目录栏目放侧边">目录栏目放侧边<a hidden class="anchor" aria-hidden="true" href="#目录栏目放侧边">#</a></h3>
 <p>详见：<a href="https://www.sulvblog.cn/posts/blog/hugo_toc_side/">Hugo博客目录放在侧边 | PaperMod主题 | Sulv&rsquo;s Blog (sulvblog.cn)</a>。</p>
-<h2 id="markdown渲染风格">Markdown渲染风格<a hidden class="anchor" aria-hidden="true" href="#markdown渲染风格">#</a></h2>
+<h3 id="markdown渲染风格">Markdown渲染风格<a hidden class="anchor" aria-hidden="true" href="#markdown渲染风格">#</a></h3>
 <p>详见：<a href="https://dvel.me/posts/hugo-papermod-config/">折腾 Hugo &amp; PaperMod 主题 - Dvel&rsquo;s Blog</a></p>
-<h2 id="流量统计">流量统计<a hidden class="anchor" aria-hidden="true" href="#流量统计">#</a></h2>
+<h3 id="流量统计">流量统计<a hidden class="anchor" aria-hidden="true" href="#流量统计">#</a></h3>
 <p>这里我使用了<a href="https://busuanzi.ibruce.info/">不蒜子</a>，在<code>themes/PaperMod/layouts/partials/svg.html</code>中修改：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{- if not (.Param &#34;hideFooter&#34;) }}
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">footer</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footer&#34;</span>&gt;
@@ -512,12 +512,12 @@
 </span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">span</span>&gt;
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">footer</span>&gt;
 </span></span><span style="display:flex;"><span>{{- end }}
-</span></span></code></pre></div><h2 id="插入b站youtube视频或ppt">插入B站，YouTube视频或PPT<a hidden class="anchor" aria-hidden="true" href="#插入b站youtube视频或ppt">#</a></h2>
+</span></span></code></pre></div><h3 id="插入b站youtube视频或ppt">插入B站，YouTube视频或PPT<a hidden class="anchor" aria-hidden="true" href="#插入b站youtube视频或ppt">#</a></h3>
 <p>详见：<a href="https://www.sulvblog.cn/posts/blog/shortcodes/">Hugo博客自定义shortcodes | Sulv&rsquo;s Blog (sulvblog.cn)</a></p>
-<h2 id="插入音乐播放器">插入音乐播放器<a hidden class="anchor" aria-hidden="true" href="#插入音乐播放器">#</a></h2>
+<h3 id="插入音乐播放器">插入音乐播放器<a hidden class="anchor" aria-hidden="true" href="#插入音乐播放器">#</a></h3>
 <p>详见：<a href="https://mrbruce516.top/2020/011/">Hugo插入音乐播放器</a></p>
 <p>隐藏歌词：<code>lrc-type=0</code></p>
-<h2 id="修改全局字体">修改全局字体<a hidden class="anchor" aria-hidden="true" href="#修改全局字体">#</a></h2>
+<h3 id="修改全局字体">修改全局字体<a hidden class="anchor" aria-hidden="true" href="#修改全局字体">#</a></h3>
 <p>首先找到喜欢的字体，然后可以在Google Fonts中查询字体，我目前的文章字体为<a href="https://www.cdnfonts.com/code-new-roman.font">CodeNewRoman</a>。Google Fonts会生成HTML和css，将HTML插入到<code>themes/PaperMod/layouts/partials/extend_head.html</code>中，将CSS插入到<code>themes/PaperMod/assets/css/extended/blank.css</code>。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">body</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">font-family</span>: <span style="color:#e6db74">&#39;Code New Roman&#39;</span>, <span style="color:#66d9ef">sans-serif</span>;
@@ -525,19 +525,19 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">line-height</span>: <span style="color:#ae81ff">1.5</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="修改代码字体">修改代码字体<a hidden class="anchor" aria-hidden="true" href="#修改代码字体">#</a></h2>
+</span></span></code></pre></div><h3 id="修改代码字体">修改代码字体<a hidden class="anchor" aria-hidden="true" href="#修改代码字体">#</a></h3>
 <p>与全局字体类似，区别为CSS代码插入的位置不同。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">post-content</span> <span style="color:#f92672">pre</span><span style="color:#f92672">,</span> <span style="color:#f92672">code</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">font-family</span>: <span style="color:#e6db74">&#39;Code New Roman&#39;</span>, <span style="color:#66d9ef">sans-serif</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">max-height</span>: <span style="color:#ae81ff">40</span><span style="color:#66d9ef">rem</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="评论功能">评论功能<a hidden class="anchor" aria-hidden="true" href="#评论功能">#</a></h2>
+</span></span></code></pre></div><h3 id="评论功能">评论功能<a hidden class="anchor" aria-hidden="true" href="#评论功能">#</a></h3>
 <p>详见：<a href="https://www.sulvblog.cn/posts/blog/hugo_twikoo/">Hugo博客添加Twikoo评论 | Sulv&rsquo;s Blog (sulvblog.cn)</a></p>
-<h2 id="关于outlook邮箱配置">关于Outlook邮箱配置<a hidden class="anchor" aria-hidden="true" href="#关于outlook邮箱配置">#</a></h2>
+<h3 id="关于outlook邮箱配置">关于Outlook邮箱配置<a hidden class="anchor" aria-hidden="true" href="#关于outlook邮箱配置">#</a></h3>
 <p>详见：<a href="https://github.com/imaegoo/twikoo/discussions/249">关于邮箱配置的问题？ · Discussion #249 · imaegoo/twikoo (github.com)</a></p>
-<h2 id="自定义邮箱回复模板">自定义邮箱回复模板<a hidden class="anchor" aria-hidden="true" href="#自定义邮箱回复模板">#</a></h2>
+<h3 id="自定义邮箱回复模板">自定义邮箱回复模板<a hidden class="anchor" aria-hidden="true" href="#自定义邮箱回复模板">#</a></h3>
 <p>详见：<a href="https://blog.guole.fun/posts/62740/">自定义Twikoo邮件通知模板 | Guo Le&rsquo;s Blog</a></p>
-<h2 id="代码高亮">代码高亮<a hidden class="anchor" aria-hidden="true" href="#代码高亮">#</a></h2>
+<h3 id="代码高亮">代码高亮<a hidden class="anchor" aria-hidden="true" href="#代码高亮">#</a></h3>
 <p>在两个地方修改</p>
 <p>一个是<code>themes/PaperMod/assets/css/common/post-single.css</code>：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">post-content</span> <span style="color:#f92672">pre</span> <span style="color:#f92672">code</span> {
@@ -655,13 +655,13 @@
 </span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">hljs</span>::<span style="color:#a6e22e">selection</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#3d4556</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="代码边框圆角">代码边框圆角<a hidden class="anchor" aria-hidden="true" href="#代码边框圆角">#</a></h2>
+</span></span></code></pre></div><h3 id="代码边框圆角">代码边框圆角<a hidden class="anchor" aria-hidden="true" href="#代码边框圆角">#</a></h3>
 <p><code>themes/PaperMod/assets/css/common/post-single.css</code>中修改：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">post-content</span> .<span style="color:#a6e22e">highlight</span> <span style="color:#f92672">pre</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">background-color</span>: <span style="color:#a6e22e">var</span>(<span style="color:#f92672">--</span>theme) <span style="color:#75715e">!important</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="添加友链">添加友链<a hidden class="anchor" aria-hidden="true" href="#添加友链">#</a></h2>
+</span></span></code></pre></div><h3 id="添加友链">添加友链<a hidden class="anchor" aria-hidden="true" href="#添加友链">#</a></h3>
 <p>详见：<a href="https://www.sulvblog.cn/posts/blog/hugo_link/">Hugo博客添加友链 | Sulv&rsquo;s Blog (sulvblog.cn)</a></p>
 
 

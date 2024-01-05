@@ -35,7 +35,7 @@
     </item>
     
     <item>
-      <title>Java</title>
+      <title>Java Cheat Sheet</title>
       <link>https://kyxie.github.io/zh/blog/tech/java/</link>
       <pubDate>Mon, 02 May 2022 17:28:17 -0400</pubDate>
       
@@ -44,12 +44,30 @@
     </item>
     
     <item>
-      <title>Cpp</title>
+      <title>Cpp Cheat Sheet</title>
       <link>https://kyxie.github.io/zh/blog/tech/cpp/</link>
       <pubDate>Mon, 02 May 2022 17:28:17 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/cpp/</guid>
       <description>char 转大小写： char ch = &amp;#39;a&amp;#39;; ch = (char) toupper(ch); ch = (char) tolower(ch); 下一个字符： &amp;#39;b&amp;#39; == (&amp;#39;a&amp;#39; + 1); int 最大值最小值： int MAX = INT_MAX; int MIN = INT_MIN; array 创建数组： int array [4]; // 如果不初始化则值随机 int array[] = {1,2,3,4}; int</description>
+    </item>
+    
+    <item>
+      <title>加拿大🇨🇦信用卡薅羊毛心得</title>
+      <link>https://kyxie.github.io/zh/blog/life/credit-card/</link>
+      <pubDate>Wed, 04 Jan 2023 23:58:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/life/credit-card/</guid>
+      <description>Jan 2024 Nov 2023 Oct 2023 Jun 2023 Mar 2023 Dec 2022 这个时候找到工作了，就开始研究怎么薅羊毛了，最开始申请的BMO的买菜卡。由于一开始只想找个无年费且返现高的就申请了这</description>
+    </item>
+    
+    <item>
+      <title>OINP移民加拿大🇨🇦时间线</title>
+      <link>https://kyxie.github.io/zh/blog/life/pr/</link>
+      <pubDate>Wed, 04 Jan 2023 23:37:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/life/pr/</guid>
+      <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
     </item>
     
     <item>
