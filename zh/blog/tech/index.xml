@@ -27,6 +27,15 @@
     
     <item>
       <title>使用Samba将Linux映射为Windows磁盘</title>
+      <link>https://kyxie.github.io/zh/blog/tech/samba-copy/</link>
+      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/samba-copy/</guid>
+      <description>{{&amp;lt; figure src=&amp;#34;/img/PixPin2.png&amp;#34; title=&amp;#34;11图片标题&amp;#34; width=&amp;#34;50%&amp;#34; &amp;gt;}}</description>
+    </item>
+    
+    <item>
+      <title>使用Samba将Linux映射为Windows磁盘</title>
       <link>https://kyxie.github.io/zh/blog/tech/samba/</link>
       <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
       

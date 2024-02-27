@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh" dir="auto">
 
-<head>
-	<meta name="generator" content="Hugo 0.118.2"><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Kunyang&#39;s Blog</title>
-
-<meta name="description" content="">
+<title>使用Samba将Linux映射为Windows磁盘 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Linux, Windows, Samba">
+<meta name="description" content="{{&lt; figure src=&#34;/img/PixPin2.png&#34; title=&#34;11图片标题&#34; width=&#34;50%&#34; &gt;}}">
 <meta name="author" content="Kyrie">
-<link rel="canonical" href="https://kyxie.github.io/zh/">
+<link rel="canonical" href="https://kyxie.github.io/zh/blog/tech/samba-copy/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.5fba7659f49a2f7ca0ce86b7611a869462aadd4a57aa486975cf60e413fa7b0f.css" integrity="sha256-X7p2WfSaL3ygzoa3YRqGlGKq3UpXqkhpdc9g5BP6ew8=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://kyxie.github.io/White.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.github.io/White.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.github.io/White.png">
@@ -19,10 +20,7 @@
 <link rel="mask-icon" href="https://kyxie.github.io/White.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://kyxie.github.io/zh/index.xml">
-<link rel="alternate" type="application/json" href="https://kyxie.github.io/zh/index.json">
-<link rel="alternate" hreflang="en" href="https://kyxie.github.io/en/">
-<link rel="alternate" hreflang="zh" href="https://kyxie.github.io/zh/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.github.io/zh/blog/tech/samba-copy/">
 <noscript>
     <style>
         #theme-toggle,
@@ -46,31 +44,80 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Kunyang&#39;s Blog" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://kyxie.github.io/zh/" /><meta property="og:site_name" content="Kyrie" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用Samba将Linux映射为Windows磁盘" />
+<meta property="og:description" content="{{&lt; figure src=&#34;/img/PixPin2.png&#34; title=&#34;11图片标题&#34; width=&#34;50%&#34; &gt;}}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.github.io/zh/blog/tech/samba-copy/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-12-17T17:19:19-04:00" />
+<meta property="article:modified_time" content="2023-12-17T17:19:19-04:00" /><meta property="og:site_name" content="Kyrie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Kunyang&#39;s Blog"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="使用Samba将Linux映射为Windows磁盘"/>
+<meta name="twitter:description" content="{{&lt; figure src=&#34;/img/PixPin2.png&#34; title=&#34;11图片标题&#34; width=&#34;50%&#34; &gt;}}"/>
+
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Kunyang's Blog",
-  "url": "https://kyxie.github.io/",
-  "description": "",
-  "thumbnailUrl": "https://kyxie.github.io/White.png",
-  "sameAs": [
-      "https://www.instagram.com/_kyxie/", "https://github.com/kyxie", "https://www.linkedin.com/in/kunyang-xie/", "https://www.strava.com/athletes/62343657", "mailto:kyriexie@outlook.com"
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "博客 📒",
+      "item": "https://kyxie.github.io/zh/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "技术 🔧",
+      "item": "https://kyxie.github.io/zh/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "使用Samba将Linux映射为Windows磁盘",
+      "item": "https://kyxie.github.io/zh/blog/tech/samba-copy/"
+    }
   ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "使用Samba将Linux映射为Windows磁盘",
+  "name": "使用Samba将Linux映射为Windows磁盘",
+  "description": "{{\u0026lt; figure src=\u0026#34;/img/PixPin2.png\u0026#34; title=\u0026#34;11图片标题\u0026#34; width=\u0026#34;50%\u0026#34; \u0026gt;}}",
+  "keywords": [
+    "Linux", "Windows", "Samba"
+  ],
+  "articleBody": "{{\u003c figure src=\"/img/PixPin2.png\" title=\"11图片标题\" width=\"50%\" \u003e}} ",
+  "wordCount" : "27",
+  "inLanguage": "zh",
+  "datePublished": "2023-12-17T17:19:19-04:00",
+  "dateModified": "2023-12-17T17:19:19-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyrie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.github.io/zh/blog/tech/samba-copy/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.github.io/White.png"
+    }
+  }
 }
 </script>
 </head>
 
-<body class="list dark" id="top">
+<body class=" dark" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "light") {
         document.body.classList.remove('dark')
@@ -145,64 +192,59 @@
         </ul>
     </nav>
 </header>
-<main class="main"><div class="profile">
-    <div class="profile_inner">
-        <img src="https://kyxie.github.io/White.png" alt="Selfie"
-            height="150" width="150" />
-        <h1>Say My Name</h1>
-        <span>Kunyang Xie</span><div class="social-icons">
-    <a href="https://www.instagram.com/_kyxie/" target="_blank" rel="noopener noreferrer me" title="Instagram">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-    <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
-</svg>
-    </a>
-    <a href="https://github.com/kyxie" target="_blank" rel="noopener noreferrer me" title="Github">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path
-        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-    </path>
-</svg>
-    </a>
-    <a href="https://www.linkedin.com/in/kunyang-xie/" target="_blank" rel="noopener noreferrer me" title="Linkedin">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-    <rect x="2" y="9" width="4" height="12"></rect>
-    <circle cx="4" cy="4" r="2"></circle>
-</svg>
-    </a>
-    <a href="https://www.strava.com/athletes/62343657" target="_blank" rel="noopener noreferrer me" title="Strava">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke-width="2">
-    <path
-        d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169" />
-</svg>
-    </a>
-    <a href="mailto:kyriexie@outlook.com" target="_blank" rel="noopener noreferrer me" title="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 21" fill="none" stroke="currentColor" stroke-width="2"
-    stroke-linecap="round" stroke-linejoin="round">
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-    <polyline points="22,6 12,13 2,6"></polyline>
-</svg>
-    </a>
-</div>
+<main class="main">
 
-        <div class="buttons">
-            <a class="button" href="about" rel="noopener" title="关于">
-                <span class="button-inner">关于</span>
-            </a>
-            <a class="button" href="blog" rel="noopener" title="博客">
-                <span class="button-inner">博客</span>
-            </a>
-            <a class="button" href="resume.pdf" rel="noopener" title="简历">
-                <span class="button-inner">简历</span>
-            </a>
-        </div>
-    </div>
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.github.io/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/tech/">技术 🔧</a></div>
+    <h1 class="post-title">
+      使用Samba将Linux映射为Windows磁盘
+    </h1>
+    <div class="post-meta"><span title='2023-12-17 17:19:19 -0400 -0400'>2023-12-17</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;Kyrie
+
 </div>
+  </header> 
+  <div class="post-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{&lt; figure src=&#34;/img/PixPin2.png&#34; title=&#34;11图片标题&#34; width=&#34;50%&#34; &gt;}}
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.github.io/zh/blog/tech/bash/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Windows 11 打造个性化终端</span>
+  </a>
+  <a class="next" href="https://kyxie.github.io/zh/blog/tech/samba/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>使用Samba将Linux映射为Windows磁盘</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
     </main>
     
 <footer class="footer">
@@ -273,6 +315,53 @@
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 
