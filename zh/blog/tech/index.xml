@@ -17,6 +17,24 @@
     </item>
     
     <item>
+      <title>搭建LDAP Server</title>
+      <link>https://kyxie.github.io/zh/blog/tech/ldap/</link>
+      <pubDate>Tue, 27 Feb 2024 00:18:35 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/ldap/</guid>
+      <description>Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username</description>
+    </item>
+    
+    <item>
+      <title>使用Samba将Linux映射为Windows磁盘</title>
+      <link>https://kyxie.github.io/zh/blog/tech/samba/</link>
+      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/samba/</guid>
+      <description>前言 我比较喜欢在虚拟机上来搭建环境，但是有些软件（比如一些数据库可视化软件）在Linux是上是没有的，于是想了个办法将Linux映射为Win</description>
+    </item>
+    
+    <item>
       <title>Windows 11 打造个性化终端</title>
       <link>https://kyxie.github.io/zh/blog/tech/bash/</link>
       <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>
@@ -26,27 +44,9 @@
     </item>
     
     <item>
-      <title>使用Samba将Linux映射为Windows磁盘</title>
-      <link>https://kyxie.github.io/zh/blog/tech/samba-copy/</link>
-      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/tech/samba-copy/</guid>
-      <description>{{&amp;lt; figure src=&amp;#34;/img/PixPin2.png&amp;#34; title=&amp;#34;11图片标题&amp;#34; width=&amp;#34;50%&amp;#34; &amp;gt;}}</description>
-    </item>
-    
-    <item>
-      <title>使用Samba将Linux映射为Windows磁盘</title>
-      <link>https://kyxie.github.io/zh/blog/tech/samba/</link>
-      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/tech/samba/</guid>
-      <description>前言 由于做前端要下载各种乱七八糟的依赖，我比较喜欢在虚拟机上来搭建环境，但是有些软件（比如一些数据库可视化软件）在Linux是上是没有的，于</description>
-    </item>
-    
-    <item>
       <title>Java Cheat Sheet</title>
       <link>https://kyxie.github.io/zh/blog/tech/java/</link>
-      <pubDate>Mon, 02 May 2022 17:28:17 -0400</pubDate>
+      <pubDate>Thu, 05 May 2022 17:28:17 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/java/</guid>
       <description>Character 判断是否为字母或数字： boolean res = Character.isLetterOrDigit(char); 转小写： char res = Character.toLowerCase(char); 下一个字符： &amp;#39;b&amp;#39; == (char) (&amp;#39;a&amp;#39; + 1); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等： Integer a = 1; Integer b = 1; a == b; // true</description>
@@ -55,7 +55,7 @@
     <item>
       <title>Cpp Cheat Sheet</title>
       <link>https://kyxie.github.io/zh/blog/tech/cpp/</link>
-      <pubDate>Mon, 02 May 2022 17:28:17 -0400</pubDate>
+      <pubDate>Tue, 03 May 2022 17:28:17 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/cpp/</guid>
       <description>char 转大小写： char ch = &amp;#39;a&amp;#39;; ch = (char) toupper(ch); ch = (char) tolower(ch); 下一个字符： &amp;#39;b&amp;#39; == (&amp;#39;a&amp;#39; + 1); int 最大值最小值： int MAX = INT_MAX; int MIN = INT_MIN; array 创建数组： int array [4]; // 如果不初始化则值随机 int array[] = {1,2,3,4}; int</description>
