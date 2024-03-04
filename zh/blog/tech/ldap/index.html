@@ -92,7 +92,7 @@
   "keywords": [
     "LDAP", "Linux"
   ],
-  "articleBody": "Linux 下载OpenLDAP：\nsudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP：\nsudo dpkg-reconfigure slapd DNS domain name: example.org\nPassword: root\n创建user.ldif：\n# ldap是username dn: uid=ldap,dc=example,dc=org objectClass: inetOrgPerson objectClass: posixAccount uid: ldap sn: LDAP givenName: LDAP cn: LDAP User displayName: LDAP User uidNumber: 10000 gidNumber: 10000 homeDirectory: /home/ldap loginShell: /bin/bash 把user加入OpenLDAP服务器：\nldapadd -x -D \"cn=admin,dc=example,dc=org\" -W -f user.ldif 启动和查看OpenLDAP的状态：\nsudo systemctl start slapd sudo systemctl status slapd 查看当前已有的用户：\nldapsearch -x -LLL -b \"dc=example,dc=org\" \"(objectclass=inetOrgPerson)\" uid userPassword 修改用户密码：\nldappasswd -x -D \"cn=admin,dc=perle,dc=com\" -W -S \"uid=ldap,dc=example,dc=org\" ",
+  "articleBody": "Linux 下载OpenLDAP：\nsudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP：\nsudo dpkg-reconfigure slapd DNS domain name: example.org\nPassword: root\n创建user.ldif：\n# ldap是username dn: uid=ldap,dc=example,dc=org objectClass: inetOrgPerson objectClass: posixAccount uid: ldap sn: LDAP givenName: LDAP cn: LDAP User displayName: LDAP User uidNumber: 10000 gidNumber: 10000 homeDirectory: /home/ldap loginShell: /bin/bash 把user加入OpenLDAP服务器：\nldapadd -x -D \"cn=admin,dc=example,dc=org\" -W -f user.ldif 启动和查看OpenLDAP的状态：\nsudo systemctl start slapd sudo systemctl status slapd 查看当前已有的用户：\nldapsearch -x -LLL -b \"dc=example,dc=org\" \"(objectclass=inetOrgPerson)\" uid userPassword 修改用户密码：\nldappasswd -x -D \"cn=admin,dc=example,dc=org\" -W -S \"uid=ldap,dc=example,dc=org\" ",
   "wordCount" : "179",
   "inLanguage": "zh",
   "datePublished": "2024-02-27T00:18:35-04:00",
@@ -323,7 +323,7 @@
 </span></span></code></pre></div></li>
 <li>
 <p>修改用户密码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ldappasswd -x -D <span style="color:#e6db74">&#34;cn=admin,dc=perle,dc=com&#34;</span> -W -S <span style="color:#e6db74">&#34;uid=ldap,dc=example,dc=org&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ldappasswd -x -D <span style="color:#e6db74">&#34;cn=admin,dc=example,dc=org&#34;</span> -W -S <span style="color:#e6db74">&#34;uid=ldap,dc=example,dc=org&#34;</span>
 </span></span></code></pre></div></li>
 </ul>
 
