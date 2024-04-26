@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 27 Feb 2024 00:18:35 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Apr 2024 20:47:19 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo &#43; PaperMod搭建技术博客</title>
       <link>https://kyxie.github.io/zh/blog/tech/papermod/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://kyxie.github.io/zh/blog/tech/papermod/</guid>
       <description>安装过程 首先需要安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo可以直接用Winget来安装，打开终端输入 winget</description>
+    </item>
+    
+    <item>
+      <title>使用Keys免密SSH to Linux</title>
+      <link>https://kyxie.github.io/zh/blog/tech/keys/</link>
+      <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/keys/</guid>
+      <description>通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一</description>
     </item>
     
     <item>
