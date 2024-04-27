@@ -17,7 +17,16 @@
     </item>
     
     <item>
-      <title>使用Keys免密SSH to Linux</title>
+      <title>Linux配置OpenVPN</title>
+      <link>https://kyxie.github.io/zh/blog/tech/openvpn/</link>
+      <pubDate>Fri, 26 Apr 2024 20:38:19 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/openvpn/</guid>
+      <description>Server 下载OpenVPN sudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys</description>
+    </item>
+    
+    <item>
+      <title>使用Keys免密SSH到Linux</title>
       <link>https://kyxie.github.io/zh/blog/tech/keys/</link>
       <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
       

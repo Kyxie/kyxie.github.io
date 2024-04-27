@@ -41,6 +41,9 @@
                 href="https://kyxie.github.io/zh/blog/life/"
                 />
   </url><url>
+    <loc>https://kyxie.github.io/zh/blog/tech/openvpn/</loc>
+    <lastmod>2024-04-26T20:38:19-04:00</lastmod>
+  </url><url>
     <loc>https://kyxie.github.io/zh/blog/tech/keys/</loc>
     <lastmod>2024-04-25T20:47:19-04:00</lastmod>
   </url><url>
@@ -60,7 +63,7 @@
     <lastmod>2022-05-03T17:28:17-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/</loc>
-    <lastmod>2024-04-25T20:47:19-04:00</lastmod>
+    <lastmod>2024-04-26T20:38:19-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"

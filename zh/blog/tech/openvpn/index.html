@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>搭建LDAP Server | Kunyang&#39;s Blog</title>
-<meta name="keywords" content="LDAP, Linux">
-<meta name="description" content="Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username">
+<title>Linux配置OpenVPN | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Linux, OpenVPN">
+<meta name="description" content="Server 下载OpenVPN sudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys">
 <meta name="author" content="Kyrie">
-<link rel="canonical" href="https://kyxie.github.io/zh/blog/tech/ldap/">
+<link rel="canonical" href="https://kyxie.github.io/zh/blog/tech/openvpn/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.5fba7659f49a2f7ca0ce86b7611a869462aadd4a57aa486975cf60e413fa7b0f.css" integrity="sha256-X7p2WfSaL3ygzoa3YRqGlGKq3UpXqkhpdc9g5BP6ew8=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://kyxie.github.io/White.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://kyxie.github.io/zh/blog/tech/ldap/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.github.io/zh/blog/tech/openvpn/">
 <noscript>
     <style>
         #theme-toggle,
@@ -44,16 +44,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="搭建LDAP Server" />
-<meta property="og:description" content="Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Linux配置OpenVPN" />
+<meta property="og:description" content="Server 下载OpenVPN sudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyxie.github.io/zh/blog/tech/ldap/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2024-02-27T00:18:35-04:00" />
-<meta property="article:modified_time" content="2024-02-27T00:18:35-04:00" /><meta property="og:site_name" content="Kyrie" />
+<meta property="og:url" content="https://kyxie.github.io/zh/blog/tech/openvpn/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-04-26T20:38:19-04:00" />
+<meta property="article:modified_time" content="2024-04-26T20:38:19-04:00" /><meta property="og:site_name" content="Kyrie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="搭建LDAP Server"/>
-<meta name="twitter:description" content="Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username"/>
+<meta name="twitter:title" content="Linux配置OpenVPN"/>
+<meta name="twitter:description" content="Server 下载OpenVPN sudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys"/>
 
 
 <script type="application/ld+json">
@@ -76,8 +76,8 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "搭建LDAP Server",
-      "item": "https://kyxie.github.io/zh/blog/tech/ldap/"
+      "name": "Linux配置OpenVPN",
+      "item": "https://kyxie.github.io/zh/blog/tech/openvpn/"
     }
   ]
 }
@@ -86,24 +86,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "搭建LDAP Server",
-  "name": "搭建LDAP Server",
-  "description": "Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username",
+  "headline": "Linux配置OpenVPN",
+  "name": "Linux配置OpenVPN",
+  "description": "Server 下载OpenVPN sudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys",
   "keywords": [
-    "LDAP", "Linux"
+    "Linux", "OpenVPN"
   ],
-  "articleBody": "Linux 下载OpenLDAP：\nsudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP：\nsudo dpkg-reconfigure slapd DNS domain name: example.org\nPassword: root\n创建user.ldif：\n# ldap是username dn: uid=ldap,dc=example,dc=org objectClass: inetOrgPerson objectClass: posixAccount uid: ldap sn: LDAP givenName: LDAP cn: LDAP User displayName: LDAP User uidNumber: 10000 gidNumber: 10000 homeDirectory: /home/ldap loginShell: /bin/bash 把user加入OpenLDAP服务器：\nldapadd -x -D \"cn=admin,dc=example,dc=org\" -W -f user.ldif 启动和查看OpenLDAP的状态：\nsudo systemctl start slapd sudo systemctl status slapd 查看当前已有的用户：\nldapsearch -x -LLL -b \"dc=example,dc=org\" \"(objectclass=inetOrgPerson)\" uid userPassword 修改用户密码：\nldappasswd -x -D \"cn=admin,dc=example,dc=org\" -W -S \"uid=ldap,dc=example,dc=org\" ",
-  "wordCount" : "179",
+  "articleBody": "Server 下载OpenVPN\nsudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys，在server中，复制ca.crt，server.key，server.crt，dh2048.pem到/etc/openvpn/server\nsudo cp /usr/share/doc/openvpn/examples/sample-keys/{ca.crt,server.key,server.crt,dh2048.pem} /etc/openvpn/server 编写服务器配置文件\nport 1194 proto udp dev tun ca ca.crt cert server.crt key server.key dh dh2048.pem server 10.8.0.0 255.255.255.0 keepalive 10 120 user nobody group nogroup persist-key persist-tun verb 3 启动OpenVPN Server\ncd /etc/openvpn/server sudo openvpn --config server.conf 这时如果查看ip地址可以看到tun0接口，地址是10.8.0.1\nClient 下载OpenVPN\nsudo apt-get install openvpn 从Server上复制对应的ca.crt，client.crt，client.key\nsudo scp username@address:/usr/share/doc/openvpn/examples/sample-keys/{ca.crt,client.crt,client.key} /etc/openvpn/client 编写client.conf\nclient dev tun proto udp remote SERVER_ADDR 1194 ca ca.crt cert client.crt key client.key user nobody group nogroup persist-key persist-tun verb 3 启动OpenVPN Client\ncd /etc/openvpn/client sudo openvpn --config client.conf 这时如果执行\nping 10.8.0.1 成功，说明OpenVPN成功建立\n",
+  "wordCount" : "364",
   "inLanguage": "zh",
-  "datePublished": "2024-02-27T00:18:35-04:00",
-  "dateModified": "2024-02-27T00:18:35-04:00",
+  "datePublished": "2024-04-26T20:38:19-04:00",
+  "dateModified": "2024-04-26T20:38:19-04:00",
   "author":{
     "@type": "Person",
     "name": "Kyrie"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyxie.github.io/zh/blog/tech/ldap/"
+    "@id": "https://kyxie.github.io/zh/blog/tech/openvpn/"
   },
   "publisher": {
     "@type": "Organization",
@@ -198,9 +198,9 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://kyxie.github.io/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/tech/">技术 🔧</a></div>
     <h1 class="post-title">
-      搭建LDAP Server
+      Linux配置OpenVPN
     </h1>
-    <div class="post-meta"><span title='2024-02-27 00:18:35 -0400 -0400'>2024-02-27</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;Kyrie
+    <div class="post-meta"><span title='2024-04-26 20:38:19 -0400 EDT'>2024-04-26</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;Kyrie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -212,7 +212,9 @@
 
                 <div class="inner"><ul>
                         <li>
-                            <a href="#linux" aria-label="Linux">Linux</a>
+                            <a href="#server" aria-label="Server">Server</a></li>
+                        <li>
+                            <a href="#client" aria-label="Client">Client</a>
                         </li>
                     </ul>
                 </div>
@@ -278,53 +280,77 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="linux">Linux<a hidden class="anchor" aria-hidden="true" href="#linux">#</a></h3>
+  <div class="post-content"><h3 id="server">Server<a hidden class="anchor" aria-hidden="true" href="#server">#</a></h3>
 <ul>
 <li>
-<p>下载<code>OpenLDAP</code>：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
-</span></span><span style="display:flex;"><span>sudo apt install slapd ldap-utils
-</span></span><span style="display:flex;"><span>sudo apt install ldap-utils
+<p>下载OpenVPN</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install openvpn
 </span></span></code></pre></div></li>
 <li>
-<p>配置<code>OpenLDAP</code>：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dpkg-reconfigure slapd
-</span></span></code></pre></div><p>DNS domain name: <code>example.org</code></p>
-<p>Password: <code>root</code></p>
+<p>在<code>/usr/share/doc/openvpn/examples/sample-keys/</code>文件夹下有好多keys，在server中，复制<code>ca.crt</code>，<code>server.key</code>，<code>server.crt</code>，<code>dh2048.pem</code>到<code>/etc/openvpn/server</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo cp /usr/share/doc/openvpn/examples/sample-keys/<span style="color:#f92672">{</span>ca.crt,server.key,server.crt,dh2048.pem<span style="color:#f92672">}</span> /etc/openvpn/server
+</span></span></code></pre></div></li>
+<li>
+<p>编写服务器配置文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>port 1194
+</span></span><span style="display:flex;"><span>proto udp
+</span></span><span style="display:flex;"><span>dev tun
+</span></span><span style="display:flex;"><span>ca ca.crt
+</span></span><span style="display:flex;"><span>cert server.crt
+</span></span><span style="display:flex;"><span>key server.key
+</span></span><span style="display:flex;"><span>dh dh2048.pem
+</span></span><span style="display:flex;"><span>server <span style="color:#ae81ff">10.8.0.0</span> <span style="color:#ae81ff">255.255.255.0</span>
+</span></span><span style="display:flex;"><span>keepalive 10 120
+</span></span><span style="display:flex;"><span>user nobody
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">group</span> nogroup
+</span></span><span style="display:flex;"><span>persist-key
+</span></span><span style="display:flex;"><span>persist-tun
+</span></span><span style="display:flex;"><span>verb 3
+</span></span></code></pre></div></li>
+<li>
+<p>启动OpenVPN Server</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /etc/openvpn/server
+</span></span><span style="display:flex;"><span>sudo openvpn --config server.conf
+</span></span></code></pre></div></li>
+<li>
+<p>这时如果查看ip地址可以看到<code>tun0</code>接口，地址是<code>10.8.0.1</code></p>
 </li>
+</ul>
+<h3 id="client">Client<a hidden class="anchor" aria-hidden="true" href="#client">#</a></h3>
+<ul>
 <li>
-<p>创建<code>user.ldif</code>：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># ldap是username
-</span></span><span style="display:flex;"><span>dn: uid=ldap,dc=example,dc=org
-</span></span><span style="display:flex;"><span>objectClass: inetOrgPerson
-</span></span><span style="display:flex;"><span>objectClass: posixAccount
-</span></span><span style="display:flex;"><span>uid: ldap
-</span></span><span style="display:flex;"><span>sn: LDAP
-</span></span><span style="display:flex;"><span>givenName: LDAP
-</span></span><span style="display:flex;"><span>cn: LDAP User
-</span></span><span style="display:flex;"><span>displayName: LDAP User
-</span></span><span style="display:flex;"><span>uidNumber: 10000
-</span></span><span style="display:flex;"><span>gidNumber: 10000
-</span></span><span style="display:flex;"><span>homeDirectory: /home/ldap
-</span></span><span style="display:flex;"><span>loginShell: /bin/bash
+<p>下载OpenVPN</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install openvpn
 </span></span></code></pre></div></li>
 <li>
-<p>把<code>user</code>加入<code>OpenLDAP</code>服务器：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ldapadd -x -D <span style="color:#e6db74">&#34;cn=admin,dc=example,dc=org&#34;</span> -W -f user.ldif
+<p>从Server上复制对应的<code>ca.crt</code>，<code>client.crt</code>，<code>client.key</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo scp username@address:/usr/share/doc/openvpn/examples/sample-keys/<span style="color:#f92672">{</span>ca.crt,client.crt,client.key<span style="color:#f92672">}</span> /etc/openvpn/client
 </span></span></code></pre></div></li>
 <li>
-<p>启动和查看<code>OpenLDAP</code>的状态：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl start slapd
-</span></span><span style="display:flex;"><span>sudo systemctl status slapd
+<p>编写<code>client.conf</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>client
+</span></span><span style="display:flex;"><span>dev tun
+</span></span><span style="display:flex;"><span>proto udp
+</span></span><span style="display:flex;"><span>remote SERVER_ADDR 1194
+</span></span><span style="display:flex;"><span>ca ca.crt
+</span></span><span style="display:flex;"><span>cert client.crt
+</span></span><span style="display:flex;"><span>key client.key
+</span></span><span style="display:flex;"><span>user nobody
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">group</span> nogroup
+</span></span><span style="display:flex;"><span>persist-key
+</span></span><span style="display:flex;"><span>persist-tun
+</span></span><span style="display:flex;"><span>verb 3
 </span></span></code></pre></div></li>
 <li>
-<p>查看当前已有的用户：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ldapsearch -x -LLL -b <span style="color:#e6db74">&#34;dc=example,dc=org&#34;</span> <span style="color:#e6db74">&#34;(objectclass=inetOrgPerson)&#34;</span> uid userPassword
+<p>启动OpenVPN Client</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /etc/openvpn/client
+</span></span><span style="display:flex;"><span>sudo openvpn --config client.conf
 </span></span></code></pre></div></li>
 <li>
-<p>修改用户密码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ldappasswd -x -D <span style="color:#e6db74">&#34;cn=admin,dc=example,dc=org&#34;</span> -W -S <span style="color:#e6db74">&#34;uid=ldap,dc=example,dc=org&#34;</span>
-</span></span></code></pre></div></li>
+<p>这时如果执行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ping 10.8.0.1
+</span></span></code></pre></div><p>成功，说明OpenVPN成功建立</p>
+</li>
 </ul>
 
 
@@ -332,15 +358,15 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.github.io/zh/blog/tech/keys/">
+  <a class="prev" href="https://kyxie.github.io/zh/blog/tech/papermod/">
     <span class="title">« 上一页</span>
     <br>
-    <span>使用Keys免密SSH到Linux</span>
+    <span>Hugo &#43; PaperMod搭建技术博客</span>
   </a>
-  <a class="next" href="https://kyxie.github.io/zh/blog/tech/samba/">
+  <a class="next" href="https://kyxie.github.io/zh/blog/tech/keys/">
     <span class="title">下一页 »</span>
     <br>
-    <span>使用Samba将Linux映射为Windows磁盘</span>
+    <span>使用Keys免密SSH到Linux</span>
   </a>
 </nav>
 
