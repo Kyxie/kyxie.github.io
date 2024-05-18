@@ -6,7 +6,16 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 26 Apr 2024 20:38:19 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 May 2024 10:51:55 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>加拿大🇨🇦信用卡薅羊毛心得</title>
+      <link>https://kyxie.github.io/zh/blog/finance/credit-card/</link>
+      <pubDate>Thu, 04 Jan 2024 23:58:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/finance/credit-card/</guid>
+      <description>Aug 2021, Bank of China 我的第一张信用卡是出国前和我爹一起去中国银行办的卓隽，我用我爹的副卡，不太清楚额度是多少。我只是刚到加拿大的前几天用这张卡，出了隔</description>
+    </item>
+    
     <item>
       <title>Hugo &#43; PaperMod搭建技术博客</title>
       <link>https://kyxie.github.io/zh/blog/tech/papermod/</link>
@@ -17,12 +26,21 @@
     </item>
     
     <item>
+      <title>我使用过的加拿大🇨🇦支票账户</title>
+      <link>https://kyxie.github.io/zh/blog/finance/checking-account/</link>
+      <pubDate>Sat, 18 May 2024 10:51:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/finance/checking-account/</guid>
+      <description>Sep 2021, Scotiabank 之前办学签来加拿大走SDS用的是Scotiabank，因此我第一张checking account是Scotiabank的。学生账户的话</description>
+    </item>
+    
+    <item>
       <title>Linux配置OpenVPN</title>
       <link>https://kyxie.github.io/zh/blog/tech/openvpn/</link>
       <pubDate>Fri, 26 Apr 2024 20:38:19 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/openvpn/</guid>
-      <description>Server 下载OpenVPN sudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys</description>
+      <description>OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se</description>
     </item>
     
     <item>
@@ -77,15 +95,6 @@
       
       <guid>https://kyxie.github.io/zh/blog/tech/cpp/</guid>
       <description>char 转大小写： char ch = &amp;#39;a&amp;#39;; ch = (char) toupper(ch); ch = (char) tolower(ch); 下一个字符： &amp;#39;b&amp;#39; == (&amp;#39;a&amp;#39; + 1); int 最大值最小值： int MAX = INT_MAX; int MIN = INT_MIN; array 创建数组： int array [4]; // 如果不初始化则值随机 int array[] = {1,2,3,4}; int</description>
-    </item>
-    
-    <item>
-      <title>加拿大🇨🇦信用卡薅羊毛心得</title>
-      <link>https://kyxie.github.io/zh/blog/life/credit-card/</link>
-      <pubDate>Thu, 04 Jan 2024 23:58:55 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/life/credit-card/</guid>
-      <description>Aug 2021, Bank of China 我的第一张信用卡是出国前和我爹一起去中国银行办的卓隽，我用我爹的副卡，不太清楚额度是多少。我只是刚到加拿大的前几天用这张卡，出了隔</description>
     </item>
     
     <item>

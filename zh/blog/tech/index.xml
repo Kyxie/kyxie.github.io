@@ -22,7 +22,7 @@
       <pubDate>Fri, 26 Apr 2024 20:38:19 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/openvpn/</guid>
-      <description>Server 下载OpenVPN sudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys</description>
+      <description>OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se</description>
     </item>
     
     <item>

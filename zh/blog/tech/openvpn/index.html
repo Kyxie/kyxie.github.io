@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Linux配置OpenVPN | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Linux, OpenVPN">
-<meta name="description" content="Server 下载OpenVPN sudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys">
+<meta name="description" content="OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se">
 <meta name="author" content="Kyrie">
 <link rel="canonical" href="https://kyxie.github.io/zh/blog/tech/openvpn/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.5fba7659f49a2f7ca0ce86b7611a869462aadd4a57aa486975cf60e413fa7b0f.css" integrity="sha256-X7p2WfSaL3ygzoa3YRqGlGKq3UpXqkhpdc9g5BP6ew8=" rel="preload stylesheet" as="style">
@@ -45,7 +45,7 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Linux配置OpenVPN" />
-<meta property="og:description" content="Server 下载OpenVPN sudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys" />
+<meta property="og:description" content="OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.github.io/zh/blog/tech/openvpn/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-04-26T20:38:19-04:00" />
@@ -53,7 +53,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux配置OpenVPN"/>
-<meta name="twitter:description" content="Server 下载OpenVPN sudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys"/>
+<meta name="twitter:description" content="OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se"/>
 
 
 <script type="application/ld+json">
@@ -88,12 +88,12 @@
   "@type": "BlogPosting",
   "headline": "Linux配置OpenVPN",
   "name": "Linux配置OpenVPN",
-  "description": "Server 下载OpenVPN sudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys",
+  "description": "OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se",
   "keywords": [
     "Linux", "OpenVPN"
   ],
-  "articleBody": "Server 下载OpenVPN\nsudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys，在server中，复制ca.crt，server.key，server.crt，dh2048.pem到/etc/openvpn/server\nsudo cp /usr/share/doc/openvpn/examples/sample-keys/{ca.crt,server.key,server.crt,dh2048.pem} /etc/openvpn/server 编写服务器配置文件\nport 1194 proto udp dev tun ca ca.crt cert server.crt key server.key dh dh2048.pem server 10.8.0.0 255.255.255.0 keepalive 10 120 user nobody group nogroup persist-key persist-tun verb 3 启动OpenVPN Server\ncd /etc/openvpn/server sudo openvpn --config server.conf 这时如果查看ip地址可以看到tun0接口，地址是10.8.0.1\nClient 下载OpenVPN\nsudo apt-get install openvpn 从Server上复制对应的ca.crt，client.crt，client.key\nsudo scp username@address:/usr/share/doc/openvpn/examples/sample-keys/{ca.crt,client.crt,client.key} /etc/openvpn/client 编写client.conf\nclient dev tun proto udp remote SERVER_ADDR 1194 ca ca.crt cert client.crt key client.key user nobody group nogroup persist-key persist-tun verb 3 启动OpenVPN Client\ncd /etc/openvpn/client sudo openvpn --config client.conf 这时如果执行\nping 10.8.0.1 成功，说明OpenVPN成功建立\n",
-  "wordCount" : "364",
+  "articleBody": "OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当client\nTLS Server 在A中下载OpenVPN\nsudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys，在server中，复制ca.crt，server.key，server.crt，dh2048.pem到/etc/openvpn/tls-server\nsudo cp /usr/share/doc/openvpn/examples/sample-keys/{ca.crt,server.key,server.crt,dh2048.pem} /etc/openvpn/tls-server 编写服务器配置文件\nport 1194 proto udp dev tun0 ca ca.crt cert server.crt key server.key dh dh2048.pem server 10.8.0.0 255.255.255.0 keepalive 10 120 user nobody group nogroup persist-key persist-tun verb 3 如果使用TCP连接，则修改为\nport 1194 proto tcp-server dev tun0 ca ca.crt cert server.crt key server.key dh dh2048.pem server 10.8.0.0 255.255.255.0 keepalive 10 120 user nobody group nogroup persist-key persist-tun verb 3 启动OpenVPN Server\ncd /etc/openvpn/tls-server sudo openvpn --config server.conf 这时如果查看IP地址可以看到tun0接口，地址是10.8.0.1\nTLS Client 在B中下载OpenVPN\nsudo apt-get install openvpn 在A中/usr/share/doc/openvpn/examples/sample-keys/下找到ca.crt，client.key，client.crt，复制到B中\n# In B sudo scp [A_usrname]@[A_addr]:/usr/share/doc/openvpn/examples/sample-keys/{ca.crt,client.crt,client.key} /etc/openvpn/tls-client 编写server.conf\nclient dev tun0 remote [A_addr] 1194 udp ca ca.crt cert client.crt key client.key user nobody group nogroup persist-key persist-tun verb 3 如果是TCP连接则\nclient dev tun0 remote [A_addr] 1194 tcp-client ca ca.crt cert client.crt key client.key user nobody group nogroup persist-key persist-tun verb 3 运行OpenVPN Client\ncd /etc/openvpn/tls-client sudo openvpn --config client.conf 这时如果执行\nping 10.8.0.1 成功，说明OpenVPN成功建立\nPSK模式 PSK模式不需要配置复杂的keys，比较简单，但是安全性也会随之降低，这里我们同样让A充当Server，B充当Client\nPSK Server 在A中生成psk.key，并且复制一份给B\n# In A cd /etc/openvpn/psk-server openvpn --genkey --secret psk.key # In B cd /etc/openvpn/psk-client scp [A_usrname]@[A_addr]:/etc/openvpn/psk-server/psk.key . 编写server.conf\ndev-type tun dev tun0 ifconfig 10.8.0.6 10.8.0.1 keepalive 10 120 persist-tun secret psk.key verb 0 # proto tcp-server 如果是TCP连接，则取消注释最后一行\n启动OpenVPN\ncd /etc/openvpn/psk-server sudo openvpn --config server.conf PSK Client 编写client.conf\ndev-type tun dev tun0 remote [A_addr] 1194 udp ifconfig 10.8.0.1 10.8.0.6 keepalive 10 120 persist-tun secret psk.key verb 0 如果是TCP连接\ndev-type tun dev tun0 remote 10.10.200.120 1194 tcp-client ifconfig 10.8.0.1 10.8.0.6 keepalive 10 120 persist-tun secret psk.key verb 0 ",
+  "wordCount" : "809",
   "inLanguage": "zh",
   "datePublished": "2024-04-26T20:38:19-04:00",
   "dateModified": "2024-04-26T20:38:19-04:00",
@@ -200,7 +200,7 @@
     <h1 class="post-title">
       Linux配置OpenVPN
     </h1>
-    <div class="post-meta"><span title='2024-04-26 20:38:19 -0400 EDT'>2024-04-26</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;Kyrie
+    <div class="post-meta"><span title='2024-04-26 20:38:19 -0400 EDT'>2024-04-26</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;Kyrie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -212,10 +212,28 @@
 
                 <div class="inner"><ul>
                         <li>
-                            <a href="#server" aria-label="Server">Server</a></li>
+                            <a href="#openvpn%e7%9a%84%e7%ae%80%e5%8d%95%e9%85%8d%e7%bd%ae" aria-label="OpenVPN的简单配置">OpenVPN的简单配置</a><ul>
+                                    
                         <li>
-                            <a href="#client" aria-label="Client">Client</a>
+                            <a href="#tls%e6%a8%a1%e5%bc%8f" aria-label="TLS模式">TLS模式</a><ul>
+                                    
+                        <li>
+                            <a href="#tls-server" aria-label="TLS Server">TLS Server</a></li>
+                        <li>
+                            <a href="#tls-client" aria-label="TLS Client">TLS Client</a></li></ul>
                         </li>
+                        <li>
+                            <a href="#psk%e6%a8%a1%e5%bc%8f" aria-label="PSK模式">PSK模式</a><ul>
+                                    
+                        <li>
+                            <a href="#psk-server" aria-label="PSK Server">PSK Server</a></li>
+                        <li>
+                            <a href="#psk-client" aria-label="PSK Client">PSK Client</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                    </li>
                     </ul>
                 </div>
             </details>
@@ -280,21 +298,27 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="server">Server<a hidden class="anchor" aria-hidden="true" href="#server">#</a></h3>
+  <div class="post-content"><h2 id="openvpn的简单配置">OpenVPN的简单配置<a hidden class="anchor" aria-hidden="true" href="#openvpn的简单配置">#</a></h2>
+<ul>
+<li>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client</li>
+</ul>
+<h3 id="tls模式">TLS模式<a hidden class="anchor" aria-hidden="true" href="#tls模式">#</a></h3>
+<p>假设我们使用A来充当server，B来充当client</p>
+<h4 id="tls-server">TLS Server<a hidden class="anchor" aria-hidden="true" href="#tls-server">#</a></h4>
 <ul>
 <li>
-<p>下载OpenVPN</p>
+<p>在A中下载OpenVPN</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install openvpn
 </span></span></code></pre></div></li>
 <li>
-<p>在<code>/usr/share/doc/openvpn/examples/sample-keys/</code>文件夹下有好多keys，在server中，复制<code>ca.crt</code>，<code>server.key</code>，<code>server.crt</code>，<code>dh2048.pem</code>到<code>/etc/openvpn/server</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo cp /usr/share/doc/openvpn/examples/sample-keys/<span style="color:#f92672">{</span>ca.crt,server.key,server.crt,dh2048.pem<span style="color:#f92672">}</span> /etc/openvpn/server
+<p>在<code>/usr/share/doc/openvpn/examples/sample-keys/</code>文件夹下有好多keys，在server中，复制<code>ca.crt</code>，<code>server.key</code>，<code>server.crt</code>，<code>dh2048.pem</code>到<code>/etc/openvpn/tls-server</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo cp /usr/share/doc/openvpn/examples/sample-keys/<span style="color:#f92672">{</span>ca.crt,server.key,server.crt,dh2048.pem<span style="color:#f92672">}</span> /etc/openvpn/tls-server
 </span></span></code></pre></div></li>
 <li>
 <p>编写服务器配置文件</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>port 1194
 </span></span><span style="display:flex;"><span>proto udp
-</span></span><span style="display:flex;"><span>dev tun
+</span></span><span style="display:flex;"><span>dev tun0
 </span></span><span style="display:flex;"><span>ca ca.crt
 </span></span><span style="display:flex;"><span>cert server.crt
 </span></span><span style="display:flex;"><span>key server.key
@@ -308,30 +332,47 @@
 </span></span><span style="display:flex;"><span>verb 3
 </span></span></code></pre></div></li>
 <li>
+<p>如果使用TCP连接，则修改为</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>port <span style="color:#ae81ff">1194</span>
+</span></span><span style="display:flex;"><span>proto tcp-server
+</span></span><span style="display:flex;"><span>dev tun0
+</span></span><span style="display:flex;"><span>ca ca.crt
+</span></span><span style="display:flex;"><span>cert server.crt
+</span></span><span style="display:flex;"><span>key server.key
+</span></span><span style="display:flex;"><span>dh dh2048.pem
+</span></span><span style="display:flex;"><span>server 10.8.0.0 255.255.255.0
+</span></span><span style="display:flex;"><span>keepalive <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">120</span>
+</span></span><span style="display:flex;"><span>user nobody
+</span></span><span style="display:flex;"><span>group nogroup
+</span></span><span style="display:flex;"><span>persist-key
+</span></span><span style="display:flex;"><span>persist-tun
+</span></span><span style="display:flex;"><span>verb <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div></li>
+<li>
 <p>启动OpenVPN Server</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /etc/openvpn/server
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /etc/openvpn/tls-server
 </span></span><span style="display:flex;"><span>sudo openvpn --config server.conf
 </span></span></code></pre></div></li>
 <li>
-<p>这时如果查看ip地址可以看到<code>tun0</code>接口，地址是<code>10.8.0.1</code></p>
+<p>这时如果查看IP地址可以看到<code>tun0</code>接口，地址是<code>10.8.0.1</code></p>
 </li>
 </ul>
-<h3 id="client">Client<a hidden class="anchor" aria-hidden="true" href="#client">#</a></h3>
+<h4 id="tls-client">TLS Client<a hidden class="anchor" aria-hidden="true" href="#tls-client">#</a></h4>
 <ul>
 <li>
-<p>下载OpenVPN</p>
+<p>在B中下载OpenVPN</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install openvpn
 </span></span></code></pre></div></li>
 <li>
-<p>从Server上复制对应的<code>ca.crt</code>，<code>client.crt</code>，<code>client.key</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo scp username@address:/usr/share/doc/openvpn/examples/sample-keys/<span style="color:#f92672">{</span>ca.crt,client.crt,client.key<span style="color:#f92672">}</span> /etc/openvpn/client
+<p>在A中<code>/usr/share/doc/openvpn/examples/sample-keys/</code>下找到<code>ca.crt</code>，<code>client.key</code>，<code>client.crt</code>，复制到B中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In B</span>
+</span></span><span style="display:flex;"><span>sudo scp <span style="color:#f92672">[</span>A_usrname<span style="color:#f92672">]</span>@<span style="color:#f92672">[</span>A_addr<span style="color:#f92672">]</span>:/usr/share/doc/openvpn/examples/sample-keys/<span style="color:#f92672">{</span>ca.crt,client.crt,client.key<span style="color:#f92672">}</span> /etc/openvpn/tls-client
 </span></span></code></pre></div></li>
 <li>
-<p>编写<code>client.conf</code></p>
+<p>编写<code>server.conf</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>client
-</span></span><span style="display:flex;"><span>dev tun
-</span></span><span style="display:flex;"><span>proto udp
-</span></span><span style="display:flex;"><span>remote SERVER_ADDR 1194
+</span></span><span style="display:flex;"><span>dev tun0
+</span></span><span style="display:flex;"><span>remote <span style="color:#960050;background-color:#1e0010">[</span>A_addr<span style="color:#960050;background-color:#1e0010">]</span> 1194 udp
 </span></span><span style="display:flex;"><span>ca ca.crt
 </span></span><span style="display:flex;"><span>cert client.crt
 </span></span><span style="display:flex;"><span>key client.key
@@ -342,8 +383,22 @@
 </span></span><span style="display:flex;"><span>verb 3
 </span></span></code></pre></div></li>
 <li>
-<p>启动OpenVPN Client</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /etc/openvpn/client
+<p>如果是TCP连接则</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>client
+</span></span><span style="display:flex;"><span>dev tun0
+</span></span><span style="display:flex;"><span>remote <span style="color:#960050;background-color:#1e0010">[</span>A_addr<span style="color:#960050;background-color:#1e0010">]</span> 1194 tcp-client
+</span></span><span style="display:flex;"><span>ca ca.crt
+</span></span><span style="display:flex;"><span>cert client.crt
+</span></span><span style="display:flex;"><span>key client.key
+</span></span><span style="display:flex;"><span>user nobody
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">group</span> nogroup
+</span></span><span style="display:flex;"><span>persist-key
+</span></span><span style="display:flex;"><span>persist-tun
+</span></span><span style="display:flex;"><span>verb 3
+</span></span></code></pre></div></li>
+<li>
+<p>运行OpenVPN Client</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /etc/openvpn/tls-client
 </span></span><span style="display:flex;"><span>sudo openvpn --config client.conf
 </span></span></code></pre></div></li>
 <li>
@@ -352,16 +407,72 @@
 </span></span></code></pre></div><p>成功，说明OpenVPN成功建立</p>
 </li>
 </ul>
+<h3 id="psk模式">PSK模式<a hidden class="anchor" aria-hidden="true" href="#psk模式">#</a></h3>
+<p>PSK模式不需要配置复杂的keys，比较简单，但是安全性也会随之降低，这里我们同样让A充当Server，B充当Client</p>
+<h4 id="psk-server">PSK Server<a hidden class="anchor" aria-hidden="true" href="#psk-server">#</a></h4>
+<ul>
+<li>
+<p>在A中生成<code>psk.key</code>，并且复制一份给B</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In A</span>
+</span></span><span style="display:flex;"><span>cd /etc/openvpn/psk-server
+</span></span><span style="display:flex;"><span>openvpn --genkey --secret psk.key
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In B</span>
+</span></span><span style="display:flex;"><span>cd /etc/openvpn/psk-client
+</span></span><span style="display:flex;"><span>scp <span style="color:#f92672">[</span>A_usrname<span style="color:#f92672">]</span>@<span style="color:#f92672">[</span>A_addr<span style="color:#f92672">]</span>:/etc/openvpn/psk-server/psk.key .
+</span></span></code></pre></div></li>
+<li>
+<p>编写<code>server.conf</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>dev-type tun
+</span></span><span style="display:flex;"><span>dev tun0
+</span></span><span style="display:flex;"><span>ifconfig <span style="color:#ae81ff">10.8.0.6</span> <span style="color:#ae81ff">10.8.0.1</span>
+</span></span><span style="display:flex;"><span>keepalive 10 120
+</span></span><span style="display:flex;"><span>persist-tun
+</span></span><span style="display:flex;"><span>secret psk.key
+</span></span><span style="display:flex;"><span>verb 0
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># proto tcp-server
+</span></span></span></code></pre></div><p>如果是TCP连接，则取消注释最后一行</p>
+</li>
+<li>
+<p>启动OpenVPN</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /etc/openvpn/psk-server
+</span></span><span style="display:flex;"><span>sudo openvpn --config server.conf
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="psk-client">PSK Client<a hidden class="anchor" aria-hidden="true" href="#psk-client">#</a></h4>
+<ul>
+<li>
+<p>编写<code>client.conf</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>dev-type tun
+</span></span><span style="display:flex;"><span>dev tun0
+</span></span><span style="display:flex;"><span>remote <span style="color:#960050;background-color:#1e0010">[</span>A_addr<span style="color:#960050;background-color:#1e0010">]</span> 1194 udp
+</span></span><span style="display:flex;"><span>ifconfig <span style="color:#ae81ff">10.8.0.1</span> <span style="color:#ae81ff">10.8.0.6</span>
+</span></span><span style="display:flex;"><span>keepalive 10 120
+</span></span><span style="display:flex;"><span>persist-tun
+</span></span><span style="display:flex;"><span>secret psk.key
+</span></span><span style="display:flex;"><span>verb 0
+</span></span></code></pre></div></li>
+<li>
+<p>如果是TCP连接</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>dev-type tun
+</span></span><span style="display:flex;"><span>dev tun0
+</span></span><span style="display:flex;"><span>remote <span style="color:#ae81ff">10.10.200.120</span> 1194 tcp-client
+</span></span><span style="display:flex;"><span>ifconfig <span style="color:#ae81ff">10.8.0.1</span> <span style="color:#ae81ff">10.8.0.6</span>
+</span></span><span style="display:flex;"><span>keepalive 10 120
+</span></span><span style="display:flex;"><span>persist-tun
+</span></span><span style="display:flex;"><span>secret psk.key
+</span></span><span style="display:flex;"><span>verb 0
+</span></span></code></pre></div></li>
+</ul>
 
 
   </div>
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.github.io/zh/blog/tech/papermod/">
+  <a class="prev" href="https://kyxie.github.io/zh/blog/finance/checking-account/">
     <span class="title">« 上一页</span>
     <br>
-    <span>Hugo &#43; PaperMod搭建技术博客</span>
+    <span>我使用过的加拿大🇨🇦支票账户</span>
   </a>
   <a class="next" href="https://kyxie.github.io/zh/blog/tech/keys/">
     <span class="title">下一页 »</span>
