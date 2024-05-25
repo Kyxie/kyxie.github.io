@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>搭建LDAP Server | Kunyang&#39;s Blog</title>
+<title>Linux配置LDAP Server | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="LDAP, Linux">
 <meta name="description" content="Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username">
 <meta name="author" content="Kyrie">
@@ -44,7 +44,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="搭建LDAP Server" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Linux配置LDAP Server" />
 <meta property="og:description" content="Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.github.io/zh/blog/tech/ldap/" /><meta property="article:section" content="blog" />
@@ -52,7 +52,7 @@
 <meta property="article:modified_time" content="2024-02-27T00:18:35-04:00" /><meta property="og:site_name" content="Kyrie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="搭建LDAP Server"/>
+<meta name="twitter:title" content="Linux配置LDAP Server"/>
 <meta name="twitter:description" content="Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username"/>
 
 
@@ -76,7 +76,7 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "搭建LDAP Server",
+      "name": "Linux配置LDAP Server",
       "item": "https://kyxie.github.io/zh/blog/tech/ldap/"
     }
   ]
@@ -86,8 +86,8 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "搭建LDAP Server",
-  "name": "搭建LDAP Server",
+  "headline": "Linux配置LDAP Server",
+  "name": "Linux配置LDAP Server",
   "description": "Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username",
   "keywords": [
     "LDAP", "Linux"
@@ -198,7 +198,7 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://kyxie.github.io/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/tech/">技术 🔧</a></div>
     <h1 class="post-title">
-      搭建LDAP Server
+      Linux配置LDAP Server
     </h1>
     <div class="post-meta"><span title='2024-02-27 00:18:35 -0400 -0400'>2024-02-27</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;Kyrie
 
@@ -294,19 +294,19 @@
 </li>
 <li>
 <p>创建<code>user.ldif</code>：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># ldap是username
-</span></span><span style="display:flex;"><span>dn: uid=ldap,dc=example,dc=org
-</span></span><span style="display:flex;"><span>objectClass: inetOrgPerson
-</span></span><span style="display:flex;"><span>objectClass: posixAccount
-</span></span><span style="display:flex;"><span>uid: ldap
-</span></span><span style="display:flex;"><span>sn: LDAP
-</span></span><span style="display:flex;"><span>givenName: LDAP
-</span></span><span style="display:flex;"><span>cn: LDAP User
-</span></span><span style="display:flex;"><span>displayName: LDAP User
-</span></span><span style="display:flex;"><span>uidNumber: 10000
-</span></span><span style="display:flex;"><span>gidNumber: 10000
-</span></span><span style="display:flex;"><span>homeDirectory: /home/ldap
-</span></span><span style="display:flex;"><span>loginShell: /bin/bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ldap是username</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">dn</span>: <span style="color:#ae81ff">uid=ldap,dc=example,dc=org</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">objectClass</span>: <span style="color:#ae81ff">inetOrgPerson</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">objectClass</span>: <span style="color:#ae81ff">posixAccount</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">uid</span>: <span style="color:#ae81ff">ldap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">sn</span>: <span style="color:#ae81ff">LDAP</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">givenName</span>: <span style="color:#ae81ff">LDAP</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">cn</span>: <span style="color:#ae81ff">LDAP User</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">displayName</span>: <span style="color:#ae81ff">LDAP User</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">uidNumber</span>: <span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">gidNumber</span>: <span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">homeDirectory</span>: <span style="color:#ae81ff">/home/ldap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">loginShell</span>: <span style="color:#ae81ff">/bin/bash</span>
 </span></span></code></pre></div></li>
 <li>
 <p>把<code>user</code>加入<code>OpenLDAP</code>服务器：</p>

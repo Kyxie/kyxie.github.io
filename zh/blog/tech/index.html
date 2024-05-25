@@ -170,14 +170,26 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Linux配置OpenVPN
+    <h2>Wireguard的简单配置
     </h2>
   </header>
   <section class="entry-content">
-    <p>OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se...</p>
+    <p>Linux配置Wireguard 下载wireguard sudo apt update sudo apt upgrade sudo apt install wireguard 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard wg genkey | tee privatekey |...</p>
+  </section>
+  <footer class="entry-footer"><span title='2024-05-25 00:19:19 -0400 EDT'>2024-05-25</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;Kyrie</footer>
+  <a class="entry-link" aria-label="post link to Wireguard的简单配置" href="https://kyxie.github.io/zh/blog/tech/wireguard/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>OpenVPN的简单配置
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli...</p>
   </section>
   <footer class="entry-footer"><span title='2024-04-26 20:38:19 -0400 EDT'>2024-04-26</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;Kyrie</footer>
-  <a class="entry-link" aria-label="post link to Linux配置OpenVPN" href="https://kyxie.github.io/zh/blog/tech/openvpn/"></a>
+  <a class="entry-link" aria-label="post link to OpenVPN的简单配置" href="https://kyxie.github.io/zh/blog/tech/openvpn/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -194,14 +206,14 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>搭建LDAP Server
+    <h2>Linux配置LDAP Server
     </h2>
   </header>
   <section class="entry-content">
     <p>Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username...</p>
   </section>
   <footer class="entry-footer"><span title='2024-02-27 00:18:35 -0400 -0400'>2024-02-27</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;Kyrie</footer>
-  <a class="entry-link" aria-label="post link to 搭建LDAP Server" href="https://kyxie.github.io/zh/blog/tech/ldap/"></a>
+  <a class="entry-link" aria-label="post link to Linux配置LDAP Server" href="https://kyxie.github.io/zh/blog/tech/ldap/"></a>
 </article>
 
 <article class="post-entry"> 

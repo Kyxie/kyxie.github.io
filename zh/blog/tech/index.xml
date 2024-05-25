@@ -17,12 +17,21 @@
     </item>
     
     <item>
-      <title>Linux配置OpenVPN</title>
+      <title>Wireguard的简单配置</title>
+      <link>https://kyxie.github.io/zh/blog/tech/wireguard/</link>
+      <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/wireguard/</guid>
+      <description>Linux配置Wireguard 下载wireguard sudo apt update sudo apt upgrade sudo apt install wireguard 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard wg genkey | tee privatekey |</description>
+    </item>
+    
+    <item>
+      <title>OpenVPN的简单配置</title>
       <link>https://kyxie.github.io/zh/blog/tech/openvpn/</link>
       <pubDate>Fri, 26 Apr 2024 20:38:19 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/openvpn/</guid>
-      <description>OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se</description>
+      <description>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli</description>
     </item>
     
     <item>
@@ -35,7 +44,7 @@
     </item>
     
     <item>
-      <title>搭建LDAP Server</title>
+      <title>Linux配置LDAP Server</title>
       <link>https://kyxie.github.io/zh/blog/tech/ldap/</link>
       <pubDate>Tue, 27 Feb 2024 00:18:35 -0400</pubDate>
       

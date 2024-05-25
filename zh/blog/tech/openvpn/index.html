@@ -5,9 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Linux配置OpenVPN | Kunyang&#39;s Blog</title>
+<title>OpenVPN的简单配置 | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Linux, OpenVPN">
-<meta name="description" content="OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se">
+<meta name="description" content="假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli">
 <meta name="author" content="Kyrie">
 <link rel="canonical" href="https://kyxie.github.io/zh/blog/tech/openvpn/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.5fba7659f49a2f7ca0ce86b7611a869462aadd4a57aa486975cf60e413fa7b0f.css" integrity="sha256-X7p2WfSaL3ygzoa3YRqGlGKq3UpXqkhpdc9g5BP6ew8=" rel="preload stylesheet" as="style">
@@ -44,16 +44,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Linux配置OpenVPN" />
-<meta property="og:description" content="OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="OpenVPN的简单配置" />
+<meta property="og:description" content="假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.github.io/zh/blog/tech/openvpn/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-04-26T20:38:19-04:00" />
 <meta property="article:modified_time" content="2024-04-26T20:38:19-04:00" /><meta property="og:site_name" content="Kyrie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Linux配置OpenVPN"/>
-<meta name="twitter:description" content="OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se"/>
+<meta name="twitter:title" content="OpenVPN的简单配置"/>
+<meta name="twitter:description" content="假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli"/>
 
 
 <script type="application/ld+json">
@@ -76,7 +76,7 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "Linux配置OpenVPN",
+      "name": "OpenVPN的简单配置",
       "item": "https://kyxie.github.io/zh/blog/tech/openvpn/"
     }
   ]
@@ -86,14 +86,14 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Linux配置OpenVPN",
-  "name": "Linux配置OpenVPN",
-  "description": "OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se",
+  "headline": "OpenVPN的简单配置",
+  "name": "OpenVPN的简单配置",
+  "description": "假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli",
   "keywords": [
     "Linux", "OpenVPN"
   ],
-  "articleBody": "OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当client\nTLS Server 在A中下载OpenVPN\nsudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys，在server中，复制ca.crt，server.key，server.crt，dh2048.pem到/etc/openvpn/tls-server\nsudo cp /usr/share/doc/openvpn/examples/sample-keys/{ca.crt,server.key,server.crt,dh2048.pem} /etc/openvpn/tls-server 编写服务器配置文件\nport 1194 proto udp dev tun0 ca ca.crt cert server.crt key server.key dh dh2048.pem server 10.8.0.0 255.255.255.0 keepalive 10 120 user nobody group nogroup persist-key persist-tun verb 3 如果使用TCP连接，则修改为\nport 1194 proto tcp-server dev tun0 ca ca.crt cert server.crt key server.key dh dh2048.pem server 10.8.0.0 255.255.255.0 keepalive 10 120 user nobody group nogroup persist-key persist-tun verb 3 启动OpenVPN Server\ncd /etc/openvpn/tls-server sudo openvpn --config server.conf 这时如果查看IP地址可以看到tun0接口，地址是10.8.0.1\nTLS Client 在B中下载OpenVPN\nsudo apt-get install openvpn 在A中/usr/share/doc/openvpn/examples/sample-keys/下找到ca.crt，client.key，client.crt，复制到B中\n# In B sudo scp [A_usrname]@[A_addr]:/usr/share/doc/openvpn/examples/sample-keys/{ca.crt,client.crt,client.key} /etc/openvpn/tls-client 编写server.conf\nclient dev tun0 remote [A_addr] 1194 udp ca ca.crt cert client.crt key client.key user nobody group nogroup persist-key persist-tun verb 3 如果是TCP连接则\nclient dev tun0 remote [A_addr] 1194 tcp-client ca ca.crt cert client.crt key client.key user nobody group nogroup persist-key persist-tun verb 3 运行OpenVPN Client\ncd /etc/openvpn/tls-client sudo openvpn --config client.conf 这时如果执行\nping 10.8.0.1 成功，说明OpenVPN成功建立\nPSK模式 PSK模式不需要配置复杂的keys，比较简单，但是安全性也会随之降低，这里我们同样让A充当Server，B充当Client\nPSK Server 在A中生成psk.key，并且复制一份给B\n# In A cd /etc/openvpn/psk-server openvpn --genkey --secret psk.key # In B cd /etc/openvpn/psk-client scp [A_usrname]@[A_addr]:/etc/openvpn/psk-server/psk.key . 编写server.conf\ndev-type tun dev tun0 ifconfig 10.8.0.6 10.8.0.1 keepalive 10 120 persist-tun secret psk.key verb 0 # proto tcp-server 如果是TCP连接，则取消注释最后一行\n启动OpenVPN\ncd /etc/openvpn/psk-server sudo openvpn --config server.conf PSK Client 编写client.conf\ndev-type tun dev tun0 remote [A_addr] 1194 udp ifconfig 10.8.0.1 10.8.0.6 keepalive 10 120 persist-tun secret psk.key verb 0 如果是TCP连接\ndev-type tun dev tun0 remote 10.10.200.120 1194 tcp-client ifconfig 10.8.0.1 10.8.0.6 keepalive 10 120 persist-tun secret psk.key verb 0 ",
-  "wordCount" : "809",
+  "articleBody": " 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client\nTLS模式 假设我们使用A来充当server，B来充当client\nTLS Server 在A中下载OpenVPN\nsudo apt-get install openvpn 在/usr/share/doc/openvpn/examples/sample-keys/文件夹下有好多keys，在server中，复制ca.crt，server.key，server.crt，dh2048.pem到/etc/openvpn/tls-server\nsudo cp /usr/share/doc/openvpn/examples/sample-keys/{ca.crt,server.key,server.crt,dh2048.pem} /etc/openvpn/tls-server 编写服务器配置文件\nport 1194 proto udp dev tun0 ca ca.crt cert server.crt key server.key dh dh2048.pem server 10.8.0.0 255.255.255.0 keepalive 10 120 user nobody group nogroup persist-key persist-tun verb 3 如果使用TCP连接，则修改为\nport 1194 proto tcp-server dev tun0 ca ca.crt cert server.crt key server.key dh dh2048.pem server 10.8.0.0 255.255.255.0 keepalive 10 120 user nobody group nogroup persist-key persist-tun verb 3 启动OpenVPN Server\ncd /etc/openvpn/tls-server sudo openvpn --config server.conf 这时如果查看IP地址可以看到tun0接口，地址是10.8.0.1\nTLS Client 在B中下载OpenVPN\nsudo apt-get install openvpn 在A中/usr/share/doc/openvpn/examples/sample-keys/下找到ca.crt，client.key，client.crt，复制到B中\n# In B sudo scp [A_usrname]@[A_addr]:/usr/share/doc/openvpn/examples/sample-keys/{ca.crt,client.crt,client.key} /etc/openvpn/tls-client 编写server.conf\nclient dev tun0 remote [A_addr] 1194 udp ca ca.crt cert client.crt key client.key user nobody group nogroup persist-key persist-tun verb 3 如果是TCP连接则\nclient dev tun0 remote [A_addr] 1194 tcp-client ca ca.crt cert client.crt key client.key user nobody group nogroup persist-key persist-tun verb 3 运行OpenVPN Client\ncd /etc/openvpn/tls-client sudo openvpn --config client.conf 这时如果执行\nping 10.8.0.1 成功，说明OpenVPN成功建立\nPSK模式 PSK模式不需要配置复杂的keys，比较简单，但是安全性也会随之降低，这里我们同样让A充当Server，B充当Client\nPSK Server 在A中生成psk.key，并且复制一份给B\n# In A cd /etc/openvpn/psk-server openvpn --genkey --secret psk.key # In B cd /etc/openvpn/psk-client scp [A_usrname]@[A_addr]:/etc/openvpn/psk-server/psk.key . 编写server.conf\ndev-type tun dev tun0 ifconfig 10.8.0.6 10.8.0.1 keepalive 10 120 persist-tun secret psk.key verb 0 # proto tcp-server 如果是TCP连接，则取消注释最后一行\n启动OpenVPN\ncd /etc/openvpn/psk-server sudo openvpn --config server.conf PSK Client 编写client.conf\ndev-type tun dev tun0 remote [A_addr] 1194 udp ifconfig 10.8.0.1 10.8.0.6 keepalive 10 120 persist-tun secret psk.key verb 0 如果是TCP连接\ndev-type tun dev tun0 remote 10.10.200.120 1194 tcp-client ifconfig 10.8.0.1 10.8.0.6 keepalive 10 120 persist-tun secret psk.key verb 0 ",
+  "wordCount" : "797",
   "inLanguage": "zh",
   "datePublished": "2024-04-26T20:38:19-04:00",
   "dateModified": "2024-04-26T20:38:19-04:00",
@@ -198,7 +198,7 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://kyxie.github.io/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/tech/">技术 🔧</a></div>
     <h1 class="post-title">
-      Linux配置OpenVPN
+      OpenVPN的简单配置
     </h1>
     <div class="post-meta"><span title='2024-04-26 20:38:19 -0400 EDT'>2024-04-26</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;Kyrie
 
@@ -211,9 +211,6 @@
                 </summary>
 
                 <div class="inner"><ul>
-                        <li>
-                            <a href="#openvpn%e7%9a%84%e7%ae%80%e5%8d%95%e9%85%8d%e7%bd%ae" aria-label="OpenVPN的简单配置">OpenVPN的简单配置</a><ul>
-                                    
                         <li>
                             <a href="#tls%e6%a8%a1%e5%bc%8f" aria-label="TLS模式">TLS模式</a><ul>
                                     
@@ -230,8 +227,6 @@
                         <li>
                             <a href="#psk-client" aria-label="PSK Client">PSK Client</a>
                         </li>
-                    </ul>
-                    </li>
                     </ul>
                     </li>
                     </ul>
@@ -298,10 +293,9 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h2 id="openvpn的简单配置">OpenVPN的简单配置<a hidden class="anchor" aria-hidden="true" href="#openvpn的简单配置">#</a></h2>
-<ul>
-<li>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client</li>
-</ul>
+  <div class="post-content"><blockquote>
+<p>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client</p>
+</blockquote>
 <h3 id="tls模式">TLS模式<a hidden class="anchor" aria-hidden="true" href="#tls模式">#</a></h3>
 <p>假设我们使用A来充当server，B来充当client</p>
 <h4 id="tls-server">TLS Server<a hidden class="anchor" aria-hidden="true" href="#tls-server">#</a></h4>
@@ -316,37 +310,37 @@
 </span></span></code></pre></div></li>
 <li>
 <p>编写服务器配置文件</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>port 1194
-</span></span><span style="display:flex;"><span>proto udp
-</span></span><span style="display:flex;"><span>dev tun0
-</span></span><span style="display:flex;"><span>ca ca.crt
-</span></span><span style="display:flex;"><span>cert server.crt
-</span></span><span style="display:flex;"><span>key server.key
-</span></span><span style="display:flex;"><span>dh dh2048.pem
-</span></span><span style="display:flex;"><span>server <span style="color:#ae81ff">10.8.0.0</span> <span style="color:#ae81ff">255.255.255.0</span>
-</span></span><span style="display:flex;"><span>keepalive 10 120
-</span></span><span style="display:flex;"><span>user nobody
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">group</span> nogroup
-</span></span><span style="display:flex;"><span>persist-key
-</span></span><span style="display:flex;"><span>persist-tun
-</span></span><span style="display:flex;"><span>verb 3
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">port 1194</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">proto udp</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">dev tun0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ca ca.crt</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">cert server.crt</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">key server.key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">dh dh2048.pem</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">server 10.8.0.0 255.255.255.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">keepalive 10 120</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">user nobody</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">group nogroup</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-tun</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">verb 3</span>
 </span></span></code></pre></div></li>
 <li>
 <p>如果使用TCP连接，则修改为</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>port <span style="color:#ae81ff">1194</span>
-</span></span><span style="display:flex;"><span>proto tcp-server
-</span></span><span style="display:flex;"><span>dev tun0
-</span></span><span style="display:flex;"><span>ca ca.crt
-</span></span><span style="display:flex;"><span>cert server.crt
-</span></span><span style="display:flex;"><span>key server.key
-</span></span><span style="display:flex;"><span>dh dh2048.pem
-</span></span><span style="display:flex;"><span>server 10.8.0.0 255.255.255.0
-</span></span><span style="display:flex;"><span>keepalive <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">120</span>
-</span></span><span style="display:flex;"><span>user nobody
-</span></span><span style="display:flex;"><span>group nogroup
-</span></span><span style="display:flex;"><span>persist-key
-</span></span><span style="display:flex;"><span>persist-tun
-</span></span><span style="display:flex;"><span>verb <span style="color:#ae81ff">3</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">port 1194</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">proto tcp-server</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">dev tun0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ca ca.crt</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">cert server.crt</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">key server.key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">dh dh2048.pem</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">server 10.8.0.0 255.255.255.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">keepalive 10 120</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">user nobody</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">group nogroup</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-tun</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">verb 3</span>
 </span></span></code></pre></div></li>
 <li>
 <p>启动OpenVPN Server</p>
@@ -370,31 +364,31 @@
 </span></span></code></pre></div></li>
 <li>
 <p>编写<code>server.conf</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>client
-</span></span><span style="display:flex;"><span>dev tun0
-</span></span><span style="display:flex;"><span>remote <span style="color:#960050;background-color:#1e0010">[</span>A_addr<span style="color:#960050;background-color:#1e0010">]</span> 1194 udp
-</span></span><span style="display:flex;"><span>ca ca.crt
-</span></span><span style="display:flex;"><span>cert client.crt
-</span></span><span style="display:flex;"><span>key client.key
-</span></span><span style="display:flex;"><span>user nobody
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">group</span> nogroup
-</span></span><span style="display:flex;"><span>persist-key
-</span></span><span style="display:flex;"><span>persist-tun
-</span></span><span style="display:flex;"><span>verb 3
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">client</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">dev tun0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">remote [A_addr] 1194 udp</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ca ca.crt</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">cert client.crt</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">key client.key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">user nobody</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">group nogroup</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-tun</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">verb 3</span>
 </span></span></code></pre></div></li>
 <li>
 <p>如果是TCP连接则</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>client
-</span></span><span style="display:flex;"><span>dev tun0
-</span></span><span style="display:flex;"><span>remote <span style="color:#960050;background-color:#1e0010">[</span>A_addr<span style="color:#960050;background-color:#1e0010">]</span> 1194 tcp-client
-</span></span><span style="display:flex;"><span>ca ca.crt
-</span></span><span style="display:flex;"><span>cert client.crt
-</span></span><span style="display:flex;"><span>key client.key
-</span></span><span style="display:flex;"><span>user nobody
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">group</span> nogroup
-</span></span><span style="display:flex;"><span>persist-key
-</span></span><span style="display:flex;"><span>persist-tun
-</span></span><span style="display:flex;"><span>verb 3
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">client</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">dev tun0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">remote [A_addr] 1194 tcp-client</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ca ca.crt</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">cert client.crt</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">key client.key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">user nobody</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">group nogroup</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-tun</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">verb 3</span>
 </span></span></code></pre></div></li>
 <li>
 <p>运行OpenVPN Client</p>
@@ -422,15 +416,15 @@
 </span></span></code></pre></div></li>
 <li>
 <p>编写<code>server.conf</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>dev-type tun
-</span></span><span style="display:flex;"><span>dev tun0
-</span></span><span style="display:flex;"><span>ifconfig <span style="color:#ae81ff">10.8.0.6</span> <span style="color:#ae81ff">10.8.0.1</span>
-</span></span><span style="display:flex;"><span>keepalive 10 120
-</span></span><span style="display:flex;"><span>persist-tun
-</span></span><span style="display:flex;"><span>secret psk.key
-</span></span><span style="display:flex;"><span>verb 0
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># proto tcp-server
-</span></span></span></code></pre></div><p>如果是TCP连接，则取消注释最后一行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">dev-type tun</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">dev tun0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ifconfig 10.8.0.6 10.8.0.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">keepalive 10 120</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-tun</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">secret psk.key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">verb 0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># proto tcp-server</span>
+</span></span></code></pre></div><p>如果是TCP连接，则取消注释最后一行</p>
 </li>
 <li>
 <p>启动OpenVPN</p>
@@ -442,25 +436,25 @@
 <ul>
 <li>
 <p>编写<code>client.conf</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>dev-type tun
-</span></span><span style="display:flex;"><span>dev tun0
-</span></span><span style="display:flex;"><span>remote <span style="color:#960050;background-color:#1e0010">[</span>A_addr<span style="color:#960050;background-color:#1e0010">]</span> 1194 udp
-</span></span><span style="display:flex;"><span>ifconfig <span style="color:#ae81ff">10.8.0.1</span> <span style="color:#ae81ff">10.8.0.6</span>
-</span></span><span style="display:flex;"><span>keepalive 10 120
-</span></span><span style="display:flex;"><span>persist-tun
-</span></span><span style="display:flex;"><span>secret psk.key
-</span></span><span style="display:flex;"><span>verb 0
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">dev-type tun</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">dev tun0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">remote [A_addr] 1194 udp</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ifconfig 10.8.0.1 10.8.0.6</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">keepalive 10 120</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-tun</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">secret psk.key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">verb 0</span>
 </span></span></code></pre></div></li>
 <li>
 <p>如果是TCP连接</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-conf" data-lang="conf"><span style="display:flex;"><span>dev-type tun
-</span></span><span style="display:flex;"><span>dev tun0
-</span></span><span style="display:flex;"><span>remote <span style="color:#ae81ff">10.10.200.120</span> 1194 tcp-client
-</span></span><span style="display:flex;"><span>ifconfig <span style="color:#ae81ff">10.8.0.1</span> <span style="color:#ae81ff">10.8.0.6</span>
-</span></span><span style="display:flex;"><span>keepalive 10 120
-</span></span><span style="display:flex;"><span>persist-tun
-</span></span><span style="display:flex;"><span>secret psk.key
-</span></span><span style="display:flex;"><span>verb 0
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">dev-type tun</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">dev tun0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">remote 10.10.200.120 1194 tcp-client</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ifconfig 10.8.0.1 10.8.0.6</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">keepalive 10 120</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-tun</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">secret psk.key</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">verb 0</span>
 </span></span></code></pre></div></li>
 </ul>
 
@@ -469,10 +463,10 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.github.io/zh/blog/wool/checking-account/">
+  <a class="prev" href="https://kyxie.github.io/zh/blog/tech/wireguard/">
     <span class="title">« 上一页</span>
     <br>
-    <span>我使用过的加拿大🇨🇦支票账户</span>
+    <span>Wireguard的简单配置</span>
   </a>
   <a class="next" href="https://kyxie.github.io/zh/blog/tech/keys/">
     <span class="title">下一页 »</span>

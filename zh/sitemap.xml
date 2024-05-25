@@ -50,6 +50,9 @@
                 href="https://kyxie.github.io/zh/blog/life/"
                 />
   </url><url>
+    <loc>https://kyxie.github.io/zh/blog/tech/wireguard/</loc>
+    <lastmod>2024-05-25T00:19:19-04:00</lastmod>
+  </url><url>
     <loc>https://kyxie.github.io/zh/blog/tech/openvpn/</loc>
     <lastmod>2024-04-26T20:38:19-04:00</lastmod>
   </url><url>
@@ -72,7 +75,7 @@
     <lastmod>2022-05-03T17:28:17-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/</loc>
-    <lastmod>2024-05-18T10:51:55-04:00</lastmod>
+    <lastmod>2024-05-25T00:35:55-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -83,6 +86,9 @@
                 hreflang="zh"
                 href="https://kyxie.github.io/zh/"
                 />
+  </url><url>
+    <loc>https://kyxie.github.io/zh/blog/life/bike/</loc>
+    <lastmod>2024-05-25T00:35:55-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/life/pr/</loc>
     <lastmod>2024-01-04T23:37:55-04:00</lastmod>

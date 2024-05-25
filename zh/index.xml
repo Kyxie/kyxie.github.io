@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 18 May 2024 10:51:55 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 May 2024 00:35:55 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>加拿大🇨🇦信用卡薅羊毛心得</title>
       <link>https://kyxie.github.io/zh/blog/wool/credit-card/</link>
@@ -35,12 +35,21 @@
     </item>
     
     <item>
-      <title>Linux配置OpenVPN</title>
+      <title>Wireguard的简单配置</title>
+      <link>https://kyxie.github.io/zh/blog/tech/wireguard/</link>
+      <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/wireguard/</guid>
+      <description>Linux配置Wireguard 下载wireguard sudo apt update sudo apt upgrade sudo apt install wireguard 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard wg genkey | tee privatekey |</description>
+    </item>
+    
+    <item>
+      <title>OpenVPN的简单配置</title>
       <link>https://kyxie.github.io/zh/blog/tech/openvpn/</link>
       <pubDate>Fri, 26 Apr 2024 20:38:19 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/openvpn/</guid>
-      <description>OpenVPN的简单配置 假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当se</description>
+      <description>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli</description>
     </item>
     
     <item>
@@ -53,7 +62,7 @@
     </item>
     
     <item>
-      <title>搭建LDAP Server</title>
+      <title>Linux配置LDAP Server</title>
       <link>https://kyxie.github.io/zh/blog/tech/ldap/</link>
       <pubDate>Tue, 27 Feb 2024 00:18:35 -0400</pubDate>
       
@@ -95,6 +104,15 @@
       
       <guid>https://kyxie.github.io/zh/blog/tech/cpp/</guid>
       <description>char 转大小写： char ch = &amp;#39;a&amp;#39;; ch = (char) toupper(ch); ch = (char) tolower(ch); 下一个字符： &amp;#39;b&amp;#39; == (&amp;#39;a&amp;#39; + 1); int 最大值最小值： int MAX = INT_MAX; int MIN = INT_MIN; array 创建数组： int array [4]; // 如果不初始化则值随机 int array[] = {1,2,3,4}; int</description>
+    </item>
+    
+    <item>
+      <title>Specialized Tarmac SL6装车</title>
+      <link>https://kyxie.github.io/zh/blog/life/bike/</link>
+      <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/life/bike/</guid>
+      <description>前言 好久没折腾自行车了，最近刚换了roval的破风把，准备打算在车把也内走线，这样车把握起来就爽快多了。我自己拆车试了一下，结果被Shima</description>
     </item>
     
     <item>
