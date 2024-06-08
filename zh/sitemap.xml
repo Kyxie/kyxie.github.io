@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://kyxie.github.io/zh/blog/life/bike/</loc>
+    <lastmod>2024-05-25T00:35:55-04:00</lastmod>
+  </url><url>
     <loc>https://kyxie.github.io/zh/blog/wool/credit-card/</loc>
     <lastmod>2024-01-04T23:58:55-04:00</lastmod>
   </url><url>
@@ -31,6 +34,9 @@
                 href="https://kyxie.github.io/zh/blog/tech/papermod/"
                 />
   </url><url>
+    <loc>https://kyxie.github.io/zh/blog/life/photos/</loc>
+    <lastmod>2024-06-03T22:53:55-04:00</lastmod>
+  </url><url>
     <loc>https://kyxie.github.io/zh/blog/wool/checking-account/</loc>
     <lastmod>2024-05-18T10:51:55-04:00</lastmod>
   </url><url>
@@ -39,6 +45,9 @@
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/wool/stock-brokers/</loc>
     <lastmod>2024-06-02T22:48:55-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.github.io/zh/blog/life/pr/</loc>
+    <lastmod>2024-01-04T23:37:55-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/life/</loc>
     <lastmod>2022-06-11T21:59:32-04:00</lastmod>
@@ -74,11 +83,24 @@
     <loc>https://kyxie.github.io/zh/blog/tech/java/</loc>
     <lastmod>2022-05-05T17:28:17-04:00</lastmod>
   </url><url>
+    <loc>https://kyxie.github.io/zh/blog/life/music/</loc>
+    <lastmod>2022-05-01T12:44:55-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.github.io/en/blog/life/music/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.github.io/zh/blog/life/music/"
+                />
+  </url><url>
     <loc>https://kyxie.github.io/zh/blog/tech/cpp/</loc>
     <lastmod>2022-05-03T17:28:17-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/</loc>
-    <lastmod>2024-06-02T22:48:55-04:00</lastmod>
+    <lastmod>2024-06-03T22:53:55-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -89,12 +111,6 @@
                 hreflang="zh"
                 href="https://kyxie.github.io/zh/"
                 />
-  </url><url>
-    <loc>https://kyxie.github.io/zh/blog/life/bike/</loc>
-    <lastmod>2024-05-25T00:35:55-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.github.io/zh/blog/life/pr/</loc>
-    <lastmod>2024-01-04T23:37:55-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/</loc>
     <lastmod>2022-06-11T21:59:32-04:00</lastmod>
@@ -117,19 +133,6 @@
   </url><url>
     <loc>https://kyxie.github.io/zh/comment/comments/</loc>
     <lastmod>2022-05-12T21:33:11-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.github.io/zh/blog/life/music/</loc>
-    <lastmod>2022-05-01T12:44:55-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.github.io/en/blog/life/music/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.github.io/zh/blog/life/music/"
-                />
   </url><url>
     <loc>https://kyxie.github.io/zh/search/</loc>
     <lastmod>2022-04-14T21:49:55-04:00</lastmod>

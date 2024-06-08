@@ -6,7 +6,16 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 02 Jun 2024 22:48:55 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Jun 2024 22:53:55 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Specialized Tarmac SL6装车</title>
+      <link>https://kyxie.github.io/zh/blog/life/bike/</link>
+      <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/life/bike/</guid>
+      <description>Header 好久没折腾自行车了，最近刚换了roval的破风把，准备打算在车把也内走线，这样车把握起来就爽快多了。我自己拆车试了一下，结果被Shiman</description>
+    </item>
+    
     <item>
       <title>加拿大🇨🇦信用卡薅羊毛心得</title>
       <link>https://kyxie.github.io/zh/blog/wool/credit-card/</link>
@@ -26,6 +35,15 @@
     </item>
     
     <item>
+      <title>摄影照片</title>
+      <link>https://kyxie.github.io/zh/blog/life/photos/</link>
+      <pubDate>Mon, 03 Jun 2024 22:53:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/life/photos/</guid>
+      <description>放一些自己拍摄的感觉还说得过去的照片 2024 June &lt;!DOCTYPE html&gt; May, Flowerpot Island &lt;!DOCTYPE html&gt; Feb &lt;!DOCTYPE html&gt; 2023 Oct, Algonquin Park &lt;!DOCTYPE html&gt; May &lt;!DOCTYPE html&gt;</description>
+    </item>
+    
+    <item>
       <title>我使用过的加拿大🇨🇦支票账户</title>
       <link>https://kyxie.github.io/zh/blog/wool/checking-account/</link>
       <pubDate>Sat, 18 May 2024 10:51:55 -0400</pubDate>
@@ -41,6 +59,15 @@
       
       <guid>https://kyxie.github.io/zh/blog/wool/stock-brokers/</guid>
       <description>Wealthsimple 开户 使用推荐码VXU-UQ开设账号，在开户后的30天内存$1即可获得$25奖励。 Features Core Premium 资金要求 $0 $100000 Commission Fee $0 $0 Cash Account 4% 4.5% USD FX 1.5% 1.5% 期权交易 $2 $0.75 Crypto Trading</description>
+    </item>
+    
+    <item>
+      <title>OINP移民加拿大🇨🇦时间线</title>
+      <link>https://kyxie.github.io/zh/blog/life/pr/</link>
+      <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/life/pr/</guid>
+      <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
     </item>
     
     <item>
@@ -107,30 +134,21 @@
     </item>
     
     <item>
+      <title>最近爱听</title>
+      <link>https://kyxie.github.io/zh/blog/life/music/</link>
+      <pubDate>Sun, 01 May 2022 12:44:55 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/life/music/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Cpp Cheat Sheet</title>
       <link>https://kyxie.github.io/zh/blog/tech/cpp/</link>
       <pubDate>Tue, 03 May 2022 17:28:17 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/cpp/</guid>
       <description>char 转大小写： char ch = &amp;#39;a&amp;#39;; ch = (char) toupper(ch); ch = (char) tolower(ch); 下一个字符： &amp;#39;b&amp;#39; == (&amp;#39;a&amp;#39; + 1); int 最大值最小值： int MAX = INT_MAX; int MIN = INT_MIN; array 创建数组： int array [4]; // 如果不初始化则值随机 int array[] = {1,2,3,4}; int</description>
-    </item>
-    
-    <item>
-      <title>Specialized Tarmac SL6装车</title>
-      <link>https://kyxie.github.io/zh/blog/life/bike/</link>
-      <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/life/bike/</guid>
-      <description>Header 好久没折腾自行车了，最近刚换了roval的破风把，准备打算在车把也内走线，这样车把握起来就爽快多了。我自己拆车试了一下，结果被Shiman</description>
-    </item>
-    
-    <item>
-      <title>OINP移民加拿大🇨🇦时间线</title>
-      <link>https://kyxie.github.io/zh/blog/life/pr/</link>
-      <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/life/pr/</guid>
-      <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
     </item>
     
     <item>
@@ -149,15 +167,6 @@
       
       <guid>https://kyxie.github.io/zh/comment/comments/</guid>
       <description>👉️填写QQ邮箱可以自动获取QQ头像哦</description>
-    </item>
-    
-    <item>
-      <title>最近爱听</title>
-      <link>https://kyxie.github.io/zh/blog/life/music/</link>
-      <pubDate>Sun, 01 May 2022 12:44:55 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/life/music/</guid>
-      <description></description>
     </item>
     
     
