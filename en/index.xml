@@ -25,15 +25,6 @@
       <description>Installation process First of all, installing Hugo is required. Installing Hugo needs to use a package management tool. For the Windows system, I recommend using Scoop. Here introduced how to install Scoop. Hogo&amp;rsquo;s tutorial introduces how to create a project. Among them, Step2 (.yml&amp;rsquo;s config file) and Step3 (download theme) should be configured according to the guide of Papermod. File introduction content: used to put blog content data: don&amp;rsquo;t care</description>
     </item>
     
-    <item>
-      <title>Fav Music</title>
-      <link>https://kyxie.github.io/en/blog/life/music/</link>
-      <pubDate>Sun, 01 May 2022 12:44:55 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/en/blog/life/music/</guid>
-      <description></description>
-    </item>
-    
     
     <item>
       <title>Projects 👨‍💻</title>
