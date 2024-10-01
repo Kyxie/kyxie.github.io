@@ -31,6 +31,19 @@
                 href="https://kyxie.github.io/zh/blog/tech/"
                 />
   </url><url>
+    <loc>https://kyxie.github.io/zh/blog/life/</loc>
+    <lastmod>2022-06-11T21:59:32-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.github.io/en/blog/life/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.github.io/zh/blog/life/"
+                />
+  </url><url>
     <loc>https://kyxie.github.io/zh/blog/tech/papermod/</loc>
     <lastmod>2022-04-15T00:28:55-04:00</lastmod>
     <xhtml:link
@@ -59,18 +72,11 @@
     <loc>https://kyxie.github.io/zh/blog/life/pr/</loc>
     <lastmod>2024-01-04T23:37:55-04:00</lastmod>
   </url><url>
-    <loc>https://kyxie.github.io/zh/blog/life/</loc>
-    <lastmod>2022-06-11T21:59:32-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.github.io/en/blog/life/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.github.io/zh/blog/life/"
-                />
+    <loc>https://kyxie.github.io/zh/blog/life/banff/</loc>
+    <lastmod>2024-09-11T12:35:55-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.github.io/zh/blog/life/algonquin/</loc>
+    <lastmod>2024-09-30T14:03:55-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/blog/tech/wireguard/</loc>
     <lastmod>2024-05-25T00:19:19-04:00</lastmod>
@@ -97,7 +103,7 @@
     <lastmod>2022-05-03T17:28:17-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.github.io/zh/</loc>
-    <lastmod>2024-06-03T22:53:55-04:00</lastmod>
+    <lastmod>2024-09-30T14:03:55-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
