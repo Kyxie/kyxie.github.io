@@ -13,7 +13,7 @@
       <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/life/bike/</guid>
-      <description>Experience of build a bike with electronic shift</description>
+      <description>Header 好久没折腾自行车了，最近刚换了roval的破风把，准备打算在车把也内走线，这样车把握起来就爽快多了。我自己拆车试了一下，结果被Shiman</description>
     </item>
     
     <item>
@@ -22,7 +22,7 @@
       <pubDate>Thu, 04 Jan 2024 23:58:55 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/wool/credit-card/</guid>
-      <description>The credit cards I applied in Canada</description>
+      <description>Aug 2021, Bank of China 我的第一张信用卡是出国前和我爹一起去中国银行办的卓隽，我用我爹的副卡，不太清楚额度是多少。我只是刚到加拿大的前几天用这张卡，出了隔</description>
     </item>
     
     <item>
@@ -31,7 +31,7 @@
       <pubDate>Fri, 15 Apr 2022 00:28:55 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/papermod/</guid>
-      <description>How to build a personal website using PaperMod theme of Hugo.</description>
+      <description>安装过程 首先需要安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo可以直接用Winget来安装，打开终端输入 winget</description>
     </item>
     
     <item>
@@ -40,7 +40,7 @@
       <pubDate>Mon, 03 Jun 2024 22:53:55 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/life/photos/</guid>
-      <description>Some photos I took</description>
+      <description>放一些自己拍摄的感觉还说得过去的照片 2024 &lt;!DOCTYPE html&gt; Sep 5, Goderich Sep 5 Sep 5 Sep 3, Milne Dam Conservation Park Sep 3 Aug 29, Oakville Aug 29 Jul 13, Annina&amp;#39;s Bakeshop Jul 13 Jul 13 Jun 1 Jun 1 May 26, Flowerpot Island May 26 May 26 May 26 May 26 May 26 2023 &lt;!DOCTYPE html&gt;</description>
     </item>
     
     <item>
@@ -49,7 +49,7 @@
       <pubDate>Sat, 18 May 2024 10:51:55 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/wool/checking-account/</guid>
-      <description>The checking accounts I had in Canada</description>
+      <description>Sep 2021, Scotiabank 之前办学签来加拿大走SDS用的是Scotiabank，因此我第一张checking account是Scotiabank的。学生账户的话</description>
     </item>
     
     <item>
@@ -58,7 +58,7 @@
       <pubDate>Sun, 02 Jun 2024 22:48:55 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/wool/stock-brokers/</guid>
-      <description>Canadian stock brokers</description>
+      <description>Wealthsimple 开户 使用推荐码VXU-UQ开设账号，在开户后的30天内存$1即可获得$25奖励。 Features Core Premium 资金要求 $0 $100000 Commission Fee $0 $0 Cash Account 4% 4.5% USD FX 1.5% 1.5% 期权交易 $2 $0.75 Crypto Trading</description>
     </item>
     
     <item>
@@ -67,7 +67,7 @@
       <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/life/pr/</guid>
-      <description>Time line of getting a Canadian permanent resident</description>
+      <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
     </item>
     
     <item>
@@ -76,7 +76,7 @@
       <pubDate>Wed, 11 Sep 2024 12:35:55 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/life/banff/</guid>
-      <description>Vacation in Banff</description>
+      <description>Header 最近妈妈来了加拿大，打算带她去Calgary和Banff旅行，发现Banff旅游真的好多坑啊，正好写一篇游记博客，顺便记录一下Banff旅</description>
     </item>
     
     <item>
@@ -85,7 +85,7 @@
       <pubDate>Mon, 30 Sep 2024 14:03:55 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/life/algonquin/</guid>
-      <description>Vacation in Algonquin</description>
+      <description>常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:</description>
     </item>
     
     <item>
@@ -107,7 +107,7 @@
     </item>
     
     <item>
-      <title>使用Keys免密SSH到Linux</title>
+      <title>使用Keys免密ssh到Linux</title>
       <link>https://kyxie.github.io/zh/blog/tech/keys/</link>
       <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
       
@@ -194,7 +194,7 @@
       <pubDate>Wed, 13 Apr 2022 14:39:46 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/about/</guid>
-      <description>class Me: def __init__(self): self.name = &amp;#34;Kunyang Xie&amp;#34; self.born_year = 1999 self.MBTI = &amp;#34;ISTJ&amp;#34; self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.curr_location = &amp;#34;Toronto, ON, CA&amp;#34; self.school = &amp;#34;UESTC, uWaterloo&amp;#34;</description>
+      <description>class Me: def __init__(self): self.name = &amp;#34;Kunyang Xie&amp;#34; self.born_year = 1999 self.MBTI = &amp;#34;ISTJ&amp;#34; self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.location = &amp;#34;Toronto, ON, CA&amp;#34; self.school = &amp;#34;UESTC, uWaterloo&amp;#34;</description>
     </item>
     
   </channel>

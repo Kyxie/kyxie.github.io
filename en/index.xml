@@ -44,7 +44,7 @@ A money management app helps us to track household expenses and incomes. The fro
       <pubDate>Wed, 13 Apr 2022 14:39:46 -0400</pubDate>
       
       <guid>https://kyxie.github.io/en/about/</guid>
-      <description>class Me: def __init__(self): self.name = &amp;#34;Kyrie Xie&amp;#34; self.born_year = 1999 self.MBTI = &amp;#34;ISTJ&amp;#34; self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.curr_location = &amp;#34;Toronto, ON, CA&amp;#34; self.school = &amp;#34;UESTC, uWaterloo&amp;#34; </description>
+      <description>class Me: def __init__(self): self.name = &amp;#34;Kyrie Xie&amp;#34; self.born_year = 1999 self.MBTI = &amp;#34;ISTJ&amp;#34; self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.location = &amp;#34;Toronto, ON, CA&amp;#34; self.school = &amp;#34;UESTC, uWaterloo&amp;#34; </description>
     </item>
     
   </channel>

@@ -13,7 +13,7 @@
       <pubDate>Fri, 15 Apr 2022 00:28:55 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/papermod/</guid>
-      <description>How to build a personal website using PaperMod theme of Hugo.</description>
+      <description>安装过程 首先需要安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo可以直接用Winget来安装，打开终端输入 winget</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
     </item>
     
     <item>
-      <title>使用Keys免密SSH到Linux</title>
+      <title>使用Keys免密ssh到Linux</title>
       <link>https://kyxie.github.io/zh/blog/tech/keys/</link>
       <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
       
