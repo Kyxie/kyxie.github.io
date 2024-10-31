@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 30 Sep 2024 14:03:55 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Oct 2024 00:41:19 -0500</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Specialized Tarmac SL6装车</title>
       <link>https://kyxie.github.io/zh/blog/life/bike/</link>
@@ -86,6 +86,15 @@
       
       <guid>https://kyxie.github.io/zh/blog/life/algonquin/</guid>
       <description>常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:</description>
+    </item>
+    
+    <item>
+      <title>Leetcode常见算法</title>
+      <link>https://kyxie.github.io/zh/blog/tech/algorithms/</link>
+      <pubDate>Sun, 27 Oct 2024 00:41:19 -0500</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/algorithms/</guid>
+      <description>拓扑排序 Course Schedule - LeetCode class Solution { public boolean canFinish(int numCourses, int[][] prerequisites) { Map&amp;lt;Integer, List&amp;lt;Integer&amp;gt;&amp;gt; map = new HashMap&amp;lt;&amp;gt;(); for (int i = 0; i &amp;lt; numCourses; i++) { map.put(i, new ArrayList&amp;lt;&amp;gt;()); } for (int[] pre : prerequisites) { map.get(pre[0]).add(pre[1]); } int[] visited = new int[numCourses]; for (int i = 0; i &amp;lt; numCourses; i++) { if (!dfs(i, map, visited)) { return false; } }</description>
     </item>
     
     <item>

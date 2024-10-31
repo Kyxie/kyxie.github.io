@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>Leetcode常见算法</title>
+      <link>https://kyxie.github.io/zh/blog/tech/algorithms/</link>
+      <pubDate>Sun, 27 Oct 2024 00:41:19 -0500</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/algorithms/</guid>
+      <description>拓扑排序 Course Schedule - LeetCode class Solution { public boolean canFinish(int numCourses, int[][] prerequisites) { Map&amp;lt;Integer, List&amp;lt;Integer&amp;gt;&amp;gt; map = new HashMap&amp;lt;&amp;gt;(); for (int i = 0; i &amp;lt; numCourses; i++) { map.put(i, new ArrayList&amp;lt;&amp;gt;()); } for (int[] pre : prerequisites) { map.get(pre[0]).add(pre[1]); } int[] visited = new int[numCourses]; for (int i = 0; i &amp;lt; numCourses; i++) { if (!dfs(i, map, visited)) { return false; } }</description>
+    </item>
+    
+    <item>
       <title>Wireguard的简单配置</title>
       <link>https://kyxie.github.io/zh/blog/tech/wireguard/</link>
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
