@@ -79,23 +79,5 @@
       <description>前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo</description>
     </item>
     
-    <item>
-      <title>Java Cheat Sheet</title>
-      <link>https://kyxie.github.io/zh/blog/tech/java/</link>
-      <pubDate>Thu, 05 May 2022 17:28:17 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/tech/java/</guid>
-      <description>Character 判断是否为字母或数字： boolean res = Character.isLetterOrDigit(char); 转小写： char res = Character.toLowerCase(char); 下一个字符： &amp;#39;b&amp;#39; == (char) (&amp;#39;a&amp;#39; + 1); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等： Integer a = 1; Integer b = 1; a == b; // true</description>
-    </item>
-    
-    <item>
-      <title>Cpp Cheat Sheet</title>
-      <link>https://kyxie.github.io/zh/blog/tech/cpp/</link>
-      <pubDate>Tue, 03 May 2022 17:28:17 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/tech/cpp/</guid>
-      <description>char 转大小写： char ch = &amp;#39;a&amp;#39;; ch = (char) toupper(ch); ch = (char) tolower(ch); 下一个字符： &amp;#39;b&amp;#39; == (&amp;#39;a&amp;#39; + 1); int 最大值最小值： int MAX = INT_MAX; int MIN = INT_MIN; array 创建数组： int array [4]; // 如果不初始化则值随机 int array[] = {1,2,3,4}; int</description>
-    </item>
-    
   </channel>
 </rss>
