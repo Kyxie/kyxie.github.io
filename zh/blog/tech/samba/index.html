@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>使用Samba将Linux映射为Windows磁盘 | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Linux, Windows, Samba">
-<meta name="description" content="前言 我比较喜欢在虚拟机上来搭建环境，但是有些软件（比如一些数据库可视化软件）在Linux是上是没有的，于是想了个办法将Linux映射为Win">
+<meta name="description" content="前言 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.github.io/zh/blog/tech/samba/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.0bfda191eebc90c0c5d4513ea2d90104cfaa583205763272f5b5c9dbb0c88f72.css" integrity="sha256-C/2hke68kMDF1FE&#43;otkBBM&#43;qWDIFdjJy9bXJ27DIj3I=" rel="preload stylesheet" as="style">
@@ -45,7 +45,7 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用Samba将Linux映射为Windows磁盘" />
-<meta property="og:description" content="前言 我比较喜欢在虚拟机上来搭建环境，但是有些软件（比如一些数据库可视化软件）在Linux是上是没有的，于是想了个办法将Linux映射为Win" />
+<meta property="og:description" content="前言 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.github.io/zh/blog/tech/samba/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2023-12-17T17:19:19-04:00" />
@@ -53,7 +53,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用Samba将Linux映射为Windows磁盘"/>
-<meta name="twitter:description" content="前言 我比较喜欢在虚拟机上来搭建环境，但是有些软件（比如一些数据库可视化软件）在Linux是上是没有的，于是想了个办法将Linux映射为Win"/>
+<meta name="twitter:description" content="前言 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到"/>
 
 
 <script type="application/ld+json">
@@ -88,12 +88,12 @@
   "@type": "BlogPosting",
   "headline": "使用Samba将Linux映射为Windows磁盘",
   "name": "使用Samba将Linux映射为Windows磁盘",
-  "description": "前言 我比较喜欢在虚拟机上来搭建环境，但是有些软件（比如一些数据库可视化软件）在Linux是上是没有的，于是想了个办法将Linux映射为Win",
+  "description": "前言 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到",
   "keywords": [
     "Linux", "Windows", "Samba"
   ],
-  "articleBody": "前言 我比较喜欢在虚拟机上来搭建环境，但是有些软件（比如一些数据库可视化软件）在Linux是上是没有的，于是想了个办法将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了。\nLinux 假如我现在登录用户为user1，我希望把home/user1的所有文件共享给Windows，当然也可以新建用户和新建文件夹来作为共享文件夹。\n安装Samba：\nsudo apt update sudo apt install samba 编辑Samba配置文件：\nsudo nano /etc/samba/smb.conf 在文本末尾添加：\n[Name] path = /home/user1/shared read only = no browsable = yes [Name]是共享文件夹的名称，会显示在Windows磁盘上\n设置Samba账户密码：\nsudo smbpasswd -a user1 sudo smbpasswd -e user1 重启Samba服务：\nsudo systemctl restart smbd Windows 打开文件资源管理器 右键点击“此电脑”，选择“映射网络驱动器” 选择一个驱动器字母（例如Z:） 在文件夹栏中输入：\\\\Linux IP Address\\Name 完成剩余步骤 ",
-  "wordCount" : "366",
+  "articleBody": "前言 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了个办法将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了。\nLinux 假如我现在登录用户为user1，我希望把home/user1的所有文件共享给Windows，当然也可以新建用户和新建文件夹来作为共享文件夹。\n安装Samba：\nsudo apt update sudo apt install samba 编辑Samba配置文件：\nsudo nano /etc/samba/smb.conf 在文本末尾添加：\n[Name] path = /home/user1/shared read only = no browsable = yes [Name]是共享文件夹的名称，会显示在Windows磁盘上\n设置Samba账户密码：\nsudo smbpasswd -a user1 sudo smbpasswd -e user1 重启Samba服务：\nsudo systemctl restart smbd Windows 打开文件资源管理器 右键点击“此电脑”，选择“映射网络驱动器” 选择一个驱动器字母（例如Z:） 在文件夹栏中输入：\\\\Linux IP Address\\Name 完成剩余步骤 ",
+  "wordCount" : "382",
   "inLanguage": "zh",
   "datePublished": "2023-12-17T17:19:19-04:00",
   "dateModified": "2023-12-17T17:19:19-04:00",
@@ -200,7 +200,7 @@
     <h1 class="post-title">
       使用Samba将Linux映射为Windows磁盘
     </h1>
-    <div class="post-meta"><span title='2023-12-17 17:19:19 -0400 -0400'>2023-12-17</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;366 字&nbsp;·&nbsp;Kyxie
+    <div class="post-meta"><span title='2023-12-17 17:19:19 -0400 -0400'>2023-12-17</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;382 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -283,7 +283,7 @@
         }
     </script>
   <div class="post-content"><h3 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h3>
-<p>我比较喜欢在虚拟机上来搭建环境，但是有些软件（比如一些数据库可视化软件）在Linux是上是没有的，于是想了个办法将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了。</p>
+<p>我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了个办法将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了。</p>
 <h3 id="linux">Linux<a hidden class="anchor" aria-hidden="true" href="#linux">#</a></h3>
 <p>假如我现在登录用户为<code>user1</code>，我希望把<code>home/user1</code>的所有文件共享给Windows，当然也可以新建用户和新建文件夹来作为共享文件夹。</p>
 <ul>

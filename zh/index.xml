@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 27 Oct 2024 00:41:19 -0500</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Nov 2024 00:22:51 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Specialized Tarmac SL6装车</title>
       <link>https://kyxie.github.io/zh/blog/life/bike/</link>
@@ -89,12 +89,12 @@
     </item>
     
     <item>
-      <title>Leetcode常见算法</title>
-      <link>https://kyxie.github.io/zh/blog/tech/algorithms/</link>
-      <pubDate>Sun, 27 Oct 2024 00:41:19 -0500</pubDate>
+      <title>AWS Ubuntu Server安装GUI</title>
+      <link>https://kyxie.github.io/zh/blog/tech/aws-server-gui/</link>
+      <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
       
-      <guid>https://kyxie.github.io/zh/blog/tech/algorithms/</guid>
-      <description>拓扑排序 Course Schedule - LeetCode class Solution { public boolean canFinish(int numCourses, int[][] prerequisites) { Map&amp;lt;Integer, List&amp;lt;Integer&amp;gt;&amp;gt; map = new HashMap&amp;lt;&amp;gt;(); for (int i = 0; i &amp;lt; numCourses; i++) { map.put(i, new ArrayList&amp;lt;&amp;gt;()); } for (int[] pre : prerequisites) { map.get(pre[0]).add(pre[1]); } int[] visited = new int[numCourses]; for (int i = 0; i &amp;lt; numCourses; i++) { if (!dfs(i, map, visited)) { return false; } }</description>
+      <guid>https://kyxie.github.io/zh/blog/tech/aws-server-gui/</guid>
+      <description>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都</description>
     </item>
     
     <item>
@@ -139,7 +139,7 @@
       <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
       
       <guid>https://kyxie.github.io/zh/blog/tech/samba/</guid>
-      <description>前言 我比较喜欢在虚拟机上来搭建环境，但是有些软件（比如一些数据库可视化软件）在Linux是上是没有的，于是想了个办法将Linux映射为Win</description>
+      <description>前言 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到</description>
     </item>
     
     <item>

@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Algonquin旅行攻略 | Kunyang&#39;s Blog</title>
-<meta name="keywords" content="Vacation, Algonquin">
-<meta name="description" content="常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:">
+<title>AWS Ubuntu Server安装GUI | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="AWS, EC2, Gnome, Xfce, GUI, Ubuntu Server">
+<meta name="description" content="最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都">
 <meta name="author" content="Kyxie">
-<link rel="canonical" href="https://kyxie.github.io/zh/blog/life/algonquin/">
+<link rel="canonical" href="https://kyxie.github.io/zh/blog/tech/aws-server-gui/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.0bfda191eebc90c0c5d4513ea2d90104cfaa583205763272f5b5c9dbb0c88f72.css" integrity="sha256-C/2hke68kMDF1FE&#43;otkBBM&#43;qWDIFdjJy9bXJ27DIj3I=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://kyxie.github.io/Favicon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://kyxie.github.io/zh/blog/life/algonquin/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.github.io/zh/blog/tech/aws-server-gui/">
 <noscript>
     <style>
         #theme-toggle,
@@ -44,16 +44,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Algonquin旅行攻略" />
-<meta property="og:description" content="常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="AWS Ubuntu Server安装GUI" />
+<meta property="og:description" content="最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyxie.github.io/zh/blog/life/algonquin/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2024-09-30T14:03:55-04:00" />
-<meta property="article:modified_time" content="2024-09-30T14:03:55-04:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="og:url" content="https://kyxie.github.io/zh/blog/tech/aws-server-gui/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-11-07T00:22:51-04:00" />
+<meta property="article:modified_time" content="2024-11-07T00:22:51-04:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Algonquin旅行攻略"/>
-<meta name="twitter:description" content="常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:"/>
+<meta name="twitter:title" content="AWS Ubuntu Server安装GUI"/>
+<meta name="twitter:description" content="最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都"/>
 
 
 <script type="application/ld+json">
@@ -70,14 +70,14 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "生活 🏞️",
-      "item": "https://kyxie.github.io/zh/blog/life/"
+      "name": "技术 🔧",
+      "item": "https://kyxie.github.io/zh/blog/tech/"
     }, 
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "Algonquin旅行攻略",
-      "item": "https://kyxie.github.io/zh/blog/life/algonquin/"
+      "name": "AWS Ubuntu Server安装GUI",
+      "item": "https://kyxie.github.io/zh/blog/tech/aws-server-gui/"
     }
   ]
 }
@@ -86,24 +86,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Algonquin旅行攻略",
-  "name": "Algonquin旅行攻略",
-  "description": "常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:",
+  "headline": "AWS Ubuntu Server安装GUI",
+  "name": "AWS Ubuntu Server安装GUI",
+  "description": "最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都",
   "keywords": [
-    "Vacation", "Algonquin"
+    "AWS", "EC2", "Gnome", "Xfce", "GUI", "Ubuntu Server"
   ],
-  "articleBody": "常用链接 实时枫叶变色情况以及历史数据\n预定门票，门票$21一天，可以提前5天预定\n安省枫叶地图\n阿冈昆公园地图\n推荐的景点 周边：\n白求恩故居 Lions Lookout Dorset Lookout Tower: 印象里这个好像要收费 Big Bend Lookout 60号公路：\n13.8km: Hardwood Lookout Trail: 环形trail（1.61km, 85m, 34min），路上会有向右箭头指示trail的方向，如果想直接看Lookout可以不跟着箭头反着走，即向左走 20km: Art Center \u0026 Source Lake: 无需徒步，建议穿白色和浅蓝色的衣服 25km: Track \u0026 Tower Trail: 环形Trail（8km, 273m, 2h23min），难度比较高，但是和Booth’s Rock Trail风景有一拼 35km: Lake of Two Rivers: 是个沙滩，可以野餐 38km右拐: Centennial Ridges Trail: 环形trail（12.2km, 550m, 4h6min） 39.7km: Algonquin Lookout Trail: 环形trail（2.1km, 71m, 37min） 40.5km右拐: Booth’s Rock Trail: 环形trail（5.8km, 232m, 1h51min），需要预约车位 43km: Visitor Center 45km: Beaver Pond Trail: 环形trail（1.9km, 66m, 34min)，但是不知道为什么我感觉这个最累，可能每次都放在最后一个走 50km: Brewer Lake: 不需要徒步，路边停车所以停车位有限，适合长焦拍风景 ",
-  "wordCount" : "445",
+  "articleBody": "最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都卡，AWS的免费用户又只能使用只有命令行的Ubuntu server。然后突发奇想诶我可不可以在Ubuntu server上安装一个GUI，查了一下这个方法似乎可行（其实还是不太可行，我已经打算放弃折腾了，不过倒是成功装上了GUI）。\n安装xrdp并enable，安装GUI就需要远程桌面系统，这是Linux的客户端\nsudo apt-get update sudo apt install xrdp -y sudo systemctl enable xrdp 我首先尝试的是gnome，尝试发现这个消耗资源太严重了，免费版用户用起来应该跟Windows一样卡\nsudo add-apt-repository ppa:gnome3-team/gnome3 sudo apt-get install gnome-shell ubuntu-gnome-desktop 后来我决定试试更轻量化的XFCE\nsudo apt install tasksel sudo tasksel install xubuntu-desktop sudo apt install xfce4 xfce4-goodies sudo update-alternatives --config x-session-manager sudo apt install lightdm sudo dpkg-reconfigure lightdm 设置密码\nsudo passwd ubuntu 在EC2 Security group中选择Allow All Traffic\n在MacBook中应用商店下载Windows App，这是Window开发的远程桌面应用，有一说一Windows给Mac开发的软件是真不错\n选择Add a PC，Computer使用AWS提供的DNS，用户名一般为ubuntu，密码为刚才设置的密码\n之后就可以连接上了\n但是尽管XFCE已经很轻量化了，我下载完Chrome之后还是觉得卡，于是放弃折腾了，AWS免费版用户不推荐这么做。\n",
+  "wordCount" : "547",
   "inLanguage": "zh",
-  "datePublished": "2024-09-30T14:03:55-04:00",
-  "dateModified": "2024-09-30T14:03:55-04:00",
+  "datePublished": "2024-11-07T00:22:51-04:00",
+  "dateModified": "2024-11-07T00:22:51-04:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyxie.github.io/zh/blog/life/algonquin/"
+    "@id": "https://kyxie.github.io/zh/blog/tech/aws-server-gui/"
   },
   "publisher": {
     "@type": "Organization",
@@ -196,131 +196,75 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyxie.github.io/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/life/">生活 🏞️</a></div>
+    <div class="breadcrumbs"><a href="https://kyxie.github.io/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/tech/">技术 🔧</a></div>
     <h1 class="post-title">
-      Algonquin旅行攻略
+      AWS Ubuntu Server安装GUI
     </h1>
-    <div class="post-meta"><span title='2024-09-30 14:03:55 -0400 EDT'>2024-09-30</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;445 字&nbsp;·&nbsp;Kyxie
+    <div class="post-meta"><span title='2024-11-07 00:22:51 -0400 -0400'>2024-11-07</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;547 字&nbsp;·&nbsp;Kyxie
 
 </div>
-  </header> <aside id="toc-container" class="toc-container wide">
-        <div class="toc">
-            <details  open>
-                <summary accesskey="c" title="(Alt + C)">
-                    <span class="details">目录</span>
-                </summary>
-
-                <div class="inner"><ul>
-                        <li>
-                            <a href="#%e5%b8%b8%e7%94%a8%e9%93%be%e6%8e%a5" aria-label="常用链接">常用链接</a></li>
-                        <li>
-                            <a href="#%e6%8e%a8%e8%8d%90%e7%9a%84%e6%99%af%e7%82%b9" aria-label="推荐的景点">推荐的景点</a>
-                        </li>
-                    </ul>
-                </div>
-            </details>
-        </div>
-    </aside>
-    <script>
-        let activeElement;
-        let elements;
-        window.addEventListener('DOMContentLoaded', function (event) {
-            checkTocPosition();
-
-            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
-            
-            activeElement = elements[0];
-            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
-            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
-        }, false);
-
-        window.addEventListener('resize', function (event) {
-            checkTocPosition();
-        }, false);
-
-        window.addEventListener('scroll', () => {
-            
-            activeElement = Array.from(elements).find((element) => {
-                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
-                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
-                    return element;
-                }
-            }) || activeElement
-
-            elements.forEach(element => {
-                const id = encodeURI(element.getAttribute('id')).toLowerCase();
-                if (element === activeElement) {
-                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
-                } else {
-                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
-                }
-            })
-        }, false);
-
-        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
-        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
-        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
-
-        function checkTocPosition() {
-            const width = document.body.scrollWidth;
-
-            if (width - main - (toc * 2) - (gap * 4) > 0) {
-                document.getElementById("toc-container").classList.add("wide");
-            } else {
-                document.getElementById("toc-container").classList.remove("wide");
-            }
-        }
-
-        function getOffsetTop(element) {
-            if (!element.getClientRects().length) {
-                return 0;
-            }
-            let rect = element.getBoundingClientRect();
-            let win = element.ownerDocument.defaultView;
-            return rect.top + win.pageYOffset;
-        }
-    </script>
-  <div class="post-content"><h3 id="常用链接">常用链接<a hidden class="anchor" aria-hidden="true" href="#常用链接">#</a></h3>
-<p><a href="https://www.algonquinpark.on.ca/visit/general_park_info/fall-colour-report.php">实时枫叶变色情况以及历史数据</a></p>
-<p><a href="https://reservations.ontarioparks.ca/">预定门票</a>，门票$21一天，可以提前5天预定</p>
-<p><a href="https://www.ontarioparks.ca/fallcolour">安省枫叶地图</a></p>
-<p><a href="https://www.algonquinpark.on.ca/pdf/AP_corridor_map.pdf">阿冈昆公园地图</a></p>
-<h3 id="推荐的景点">推荐的景点<a hidden class="anchor" aria-hidden="true" href="#推荐的景点">#</a></h3>
-<p>周边：</p>
-<ul>
-<li><a href="https://maps.app.goo.gl/EdVam4kykXSbWm4R8">白求恩故居</a></li>
-<li><a href="https://maps.app.goo.gl/RnRjwpUQ8y9TWoq29">Lions Lookout</a></li>
-<li><a href="https://maps.app.goo.gl/PnkzYvvWGtffyd4T8">Dorset Lookout Tower</a>: 印象里这个好像要收费</li>
-<li><a href="https://maps.app.goo.gl/DHBxaGsLVqgpHwKu9">Big Bend Lookout</a></li>
-</ul>
-<p>60号公路：</p>
-<ul>
-<li>13.8km: <a href="https://maps.app.goo.gl/yU54e3Goyy3azpgX9">Hardwood Lookout Trail</a>: 环形trail（1.61km, 85m, 34min），路上会有向右箭头指示trail的方向，如果想直接看Lookout可以不跟着箭头反着走，即向左走</li>
-<li>20km: <a href="https://maps.app.goo.gl/fnV3JYzcjrWzbC4v9">Art Center &amp; Source Lake</a>: 无需徒步，建议穿白色和浅蓝色的衣服</li>
-<li>25km: <a href="https://maps.app.goo.gl/9djixDcumhBwLyZX6">Track &amp; Tower Trail</a>: 环形Trail（8km, 273m, 2h23min），难度比较高，但是和Booth&rsquo;s Rock Trail风景有一拼</li>
-<li>35km: <a href="https://maps.app.goo.gl/8eD8sjE9Hqo1asR57">Lake of Two Rivers</a>: 是个沙滩，可以野餐</li>
-<li>38km右拐: <a href="https://maps.app.goo.gl/ebt4FzacEXPe6XnL9">Centennial Ridges Trail</a>: 环形trail（12.2km, 550m, 4h6min）</li>
-<li>39.7km: <a href="https://maps.app.goo.gl/KboZt2DisNUFPqLy5">Algonquin Lookout Trail</a>: 环形trail（2.1km, 71m, 37min）</li>
-<li>40.5km右拐: <a href="https://maps.app.goo.gl/WVkwMMMNu3V3p1ASA">Booth&rsquo;s Rock Trail</a>: 环形trail（5.8km, 232m, 1h51min），需要预约车位</li>
-<li>43km: <a href="https://maps.app.goo.gl/GaanSerLFDBqq5mt5">Visitor Center</a></li>
-<li>45km: <a href="https://maps.app.goo.gl/4Udg1TtEZcbiYtxL6">Beaver Pond Trail</a>: 环形trail（1.9km, 66m, 34min)，但是不知道为什么我感觉这个最累，可能每次都放在最后一个走</li>
-<li>50km: <a href="https://maps.app.goo.gl/TYhHQ5bGb2BKPtBA8">Brewer Lake</a>: 不需要徒步，路边停车所以停车位有限，适合长焦拍风景</li>
-</ul>
+  </header> 
+  <div class="post-content"><p>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都卡，AWS的免费用户又只能使用只有命令行的Ubuntu server。然后突发奇想诶我可不可以在Ubuntu server上安装一个GUI，查了一下这个方法似乎可行（其实还是不太可行，我已经打算放弃折腾了，不过倒是成功装上了GUI）。</p>
+<ol>
+<li>
+<p>安装xrdp并enable，安装GUI就需要远程桌面系统，这是Linux的客户端</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt install xrdp -y
+</span></span><span style="display:flex;"><span>sudo systemctl enable xrdp
+</span></span></code></pre></div></li>
+<li>
+<p>我首先尝试的是gnome，尝试发现这个消耗资源太严重了，免费版用户用起来应该跟Windows一样卡</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo add-apt-repository ppa:gnome3-team/gnome3
+</span></span><span style="display:flex;"><span>sudo apt-get install gnome-shell ubuntu-gnome-desktop
+</span></span></code></pre></div></li>
+<li>
+<p>后来我决定试试更轻量化的XFCE</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install tasksel
+</span></span><span style="display:flex;"><span>sudo tasksel install xubuntu-desktop
+</span></span><span style="display:flex;"><span>sudo apt install xfce4 xfce4-goodies
+</span></span><span style="display:flex;"><span>sudo update-alternatives --config x-session-manager
+</span></span><span style="display:flex;"><span>sudo apt install lightdm
+</span></span><span style="display:flex;"><span>sudo dpkg-reconfigure lightdm
+</span></span></code></pre></div></li>
+<li>
+<p>设置密码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo passwd ubuntu
+</span></span></code></pre></div></li>
+<li>
+<p>在EC2 Security group中选择Allow All Traffic</p>
+<p><img loading="lazy" src="https://i.imgur.com/RTuDDaL.png" alt="Allow all Traffic"  />
+</p>
+</li>
+<li>
+<p>在MacBook中应用商店下载Windows App，这是Window开发的远程桌面应用，有一说一Windows给Mac开发的软件是真不错</p>
+<p><img loading="lazy" src="https://i.imgur.com/IkIW9rF.png" alt="Windows App"  />
+</p>
+</li>
+<li>
+<p>选择Add a PC，Computer使用AWS提供的DNS，用户名一般为ubuntu，密码为刚才设置的密码</p>
+</li>
+<li>
+<p>之后就可以连接上了</p>
+<p><img loading="lazy" src="https://i.imgur.com/yiQHAQS.png" alt="XFCE"  />
+</p>
+</li>
+</ol>
+<p>但是尽管XFCE已经很轻量化了，我下载完Chrome之后还是觉得卡，于是放弃折腾了，AWS免费版用户不推荐这么做。</p>
 
 
   </div>
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.github.io/zh/blog/life/banff/">
+  <a class="prev" href="https://kyxie.github.io/zh/blog/life/algonquin/">
     <span class="title">« 上一页</span>
     <br>
-    <span>Banff旅行游记</span>
+    <span>Algonquin旅行攻略</span>
   </a>
-  <a class="next" href="https://kyxie.github.io/zh/blog/tech/aws-server-gui/">
+  <a class="next" href="https://kyxie.github.io/zh/blog/tech/wireguard/">
     <span class="title">下一页 »</span>
     <br>
-    <span>AWS Ubuntu Server安装GUI</span>
+    <span>Wireguard的简单配置</span>
   </a>
 </nav>
 
