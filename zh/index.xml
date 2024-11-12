@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 07 Nov 2024 00:22:51 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Nov 2024 13:13:13 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Specialized Tarmac SL6装车</title>
       <link>https://kyxie.github.io/zh/blog/life/bike/</link>
@@ -86,6 +86,24 @@
       
       <guid>https://kyxie.github.io/zh/blog/life/algonquin/</guid>
       <description>常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:</description>
+    </item>
+    
+    <item>
+      <title>使用树莓派安装OpenWrt用作旁路由</title>
+      <link>https://kyxie.github.io/zh/blog/tech/raspberrypi-openwrt/</link>
+      <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/raspberrypi-openwrt/</guid>
+      <description>获得镜像 可以从OpenWrt的官网下载镜像 但我是比较能折腾的，我找到了这个仓库：Lean，readme有比较详细的编译步骤，于是决定自己尝试</description>
+    </item>
+    
+    <item>
+      <title>使用Homebrew在M芯片的MacBook安装Python和Git</title>
+      <link>https://kyxie.github.io/zh/blog/tech/python-and-git-for-macos/</link>
+      <pubDate>Mon, 11 Nov 2024 11:11:11 -0400</pubDate>
+      
+      <guid>https://kyxie.github.io/zh/blog/tech/python-and-git-for-macos/</guid>
+      <description>Mac用户非常推荐使用Homebrew来安装一些软件，就Python来说如果在官网直接下载会在Launch Pad出现IDLE和Python L</description>
     </item>
     
     <item>

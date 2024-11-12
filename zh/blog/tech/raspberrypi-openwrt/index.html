@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>使用树莓派安装OpenWrt用作旁路由 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Raspberry Pi, OpenWrt">
+<meta name="description" content="获得镜像 可以从OpenWrt的官网下载镜像 但我是比较能折腾的，我找到了这个仓库：Lean，readme有比较详细的编译步骤，于是决定自己尝试">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.github.io/zh/blog/tech/raspberrypi-openwrt/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.0bfda191eebc90c0c5d4513ea2d90104cfaa583205763272f5b5c9dbb0c88f72.css" integrity="sha256-C/2hke68kMDF1FE&#43;otkBBM&#43;qWDIFdjJy9bXJ27DIj3I=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.github.io/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.github.io/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.github.io/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.github.io/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.github.io/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kyxie.github.io/zh/blog/tech/raspberrypi-openwrt/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用树莓派安装OpenWrt用作旁路由" />
+<meta property="og:description" content="获得镜像 可以从OpenWrt的官网下载镜像 但我是比较能折腾的，我找到了这个仓库：Lean，readme有比较详细的编译步骤，于是决定自己尝试" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.github.io/zh/blog/tech/raspberrypi-openwrt/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-11-11T13:13:13-04:00" />
+<meta property="article:modified_time" content="2024-11-11T13:13:13-04:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用树莓派安装OpenWrt用作旁路由"/>
+<meta name="twitter:description" content="获得镜像 可以从OpenWrt的官网下载镜像 但我是比较能折腾的，我找到了这个仓库：Lean，readme有比较详细的编译步骤，于是决定自己尝试"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "博客 📒",
+      "item": "https://kyxie.github.io/zh/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "技术 🔧",
+      "item": "https://kyxie.github.io/zh/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "使用树莓派安装OpenWrt用作旁路由",
+      "item": "https://kyxie.github.io/zh/blog/tech/raspberrypi-openwrt/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "使用树莓派安装OpenWrt用作旁路由",
+  "name": "使用树莓派安装OpenWrt用作旁路由",
+  "description": "获得镜像 可以从OpenWrt的官网下载镜像 但我是比较能折腾的，我找到了这个仓库：Lean，readme有比较详细的编译步骤，于是决定自己尝试",
+  "keywords": [
+    "Raspberry Pi", "OpenWrt"
+  ],
+  "articleBody": "获得镜像 可以从OpenWrt的官网下载镜像\n但我是比较能折腾的，我找到了这个仓库：Lean，readme有比较详细的编译步骤，于是决定自己尝试一下\n首先在Ubuntu上clone repo\nhttps://github.com/coolsnowwolf/lede.git 安装依赖包\nsudo apt update -y sudo apt full-upgrade -y sudo apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \\ bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \\ git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev \\ libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev \\ libssl-dev libtool lrzsz mkisofs msmtp ninja-build p7zip p7zip-full patch pkgconf python3 \\ python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo \\ uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev 更新feed并选择配置\ncd lede ./scripts/feeds update -a ./scripts/feeds install -a make menuconfig 输入这个命令后就开启了配置页面，我使用的是树莓派4B，因此前三项可以这么选择\n第四个Target Image可以修改固件分区大小，我修改为了256和2048\n根据ZxxWww_这篇文章说，Kernel modules -\u003e USB Support中不要勾选kmod-usb-serial这一项\n选择主题，我打算都选上然后找一个最好看的\n在LuCI -\u003e Applications就是其他的网络插件了，我暂时先安装了一个过滤广告的，因为本身也已经肉身翻墙了没有科学上网的需求，这么多插件可以每个都使用一下\n配置完成后选择Save，会保存为一个.config文件。在最后一步安装之前还需要安装screen，用于创建持久会话，否则如果不小心关了ssh之前编译的就都没了（你猜我是怎么知道的）\nsudo apt install screen screen -S buildlede 最后执行命令用8个线程下载dl库，第一次编译用1个线程编译。在这里一开始我用的AWS的Ubuntu一直下不下来，没有办法换成了本地的Ubuntu虚拟机才下载编译成功\nmake download -j8 make V=s -j1 然后就是等待编译，编译完成后在bin\\targets可以选择openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz这个版本进行烧录\n烧录 Windows 可以使用Balena Etcher或者其他的disk imager软件将image烧录到SD卡中，非常简单，按顺序一步一步来即可\nMacOS MacOS也可以使用Balena Etcher将镜像导入到SD卡中，但是我不喜欢下乱七八糟的软件，干脆直接使用命令行了\n找到SD卡的磁盘编号，这里我的SD卡磁盘为/dev/disk4\n➜ ~ diskutil list /dev/disk4 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: FDisk_partition_scheme *7.9 GB disk4 1: Windows_FAT_32 BOOT 67.1 MB disk4s1 2: Linux 109.1 MB disk4s2 (free space) 7.7 GB - 由于我这里以前装过一个不带GUI版本的OpenWrt，SD卡多了几个分区，这次打算重新装一个带着GUI的\n首先恢复分区，这个命令同时把SD卡进行格式化\n➜ ~ diskutil eraseDisk FAT32 SDCARD MBRFormat /dev/disk4 恢复分区之后\n➜ ~ diskutil list /dev/disk4 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: FDisk_partition_scheme *7.9 GB disk4 1: DOS_FAT_32 SDCARD 7.9 GB disk4s1 输入以下命令卸载（但不移除） SD 卡，否则会显示busy\n➜ ~ diskutil unmountDisk /dev/disk4 Unmount of all volumes on disk4 was successful 解压下载的image\n➜ Desktop gunzip ./openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz 使用 dd 写入解压后的 .img 文件，注意这一步千万不要抄错了磁盘编号，否则伤害不可逆，dd是个很强的命令\n➜ Desktop sudo dd if=/Users/kunyangxie/Desktop/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img of=/dev/disk4 bs=1M status=progress 286261248 bytes (286 MB, 273 MiB) transferred 69.070s, 4144 kB/s 275+1 records in 275+1 records out 288454957 bytes transferred in 69.735447 secs (4136418 bytes/sec) 如果不报错一般就是成功了\n最后将SD卡从电脑拔出，插到树莓派上，启动树莓派，这时使用网线将树莓派的以太网接口和电脑的以太网接口相连。由于OpenWrt 默认将树莓派的eth0接口桥接到br-lan并使用 IP 地址 192.168.1.1，我们要配置一下电脑端的Ethernet接口是否也在192.168.1.x的子网，x可以选2- 255的随便一个数\n当树莓派就跟电脑在相同子网后，在浏览器中输入192.168.1.1，就能登录到OpenWrt的GUI（LuCI）了，默认用户名和密码是root和password\n大功告成了\n连接路由器 我家主路由器使用的子网为192.168.2.x，需要将树莓派改为这个子网下（当然如果主路由器子网为192.168.1.x的话就不用多折腾这一步了）。我们先禁用桥接模式和修改IP地址\nvi /etc/config/network 修改文件为\nconfig interface 'lan' option device 'eth0' option proto 'static' option ipaddr '192.168.2.66' option netmask '255.255.255.0' option gateway '192.168.2.1' option dns '192.168.2.1' option ip6assign '60' 禁用DHCP，防止跟主路由器的DHCP冲突\nvi /etc/config/dhcp config dhcp 'lan' option interface 'lan' option ignore '1' 检查防火墙配置\nvi /etc/config/firewall config zone option name 'lan' list network 'lan' option input 'ACCEPT' option output 'ACCEPT' option forward 'ACCEPT' 应用设置\n/etc/init.d/network restart 这时由于我们电脑还在192.168.1.x子网，但是树莓派已经到了192.168.2.x子网了，所以连接必定是断开的，我们再把电脑端的Ethernet端口改回192.168.2.x子网，就又能重新访问了\n将树莓派与电脑断开连接，插到路由器的LAN口上，应该能正常访问网络，而且电脑也能访问树莓派了\n设置旁路由 以上步骤只是将树莓派作为一个用网设备加入了家庭的局域网，要想作为旁路由还需要进一步设置\n",
+  "wordCount" : "1775",
+  "inLanguage": "zh",
+  "datePublished": "2024-11-11T13:13:13-04:00",
+  "dateModified": "2024-11-11T13:13:13-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.github.io/zh/blog/tech/raspberrypi-openwrt/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.github.io/Favicon.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.github.io/zh/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.github.io/en/" title="English🇨🇦"
+                            aria-label="English🇨🇦">English🇨🇦</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kyxie.github.io/zh/about" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/resume.pdf" title="简历">
+                    <span>简历</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/blog" title="博客">
+                    <span>博客</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/comment/comments" title="留言板">
+                    <span>留言板</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/links" title="友链">
+                    <span>友链</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://kyxie.github.io/zh/search" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.github.io/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.github.io/zh/blog/tech/">技术 🔧</a></div>
+    <h1 class="post-title">
+      使用树莓派安装OpenWrt用作旁路由
+    </h1>
+    <div class="post-meta"><span title='2024-11-11 13:13:13 -0400 -0400'>2024-11-11</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;1775 字&nbsp;·&nbsp;Kyxie
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">目录</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#%e8%8e%b7%e5%be%97%e9%95%9c%e5%83%8f" aria-label="获得镜像">获得镜像</a></li>
+                        <li>
+                            <a href="#%e7%83%a7%e5%bd%95" aria-label="烧录">烧录</a><ul>
+                                    
+                        <li>
+                            <a href="#windows" aria-label="Windows">Windows</a></li>
+                        <li>
+                            <a href="#macos" aria-label="MacOS">MacOS</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#%e8%bf%9e%e6%8e%a5%e8%b7%af%e7%94%b1%e5%99%a8" aria-label="连接路由器">连接路由器</a></li>
+                        <li>
+                            <a href="#%e8%ae%be%e7%bd%ae%e6%97%81%e8%b7%af%e7%94%b1" aria-label="设置旁路由">设置旁路由</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h3 id="获得镜像">获得镜像<a hidden class="anchor" aria-hidden="true" href="#获得镜像">#</a></h3>
+<ul>
+<li>
+<p>可以从OpenWrt的<a href="https://openwrt.org/toh/views/toh_fwdownload">官网</a>下载镜像</p>
+<p><img loading="lazy" src="https://i.imgur.com/5oCdRds.png" alt="OpenWrt Images"  />
+</p>
+</li>
+<li>
+<p>但我是比较能折腾的，我找到了这个仓库：<a href="https://github.com/coolsnowwolf/lede">Lean</a>，readme有比较详细的编译步骤，于是决定自己尝试一下</p>
+<ul>
+<li>
+<p>首先在Ubuntu上clone repo</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>https://github.com/coolsnowwolf/lede.git
+</span></span></code></pre></div></li>
+<li>
+<p>安装依赖包</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update -y
+</span></span><span style="display:flex;"><span>sudo apt full-upgrade -y
+</span></span><span style="display:flex;"><span>sudo apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>libssl-dev libtool lrzsz mkisofs msmtp ninja-build p7zip p7zip-full patch pkgconf python3 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
+</span></span></code></pre></div></li>
+<li>
+<p>更新feed并选择配置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd lede
+</span></span><span style="display:flex;"><span>./scripts/feeds update -a
+</span></span><span style="display:flex;"><span>./scripts/feeds install -a
+</span></span><span style="display:flex;"><span>make menuconfig
+</span></span></code></pre></div></li>
+<li>
+<p>输入这个命令后就开启了配置页面，我使用的是树莓派4B，因此前三项可以这么选择</p>
+<p><img loading="lazy" src="https://i.imgur.com/NLurVMp.png" alt="Configure Page"  />
+</p>
+</li>
+<li>
+<p>第四个Target Image可以修改固件分区大小，我修改为了256和2048</p>
+<p><img loading="lazy" src="https://i.imgur.com/KzlFv0Z.png" alt="Target Image"  />
+</p>
+</li>
+<li>
+<p>根据<a href="https://blog.csdn.net/m0_52364631/article/details/117428408">ZxxWww_</a>这篇文章说，Kernel modules -&gt; USB Support中不要勾选<code>kmod-usb-serial</code>这一项</p>
+<p><img loading="lazy" src="https://i.imgur.com/Wk2e2Gl.png" alt="Kernel Modules"  />
+</p>
+</li>
+<li>
+<p>选择主题，我打算都选上然后找一个最好看的</p>
+<p><img loading="lazy" src="https://i.imgur.com/jmoLql3.png" alt="Themes"  />
+</p>
+</li>
+<li>
+<p>在LuCI -&gt; Applications就是其他的网络插件了，我暂时先安装了一个过滤广告的，因为本身也已经肉身翻墙了没有科学上网的需求，这么多插件可以每个都使用一下</p>
+</li>
+<li>
+<p>配置完成后选择Save，会保存为一个<code>.config</code>文件。在最后一步安装之前还需要安装screen，用于创建持久会话，否则如果不小心关了ssh之前编译的就都没了（你猜我是怎么知道的）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install screen
+</span></span><span style="display:flex;"><span>screen -S buildlede
+</span></span></code></pre></div></li>
+<li>
+<p>最后执行命令用8个线程下载dl库，第一次编译用1个线程编译。在这里一开始我用的AWS的Ubuntu一直下不下来，没有办法换成了本地的Ubuntu虚拟机才下载编译成功</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make download -j8
+</span></span><span style="display:flex;"><span>make V<span style="color:#f92672">=</span>s -j1
+</span></span></code></pre></div></li>
+<li>
+<p>然后就是等待编译，编译完成后在<code>bin\targets</code>可以选择<code>openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz</code>这个版本进行烧录</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="烧录">烧录<a hidden class="anchor" aria-hidden="true" href="#烧录">#</a></h3>
+<h4 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h4>
+<p>可以使用<a href="https://etcher.balena.io/#download-etcher">Balena Etcher</a>或者其他的disk imager软件将image烧录到SD卡中，非常简单，按顺序一步一步来即可</p>
+<p><img loading="lazy" src="https://i.imgur.com/uOXas8x.png" alt="Balena Etcher for Windows"  />
+</p>
+<h4 id="macos">MacOS<a hidden class="anchor" aria-hidden="true" href="#macos">#</a></h4>
+<p>MacOS也可以使用Balena Etcher将镜像导入到SD卡中，但是我不喜欢下乱七八糟的软件，干脆直接使用命令行了</p>
+<ul>
+<li>
+<p>找到SD卡的磁盘编号，这里我的SD卡磁盘为<code>/dev/disk4</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>➜  ~ diskutil list
+</span></span><span style="display:flex;"><span>/dev/disk4 <span style="color:#f92672">(</span>external, physical<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">#:                       TYPE NAME                    SIZE       IDENTIFIER</span>
+</span></span><span style="display:flex;"><span>   0:     FDisk_partition_scheme                        *7.9 GB     disk4
+</span></span><span style="display:flex;"><span>   1:             Windows_FAT_32 BOOT                    67.1 MB    disk4s1
+</span></span><span style="display:flex;"><span>   2:                      Linux                         109.1 MB   disk4s2
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">(</span>free space<span style="color:#f92672">)</span>                         7.7 GB     -
+</span></span></code></pre></div><p>由于我这里以前装过一个不带GUI版本的OpenWrt，SD卡多了几个分区，这次打算重新装一个带着GUI的</p>
+</li>
+<li>
+<p>首先恢复分区，这个命令同时把SD卡进行格式化</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>➜  ~ diskutil eraseDisk FAT32 SDCARD MBRFormat /dev/disk4
+</span></span></code></pre></div><p>恢复分区之后</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>➜  ~ diskutil list
+</span></span><span style="display:flex;"><span>/dev/disk4 <span style="color:#f92672">(</span>external, physical<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">#:                       TYPE NAME                    SIZE       IDENTIFIER</span>
+</span></span><span style="display:flex;"><span>   0:     FDisk_partition_scheme                        *7.9 GB     disk4
+</span></span><span style="display:flex;"><span>   1:                 DOS_FAT_32 SDCARD                  7.9 GB     disk4s1
+</span></span></code></pre></div></li>
+<li>
+<p>输入以下命令卸载（但不移除） SD 卡，否则会显示busy</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>➜  ~ diskutil unmountDisk /dev/disk4
+</span></span><span style="display:flex;"><span>Unmount of all volumes on disk4 was successful
+</span></span></code></pre></div></li>
+<li>
+<p>解压下载的image</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>➜  Desktop gunzip ./openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz
+</span></span></code></pre></div></li>
+<li>
+<p>使用 <code>dd</code> 写入解压后的 <code>.img</code> 文件，注意这一步千万不要抄错了磁盘编号，否则伤害不可逆，<code>dd</code>是个很强的命令</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>➜  Desktop sudo dd <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>/Users/kunyangxie/Desktop/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img of<span style="color:#f92672">=</span>/dev/disk4 bs<span style="color:#f92672">=</span>1M status<span style="color:#f92672">=</span>progress
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">286261248</span> bytes <span style="color:#f92672">(</span><span style="color:#ae81ff">286</span> MB, <span style="color:#ae81ff">273</span> MiB<span style="color:#f92672">)</span> transferred 69.070s, <span style="color:#ae81ff">4144</span> kB/s
+</span></span><span style="display:flex;"><span>275+1 records in
+</span></span><span style="display:flex;"><span>275+1 records out
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">288454957</span> bytes transferred in 69.735447 secs <span style="color:#f92672">(</span><span style="color:#ae81ff">4136418</span> bytes/sec<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>如果不报错一般就是成功了</p>
+</li>
+<li>
+<p>最后将SD卡从电脑拔出，插到树莓派上，启动树莓派，这时使用网线将树莓派的以太网接口和电脑的以太网接口相连。由于OpenWrt 默认将树莓派的<code>eth0</code>接口桥接到<code>br-lan</code>并使用 IP 地址 <code>192.168.1.1</code>，我们要配置一下电脑端的Ethernet接口是否也在<code>192.168.1.x</code>的子网，x可以选2-  255的随便一个数</p>
+<p><img loading="lazy" src="https://i.imgur.com/0nEPbpU.png" alt="IP Config"  />
+</p>
+<p>当树莓派就跟电脑在相同子网后，在浏览器中输入<code>192.168.1.1</code>，就能登录到OpenWrt的GUI（LuCI）了，默认用户名和密码是<code>root</code>和<code>password</code></p>
+</li>
+<li>
+<p>大功告成了</p>
+<p><img loading="lazy" src="https://i.imgur.com/NKBsxkO.png" alt="Initial Page"  />
+</p>
+<p><img loading="lazy" src="https://i.imgur.com/5983ulM.png" alt="Status Page"  />
+</p>
+</li>
+</ul>
+<h3 id="连接路由器">连接路由器<a hidden class="anchor" aria-hidden="true" href="#连接路由器">#</a></h3>
+<ul>
+<li>
+<p>我家主路由器使用的子网为<code>192.168.2.x</code>，需要将树莓派改为这个子网下（当然如果主路由器子网为<code>192.168.1.x</code>的话就不用多折腾这一步了）。我们先禁用桥接模式和修改IP地址</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vi /etc/config/network
+</span></span></code></pre></div><p>修改文件为</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">config interface &#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option device &#39;eth0&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option proto &#39;static&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option ipaddr &#39;192.168.2.66&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option netmask &#39;255.255.255.0&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option gateway &#39;192.168.2.1&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option dns &#39;192.168.2.1&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option ip6assign &#39;60&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>禁用DHCP，防止跟主路由器的DHCP冲突</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vi /etc/config/dhcp
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">config dhcp &#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option interface &#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option ignore &#39;1&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>检查防火墙配置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vi /etc/config/firewall
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">config zone</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option name &#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">list network &#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option input &#39;ACCEPT&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option output &#39;ACCEPT&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option forward &#39;ACCEPT&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>应用设置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/etc/init.d/network restart
+</span></span></code></pre></div></li>
+<li>
+<p>这时由于我们电脑还在<code>192.168.1.x</code>子网，但是树莓派已经到了<code>192.168.2.x</code>子网了，所以连接必定是断开的，我们再把电脑端的Ethernet端口改回<code>192.168.2.x</code>子网，就又能重新访问了</p>
+</li>
+<li>
+<p>将树莓派与电脑断开连接，插到路由器的LAN口上，应该能正常访问网络，而且电脑也能访问树莓派了</p>
+</li>
+</ul>
+<h3 id="设置旁路由">设置旁路由<a hidden class="anchor" aria-hidden="true" href="#设置旁路由">#</a></h3>
+<p>以上步骤只是将树莓派作为一个用网设备加入了家庭的局域网，要想作为旁路由还需要进一步设置</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.github.io/zh/blog/life/algonquin/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Algonquin旅行攻略</span>
+  </a>
+  <a class="next" href="https://kyxie.github.io/zh/blog/tech/python-and-git-for-macos/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>使用Homebrew在M芯片的MacBook安装Python和Git</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://kyxie.github.io/zh/">Kunyang&#39;s Blog</a></span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        Visitors: <span id="busuanzi_value_site_uv"></span>
+        Views: <span id="busuanzi_value_site_pv"></span>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
