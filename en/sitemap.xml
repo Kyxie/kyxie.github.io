@@ -2,157 +2,147 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kyxie.github.io/en/blog/life/bike/</loc>
+    <loc>https://kyxie.me/en/blog/life/bike/</loc>
     <lastmod>2024-05-25T00:35:55-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.github.io/zh/blog/life/bike/"
+                href="https://kyxie.me/zh/blog/life/bike/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.github.io/en/blog/life/bike/"
+                href="https://kyxie.me/en/blog/life/bike/"
                 />
   </url><url>
-    <loc>https://kyxie.github.io/en/blog/tech/</loc>
+    <loc>https://kyxie.me/en/blog/tech/</loc>
     <lastmod>2022-06-11T21:59:32-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.github.io/zh/blog/tech/"
+                href="https://kyxie.me/zh/blog/tech/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.github.io/en/blog/tech/"
+                href="https://kyxie.me/en/blog/tech/"
                 />
   </url><url>
-    <loc>https://kyxie.github.io/en/blog/tech/papermod/</loc>
+    <loc>https://kyxie.me/en/blog/tech/papermod/</loc>
     <lastmod>2022-04-15T00:28:55-04:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.github.io/zh/blog/tech/papermod/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.github.io/en/blog/tech/papermod/"
-                />
   </url><url>
-    <loc>https://kyxie.github.io/en/blog/life/</loc>
+    <loc>https://kyxie.me/en/blog/life/</loc>
     <lastmod>2022-06-11T21:59:32-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.github.io/zh/blog/life/"
+                href="https://kyxie.me/zh/blog/life/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.github.io/en/blog/life/"
+                href="https://kyxie.me/en/blog/life/"
                 />
   </url><url>
-    <loc>https://kyxie.github.io/en/</loc>
+    <loc>https://kyxie.me/en/</loc>
     <lastmod>2024-05-25T00:35:55-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.github.io/zh/"
+                href="https://kyxie.me/zh/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.github.io/en/"
+                href="https://kyxie.me/en/"
                 />
   </url><url>
-    <loc>https://kyxie.github.io/en/blog/</loc>
+    <loc>https://kyxie.me/en/blog/</loc>
     <lastmod>2022-06-11T21:59:32-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.github.io/zh/blog/"
+                href="https://kyxie.me/zh/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.github.io/en/blog/"
+                href="https://kyxie.me/en/blog/"
                 />
   </url><url>
-    <loc>https://kyxie.github.io/en/search/</loc>
+    <loc>https://kyxie.me/en/search/</loc>
     <lastmod>2022-04-14T21:49:55-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.github.io/zh/search/"
+                href="https://kyxie.me/zh/search/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.github.io/en/search/"
+                href="https://kyxie.me/en/search/"
                 />
   </url><url>
-    <loc>https://kyxie.github.io/en/projects/</loc>
+    <loc>https://kyxie.me/en/projects/</loc>
     <lastmod>2022-04-13T14:39:53-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.github.io/zh/projects/"
+                href="https://kyxie.me/zh/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.github.io/en/projects/"
+                href="https://kyxie.me/en/projects/"
                 />
   </url><url>
-    <loc>https://kyxie.github.io/en/about/</loc>
+    <loc>https://kyxie.me/en/about/</loc>
     <lastmod>2022-04-13T14:39:46-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.github.io/zh/about/"
+                href="https://kyxie.me/zh/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.github.io/en/about/"
+                href="https://kyxie.me/en/about/"
                 />
   </url><url>
-    <loc>https://kyxie.github.io/en/categories/</loc>
+    <loc>https://kyxie.me/en/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.github.io/zh/categories/"
+                href="https://kyxie.me/zh/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.github.io/en/categories/"
+                href="https://kyxie.me/en/categories/"
                 />
   </url><url>
-    <loc>https://kyxie.github.io/en/series/</loc>
+    <loc>https://kyxie.me/en/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.github.io/zh/series/"
+                href="https://kyxie.me/zh/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.github.io/en/series/"
+                href="https://kyxie.me/en/series/"
                 />
   </url><url>
-    <loc>https://kyxie.github.io/en/tags/</loc>
+    <loc>https://kyxie.me/en/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.github.io/zh/tags/"
+                href="https://kyxie.me/zh/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.github.io/en/tags/"
+                href="https://kyxie.me/en/tags/"
                 />
   </url>
 </urlset>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Life 🏞️ on Kunyang&#39;s Blog</title>
-    <link>https://kyxie.github.io/en/blog/life/</link>
+    <link>https://kyxie.me/en/blog/life/</link>
     <description>Recent content in Life 🏞️ on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 11 Jun 2022 21:59:32 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/en/blog/life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jun 2022 21:59:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/en/blog/life/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Specialized Tarmac SL6 Bike Building</title>
-      <link>https://kyxie.github.io/en/blog/life/bike/</link>
+      <link>https://kyxie.me/en/blog/life/bike/</link>
       <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
       
-      <guid>https://kyxie.github.io/en/blog/life/bike/</guid>
+      <guid>https://kyxie.me/en/blog/life/bike/</guid>
       <description>Header It&amp;rsquo;s been a while since I tinkered with my bike. I just bought a roval aero handlebar recently and plan to run the cables internally to make it looks better. I disassembled the bike myself to try it out, but dealing with the Shimano 7020 setup with two hydraulic cables and two shift cables (a total of four lines) was quite a challenge. This led me to consider buying</description>
     </item>
     

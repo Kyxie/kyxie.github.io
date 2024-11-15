@@ -2,54 +2,54 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>生活 🏞️ on Kunyang&#39;s Blog</title>
-    <link>https://kyxie.github.io/zh/blog/life/</link>
+    <link>https://kyxie.me/zh/blog/life/</link>
     <description>Recent content in 生活 🏞️ on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 11 Jun 2022 21:59:32 -0400</lastBuildDate><atom:link href="https://kyxie.github.io/zh/blog/life/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jun 2022 21:59:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/blog/life/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Specialized Tarmac SL6装车</title>
-      <link>https://kyxie.github.io/zh/blog/life/bike/</link>
+      <link>https://kyxie.me/zh/blog/life/bike/</link>
       <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
       
-      <guid>https://kyxie.github.io/zh/blog/life/bike/</guid>
+      <guid>https://kyxie.me/zh/blog/life/bike/</guid>
       <description>Header 好久没折腾自行车了，最近刚换了roval的破风把，准备打算在车把也内走线，这样车把握起来就爽快多了。我自己拆车试了一下，结果被Shiman</description>
     </item>
     
     <item>
       <title>摄影照片</title>
-      <link>https://kyxie.github.io/zh/blog/life/photos/</link>
+      <link>https://kyxie.me/zh/blog/life/photos/</link>
       <pubDate>Mon, 03 Jun 2024 22:53:55 -0400</pubDate>
       
-      <guid>https://kyxie.github.io/zh/blog/life/photos/</guid>
+      <guid>https://kyxie.me/zh/blog/life/photos/</guid>
       <description>放一些自己拍摄的感觉还说得过去的照片 2024 &lt;!DOCTYPE html&gt; Sep 5, Goderich Sep 5 Sep 5 Sep 3, Milne Dam Conservation Park Sep 3 Aug 29, Oakville Aug 29 Jul 13, Annina&amp;#39;s Bakeshop Jul 13 Jul 13 Jun 1 Jun 1 May 26, Flowerpot Island May 26 May 26 May 26 May 26 May 26 2023 &lt;!DOCTYPE html&gt;</description>
     </item>
     
     <item>
-      <title>OINP移民加拿大🇨🇦时间线</title>
-      <link>https://kyxie.github.io/zh/blog/life/pr/</link>
-      <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
-      
-      <guid>https://kyxie.github.io/zh/blog/life/pr/</guid>
-      <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
-    </item>
-    
-    <item>
       <title>Banff旅行游记</title>
-      <link>https://kyxie.github.io/zh/blog/life/banff/</link>
+      <link>https://kyxie.me/zh/blog/life/banff/</link>
       <pubDate>Wed, 11 Sep 2024 12:35:55 -0400</pubDate>
       
-      <guid>https://kyxie.github.io/zh/blog/life/banff/</guid>
+      <guid>https://kyxie.me/zh/blog/life/banff/</guid>
       <description>Header 最近妈妈来了加拿大，打算带她去Calgary和Banff旅行，发现Banff旅游真的好多坑啊，正好写一篇游记博客，顺便记录一下Banff旅</description>
     </item>
     
     <item>
       <title>Algonquin旅行攻略</title>
-      <link>https://kyxie.github.io/zh/blog/life/algonquin/</link>
+      <link>https://kyxie.me/zh/blog/life/algonquin/</link>
       <pubDate>Mon, 30 Sep 2024 14:03:55 -0400</pubDate>
       
-      <guid>https://kyxie.github.io/zh/blog/life/algonquin/</guid>
+      <guid>https://kyxie.me/zh/blog/life/algonquin/</guid>
       <description>常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:</description>
+    </item>
+    
+    <item>
+      <title>OINP移民加拿大🇨🇦时间线</title>
+      <link>https://kyxie.me/zh/blog/life/pr/</link>
+      <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/life/pr/</guid>
+      <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
     </item>
     
   </channel>
