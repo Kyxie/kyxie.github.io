@@ -198,32 +198,57 @@
     
 <footer class="footer">
     <span>&copy; 2024 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a></span>
+    
+    
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <script>
-        
-        function updateBusuanzi() {
-            if (typeof bszCaller !== "undefined" && typeof bszTag !== "undefined") {
-                bszCaller.fetch("//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", function(a) {
-                    const initialUV = 30000; 
-                    const initialPV = 60000; 
-                    a.site_uv = (parseInt(a.site_uv, 10) || 0) + initialUV;
-                    a.site_pv = (parseInt(a.site_pv, 10) || 0) + initialPV;
-                    bszTag.texts(a); 
-                    bszTag.shows(); 
-                });
-            } else {
-                
-                setTimeout(updateBusuanzi, 100);
-            }
-        }
-        
-        document.addEventListener("DOMContentLoaded", updateBusuanzi);
-    </script>
+    
+    
     <span id="busuanzi_container">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         Visitors: <span id="busuanzi_value_site_uv"></span>
         Views: <span id="busuanzi_value_site_pv"></span>
     </span>
+
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            
+            const uvElement = document.getElementById('busuanzi_value_site_uv');
+            const pvElement = document.getElementById('busuanzi_value_site_pv');
+
+            
+            if (!uvElement || !pvElement) {
+                console.error("Busuanzi elements not found.");
+                return;
+            }
+
+            
+            const uvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        uvObs.disconnect(); 
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + 10000; 
+                        break;
+                    }
+                }
+            });
+
+            
+            const pvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        pvObs.disconnect(); 
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + 30000; 
+                        break;
+                    }
+                }
+            });
+
+            
+            uvObs.observe(uvElement, { childList: true });
+            pvObs.observe(pvElement, { childList: true });
+        });
+    </script>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
