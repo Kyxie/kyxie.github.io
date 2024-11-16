@@ -2,62 +2,62 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>路由 🛜 on Kunyang&#39;s Blog</title>
-    <link>https://kyxie.me/zh/blog/tech/router/</link>
+    <link>http://kyxie.me/zh/blog/tech/router/</link>
     <description>Recent content in 路由 🛜 on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/blog/tech/router/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="http://kyxie.me/zh/blog/tech/router/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用树莓派4B&#43;安装OpenWrt用作旁路由</title>
-      <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
       <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</guid>
       <description>需要的硬件和软件 硬件 一台有网线接口的电脑 内存2GB以上的树莓派4B+ 8GB以上的小SD卡，可以插在树莓派上 SD卡的读卡器 一根网线 显示器（非必</description>
     </item>
     
     <item>
       <title>使用Samba将Linux映射为Windows磁盘</title>
-      <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/samba/</link>
       <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/samba/</guid>
       <description>前言 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到</description>
     </item>
     
     <item>
       <title>Wireguard的简单配置</title>
-      <link>https://kyxie.me/zh/blog/tech/router/wireguard/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/wireguard/</link>
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/wireguard/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/wireguard/</guid>
       <description>Linux配置Wireguard 下载wireguard sudo apt update sudo apt upgrade sudo apt install wireguard 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard wg genkey | tee privatekey |</description>
     </item>
     
     <item>
       <title>OpenVPN的简单配置</title>
-      <link>https://kyxie.me/zh/blog/tech/router/openvpn/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/openvpn/</link>
       <pubDate>Fri, 26 Apr 2024 20:38:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/openvpn/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/openvpn/</guid>
       <description>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli</description>
     </item>
     
     <item>
       <title>Linux配置LDAP Server</title>
-      <link>https://kyxie.me/zh/blog/tech/router/ldap/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/ldap/</link>
       <pubDate>Tue, 27 Feb 2024 00:18:35 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/ldap/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/ldap/</guid>
       <description>Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username</description>
     </item>
     
     <item>
       <title>使用Keys免密ssh到Linux</title>
-      <link>https://kyxie.me/zh/blog/tech/router/keys/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/keys/</link>
       <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/keys/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/keys/</guid>
       <description>通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一</description>
     </item>
     

@@ -2,207 +2,207 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Kunyang&#39;s Blog</title>
-    <link>https://kyxie.me/zh/</link>
+    <link>http://kyxie.me/zh/</link>
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="http://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用树莓派4B&#43;安装OpenWrt用作旁路由</title>
-      <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
       <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</guid>
       <description>需要的硬件和软件 硬件 一台有网线接口的电脑 内存2GB以上的树莓派4B+ 8GB以上的小SD卡，可以插在树莓派上 SD卡的读卡器 一根网线 显示器（非必</description>
     </item>
     
     <item>
       <title>使用Homebrew在M芯片的MacBook安装Python和Git</title>
-      <link>https://kyxie.me/zh/blog/tech/others/python-and-git-for-macos/</link>
+      <link>http://kyxie.me/zh/blog/tech/others/python-and-git-for-macos/</link>
       <pubDate>Mon, 11 Nov 2024 11:11:11 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/others/python-and-git-for-macos/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/others/python-and-git-for-macos/</guid>
       <description>Mac用户非常推荐使用Homebrew来安装一些软件，就Python来说如果在官网直接下载会在Launch Pad出现IDLE和Python L</description>
     </item>
     
     <item>
       <title>Specialized Tarmac SL6装车</title>
-      <link>https://kyxie.me/zh/blog/life/bike/</link>
+      <link>http://kyxie.me/zh/blog/life/bike/</link>
       <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/life/bike/</guid>
+      <guid>http://kyxie.me/zh/blog/life/bike/</guid>
       <description>Header 好久没折腾自行车了，最近刚换了roval的破风把，准备打算在车把也内走线，这样车把握起来就爽快多了。我自己拆车试了一下，结果被Shiman</description>
     </item>
     
     <item>
       <title>加拿大🇨🇦信用卡薅羊毛心得</title>
-      <link>https://kyxie.me/zh/blog/wool/credit-card/</link>
+      <link>http://kyxie.me/zh/blog/wool/credit-card/</link>
       <pubDate>Thu, 04 Jan 2024 23:58:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/wool/credit-card/</guid>
+      <guid>http://kyxie.me/zh/blog/wool/credit-card/</guid>
       <description>Aug 2021, Bank of China 我的第一张信用卡是出国前和我爹一起去中国银行办的卓隽，我用我爹的副卡，不太清楚额度是多少。我只是刚到加拿大的前几天用这张卡，出了隔</description>
     </item>
     
     <item>
       <title>Hugo &#43; PaperMod搭建技术博客</title>
-      <link>https://kyxie.me/zh/blog/tech/web/papermod/</link>
+      <link>http://kyxie.me/zh/blog/tech/web/papermod/</link>
       <pubDate>Fri, 15 Apr 2022 00:28:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/web/papermod/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/web/papermod/</guid>
       <description>安装过程 首先需要安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo可以直接用Winget来安装，打开终端输入 winget</description>
     </item>
     
     <item>
       <title>AWS Ubuntu Server安装GUI</title>
-      <link>https://kyxie.me/zh/blog/tech/others/aws-server-gui/</link>
+      <link>http://kyxie.me/zh/blog/tech/others/aws-server-gui/</link>
       <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/others/aws-server-gui/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/others/aws-server-gui/</guid>
       <description>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都</description>
     </item>
     
     <item>
       <title>Banff旅行游记</title>
-      <link>https://kyxie.me/zh/blog/life/banff/</link>
+      <link>http://kyxie.me/zh/blog/life/banff/</link>
       <pubDate>Wed, 11 Sep 2024 12:35:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/life/banff/</guid>
+      <guid>http://kyxie.me/zh/blog/life/banff/</guid>
       <description>Header 最近妈妈来了加拿大，打算带她去Calgary和Banff旅行，发现Banff旅游真的好多坑啊，正好写一篇游记博客，顺便记录一下Banff旅</description>
     </item>
     
     <item>
       <title>我使用过的加拿大🇨🇦支票账户</title>
-      <link>https://kyxie.me/zh/blog/wool/checking-account/</link>
+      <link>http://kyxie.me/zh/blog/wool/checking-account/</link>
       <pubDate>Sat, 18 May 2024 10:51:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/wool/checking-account/</guid>
+      <guid>http://kyxie.me/zh/blog/wool/checking-account/</guid>
       <description>Sep 2021, Scotiabank 之前办学签来加拿大走SDS用的是Scotiabank，因此我第一张checking account是Scotiabank的。学生账户的话</description>
     </item>
     
     <item>
       <title>Algonquin旅行攻略</title>
-      <link>https://kyxie.me/zh/blog/life/algonquin/</link>
+      <link>http://kyxie.me/zh/blog/life/algonquin/</link>
       <pubDate>Mon, 30 Sep 2024 14:03:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/life/algonquin/</guid>
+      <guid>http://kyxie.me/zh/blog/life/algonquin/</guid>
       <description>常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:</description>
     </item>
     
     <item>
       <title>Windows 11 打造个性化终端</title>
-      <link>https://kyxie.me/zh/blog/tech/others/bash/</link>
+      <link>http://kyxie.me/zh/blog/tech/others/bash/</link>
       <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/others/bash/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/others/bash/</guid>
       <description>前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo</description>
     </item>
     
     <item>
       <title>OINP移民加拿大🇨🇦时间线</title>
-      <link>https://kyxie.me/zh/blog/life/pr/</link>
+      <link>http://kyxie.me/zh/blog/life/pr/</link>
       <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/life/pr/</guid>
+      <guid>http://kyxie.me/zh/blog/life/pr/</guid>
       <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
     </item>
     
     <item>
       <title>使用Samba将Linux映射为Windows磁盘</title>
-      <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/samba/</link>
       <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/samba/</guid>
       <description>前言 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到</description>
     </item>
     
     <item>
       <title>Wireguard的简单配置</title>
-      <link>https://kyxie.me/zh/blog/tech/router/wireguard/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/wireguard/</link>
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/wireguard/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/wireguard/</guid>
       <description>Linux配置Wireguard 下载wireguard sudo apt update sudo apt upgrade sudo apt install wireguard 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard wg genkey | tee privatekey |</description>
     </item>
     
     <item>
       <title>OpenVPN的简单配置</title>
-      <link>https://kyxie.me/zh/blog/tech/router/openvpn/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/openvpn/</link>
       <pubDate>Fri, 26 Apr 2024 20:38:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/openvpn/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/openvpn/</guid>
       <description>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli</description>
     </item>
     
     <item>
       <title>Java Cheat Sheet</title>
-      <link>https://kyxie.me/zh/blog/tech/others/java/</link>
+      <link>http://kyxie.me/zh/blog/tech/others/java/</link>
       <pubDate>Thu, 05 May 2022 17:28:17 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/others/java/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/others/java/</guid>
       <description>Character 判断是否为字母或数字： boolean res = Character.isLetterOrDigit(char); 转小写： char res = Character.toLowerCase(char); 下一个字符： &amp;#39;b&amp;#39; == (char) (&amp;#39;a&amp;#39; + 1); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等： Integer a = 1; Integer b = 1; a == b; // true</description>
     </item>
     
     <item>
       <title>Linux配置LDAP Server</title>
-      <link>https://kyxie.me/zh/blog/tech/router/ldap/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/ldap/</link>
       <pubDate>Tue, 27 Feb 2024 00:18:35 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/ldap/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/ldap/</guid>
       <description>Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username</description>
     </item>
     
     <item>
       <title>加拿大券商对比</title>
-      <link>https://kyxie.me/zh/blog/wool/stock-brokers/</link>
+      <link>http://kyxie.me/zh/blog/wool/stock-brokers/</link>
       <pubDate>Sun, 02 Jun 2024 22:48:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/wool/stock-brokers/</guid>
+      <guid>http://kyxie.me/zh/blog/wool/stock-brokers/</guid>
       <description>Wealthsimple 开户 使用推荐码VXU-UQ开设账号，在开户后的30天内存$1即可获得$25奖励。 Features Core Premium 资金要求 $0 $100000 Commission Fee $0 $0 Cash Account 4% 4.5% USD FX 1.5% 1.5% 期权交易 $2 $0.75 Crypto Trading</description>
     </item>
     
     <item>
       <title>使用Keys免密ssh到Linux</title>
-      <link>https://kyxie.me/zh/blog/tech/router/keys/</link>
+      <link>http://kyxie.me/zh/blog/tech/router/keys/</link>
       <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/keys/</guid>
+      <guid>http://kyxie.me/zh/blog/tech/router/keys/</guid>
       <description>通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一</description>
     </item>
     
     <item>
       <title>友链 🤝</title>
-      <link>https://kyxie.me/zh/links/</link>
+      <link>http://kyxie.me/zh/links/</link>
       <pubDate>Sat, 21 May 2022 21:50:30 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/links/</guid>
+      <guid>http://kyxie.me/zh/links/</guid>
       <description>Kyxie&amp;#39;s Blog A Hello World Printer Sulv’s Blog 记录技术、阅读、生活的博客 友链格式： name=&amp;#34;Kyxie&amp;#39;s Blog&amp;#34; url=&amp;#34;https://kyxie.github.io/zh&amp;#34; logo=&amp;#34;https://kyxie.github.io/Avatar.jpg&amp;#34; word=&amp;#34;A Hello World Printer&amp;#34;</description>
     </item>
     
     <item>
       <title>留言板 📋</title>
-      <link>https://kyxie.me/zh/comment/comments/</link>
+      <link>http://kyxie.me/zh/comment/comments/</link>
       <pubDate>Thu, 12 May 2022 21:33:11 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/comment/comments/</guid>
+      <guid>http://kyxie.me/zh/comment/comments/</guid>
       <description>👉️填写QQ邮箱可以自动获取QQ头像哦</description>
     </item>
     
     
     <item>
       <title>项目 👨‍💻</title>
-      <link>https://kyxie.me/zh/projects/</link>
+      <link>http://kyxie.me/zh/projects/</link>
       <pubDate>Wed, 13 Apr 2022 14:39:53 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/projects/</guid>
+      <guid>http://kyxie.me/zh/projects/</guid>
       <description>研究生项目 Turbo Wallet - 记账软件 2022年1月 至 2022年3月，JavaScript GitHub (前端仓库): https://github.com/Kyxie/money-management.git GitHub (后端仓库): https://github.com/Kyxie/money-back.git 这是一个帮助我们记录每天生活</description>
     </item>
     
     <item>
       <title>关于我 👋</title>
-      <link>https://kyxie.me/zh/about/</link>
+      <link>http://kyxie.me/zh/about/</link>
       <pubDate>Wed, 13 Apr 2022 14:39:46 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/about/</guid>
+      <guid>http://kyxie.me/zh/about/</guid>
       <description>class Me: def __init__(self): self.name = &amp;#34;Kunyang Xie&amp;#34; self.born_year = 1999 self.MBTI = &amp;#34;ISTJ&amp;#34; self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.location = &amp;#34;Toronto, ON, CA&amp;#34; self.school = &amp;#34;UESTC, uWaterloo&amp;#34;</description>
     </item>
     

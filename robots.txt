@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-Sitemap: https://kyxie.me/sitemap.xml
+Sitemap: http://kyxie.me/sitemap.xml
