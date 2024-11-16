@@ -256,34 +256,36 @@
         Views: <span id="busuanzi_value_site_pv"></span>
     </span>
     <script>
-        const initialUV = 29000;
-        const initialPV = 70000;
-        window.onload = () => {
-            const uvTarget = document.querySelector('#busuanzi_value_site_uv');
-            const pvTarget = document.querySelector('#busuanzi_value_site_pv');
-            if (!uvTarget || !pvTarget) return;
-            const config = { childList: true };
-            const uvObserver = new MutationObserver(changes => {
-                changes.forEach(change => {
-                    if (change.type === 'childList') {
-                        uvListener.disconnect();
-                        uvTarget.textContent = (parseInt(uvTarget.textContent || 0) + initialUV).toString();
+        document.addEventListener("DOMContentLoaded", function () {
+            const uvElement = document.getElementById('busuanzi_value_site_uv');
+            const pvElement = document.getElementById('busuanzi_value_site_pv');
+            const initialUv = 29000;
+            const initialPv = 70000;
+            if (!uvElement || !pvElement) {
+                console.error("Busuanzi elements not found.");
+                return;
+            }
+            const uvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        uvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialUv;
+                        break;
                     }
-                });
+                }
             });
-            const pvObserver = new MutationObserver(changes => {
-                changes.forEach(change => {
-                    if (change.type === 'childList') {
-                        pvListener.disconnect();
-                        pvTarget.textContent = (parseInt(pvTarget.textContent || 0) + initialPV).toString();
+            const pvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        pvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialPv;
+                        break;
                     }
-                });
+                }
             });
-            const uvListener = uvObserver;
-            const pvListener = pvObserver;
-            uvListener.observe(uvTarget, config);
-            pvListener.observe(pvTarget, config);
-        };
+            uvObs.observe(uvElement, { childList: true });
+            pvObs.observe(pvElement, { childList: true });
+        });
     </script>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
