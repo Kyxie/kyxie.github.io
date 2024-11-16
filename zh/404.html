@@ -115,11 +115,6 @@
                 </a>
             </li>
             <li>
-                <a href="https://kyxie.me/zh/links" title="友链">
-                    <span>友链</span>
-                </a>
-            </li>
-            <li>
                 <a href="https://kyxie.me/zh/search" title="搜索 (Alt &#43; /)" accesskey=/>
                     <span>搜索</span>
                 </a>
@@ -134,6 +129,16 @@
 <footer class="footer">
     <span>&copy; 2024 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a></span>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script>
+        bszCaller.fetch("//busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback", function(a) {
+            const initialUV = 30000;
+            const initialPV = 60000;
+            a.site_uv = (parseInt(a.site_uv, 10) || 0) + initialUV;
+            a.site_pv = (parseInt(a.site_pv, 10) || 0) + initialPV;
+            bszTag.texts(a);
+            bszTag.shows();
+        });
+    </script>
     <span id="busuanzi_container">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         Visitors: <span id="busuanzi_value_site_uv"></span>
