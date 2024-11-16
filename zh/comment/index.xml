@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Comments on Kunyang&#39;s Blog</title>
-    <link>http://kyxie.me/zh/comment/</link>
+    <link>https://kyxie.me/zh/comment/</link>
     <description>Recent content in Comments on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 12 May 2022 21:33:11 -0400</lastBuildDate><atom:link href="http://kyxie.me/zh/comment/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 May 2022 21:33:11 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/comment/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>留言板 📋</title>
-      <link>http://kyxie.me/zh/comment/comments/</link>
+      <link>https://kyxie.me/zh/comment/comments/</link>
       <pubDate>Thu, 12 May 2022 21:33:11 -0400</pubDate>
       
-      <guid>http://kyxie.me/zh/comment/comments/</guid>
+      <guid>https://kyxie.me/zh/comment/comments/</guid>
       <description>👉️填写QQ邮箱可以自动获取QQ头像哦</description>
     </item>
     

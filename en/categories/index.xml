@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on Kunyang&#39;s Blog</title>
-    <link>http://kyxie.me/en/categories/</link>
+    <link>https://kyxie.me/en/categories/</link>
     <description>Recent content in Categories on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="http://kyxie.me/en/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language><atom:link href="https://kyxie.me/en/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

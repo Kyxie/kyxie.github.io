@@ -2,36 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Kunyang&#39;s Blog</title>
-    <link>http://kyxie.me/en/</link>
+    <link>https://kyxie.me/en/</link>
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 25 May 2024 00:35:55 -0400</lastBuildDate><atom:link href="http://kyxie.me/en/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 May 2024 00:35:55 -0400</lastBuildDate><atom:link href="https://kyxie.me/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Specialized Tarmac SL6 Bike Building</title>
-      <link>http://kyxie.me/en/blog/life/bike/</link>
+      <link>https://kyxie.me/en/blog/life/bike/</link>
       <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
       
-      <guid>http://kyxie.me/en/blog/life/bike/</guid>
+      <guid>https://kyxie.me/en/blog/life/bike/</guid>
       <description>Header It&amp;rsquo;s been a while since I tinkered with my bike. I just bought a roval aero handlebar recently and plan to run the cables internally to make it looks better. I disassembled the bike myself to try it out, but dealing with the Shimano 7020 setup with two hydraulic cables and two shift cables (a total of four lines) was quite a challenge. This led me to consider buying</description>
     </item>
     
     <item>
       <title>Building a website using Hugo &#43; PaperMod</title>
-      <link>http://kyxie.me/en/blog/tech/papermod/</link>
+      <link>https://kyxie.me/en/blog/tech/papermod/</link>
       <pubDate>Fri, 15 Apr 2022 00:28:55 -0400</pubDate>
       
-      <guid>http://kyxie.me/en/blog/tech/papermod/</guid>
+      <guid>https://kyxie.me/en/blog/tech/papermod/</guid>
       <description>Installation process First of all, installing Hugo is required. Installing Hugo needs to use a package management tool. For the Windows system, I recommend using Scoop. Here introduced how to install Scoop. Hogo&amp;rsquo;s tutorial introduces how to create a project. Among them, Step2 (.yml&amp;rsquo;s config file) and Step3 (download theme) should be configured according to the guide of Papermod. File introduction content: used to put blog content data: don&amp;rsquo;t care</description>
     </item>
     
     
     <item>
       <title>Projects 👨‍💻</title>
-      <link>http://kyxie.me/en/projects/</link>
+      <link>https://kyxie.me/en/projects/</link>
       <pubDate>Wed, 13 Apr 2022 14:39:53 -0400</pubDate>
       
-      <guid>http://kyxie.me/en/projects/</guid>
+      <guid>https://kyxie.me/en/projects/</guid>
       <description>Graduate Projects Turbo Wallet - Money Management App Jan. - Mar. 2022, JavaScript
 GitHub (Front End): https://github.com/Kyxie/money-management.git
 GitHub (Back End): https://github.com/Kyxie/money-back.git
@@ -40,10 +40,10 @@ A money management app helps us to track household expenses and incomes. The fro
     
     <item>
       <title>About Me 👋</title>
-      <link>http://kyxie.me/en/about/</link>
+      <link>https://kyxie.me/en/about/</link>
       <pubDate>Wed, 13 Apr 2022 14:39:46 -0400</pubDate>
       
-      <guid>http://kyxie.me/en/about/</guid>
+      <guid>https://kyxie.me/en/about/</guid>
       <description>class Me: def __init__(self): self.name = &amp;#34;Kyrie Xie&amp;#34; self.born_year = 1999 self.MBTI = &amp;#34;ISTJ&amp;#34; self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.location = &amp;#34;Toronto, ON, CA&amp;#34; self.school = &amp;#34;UESTC, uWaterloo&amp;#34; </description>
     </item>
     
