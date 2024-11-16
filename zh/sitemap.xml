@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kyxie.me/blog/tech/web/</loc>
+    <loc>https://kyxie.me/zh/blog/tech/web/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
   </url><url>
-    <loc>https://kyxie.me/blog/tech/router/</loc>
+    <loc>https://kyxie.me/zh/blog/tech/router/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</loc>
@@ -30,7 +30,7 @@
     <loc>https://kyxie.me/zh/blog/wool/credit-card/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
   </url><url>
-    <loc>https://kyxie.me/blog/tech/</loc>
+    <loc>https://kyxie.me/zh/blog/tech/</loc>
     <lastmod>2022-07-30T01:22:36-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
@@ -40,7 +40,7 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.me/blog/tech/"
+                href="https://kyxie.me/zh/blog/tech/"
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/web/papermod/</loc>
@@ -55,7 +55,7 @@
     <loc>https://kyxie.me/zh/blog/wool/checking-account/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
   </url><url>
-    <loc>https://kyxie.me/blog/life/</loc>
+    <loc>https://kyxie.me/zh/blog/life/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
@@ -65,13 +65,13 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://kyxie.me/blog/life/"
+                href="https://kyxie.me/zh/blog/life/"
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/life/algonquin/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
   </url><url>
-    <loc>https://kyxie.me/blog/wool/</loc>
+    <loc>https://kyxie.me/zh/blog/wool/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/others/bash/</loc>
@@ -95,7 +95,7 @@
     <loc>https://kyxie.me/zh/blog/tech/router/ldap/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
   </url><url>
-    <loc>https://kyxie.me/blog/tech/others/</loc>
+    <loc>https://kyxie.me/zh/blog/tech/others/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/wool/stock-brokers/</loc>
