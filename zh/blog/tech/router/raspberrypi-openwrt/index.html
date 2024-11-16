@@ -335,7 +335,7 @@
 <h3 id="获得镜像">获得镜像<a hidden class="anchor" aria-hidden="true" href="#获得镜像">#</a></h3>
 <h4 id="下载镜像">下载镜像<a hidden class="anchor" aria-hidden="true" href="#下载镜像">#</a></h4>
 <p>可以从OpenWrt的<a href="https://openwrt.org/toh/views/toh_fwdownload">官网</a>下载镜像</p>
-<p><img loading="lazy" src="https://i.imgur.com/5oCdRds.png" alt="OpenWrt Images"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/a2f4260c7818d9c1b8c826a37f6aab0b.png" alt="OpenWrt Images"  />
 </p>
 <h4 id="编译镜像">编译镜像<a hidden class="anchor" aria-hidden="true" href="#编译镜像">#</a></h4>
 <p>但我是比较能折腾的，我找到了这个仓库：<a href="https://github.com/coolsnowwolf/lede">Lean</a>，readme有比较详细的编译步骤，于是决定自己尝试一下</p>
@@ -366,22 +366,22 @@
 </span></span></code></pre></div></li>
 <li>
 <p>输入这个命令后就开启了配置页面，我使用的是树莓派4B，因此前三项可以这么选择</p>
-<p><img loading="lazy" src="https://i.imgur.com/NLurVMp.png" alt="Configure Page"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/9bce893f7284c67192af67371da4edf9.png" alt="Configure Page"  />
 </p>
 </li>
 <li>
 <p>第四个Target Image可以修改固件分区大小，我修改为了256和2048</p>
-<p><img loading="lazy" src="https://i.imgur.com/KzlFv0Z.png" alt="Target Image"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/90a9d49b88da5a96004a173279e6f438.png" alt="Target Image"  />
 </p>
 </li>
 <li>
 <p>根据<a href="https://blog.csdn.net/m0_52364631/article/details/117428408">ZxxWww_</a>这篇文章说，Kernel modules -&gt; USB Support中不要勾选<code>kmod-usb-serial</code>这一项，其他的全选。但是我也没全选，查了一下哪些最基本的就选了</p>
-<p><img loading="lazy" src="https://i.imgur.com/Wk2e2Gl.png" alt="Kernel Modules"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/d17456f00ccf08ca7b0adf9567bba508.png" alt="Kernel Modules"  />
 </p>
 </li>
 <li>
 <p>选择主题，<del>我打算都选上然后找一个最好看的</del>，实测Argon最好看，建议把别的都删了</p>
-<p><img loading="lazy" src="https://i.imgur.com/jmoLql3.png" alt="Themes"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/6d1d8c155e856d0e6fd6168d70a12481.png" alt="Themes"  />
 </p>
 </li>
 <li>
@@ -424,14 +424,14 @@
 </span></span></code></pre></div></li>
 <li>
 <p>找到我们想单独编译的插件，比如<code>luci-app-diskman</code>，这是个管理路由器上的磁盘和分区的插件，第一次编译选择为<code>[*]</code>，意思是作为一个内置模块编译，这次的话我们可以选择为<code>[M]</code>，意思是作为一个模块编译</p>
-<p><img loading="lazy" src="https://i.imgur.com/UhC9hq8.png" alt="Compile Module"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/68ce803d682f4538656ee9062ba819f8.png" alt="Compile Module"  />
 </p>
 </li>
 </ul>
 <h3 id="烧录">烧录<a hidden class="anchor" aria-hidden="true" href="#烧录">#</a></h3>
 <h4 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h4>
 <p>可以使用<a href="https://etcher.balena.io/#download-etcher">Balena Etcher</a>或者其他的disk imager软件将image烧录到SD卡中，非常简单，按顺序一步一步来即可</p>
-<p><img loading="lazy" src="https://i.imgur.com/uOXas8x.png" alt="Balena Etcher for Windows"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/ab0a5f269428a6dd01000e95d5797b90.png" alt="Balena Etcher for Windows"  />
 </p>
 <h4 id="macos">MacOS<a hidden class="anchor" aria-hidden="true" href="#macos">#</a></h4>
 <p>MacOS也可以使用Balena Etcher将镜像导入到SD卡中，但是我不喜欢下乱七八糟的软件，干脆直接使用命令行了</p>
@@ -477,15 +477,15 @@
 </li>
 <li>
 <p>最后将SD卡从电脑拔出，插到树莓派上，启动树莓派，这时使用网线将树莓派的以太网接口和电脑的以太网接口相连。由于OpenWrt 默认将树莓派的<code>eth0</code>接口桥接到<code>br-lan</code>并使用 IP 地址 <code>192.168.1.1</code>，我们要配置一下电脑端的Ethernet接口是否也在<code>192.168.1.x</code>的子网，x可以选2 -  255的随便一个数</p>
-<p><img loading="lazy" src="https://i.imgur.com/0nEPbpU.png" alt="IP Config"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/2779ee13253f5ef403e70bed2319c428.png" alt="IP Config"  />
 </p>
 <p>当树莓派就跟电脑在相同子网后，在浏览器中输入<code>192.168.1.1</code>，就能登录到OpenWrt的GUI（LuCI）了，默认用户名和密码是<code>root</code>和<code>password</code></p>
 </li>
 <li>
 <p>大功告成了</p>
-<p><img loading="lazy" src="https://i.imgur.com/NKBsxkO.png" alt="Initial Page"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/80b4b9243748b380bdb4ca2dc581dd9c.png" alt="Initial Page"  />
 </p>
-<p><img loading="lazy" src="https://i.imgur.com/5983ulM.png" alt="Status Page"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/e34987940f77787e00bb09a1f7d6e8e2.png" alt="Status Page"  />
 </p>
 </li>
 </ul>
@@ -537,14 +537,14 @@
 <ul>
 <li>
 <p>其实很简单，我们只要将Wifi的网关从路由器之前DHCP自动分配的地址改为旁路由树莓派即可，假设我的主路由器IP地址为<code>192.168.2.1</code>，我的电脑IP地址为<code>192.168.2.54</code>，我的树莓派的IP地址为<code>192.168.2.66</code>，我需要这么修改：</p>
-<p><img loading="lazy" src="https://i.imgur.com/pobXFTs.png" alt="Windows Configure Gateway"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/ebc48f4926e3e6a4c7ac32105e507350.png" alt="Windows Configure Gateway"  />
 </p>
 </li>
 <li>
 <p>MacBook也一样</p>
-<p><img loading="lazy" src="https://i.imgur.com/c0xEiUD.png" alt="MacBook Configure Gateway"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/0e7163529845eb6e94424df952cb2c44.png" alt="MacBook Configure Gateway"  />
 </p>
-<p><img loading="lazy" src="https://i.imgur.com/5kmWCgd.png" alt="MacBook Configure DNS"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/2bac0f8e0a365ae7e9d7cc020f59d443.png" alt="MacBook Configure DNS"  />
 </p>
 </li>
 <li>
