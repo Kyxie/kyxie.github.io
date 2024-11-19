@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Wireguard配置 | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Linux, Wireguard">
-<meta name="description" content="安装 Ubuntu sudo apt update sudo apt upgrade sudo apt install wireguard OpenWrt 所需插件详见： 配置Wireguard 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey &gt;">
+<meta name="description" content="安装 Ubuntu sudo apt update sudo apt upgrade sudo apt install wireguard OpenWrt 所需插件详见：使用树莓派4B&#43;安装OpenWrt用作旁路由 | Kunyang&rsquo;s Blog 配置Wireguard 进入/etc/wiregu">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/wireguard/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.d0958031cf49f400cc602dcdcb6fbfc54da190b50aaf1a3f5a054b2e378c0a4c.css" integrity="sha256-0JWAMc9J9ADMYC3Ny2&#43;/xU2hkLUKrxo/WgVLLjeMCkw=" rel="preload stylesheet" as="style">
@@ -45,7 +45,7 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Wireguard配置" />
-<meta property="og:description" content="安装 Ubuntu sudo apt update sudo apt upgrade sudo apt install wireguard OpenWrt 所需插件详见： 配置Wireguard 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey &gt;" />
+<meta property="og:description" content="安装 Ubuntu sudo apt update sudo apt upgrade sudo apt install wireguard OpenWrt 所需插件详见：使用树莓派4B&#43;安装OpenWrt用作旁路由 | Kunyang&rsquo;s Blog 配置Wireguard 进入/etc/wiregu" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/wireguard/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-05-25T00:19:19-04:00" />
@@ -53,7 +53,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Wireguard配置"/>
-<meta name="twitter:description" content="安装 Ubuntu sudo apt update sudo apt upgrade sudo apt install wireguard OpenWrt 所需插件详见： 配置Wireguard 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey &gt;"/>
+<meta name="twitter:description" content="安装 Ubuntu sudo apt update sudo apt upgrade sudo apt install wireguard OpenWrt 所需插件详见：使用树莓派4B&#43;安装OpenWrt用作旁路由 | Kunyang&rsquo;s Blog 配置Wireguard 进入/etc/wiregu"/>
 
 
 <script type="application/ld+json">
@@ -94,12 +94,12 @@
   "@type": "BlogPosting",
   "headline": "Wireguard配置",
   "name": "Wireguard配置",
-  "description": "安装 Ubuntu sudo apt update sudo apt upgrade sudo apt install wireguard OpenWrt 所需插件详见： 配置Wireguard 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey \u0026gt;",
+  "description": "安装 Ubuntu sudo apt update sudo apt upgrade sudo apt install wireguard OpenWrt 所需插件详见：使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang\u0026rsquo;s Blog 配置Wireguard 进入/etc/wiregu",
   "keywords": [
     "Linux", "Wireguard"
   ],
-  "articleBody": "安装 Ubuntu sudo apt update sudo apt upgrade sudo apt install wireguard OpenWrt 所需插件详见：\n配置Wireguard 进入/etc/wireguard，并生成密钥对\nsudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey \u003e publickey 编辑配置文件wg0.conf\n[Interface] PrivateKey = [LINUX_PRIVATE_KEY] Address = 10.0.0.1/24 ListenPort = 51820 [Peer] PublicKey = [WINDOWS_PUBLIC_KEY] Endpoint = [WINDOWS_IP]:51820 AllowedIPs = 10.0.0.2/32 启动wireguard\nsudo wg-quick up wg0 Windows配置wireguard 从这里下载wireguard app\nAdd Tunnel → Add empty tunnel\n编写配置文件\n[Interface] PrivateKey = [WINDOWS_PRIVATE_KEY] ListenPort = 51820 Address = 10.0.0.2/24 [Peer] PublicKey = [LINUX_PUBLIC_KEY] AllowedIPs = 10.0.0.0/24 Endpoint = [LINUX_IP]:51820 点击运行\n",
-  "wordCount" : "189",
+  "articleBody": "安装 Ubuntu sudo apt update sudo apt upgrade sudo apt install wireguard OpenWrt 所需插件详见：使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang’s Blog\n配置Wireguard 进入/etc/wireguard，并生成密钥对\nsudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey \u003e publickey 编辑配置文件wg0.conf\n[Interface] PrivateKey = [LINUX_PRIVATE_KEY] Address = 10.0.0.1/24 ListenPort = 51820 [Peer] PublicKey = [WINDOWS_PUBLIC_KEY] Endpoint = [WINDOWS_IP]:51820 AllowedIPs = 10.0.0.2/32 启动wireguard\nsudo wg-quick up wg0 Windows配置wireguard 从这里下载wireguard app\nAdd Tunnel → Add empty tunnel\n编写配置文件\n[Interface] PrivateKey = [WINDOWS_PRIVATE_KEY] ListenPort = 51820 Address = 10.0.0.2/24 [Peer] PublicKey = [LINUX_PUBLIC_KEY] AllowedIPs = 10.0.0.0/24 Endpoint = [LINUX_IP]:51820 点击运行\n",
+  "wordCount" : "214",
   "inLanguage": "zh",
   "datePublished": "2024-05-25T00:19:19-04:00",
   "dateModified": "2024-11-15T14:35:15-05:00",
@@ -204,7 +204,7 @@
     <div class="post-meta">
 
 
-<span title='2024-05-25 00:19:19 -0400 EDT'>2024-05-25</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;189 字&nbsp;·&nbsp;Kyxie
+<span title='2024-05-25 00:19:19 -0400 EDT'>2024-05-25</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;214 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -298,7 +298,7 @@
 </span></span><span style="display:flex;"><span>sudo apt upgrade
 </span></span><span style="display:flex;"><span>sudo apt install wireguard
 </span></span></code></pre></div><h4 id="openwrt">OpenWrt<a hidden class="anchor" aria-hidden="true" href="#openwrt">#</a></h4>
-<p>所需插件详见：</p>
+<p>所需插件详见：<a href="https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/#wireguard">使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang&rsquo;s Blog</a></p>
 <h3 id="配置wireguard">配置Wireguard<a hidden class="anchor" aria-hidden="true" href="#配置wireguard">#</a></h3>
 <ul>
 <li>
