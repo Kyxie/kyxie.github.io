@@ -17,21 +17,21 @@
     </item>
     
     <item>
-      <title>使用Samba将Linux映射为Windows磁盘</title>
-      <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
-      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
-      <description>前言 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到</description>
-    </item>
-    
-    <item>
       <title>Wireguard配置</title>
       <link>https://kyxie.me/zh/blog/tech/router/wireguard/</link>
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/wireguard/</guid>
       <description>Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey &amp;gt; publickey 编辑配置文件wg0.conf [Interface] PrivateKey</description>
+    </item>
+    
+    <item>
+      <title>使用Samba将Linux映射为Windows磁盘</title>
+      <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
+      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
+      <description>前言 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到</description>
     </item>
     
     <item>
