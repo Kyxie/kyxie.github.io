@@ -121,7 +121,7 @@
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/wireguard/</guid>
-      <description>安装 Ubuntu sudo apt update sudo apt upgrade sudo apt install wireguard OpenWrt 所需插件详见：使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang&amp;rsquo;s Blog 配置Wireguard 进入/etc/wiregu</description>
+      <description>Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey &amp;gt; publickey 编辑配置文件wg0.conf [Interface] PrivateKey</description>
     </item>
     
     <item>
