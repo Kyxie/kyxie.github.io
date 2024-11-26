@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>AWS Ubuntu Server安装GUI | Kunyang&#39;s Blog</title>
-<meta name="keywords" content="AWS, EC2, Gnome, Xfce, GUI, Ubuntu Server">
-<meta name="description" content="最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都">
+<title>使用GitHub Actions自动编译OpenWrt镜像 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="GitHub Actions, OpenWrt, Compile, CI/CD">
+<meta name="description" content="这篇文章提到了自己编译Lean的OpenWrt镜像，之前一直在Linux虚拟机编译，耗时耗力还耗电。现在换成了GitHub Actions，编">
 <meta name="author" content="Kyxie">
-<link rel="canonical" href="https://kyxie.me/zh/blog/tech/others/aws-server-gui/">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/github-actions/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.d0958031cf49f400cc602dcdcb6fbfc54da190b50aaf1a3f5a054b2e378c0a4c.css" integrity="sha256-0JWAMc9J9ADMYC3Ny2&#43;/xU2hkLUKrxo/WgVLLjeMCkw=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://kyxie.me/Favicon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/others/aws-server-gui/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/router/github-actions/">
 <noscript>
     <style>
         #theme-toggle,
@@ -44,16 +44,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="AWS Ubuntu Server安装GUI" />
-<meta property="og:description" content="最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用GitHub Actions自动编译OpenWrt镜像" />
+<meta property="og:description" content="这篇文章提到了自己编译Lean的OpenWrt镜像，之前一直在Linux虚拟机编译，耗时耗力还耗电。现在换成了GitHub Actions，编" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyxie.me/zh/blog/tech/others/aws-server-gui/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2024-11-07T00:22:51-04:00" />
-<meta property="article:modified_time" content="2024-11-15T14:35:15-05:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/github-actions/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-11-26T16:03:19-05:00" />
+<meta property="article:modified_time" content="2024-11-26T16:03:19-05:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="AWS Ubuntu Server安装GUI"/>
-<meta name="twitter:description" content="最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都"/>
+<meta name="twitter:title" content="使用GitHub Actions自动编译OpenWrt镜像"/>
+<meta name="twitter:description" content="这篇文章提到了自己编译Lean的OpenWrt镜像，之前一直在Linux虚拟机编译，耗时耗力还耗电。现在换成了GitHub Actions，编"/>
 
 
 <script type="application/ld+json">
@@ -76,14 +76,14 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "其他 💡",
-      "item": "https://kyxie.me/zh/blog/tech/others/"
+      "name": "路由 🛜",
+      "item": "https://kyxie.me/zh/blog/tech/router/"
     }, 
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "AWS Ubuntu Server安装GUI",
-      "item": "https://kyxie.me/zh/blog/tech/others/aws-server-gui/"
+      "name": "使用GitHub Actions自动编译OpenWrt镜像",
+      "item": "https://kyxie.me/zh/blog/tech/router/github-actions/"
     }
   ]
 }
@@ -92,24 +92,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "AWS Ubuntu Server安装GUI",
-  "name": "AWS Ubuntu Server安装GUI",
-  "description": "最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都",
+  "headline": "使用GitHub Actions自动编译OpenWrt镜像",
+  "name": "使用GitHub Actions自动编译OpenWrt镜像",
+  "description": "这篇文章提到了自己编译Lean的OpenWrt镜像，之前一直在Linux虚拟机编译，耗时耗力还耗电。现在换成了GitHub Actions，编",
   "keywords": [
-    "AWS", "EC2", "Gnome", "Xfce", "GUI", "Ubuntu Server"
+    "GitHub Actions", "OpenWrt", "Compile", "CI/CD"
   ],
-  "articleBody": "最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都卡，AWS的免费用户又只能使用只有命令行的Ubuntu server。然后突发奇想诶我可不可以在Ubuntu server上安装一个GUI，查了一下这个方法似乎可行（其实还是不太可行，我已经打算放弃折腾了，不过倒是成功装上了GUI）。\n安装xrdp并enable，安装GUI就需要远程桌面系统，这是Linux的客户端\nsudo apt-get update sudo apt install xrdp -y sudo systemctl enable xrdp 我首先尝试的是gnome，尝试发现这个消耗资源太严重了，免费版用户用起来应该跟Windows一样卡\nsudo add-apt-repository ppa:gnome3-team/gnome3 sudo apt-get install gnome-shell ubuntu-gnome-desktop 后来我决定试试更轻量化的XFCE\nsudo apt install tasksel sudo tasksel install xubuntu-desktop sudo apt install xfce4 xfce4-goodies sudo update-alternatives --config x-session-manager sudo apt install lightdm sudo dpkg-reconfigure lightdm 设置密码\nsudo passwd ubuntu 在EC2 Security group中选择Allow All Traffic\n在MacBook中应用商店下载Windows App，这是Window开发的远程桌面应用，有一说一Windows给Mac开发的软件是真不错\n选择Add a PC，Computer使用AWS提供的DNS，用户名一般为ubuntu，密码为刚才设置的密码\n之后就可以连接上了\n但是尽管XFCE已经很轻量化了，我下载完Chrome之后还是觉得卡，于是放弃折腾了，AWS免费版用户不推荐这么做。\n",
-  "wordCount" : "547",
+  "articleBody": "这篇文章提到了自己编译Lean的OpenWrt镜像，之前一直在Linux虚拟机编译，耗时耗力还耗电。现在换成了GitHub Actions，编译任务就交给GitHub托管了。\n详细步骤 首先Fork我的仓库\n将自己配置的.config文件粘贴到主目录下\nSetting→Actions→General→Workflow Permissions修改成Read and write permissions，点击保存\ngit push一个tag。GitHub就会自动编译了\ngit add . git commit -m \"Commit message\" git tag -a -m \"Tag message\" git push origin main git push origin --tags 编译产物在Release里\n",
+  "wordCount" : "250",
   "inLanguage": "zh",
-  "datePublished": "2024-11-07T00:22:51-04:00",
-  "dateModified": "2024-11-15T14:35:15-05:00",
+  "datePublished": "2024-11-26T16:03:19-05:00",
+  "dateModified": "2024-11-26T16:03:19-05:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyxie.me/zh/blog/tech/others/aws-server-gui/"
+    "@id": "https://kyxie.me/zh/blog/tech/router/github-actions/"
   },
   "publisher": {
     "@type": "Organization",
@@ -197,78 +197,134 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/others/">其他 💡</a></div>
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/router/">路由 🛜</a></div>
     <h1 class="post-title">
-      AWS Ubuntu Server安装GUI
+      使用GitHub Actions自动编译OpenWrt镜像
     </h1>
     <div class="post-meta">
 
 
-<span title='2024-11-07 00:22:51 -0400 -0400'>2024-11-07</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;547 字&nbsp;·&nbsp;Kyxie
+<span title='2024-11-26 16:03:19 -0500 EST'>2024-11-26</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;250 字&nbsp;·&nbsp;Kyxie
 
 </div>
-  </header> 
-  <div class="post-content"><p>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都卡，AWS的免费用户又只能使用只有命令行的Ubuntu server。然后突发奇想诶我可不可以在Ubuntu server上安装一个GUI，查了一下这个方法似乎可行（其实还是不太可行，我已经打算放弃折腾了，不过倒是成功装上了GUI）。</p>
-<ol>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">目录</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#%e8%af%a6%e7%bb%86%e6%ad%a5%e9%aa%a4" aria-label="详细步骤">详细步骤</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><p><a href="https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/#%E7%BC%96%E8%AF%91%E9%95%9C%E5%83%8F">这篇文章</a>提到了自己编译Lean的OpenWrt镜像，之前一直在Linux虚拟机编译，耗时耗力还耗电。现在换成了GitHub Actions，编译任务就交给GitHub托管了。</p>
+<h3 id="详细步骤">详细步骤<a hidden class="anchor" aria-hidden="true" href="#详细步骤">#</a></h3>
+<ul>
 <li>
-<p>安装xrdp并enable，安装GUI就需要远程桌面系统，这是Linux的客户端</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get update
-</span></span><span style="display:flex;"><span>sudo apt install xrdp -y
-</span></span><span style="display:flex;"><span>sudo systemctl enable xrdp
-</span></span></code></pre></div></li>
+<p>首先Fork我的<a href="https://github.com/Kyxie/OpenWrt-RPi4">仓库</a></p>
+</li>
 <li>
-<p>我首先尝试的是gnome，尝试发现这个消耗资源太严重了，免费版用户用起来应该跟Windows一样卡</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo add-apt-repository ppa:gnome3-team/gnome3
-</span></span><span style="display:flex;"><span>sudo apt-get install gnome-shell ubuntu-gnome-desktop
-</span></span></code></pre></div></li>
+<p>将自己配置的<code>.config</code>文件粘贴到主目录下</p>
+</li>
 <li>
-<p>后来我决定试试更轻量化的XFCE</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install tasksel
-</span></span><span style="display:flex;"><span>sudo tasksel install xubuntu-desktop
-</span></span><span style="display:flex;"><span>sudo apt install xfce4 xfce4-goodies
-</span></span><span style="display:flex;"><span>sudo update-alternatives --config x-session-manager
-</span></span><span style="display:flex;"><span>sudo apt install lightdm
-</span></span><span style="display:flex;"><span>sudo dpkg-reconfigure lightdm
-</span></span></code></pre></div></li>
-<li>
-<p>设置密码</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo passwd ubuntu
-</span></span></code></pre></div></li>
-<li>
-<p>在EC2 Security group中选择Allow All Traffic</p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/b21e8202617b0d10104b9c83e3da73c0.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Allow all Traffic"  />
+<p>Setting→Actions→General→Workflow Permissions修改成Read and write permissions，点击保存</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/33d1681ea07196454751254357676475.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="GitHub Actions Permissions"  />
 </p>
 </li>
 <li>
-<p>在MacBook中应用商店下载Windows App，这是Window开发的远程桌面应用，有一说一Windows给Mac开发的软件是真不错</p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/794c156ac0d6e2377db04db96073defa.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Windows App"  />
+<p><code>git push</code>一个<code>tag</code>。GitHub就会自动编译了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Commit message&#34;</span>
+</span></span><span style="display:flex;"><span>git tag -a &lt;tag_name&gt; -m <span style="color:#e6db74">&#34;Tag message&#34;</span>
+</span></span><span style="display:flex;"><span>git push origin main
+</span></span><span style="display:flex;"><span>git push origin --tags
+</span></span></code></pre></div></li>
+<li>
+<p>编译产物在Release里</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/02be63f63fcffb6d8ff0f6009cdde240.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Images"  />
 </p>
 </li>
-<li>
-<p>选择Add a PC，Computer使用AWS提供的DNS，用户名一般为ubuntu，密码为刚才设置的密码</p>
-</li>
-<li>
-<p>之后就可以连接上了</p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/5f14b88c2441b52911775d2c8ac28aab.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="XFCE"  />
-</p>
-</li>
-</ol>
-<p>但是尽管XFCE已经很轻量化了，我下载完Chrome之后还是觉得卡，于是放弃折腾了，AWS免费版用户不推荐这么做。</p>
+</ul>
 
 
   </div>
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/tech/web/papermod/">
+  <a class="prev" href="https://kyxie.me/zh/blog/wool/checking-account/">
     <span class="title">« 上一页</span>
     <br>
-    <span>Hugo &#43; PaperMod搭建技术博客</span>
+    <span>我使用过的加拿大🇨🇦支票账户</span>
   </a>
-  <a class="next" href="https://kyxie.me/zh/blog/life/banff/">
+  <a class="next" href="https://kyxie.me/zh/blog/life/algonquin/">
     <span class="title">下一页 »</span>
     <br>
-    <span>Banff旅行游记</span>
+    <span>Algonquin旅行攻略</span>
   </a>
 </nav>
 

@@ -26,6 +26,15 @@
     </item>
     
     <item>
+      <title>使用GitHub Actions自动编译OpenWrt镜像</title>
+      <link>https://kyxie.me/zh/blog/tech/router/github-actions/</link>
+      <pubDate>Tue, 26 Nov 2024 16:03:19 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/github-actions/</guid>
+      <description>这篇文章提到了自己编译Lean的OpenWrt镜像，之前一直在Linux虚拟机编译，耗时耗力还耗电。现在换成了GitHub Actions，编</description>
+    </item>
+    
+    <item>
       <title>使用Samba将Linux映射为Windows磁盘</title>
       <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
       <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>

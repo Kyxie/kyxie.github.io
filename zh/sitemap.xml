@@ -71,6 +71,9 @@
                 href="https://kyxie.me/zh/blog/life/"
                 />
   </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/router/github-actions/</loc>
+    <lastmod>2024-11-26T16:03:19-05:00</lastmod>
+  </url><url>
     <loc>https://kyxie.me/zh/blog/life/algonquin/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
   </url><url>
@@ -105,7 +108,7 @@
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/</loc>
-    <lastmod>2024-11-15T14:35:15-05:00</lastmod>
+    <lastmod>2024-11-26T16:03:19-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"

@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Nov 2024 16:03:19 -0500</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用树莓派4B&#43;安装OpenWrt用作旁路由</title>
       <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
@@ -86,6 +86,15 @@
       
       <guid>https://kyxie.me/zh/blog/wool/checking-account/</guid>
       <description>Sep 2021, Scotiabank 之前办学签来加拿大走SDS用的是Scotiabank，因此我第一张checking account是Scotiabank的。学生账户的话</description>
+    </item>
+    
+    <item>
+      <title>使用GitHub Actions自动编译OpenWrt镜像</title>
+      <link>https://kyxie.me/zh/blog/tech/router/github-actions/</link>
+      <pubDate>Tue, 26 Nov 2024 16:03:19 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/github-actions/</guid>
+      <description>这篇文章提到了自己编译Lean的OpenWrt镜像，之前一直在Linux虚拟机编译，耗时耗力还耗电。现在换成了GitHub Actions，编</description>
     </item>
     
     <item>

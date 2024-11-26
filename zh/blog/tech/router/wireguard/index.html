@@ -98,8 +98,8 @@
   "keywords": [
     "Linux", "Wireguard"
   ],
-  "articleBody": "Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对\nsudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey \u003e publickey 编辑配置文件wg0.conf\n[Interface] PrivateKey = [LINUX_PRIVATE_KEY] Address = 192.168.100.1/24 ListenPort = 51820 [Peer] PublicKey = [WINDOWS_PUBLIC_KEY] Endpoint = [WINDOWS_IP]:51820 AllowedIPs = 192.168.100.2/32 启动wireguard\nsudo wg-quick up wg0 OpenWrt 安装 所需插件详见：使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang’s Blog\n配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0\n点击Generate new key pair，会自动生成一个公钥一个私钥，IP地址可以随便写一个私有地址的网段，我填写192.168.100.1/24，这就是这个VPN的子网，然后设置默认端口，可以随便写，这里我设置55555\n防火墙可以选择vpn\n在Network→Firewall→Custom Rules添加一条自定义命令\niptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE 这条命令的意思是针对子网192.168.100.0/24内的数据包，当数据从eth0也就是外接端口转发出去的时候，将数据包的源地址伪装成路由器的公网IP\n如果OpenWrt是主路由，则需要在Firewall→Traffic Rules中开放端口\n如果OpenWrt是旁路由，则需要在主路由上做端口转发\n在Network→Interface→wg0点击Edit，然后转到Peers，点击Add peer\n添加Description，比如我的Windows台式机 我们可以点击创建新的密钥对 建议创建Preshared Key Allow IPs就是这个节点在这个VPN网络的IP地址 Keep Alive可以设置为25 可以重启一下路由器\nWindows或Mac Os 安装 从这里下载wireguard app\n配置 在OpenWrt→Network→Interface→wg0→Edit Peer中可以很方便地为每个终端导出配置文件，复制粘贴在Windows客户端的wireguard中就可以了\n外网连接VPN 前提条件 需要一个域名\n需要公网IP\n一些包比如ddns-scripts-cloudflare和luci-app-ddns\n配置步骤 首先需要Cloudflare创建一条A记录，域名是vpn.kyxie.me，IP地址可以随便填，反正将来还会被DDNS覆盖，Proxy status选择关闭，只进行DNS不进行代理\n在这里点击Create Token，创建一个专用的API token\n选择Edit Zone DNS，点击Use Template\n按照下图配置\n生成API Token后注意保存好，只会显示一次\n然后回到OpenWrt→Service→Dynamic DNS→Services，添加一个ddns_ipv4，下面是详细配置，注意必须要安装了ddns-scripts-cloudflare之后才能在DDNS Service provider找到cloudflare.com-v4\nddns: \"Enabled\": true \"Lookup Hostname\": \"vpn.kyxie.me\" \"IP address version\": \"IPV4-Address\" \"DDNS Service provider\": \"cloudflare.com-v4\" \"Domain\": \"vpn@kyxie.me\" \"Username\": \"Bearer\" \"Password\": \"Your API Token\" \"Use HTTP Secure\": true \"Path to CA-Certificate\": \"/etc/ssl/certs\" 如果OpenWrt为主路由，这样应该可以完成DDNS解析了，但是如果OpenWrt为旁路由，由于路由器的wan口并不知道公网IP，需要使用借助网站来得知自己的公网IP，我们在Service→Dynamic DNS→Services→ddns_ipv4→Edit→Advanced Settings→IP address source选择URL，URL to detect可以选择默认ipv4的urlhttp://checkip/dymdms.com\n这样DDNS的配置就完成了，以后如果运营商给你换了公网IP也不会影响域名的配对了\n配置完后可以去cloudflare看看ip地址有没有刷新\n现在有了DDNS，我们就可以把Peer的EndPoint改成自己的域名了\n将OpenWrt生成的Configuration填入其他设备，就可以接入VPN了\nTrouble Shoot 我发现当Windows连入VPN后无法访问之前192.168.2.x的子网了，并不是连接不上而是被block，但是MacBook没有这个问题，192.168.2.66和192.168.100.1都是能访问的，这有可能是Windows没有自动添加路由表。使用管理员权限打开CMD，然后输入下面命令就能解决问题了\nroute add 192.168.2.0 MASK 255.255.255.0 192.168.100.1 METRIC 1 ",
-  "wordCount" : "1665",
+  "articleBody": "Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对\nsudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey \u003e publickey 编辑配置文件wg0.conf\n[Interface] PrivateKey = [LINUX_PRIVATE_KEY] Address = 192.168.100.1/24 ListenPort = 51820 [Peer] PublicKey = [WINDOWS_PUBLIC_KEY] Endpoint = [WINDOWS_IP]:51820 AllowedIPs = 192.168.100.2/32 启动wireguard\nsudo wg-quick up wg0 OpenWrt 安装 所需插件详见：使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang’s Blog\n配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0\n点击Generate new key pair，会自动生成一个公钥一个私钥，IP地址可以随便写一个私有地址的网段，我填写192.168.100.1/24，这就是这个VPN的子网，然后设置默认端口，可以随便写，这里我设置55555\n防火墙可以选择vpn\n在Network→Firewall→Custom Rules添加一条自定义命令\niptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE 这条命令的意思是针对子网192.168.100.0/24内的数据包，当数据从eth0也就是外接端口转发出去的时候，将数据包的源地址伪装成路由器的公网IP\n如果OpenWrt是主路由，则需要在Firewall→Traffic Rules中开放端口\n如果OpenWrt是旁路由，则需要在主路由上做端口转发\n在Network→Interface→wg0点击Edit，然后转到Peers，点击Add peer\n添加Description，比如我的Windows台式机 我们可以点击创建新的密钥对 建议创建Preshared Key Allow IPs就是这个节点在这个VPN网络的IP地址 Keep Alive可以设置为25 可以重启一下路由器\nWindows或Mac Os 安装 从这里下载wireguard app\n配置 在OpenWrt→Network→Interface→wg0→Edit Peer中可以很方便地为每个终端导出配置文件，复制粘贴在Windows客户端的wireguard中就可以了\n外网连接VPN 前提条件 需要一个域名\n需要公网IP\n一些包比如ddns-scripts-cloudflare和luci-app-ddns\n配置步骤 首先需要Cloudflare创建一条A记录，域名是vpn.kyxie.me，IP地址可以随便填，反正将来还会被DDNS覆盖，Proxy status选择关闭，只进行DNS不进行代理\n在这里点击Create Token，创建一个专用的API token\n选择Edit Zone DNS，点击Use Template\n按照下图配置\n生成API Token后注意保存好，只会显示一次\n然后回到OpenWrt→Service→Dynamic DNS→Services，添加一个ddns_ipv4，下面是详细配置，注意必须要安装了ddns-scripts-cloudflare之后才能在DDNS Service provider找到cloudflare.com-v4\nddns: \"Enabled\": true \"Lookup Hostname\": \"vpn.kyxie.me\" \"IP address version\": \"IPV4-Address\" \"DDNS Service provider\": \"cloudflare.com-v4\" \"Domain\": \"vpn@kyxie.me\" \"Username\": \"Bearer\" \"Password\": \"Your API Token\" \"Use HTTP Secure\": true \"Path to CA-Certificate\": \"/etc/ssl/certs\" 如果OpenWrt为主路由，这样应该可以完成DDNS解析了，但是如果OpenWrt为旁路由，由于路由器的wan口并不知道公网IP，需要使用借助网站来得知自己的公网IP，我们在Service→Dynamic DNS→Services→ddns_ipv4→Edit→Advanced Settings→IP address source选择URL，URL to detect可以选择默认ipv4的urlhttp://checkip/dymdms.com\n这样DDNS的配置就完成了，以后如果运营商给你换了公网IP也不会影响域名的配对了\n配置完后可以去cloudflare看看ip地址有没有刷新\n现在有了DDNS，我们就可以把Peer的EndPoint改成自己的域名了\n将OpenWrt生成的Configuration填入其他设备，就可以接入VPN了\nTrouble Shoot 我发现当Windows连入VPN后无法访问之前192.168.2.x的子网了，并不是连接不上而是被block，但是MacBook没有这个问题，192.168.2.x和192.168.100.x都是能访问的，这有可能是Windows没有自动添加路由表。使用管理员权限打开CMD，然后输入下面命令就能解决问题了\nroute add 192.168.2.0 MASK 255.255.255.0 192.168.100.1 METRIC 1 ",
+  "wordCount" : "1664",
   "inLanguage": "zh",
   "datePublished": "2024-05-25T00:19:19-04:00",
   "dateModified": "2024-11-15T14:35:15-05:00",
@@ -204,7 +204,7 @@
     <div class="post-meta">
 
 
-<span title='2024-05-25 00:19:19 -0400 EDT'>2024-05-25</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;1665 字&nbsp;·&nbsp;Kyxie
+<span title='2024-05-25 00:19:19 -0400 EDT'>2024-05-25</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;1664 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -352,17 +352,17 @@
 <ul>
 <li>
 <p>Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0</p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/54928a6bf010fa54d2bc586141c19e18.png" alt="创建Interface"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/54928a6bf010fa54d2bc586141c19e18.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="创建Interface"  />
 </p>
 </li>
 <li>
 <p>点击Generate new key pair，会自动生成一个公钥一个私钥，IP地址可以随便写一个私有地址的网段，我填写<code>192.168.100.1/24</code>，这就是这个VPN的子网，然后设置默认端口，可以随便写，这里我设置<code>55555</code></p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/b72361486cd8dd087ec4d594a603c211.png" alt="配置Wireguard"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/b72361486cd8dd087ec4d594a603c211.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="配置Wireguard"  />
 </p>
 </li>
 <li>
 <p>防火墙可以选择vpn</p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/f2013710ddadb1f0873e54ddded1c3f4.png" alt="防火墙"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/f2013710ddadb1f0873e54ddded1c3f4.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="防火墙"  />
 </p>
 </li>
 <li>
@@ -372,12 +372,12 @@
 </li>
 <li>
 <p>如果OpenWrt是主路由，则需要在Firewall→Traffic Rules中开放端口</p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/4e2829f0745fe7dfadc79cf6e591c9ea.png" alt="开放Wireguard端口"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/4e2829f0745fe7dfadc79cf6e591c9ea.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="开放Wireguard端口"  />
 </p>
 </li>
 <li>
 <p>如果OpenWrt是旁路由，则需要在主路由上做端口转发</p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/c4926488d62a1761b6ff74755b06d2c9.png" alt="端口转发"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/c4926488d62a1761b6ff74755b06d2c9.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="端口转发"  />
 </p>
 </li>
 <li>
@@ -389,7 +389,7 @@
 <li>Allow IPs就是这个节点在这个VPN网络的IP地址</li>
 <li>Keep Alive可以设置为25</li>
 </ul>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/475db4a7bc80e50761d9ce2c296477d1.png" alt="Peer设置"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/475db4a7bc80e50761d9ce2c296477d1.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Peer设置"  />
 </p>
 </li>
 <li>
@@ -418,7 +418,7 @@
 <ul>
 <li>
 <p>首先需要Cloudflare创建一条A记录，域名是<code>vpn.kyxie.me</code>，IP地址可以随便填，反正将来还会被DDNS覆盖，Proxy status选择关闭，只进行DNS不进行代理</p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/6a5cd1d302256f3e123a21ba051632b2.png" alt="创建A记录"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/6d6241f91da45972fadac9ccfbd81491.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="创建A记录"  />
 </p>
 </li>
 <li>
@@ -429,7 +429,7 @@
 </li>
 <li>
 <p>按照下图配置</p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/768d2c9afe64cb04966fce41297b7b0f.png" alt="API Token"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/768d2c9afe64cb04966fce41297b7b0f.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="API Token"  />
 </p>
 </li>
 <li>
@@ -450,7 +450,7 @@
 </span></span></code></pre></div></li>
 <li>
 <p>如果OpenWrt为主路由，这样应该可以完成DDNS解析了，但是如果OpenWrt为旁路由，由于路由器的wan口并不知道公网IP，需要使用借助网站来得知自己的公网IP，我们在Service→Dynamic DNS→Services→ddns_ipv4→Edit→Advanced Settings→IP address source选择URL，URL to detect可以选择默认ipv4的url<code>http://checkip/dymdms.com</code></p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/8f810d968199910348832165251b6bba.png" alt="URL Detect"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/8f810d968199910348832165251b6bba.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="URL Detect"  />
 </p>
 </li>
 <li>
@@ -469,7 +469,7 @@
 <h3 id="trouble-shoot">Trouble Shoot<a hidden class="anchor" aria-hidden="true" href="#trouble-shoot">#</a></h3>
 <ul>
 <li>
-<p>我发现当Windows连入VPN后无法访问之前<code>192.168.2.x</code>的子网了，并不是连接不上而是被block，但是MacBook没有这个问题，<code>192.168.2.66</code>和<code>192.168.100.1</code>都是能访问的，这有可能是Windows没有自动添加路由表。使用管理员权限打开CMD，然后输入下面命令就能解决问题了</p>
+<p>我发现当Windows连入VPN后无法访问之前<code>192.168.2.x</code>的子网了，并不是连接不上而是被block，但是MacBook没有这个问题，<code>192.168.2.x</code>和<code>192.168.100.x</code>都是能访问的，这有可能是Windows没有自动添加路由表。使用管理员权限打开CMD，然后输入下面命令就能解决问题了</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>route add 192.168.2.0 MASK 255.255.255.0 192.168.100.1 METRIC <span style="color:#ae81ff">1</span>
 </span></span></code></pre></div></li>
 </ul>
