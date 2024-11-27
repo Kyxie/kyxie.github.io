@@ -98,8 +98,8 @@
   "keywords": [
     "GitHub Actions", "OpenWrt", "Compile", "CI/CD"
   ],
-  "articleBody": "这篇文章提到了自己编译Lean的OpenWrt镜像，之前一直在Linux虚拟机编译，耗时耗力还耗电。现在换成了GitHub Actions，编译任务就交给GitHub托管了。\n详细步骤 首先Fork我的仓库\n将自己配置的.config文件粘贴到主目录下\nSetting → Actions → General → Workflow Permissions修改成Read and write permissions，点击保存\ngit push一个tag。GitHub就会自动编译了\ngit add . git commit -m \"Commit message\" git tag -a -m \"Tag message\" git push origin main git push origin --tags 编译产物在Release里\n",
-  "wordCount" : "225",
+  "articleBody": "这篇文章提到了自己编译Lean的OpenWrt镜像，之前一直在Linux虚拟机编译，耗时耗力还耗电。现在换成了GitHub Actions，编译任务就交给GitHub托管了。\n详细步骤 首先Fork我的仓库\n将自己配置的.config文件粘贴到主目录下\nSetting → Actions → General → Workflow Permissions修改成Read and write permissions，点击保存\ngit push一个tag。GitHub就会自动编译了\ngit add . git commit -m \"Commit message\" git tag -a -m \"Tag message\" git push origin main git push origin --tags # 删除 git tag -d git push origin --delete 编译产物在Release里\n这样每次在本地修改完.config，然后新建一个tag并上传到到GitHub，Actions就会自动帮你编译了\n",
+  "wordCount" : "292",
   "inLanguage": "zh",
   "datePublished": "2024-11-26T16:03:19-05:00",
   "dateModified": "2024-11-26T16:03:19-05:00",
@@ -204,7 +204,7 @@
     <div class="post-meta">
 
 
-<span title='2024-11-26 16:03:19 -0500 EST'>2024-11-26</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;225 字&nbsp;·&nbsp;Kyxie
+<span title='2024-11-26 16:03:19 -0500 EST'>2024-11-26</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;292 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -303,11 +303,18 @@
 </span></span><span style="display:flex;"><span>git tag -a &lt;tag_name&gt; -m <span style="color:#e6db74">&#34;Tag message&#34;</span>
 </span></span><span style="display:flex;"><span>git push origin main
 </span></span><span style="display:flex;"><span>git push origin --tags
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 删除</span>
+</span></span><span style="display:flex;"><span>git tag -d &lt;tag_name&gt;
+</span></span><span style="display:flex;"><span>git push origin --delete &lt;tag_name&gt;
 </span></span></code></pre></div></li>
 <li>
 <p>编译产物在Release里</p>
 <p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/02be63f63fcffb6d8ff0f6009cdde240.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Images"  />
 </p>
+</li>
+<li>
+<p>这样每次在本地修改完<code>.config</code>，然后新建一个tag并上传到到<code>GitHub</code>，Actions就会自动帮你编译了</p>
 </li>
 </ul>
 
