@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Wireguard配置 | Kunyang&#39;s Blog</title>
+<title>OpenWrt配置Wireguard | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Linux, Wireguard">
 <meta name="description" content="Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey &gt; publickey 编辑配置文件wg0.conf [Interface] PrivateKey">
 <meta name="author" content="Kyxie">
@@ -44,7 +44,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Wireguard配置" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="OpenWrt配置Wireguard" />
 <meta property="og:description" content="Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey &gt; publickey 编辑配置文件wg0.conf [Interface] PrivateKey" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/wireguard/" /><meta property="article:section" content="blog" />
@@ -52,7 +52,7 @@
 <meta property="article:modified_time" content="2024-11-15T14:35:15-05:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Wireguard配置"/>
+<meta name="twitter:title" content="OpenWrt配置Wireguard"/>
 <meta name="twitter:description" content="Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey &gt; publickey 编辑配置文件wg0.conf [Interface] PrivateKey"/>
 
 
@@ -82,7 +82,7 @@
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "Wireguard配置",
+      "name": "OpenWrt配置Wireguard",
       "item": "https://kyxie.me/zh/blog/tech/router/wireguard/"
     }
   ]
@@ -92,13 +92,13 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Wireguard配置",
-  "name": "Wireguard配置",
+  "headline": "OpenWrt配置Wireguard",
+  "name": "OpenWrt配置Wireguard",
   "description": "Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey \u0026gt; publickey 编辑配置文件wg0.conf [Interface] PrivateKey",
   "keywords": [
     "Linux", "Wireguard"
   ],
-  "articleBody": "Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对\nsudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey \u003e publickey 编辑配置文件wg0.conf\n[Interface] PrivateKey = [LINUX_PRIVATE_KEY] Address = 192.168.100.1/24 ListenPort = 51820 [Peer] PublicKey = [WINDOWS_PUBLIC_KEY] Endpoint = [WINDOWS_IP]:51820 AllowedIPs = 192.168.100.2/32 启动wireguard\nsudo wg-quick up wg0 OpenWrt 安装 所需插件详见：使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang’s Blog\n配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0\n点击Generate new key pair，会自动生成一个公钥一个私钥，IP地址可以随便写一个私有地址的网段，我填写192.168.100.1/24，这就是这个VPN的子网，然后设置默认端口，可以随便写，这里我设置55555\n防火墙可以选择vpn\n在Network → Firewall → Custom Rules添加一条自定义命令\niptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE 这条命令的意思是针对子网192.168.100.0/24内的数据包，当数据从eth0也就是外接端口转发出去的时候，将数据包的源地址伪装成路由器的公网IP\n如果OpenWrt是主路由，则需要在Firewall → Traffic Rules中开放端口\n如果OpenWrt是旁路由，则需要在主路由上做端口转发\n在Network → Interface → wg0点击Edit，然后转到Peers，点击Add peer\n添加Description，比如我的Windows台式机 我们可以点击创建新的密钥对 建议创建Preshared Key Allow IPs就是这个节点在这个VPN网络的IP地址 Keep Alive可以设置为25 可以重启一下路由器\nWindows或Mac Os 安装 从这里下载wireguard app\n配置 在OpenWrt → Network → Interface → wg0 → Edit Peer中可以很方便地为每个终端导出配置文件，复制粘贴在Windows客户端的wireguard中就可以了\n外网连接VPN 前提条件 需要一个域名\n需要公网IP\n一些包比如ddns-scripts-cloudflare和luci-app-ddns\n配置步骤 首先需要Cloudflare创建一条A记录，域名是vpn.kyxie.me，IP地址可以随便填，反正将来还会被DDNS覆盖，Proxy status选择关闭，只进行DNS不进行代理\n在这里点击Create Token，创建一个专用的API token\n选择Edit Zone DNS，点击Use Template\n按照下图配置\n生成API Token后注意保存好，只会显示一次\n然后回到OpenWrt → Service → Dynamic DNS → Services，添加一个ddns_ipv4，下面是详细配置，注意必须要安装了ddns-scripts-cloudflare之后才能在DDNS Service provider找到cloudflare.com-v4\nddns: \"Enabled\": true \"Lookup Hostname\": \"vpn.kyxie.me\" \"IP address version\": \"IPV4-Address\" \"DDNS Service provider\": \"cloudflare.com-v4\" \"Domain\": \"vpn@kyxie.me\" \"Username\": \"Bearer\" \"Password\": \"Your API Token\" \"Use HTTP Secure\": true \"Path to CA-Certificate\": \"/etc/ssl/certs\" 如果OpenWrt为主路由，这样应该可以完成DDNS解析了，但是如果OpenWrt为旁路由，由于路由器的wan口并不知道公网IP，需要使用借助网站来得知自己的公网IP，我们在Service → Dynamic DNS → Services → ddns_ipv4 → Edit → Advanced Settings → IP address source选择URL，URL to detect可以选择默认ipv4的urlhttp://checkip/dymdms.com\n这样DDNS的配置就完成了，以后如果运营商给你换了公网IP也不会影响域名的配对了\n配置完后可以去cloudflare看看ip地址有没有刷新\n现在有了DDNS，我们就可以把Peer的EndPoint改成自己的域名了\n将OpenWrt生成的Configuration填入其他设备，就可以接入VPN了\nTrouble Shoot 我发现当Windows连入VPN后无法访问之前192.168.2.x的子网了，并不是连接不上而是被block，但是MacBook没有这个问题，192.168.2.x和192.168.100.x都是能访问的，这有可能是Windows没有自动添加路由表。使用管理员权限打开CMD，然后输入下面命令就能解决问题了\nroute add 192.168.2.0 MASK 255.255.255.0 192.168.100.1 METRIC 1 ",
+  "articleBody": "Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对\nsudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey \u003e publickey 编辑配置文件wg0.conf\n[Interface] PrivateKey = [LINUX_PRIVATE_KEY] Address = 192.168.100.1/24 ListenPort = 51820 [Peer] PublicKey = [WINDOWS_PUBLIC_KEY] Endpoint = [WINDOWS_IP]:51820 AllowedIPs = 192.168.100.2/32 启动Wireguard\nsudo wg-quick up wg0 OpenWrt 安装 所需插件详见：使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang’s Blog\n配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0\n点击Generate new key pair，会自动生成一个公钥一个私钥，IP地址可以随便写一个私有地址的网段，我填写192.168.100.1/24，这就是这个VPN的子网，然后设置默认端口，可以随便写，这里我设置55555\n防火墙可以选择vpn\n在Network → Firewall → Custom Rules添加一条自定义命令\niptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE 这条命令的意思是针对子网192.168.100.0/24内的数据包，当数据从eth0也就是外接端口转发出去的时候，将数据包的源地址伪装成路由器的公网IP\n如果OpenWrt是主路由，则需要在Firewall → Traffic Rules中开放端口\n如果OpenWrt是旁路由，则需要在主路由上做端口转发\n在Network → Interface → wg0点击Edit，然后转到Peers，点击Add peer\n添加Description，比如我的Windows台式机 我们可以点击创建新的密钥对 建议创建Preshared Key Allow IPs就是这个节点在这个VPN网络的IP地址 Keep Alive可以设置为25 可以重启一下路由器\nWindows或Mac Os 安装 从这里下载Wireguard App\n配置 在OpenWrt → Network → Interface → wg0 → Edit Peer中可以很方便地为每个终端导出配置文件，复制粘贴在Windows客户端的wireguard中就可以了\n外网连接VPN 前提条件 需要一个域名\n需要公网IP\n一些包比如ddns-scripts-cloudflare和luci-app-ddns\n配置步骤 首先需要Cloudflare创建一条A记录，域名是vpn.kyxie.me，IP地址可以随便填，反正将来还会被DDNS覆盖，Proxy status选择关闭，只进行DNS不进行代理\n在这里点击Create Token，创建一个专用的API token\n选择Edit Zone DNS，点击Use Template\n按照下图配置\n生成API Token后注意保存好，只会显示一次\n然后回到OpenWrt → Service → Dynamic DNS → Services，添加一个ddns_ipv4，下面是详细配置，注意必须要安装了ddns-scripts-cloudflare之后才能在DDNS Service provider找到cloudflare.com-v4\nddns: \"Enabled\": true \"Lookup Hostname\": \"vpn.kyxie.me\" \"IP address version\": \"IPV4-Address\" \"DDNS Service provider\": \"cloudflare.com-v4\" \"Domain\": \"vpn@kyxie.me\" \"Username\": \"Bearer\" \"Password\": \"Your API Token\" \"Use HTTP Secure\": true \"Path to CA-Certificate\": \"/etc/ssl/certs\" 如果OpenWrt为主路由，这样应该可以完成DDNS解析了，但是如果OpenWrt为旁路由，由于路由器的wan口并不知道公网IP，需要使用借助网站来得知自己的公网IP，我们在Service → Dynamic DNS → Services → ddns_ipv4 → Edit → Advanced Settings → IP address source选择URL，URL to detect可以选择默认ipv4的urlhttp://checkip/dymdms.com\n这样DDNS的配置就完成了，以后如果运营商给你换了公网IP也不会影响域名的配对了\n配置完后可以去Cloudflare看看ip地址有没有刷新\n现在有了DDNS，我们就可以把Peer的EndPoint改成自己的域名了\n将OpenWrt生成的Configuration填入其他设备，就可以接入VPN了\nTrouble Shoot 我发现当Windows连入VPN后无法访问之前192.168.2.x的子网了，并不是连接不上而是被block，但是MacBook没有这个问题，192.168.2.x和192.168.100.x都是能访问的，这有可能是Windows没有自动添加路由表。使用管理员权限打开CMD，然后输入下面命令就能解决问题了\nroute add 192.168.2.0 MASK 255.255.255.0 192.168.100.1 METRIC 1 ",
   "wordCount" : "1564",
   "inLanguage": "zh",
   "datePublished": "2024-05-25T00:19:19-04:00",
@@ -199,7 +199,7 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/router/">路由 🛜</a></div>
     <h1 class="post-title">
-      Wireguard配置
+      OpenWrt配置Wireguard
     </h1>
     <div class="post-meta">
 
@@ -341,7 +341,7 @@
 </span></span><span style="display:flex;"><span>AllowedIPs <span style="color:#f92672">=</span> 192.168.100.2/32
 </span></span></code></pre></div></li>
 <li>
-<p>启动wireguard</p>
+<p>启动Wireguard</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo wg-quick up wg0
 </span></span></code></pre></div></li>
 </ul>
@@ -398,7 +398,7 @@
 </ul>
 <h3 id="windows或mac-os">Windows或Mac Os<a hidden class="anchor" aria-hidden="true" href="#windows或mac-os">#</a></h3>
 <h4 id="安装-2">安装<a hidden class="anchor" aria-hidden="true" href="#安装-2">#</a></h4>
-<p>从<a href="https://www.wireguard.com/install/">这里</a>下载wireguard app</p>
+<p>从<a href="https://www.wireguard.com/install/">这里</a>下载Wireguard App</p>
 <h4 id="配置-2">配置<a hidden class="anchor" aria-hidden="true" href="#配置-2">#</a></h4>
 <p>在OpenWrt → Network → Interface → wg0 → Edit Peer中可以很方便地为每个终端导出配置文件，复制粘贴在Windows客户端的wireguard中就可以了</p>
 <h3 id="外网连接vpn">外网连接VPN<a hidden class="anchor" aria-hidden="true" href="#外网连接vpn">#</a></h3>
@@ -457,7 +457,7 @@
 <p>这样DDNS的配置就完成了，以后如果运营商给你换了公网IP也不会影响域名的配对了</p>
 </li>
 <li>
-<p>配置完后可以去cloudflare看看ip地址有没有刷新</p>
+<p>配置完后可以去Cloudflare看看ip地址有没有刷新</p>
 </li>
 <li>
 <p>现在有了DDNS，我们就可以把Peer的EndPoint改成自己的域名了</p>

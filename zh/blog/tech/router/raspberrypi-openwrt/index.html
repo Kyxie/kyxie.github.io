@@ -98,8 +98,8 @@
   "keywords": [
     "Raspberry Pi", "OpenWrt"
   ],
-  "articleBody": "需要的硬件和软件 硬件 一台有网线接口的电脑 内存2GB以上的树莓派4B+ 8GB以上的小SD卡，可以插在树莓派上 SD卡的读卡器 一根网线 显示器（非必须），Micro USB - HDMI线（非必须） 软件 Balena Etcher，MacBook用户可以选择下载这个，也可以选择用命令行代替 VM Virtual Box和Ubuntu虚拟机，非必须，用于编译OpenWrt固件，不过也可以选择下载别人编译好的固件。有一点需要注意，我第一次编译60GB就足够了，但是第二次希望编译一个固件库，想把所有功能全部选上，60GB不够，建议分配128GB储存 SecureCRT或PuTTy，非必须，不知道大家用什么命令行终端，但是我MacBook和Windows都是用系统自带的命令行终端 获得镜像 下载镜像 可以从OpenWrt的官网下载镜像\n编译镜像 但我是比较能折腾的，我找到了这个仓库：Lean，readme有比较详细的编译步骤，于是决定自己尝试一下\n建议使用GitHub Action自动编译，详见：https://kyxie.me/zh/blog/tech/router/github-actions/\n第一次编译 首先在Ubuntu上clone repo\nhttps://github.com/coolsnowwolf/lede.git 安装依赖包\nsudo apt update -y sudo apt full-upgrade -y sudo apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \\ bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \\ git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev \\ libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev \\ libssl-dev libtool lrzsz mkisofs msmtp ninja-build p7zip p7zip-full patch pkgconf python3 \\ python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo \\ uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev 更新feed并选择配置\ncd lede ./scripts/feeds update -a ./scripts/feeds install -a make menuconfig 输入这个命令后就开启了配置页面，我使用的是树莓派4B，我目前的常用场景有见这里\n# 编译的目标系统 TargetSystem: - Broadcom BCM27xx Subtarget: - BCM2711 boards (64 bit) TargetProfile: - Raspberry Pi 4B/400/4CM (64bit) # 镜像参数 TargetImages: - ext4 # ext4格式的固件可方便地调整分区大小 - squashfs # squashfs格式的固件可恢复出厂设置 - KernelPartitionSize: 64 # boot分区大小为64M - RootFilesystemPartitionSize: 2048 # root分区大小为2048M # 可选工具 BaseSystem: - block-mount # 在LuCI界面添加\u003c挂载点\u003e菜单 - blockd # 自动挂载设备 - wireless-tools # 无线扩展工具 Administration: - htop # 添加htop命令 Firmware: - xxx # 选择你需要的网卡固件，默认即可 # 文件系统 KernelModules: Filesystems: - kmod-fs-ext4 - kmod-fs-ntfs - kmod-fs-squashfs - kmod-fs-vfat - kmod-fuse # 网卡支持 NetworkDevices: - kmod-xxx # 有线网卡支持，跟以下几项可根据需求选择性添加 NetworkSupport: - kmod-wireguard WirelessDrivers: - kmod-rt2800-usb # 添加Ralink RT5370芯片的USB无线网卡驱动 USBSupport: - kmod-usb-net: - kmod-usb-net-asix # 添加支持亚信的有线网卡支持 - kmod-usb-net-asix-ax88179 # 添加USB3.0的有线网卡芯片AX88179的驱动 - kmod-usb-net-rtl8152 # 添加USB2/3的有线网卡RTL8152/3芯片支持 - kmod-usb-net-sr9700 # 添加USB2.0的有线网卡SR9700芯片支持 - kmod-usb-core # 启用USB支持 - kmod-usb-hid # USB键鼠支持 - kmod-usb-ohci # 添加OHCI支持 - kmod-usb-storage # 启用USB存储 - kmod-usb-storage-extras - kmod-usb-uhci # 添加UHCI支持 - kmod-usb2 # 开启USB2支持 - kmod-usb3 # 开启USB3支持 # LuCI设置 LuCI: Collections: - luci # 开启luci Modules: Translations: - Chinese(zh-cn) # 中文支持 Themes: - luci-theme-agron # 添加主题 # LuCI应用 Applications: - luci-app-adguardhome # 去广告 - luci-app-alist # 文件共享 - luci-app-aria2 # 下载工具 - luci-app-advanced-reoot - luci-app-cloudflared - luci-app-filebrowser # 文件管理 - luci-app-filetransfer - luci-app-firewall # 防火墙 - luci-app-frps - luci-app-frpc # 内网穿透 - luci-app-hd-idle # 硬盘休眠 # - luci-app-lucky - luci-app-opkg # 软件包 - luci-app-openvpn - luci-app-openvpn-server - luci-app-qos # 服务质量 - luci-app-samba # 网络共享 - luci-app-shadowsocks-libev # 翻墙软件 - luci-app-upnp # UPnP服务 - luci-app-wol # 网络唤醒 Protocols: - luci-protocol-wireguard # 网络工具 Network: DownloadManager: - ariang # Aria2管理页面 FileTransfer: - Aria2Configuration: - *** # 选择Aria2支持的功能 - curl # 添加curl命令 - wget # 添加wget命令 IP Addresses and Names: - ddns-scripts-cloudflare - drill VPN: - wireguard-tools # 实用工具 Utilities: Compression: - bsdtar # tar打包工具 - gzip # GZ 压缩套件 Disc: - fdisk # 磁盘分区工具 - lsblk # 磁盘查看工具 Filesystem: - ntfs-3g # NTFS读写支持 - resize2fs # 分区大小调整 - f2fs-tools Terminal: - screen # 添加screen - pciutils # 添加lspci命令 - usbutils # 添加lsusb命令 - losetup - qrencode 配置完成后选择Save，会保存为一个.config文件。在最后一步安装之前还需要安装screen，用于创建持久会话，否则如果不小心关了ssh之前编译的就都没了（你猜我是怎么知道的）\nsudo apt install screen screen -S buildlede 最后执行命令用8个线程下载dl库，第一次编译用1个线程编译。在这里一开始我用的AWS的Ubuntu一直下不下来，没有办法换成了本地的Ubuntu虚拟机才下载编译成功\nmake download -j8 make V=s -j1 然后就是等待编译，编译完成后在bin\\targets可以选择openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz这个版本进行烧录\n单独编译 有时候用着用着发现我们需要安装一个插件，这种情况下我们可以单独编译一个插件\n编辑.config文件\nmake menuconfig 找到我们想单独编译的插件，比如luci-app-diskman，这是个管理路由器上的磁盘和分区的插件，第一次编译选择为[*]，意思是作为一个内置模块编译，不可以卸载。这次的话我们可以选择为[M]，意思是作为一个模块编译\n使用如下命令可以编译\nmake package/luci-app-diskman/compile V=s 编译完成后在/bin/packages/aarch64_cortex-a72/luci文件夹下能找到luci-app-diskman_v0.2.11_all.ipk\n打开openwrt，System → File Transfer选择文件上传，右下角安装就可以了\n我安装完后OpenWrt没有立刻出现新安装的插件，过了一段时间才出现的\n如果要单独编译内核模块，比如kmod-wireguard，可以在kernel module中选中它为[M]，然后运行\nmake package/kernel/linux/compile V=s 很快编译就完成了，编译出来的包在bin/packages///kmod-wireguard_xxx.ipk\n第二次编译 拉取最新feeds\nsudo sh -c \"apt update \u0026\u0026 apt upgrade -y\" git pull ./scripts/feeds update -a \u0026\u0026 ./scripts/feeds install -a 清除旧的编译产物（可选）\nmake clean # 源码有大规模更新或者内核更新后执行，以保证编译质量 # 此操作会删除 /bin 和 /build_dir 目录中的文件 make dirclean # 如果要更换架构，例如要从 x86_64 换到 MediaTek Ralink MIPS 建议执行以下命令深度清理 # 此操作会删除 /bin 和 /build_dir 目录的中的文件（make clean），以及 /staging_dir、/toolchain、/tmp 和 /logs 中的文件 编译\nmake defconfig make download -j8 find dl -size -1024c -exec ls -l {} \\; make -j$(nproc) || make -j1 || make -j1 V=s 制作Docker镜像 以上的教程能得到使OpenWrt直接在树莓派上运行的镜像，但是目前我的想法是，让树莓派运行Ubuntu作为主系统，OpenWrt作为Docker Image部署在树莓派上，这样我们还可以运行一些其他的服务，以后更换重新编译的OpenWrt镜像也就不需要重新刷机了，仅仅换个Docker镜像即可。\n首先解压镜像文件，这里我们选择openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz\ngzip -d openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz 挂载镜像文件\nsudo losetup -fP openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img sudo mount /dev/loop0p2 /mnt 制作rootfs.tar\nsudo tar -C /mnt -czf rootfs.tar . sudo umount /mnt sudo losetup -d /dev/loop0 创建Dockerfile\nFROM arm64v8/alpine:latest ADD rootfs.tar / CMD [\"/sbin/init\"] 构建Docker镜像\nsudo docker buildx build --platform linux/arm64 -t openwrt-docker --load . 上传到Dockerhub\nsudo docker tag openwrt-docker dockerhub-username/openwrt-docker:latest sudo docker push dockerhub-username/openwrt-docker:latest 然后回到树莓派，拉取镜像，注意这里最好用命令行\ndocker pull dockerhub-username/openwrt-docker:latest 创建一个容器来运行镜像\ndocker run -it --name openwrt-docker dockerhub-username/openwrt-docker:latest 烧录 直接烧录的image我们选择openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz\nWindows 可以使用Balena Etcher或者其他的disk imager软件将image烧录到SD卡中，非常简单，按顺序一步一步来即可\nMacOS MacOS也可以使用Balena Etcher将镜像导入到SD卡中，但是我不喜欢下乱七八糟的软件，干脆直接使用命令行了\n找到SD卡的磁盘编号，这里我的SD卡磁盘为/dev/disk4\ndiskutil list /dev/disk4 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: FDisk_partition_scheme *7.9 GB disk4 1: Windows_FAT_32 BOOT 67.1 MB disk4s1 2: Linux 109.1 MB disk4s2 (free space) 7.7 GB - 由于我这里以前装过一个不带GUI版本的OpenWrt，SD卡多了几个分区，这次打算重新装一个带着GUI的\n首先恢复分区，这个命令同时把SD卡进行格式化\ndiskutil eraseDisk FAT32 SDCARD MBRFormat /dev/disk4 恢复分区之后\ndiskutil list /dev/disk4 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: FDisk_partition_scheme *7.9 GB disk4 1: DOS_FAT_32 SDCARD 7.9 GB disk4s1 输入以下命令卸载（但不移除） SD 卡，否则会显示busy\ndiskutil unmountDisk /dev/disk4 解压下载的image\ngunzip ./openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz 使用 dd 写入解压后的 .img 文件，注意这一步千万不要抄错了磁盘编号，否则伤害不可逆，dd是个很强的命令\nsudo dd if=/Users/xxx/Desktop/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img of=/dev/disk4 bs=1M status=progress 如果不报错一般就是成功了\n最后将SD卡从电脑拔出，插到树莓派上，启动树莓派，这时使用网线将树莓派的以太网接口和电脑的以太网接口相连。由于OpenWrt 默认将树莓派的eth0接口桥接到br-lan并使用 IP 地址 192.168.1.1，我们要配置一下电脑端的Ethernet接口是否也在192.168.1.x的子网，x可以选2 - 255的随便一个数\n当树莓派就跟电脑在相同子网后，在浏览器中输入192.168.1.1，就能登录到OpenWrt的GUI（LuCI）了，默认用户名和密码是root和password\n大功告成了\n连接路由器 我家主路由器使用的子网为192.168.2.x，需要将树莓派改为这个子网下（当然如果主路由器子网为192.168.1.x的话就不用多折腾这一步了）。我们先禁用桥接模式和修改IP地址\nvi /etc/config/network 修改文件为\nconfig interface 'lan' option device 'eth0' option proto 'static' option ipaddr '192.168.2.66' option netmask '255.255.255.0' option gateway '192.168.2.1' option dns '192.168.2.1' option ip6assign '60' 禁用DHCP，防止跟主路由器的DHCP冲突\nvi /etc/config/dhcp config dhcp 'lan' option interface 'lan' option ignore '1' 检查防火墙配置\nvi /etc/config/firewall config zone option name 'lan' list network 'lan' option input 'ACCEPT' option output 'ACCEPT' option forward 'ACCEPT' 应用设置\n/etc/init.d/network restart 这时由于我们电脑还在192.168.1.x子网，但是树莓派已经到了192.168.2.x子网了，所以连接必定是断开的，我们再把电脑端的Ethernet端口改回192.168.2.x子网，就又能重新访问了\n将树莓派与电脑断开连接，插到路由器的LAN口上，应该能正常访问网络，而且电脑也能访问树莓派了\n设置旁路由 以上步骤只是将树莓派作为一个用网设备加入了家庭的局域网，我们的终端设备还是沿着主路由这条线进行通信，要想作为旁路由还需要进一步设置\n其实很简单，我们只要将Wifi的网关从路由器之前DHCP自动分配的地址改为旁路由树莓派即可，假设我的主路由器IP地址为192.168.2.1，我的电脑IP地址为192.168.2.54，我的树莓派的IP地址为192.168.2.66，我需要这么修改：\nMacBook也一样\n同样的iPhone也可以设置，这里我就不放图了\n因为怕炸网我暂时先使用这种非侵入式的设置，它只影响把网关设置为软路由的终端，这样一旦网坏了只影响部分设备，或者我修改一下网关修改到主路由器的IP地址就可以了\n详见：软路由做旁路由三步搞定！openwrt软路由 R2S R4S openwrt软路由上网设置\n安装插件 卸载插件 可以在System → Software → Installed中卸载插件 注意直接编译进内核固件的插件无法卸载 安装插件 直接安装 国外使用\nsrc/gz openwrt_core https://downloads.openwrt.org/releases/23.05.0/targets/bcm27xx/bcm2711/packages src/gz openwrt_base https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/base src/gz openwrt_luci https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/luci src/gz openwrt_packages https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/packages src/gz openwrt_routing https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/routing src/gz openwrt_telephony https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/telephony 国内使用\nsrc/gz openwrt_core https://mirrors.tencent.com/lede/snapshots/targets/bcm27xx/bcm2711/packages src/gz openwrt_base https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/base src/gz openwrt_luci https://mirrors.tencent.com/lede/releases/18.06.9/packages/aarch64_cortex-a72/luci src/gz openwrt_packages https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/packages src/gz openwrt_routing https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/routing src/gz openwrt_telephony https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/telephony 自己编译 首先需要在Ubuntu上编译插件\nmake menuconfig 在LuCI → Applications可以把固件全选上，毕竟我们是做个固件库，之后有啥需求就装啥。选择时应该模块化，按空格让前面括号里出现一个M。保存后回到命令行开始编译\nmake -j1 V=s 编译完成后在bin\\packages中就能找到我们编译的全部插件了，而且都为.ipk格式\n常见使用场景 去广告 所需插件（具体配置路径见这里） luci-app-adguardhome 配置参考：【韩风Talk】Openwrt插件对广告说不，怎么做？两款热门插件随你用！_哔哩哔哩_bilibili 外网访问我的Windows台式机 Wireguard Wireguard因为比OpenVPN轻量化速度更快，因此是我目前首选 所需插件（具体配置路径见这里） kmod-wireguard luci-proto-wireguard wireguard-tools luci-app-wireguard（可以不选，而且在我的menuconfig没找到） 详细配置见：Wireguard配置 | Kunyang’s Blog ZeroTire 所需插件\nluci-app-zerotire 配置参考：【韩风Talk】Openwrt的Zerotier插件玩法，异地组网不求人，大虚拟局域网走起！_哔哩哔哩_bilibili\nOpenVPN 所需插件 luci-app-openvpn luci-app-openvpn-server luci-i18n-openvpn-server-zh-cn luci-i18n-openvpn-zh-cn open-vpn-easy-rsa openvpn-openssl 文件管理 推荐插件 luci-app-filebrowser：Service → File Browser luci-app-samba：NAS → Network Shares，有一点视频里说的点击Path会进入/luci/admin/system/fstab，但是我的menuconfig没有luci-app-fstab，因此会404，好在如果编译了BaseSystem → block-mount的话这个url：/luci/admin/system/mounts跟视频里的是一样的。我认为这是个bug luci-app-filetransfer：System → File Transfer，用于上传ipk包 luci-app-alist：Services → AList 配置参考： 【韩风Talk】Openwrt文件管理的玩法合集，这期顺便解决中文乱码问题！_哔哩哔哩_bilibili 这期玩Alist的网络安全防护，随便折腾一下免费的内网穿透_哔哩哔哩_bilibili 扩容 OpenWrt的空间扩容问题，可以这么直接解决！_哔哩哔哩_bilibili OpenWrt空间扩容：这波补充超有料！_哔哩哔哩_bilibili ",
-  "wordCount" : "5169",
+  "articleBody": "需要的硬件和软件 硬件 一台有网线接口的电脑 内存2GB以上的树莓派4B+ 8GB以上的小SD卡，可以插在树莓派上 SD卡的读卡器 一根网线 显示器（非必须），Micro USB - HDMI线（非必须） 软件 Balena Etcher，MacBook用户可以选择下载这个，也可以选择用命令行代替 VM Virtual Box和Ubuntu虚拟机，非必须，用于编译OpenWrt固件，不过也可以选择下载别人编译好的固件。有一点需要注意，我第一次编译60GB就足够了，但是第二次希望编译一个固件库，想把所有功能全部选上，60GB不够，建议分配128GB储存 SecureCRT或PuTTy，非必须，不知道大家用什么命令行终端，但是我MacBook和Windows都是用系统自带的命令行终端 获得镜像 下载镜像 可以从OpenWrt的官网下载镜像\n但我是比较能折腾的，我找到了这个仓库：Lean，readme有比较详细的编译步骤，于是决定自己尝试一下。可以先在本地编译一次熟悉一下编译的流程，然后再使用GitHub Actions编译。\n本地编译 第一次编译 首先在Ubuntu上clone repo\nhttps://github.com/coolsnowwolf/lede.git 安装依赖包\nsudo apt update -y sudo apt full-upgrade -y sudo apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \\ bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \\ git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev \\ libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev \\ libssl-dev libtool lrzsz mkisofs msmtp ninja-build p7zip p7zip-full patch pkgconf python3 \\ python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo \\ uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev 更新feed并选择配置\ncd lede ./scripts/feeds update -a ./scripts/feeds install -a make menuconfig 输入这个命令后就开启了配置页面，我使用的是树莓派4B，我目前的常用场景有见这里\n# 编译的目标系统 TargetSystem: - Broadcom BCM27xx Subtarget: - BCM2711 boards (64 bit) TargetProfile: - Raspberry Pi 4B/400/4CM (64bit) # 镜像参数 TargetImages: - ext4 # ext4格式的固件可方便地调整分区大小 - squashfs # squashfs格式的固件可恢复出厂设置 - KernelPartitionSize: 64 # boot分区大小为64M - RootFilesystemPartitionSize: 2048 # root分区大小为2048M # 可选工具 BaseSystem: - block-mount # 在LuCI界面添加\u003c挂载点\u003e菜单 - blockd # 自动挂载设备 - wireless-tools # 无线扩展工具 Administration: - htop # 添加htop命令 # 文件系统 KernelModules: Filesystems: - kmod-fs-ext4 - kmod-fs-f2fs - kmod-fs-ntfs - kmod-fs-squashfs - kmod-fs-vfat - kmod-fuse # # 网卡支持 # NetworkDevices: # - kmod-xxx # 有线网卡支持，跟以下几项可根据需求选择性添加 NetworkSupport: - kmod-wireguard # WirelessDrivers: # - kmod-rt2800-usb # 添加Ralink RT5370芯片的USB无线网卡驱动 USBSupport: - kmod-usb-net: # - kmod-usb-net-asix # 添加支持亚信的有线网卡支持 # - kmod-usb-net-asix-ax88179 # 添加USB3.0的有线网卡芯片AX88179的驱动 # - kmod-usb-net-rtl8152 # 添加USB2/3的有线网卡RTL8152/3芯片支持 # - kmod-usb-net-sr9700 # 添加USB2.0的有线网卡SR9700芯片支持 - kmod-usb-core # 启用USB支持 - kmod-usb-hid # USB键鼠支持 # - kmod-usb-ohci # 添加OHCI支持，老USB才需要 - kmod-usb-storage # 启用USB存储 - kmod-usb-storage-extras # - kmod-usb-uhci # 添加UHCI支持，老USB才需要 - kmod-usb2 # 开启USB2支持 - kmod-usb3 # 开启USB3支持 # LuCI设置 LuCI: Collections: - luci # 开启luci Modules: Translations: - Chinese(zh-cn) # 中文支持 Themes: - luci-theme-agron # 添加主题 # LuCI应用 Applications: - luci-app-adguardhome # 去广告 - luci-app-advanced-reoot - luci-app-alist # 文件共享 - luci-app-aria2 # 下载工具 - luci-app-cloudflared - luci-app-ddns - luci-app-diskman - luci-app-dockerman - luci-app-filebrowser # 文件管理 - luci-app-filetransfer - luci-app-firewall # 防火墙 # - luci-app-frps # - luci-app-frpc # 内网穿透 # - luci-app-hd-idle # 硬盘休眠 # - luci-app-lucky - luci-app-opkg # 软件包 # - luci-app-openvpn # - luci-app-openvpn-server - luci-app-passwall # - luci-app-qos # 服务质量 - luci-app-samba # 网络共享 - luci-app-smartdns - luci-app-upnp # UPnP服务 # - luci-app-usb-printer - luci-app-wol # 网络唤醒 Protocols: - luci-protocol-wireguard # 网络工具 Network: DownloadManager: - ariang # Aria2管理页面 FileTransfer: - curl # 添加curl命令 - wget-ssl # 添加wget命令 IP Addresses and Names: - ddns-scripts-cloudflare - drill VPN: - wireguard-tools # 实用工具 Utilities: Compression: - bsdtar # tar打包工具 - gzip # GZ 压缩套件 Disc: - fdisk # 磁盘分区工具 - lsblk # 磁盘查看工具 Filesystem: - f2fs-tools - ntfs-3g # NTFS读写支持 - resize2fs # 分区大小调整 Terminal: - screen # 添加screen - losetup - pciutils # 添加lspci命令 - qrencode - usbutils # 添加lsusb命令 配置完成后选择Save，会保存为一个.config文件。在最后一步安装之前还需要安装screen，用于创建持久会话，否则如果不小心关了ssh之前编译的就都没了（你猜我是怎么知道的）\nsudo apt install screen screen -S buildlede 最后执行命令用8个线程下载dl库，第一次编译用1个线程编译。在这里一开始我用的AWS的Ubuntu一直下不下来，没有办法换成了本地的Ubuntu虚拟机才下载编译成功\nmake download -j8 make V=s -j1 然后就是等待编译，编译完成后在bin\\targets可以选择openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz这个版本进行烧录\n单独编译 有时候用着用着发现我们需要安装一个插件，这种情况下我们可以单独编译一个插件\n编辑.config文件\nmake menuconfig 找到我们想单独编译的插件，比如luci-app-diskman，这是个管理路由器上的磁盘和分区的插件，第一次编译选择为[*]，意思是作为一个内置模块编译，不可以卸载。这次的话我们可以选择为[M]，意思是作为一个模块编译\n使用如下命令可以编译\nmake package/luci-app-diskman/compile V=s 编译完成后在/bin/packages/aarch64_cortex-a72/luci文件夹下能找到luci-app-diskman_v0.2.11_all.ipk\n打开openwrt，System → File Transfer选择文件上传，右下角安装就可以了\n我安装完后OpenWrt没有立刻出现新安装的插件，过了一段时间才出现的\n如果要单独编译内核模块，比如kmod-wireguard，可以在kernel module中选中它为[M]，然后运行\nmake package/kernel/linux/compile V=s 很快编译就完成了，编译出来的包在bin/packages///kmod-wireguard_xxx.ipk\n第二次编译 拉取最新feeds\nsudo sh -c \"apt update \u0026\u0026 apt upgrade -y\" git pull ./scripts/feeds update -a \u0026\u0026 ./scripts/feeds install -a 清除旧的编译产物（可选）\nmake clean # 源码有大规模更新或者内核更新后执行，以保证编译质量 # 此操作会删除 /bin 和 /build_dir 目录中的文件 make dirclean # 如果要更换架构，例如要从 x86_64 换到 MediaTek Ralink MIPS 建议执行以下命令深度清理 # 此操作会删除 /bin 和 /build_dir 目录的中的文件（make clean），以及 /staging_dir、/toolchain、/tmp 和 /logs 中的文件 编译\nmake defconfig make download -j8 find dl -size -1024c -exec ls -l {} \\; make -j$(nproc) || make -j1 || make -j1 V=s GitHub Actions编译 熟悉了本地编译的流程之后就推荐使用GitHub Actions进行编译了，这样可以把脏活累活全部交给云，本来想自己写Workflow的yaml，但是找到了这个仓库，决定还是不重复造轮子了哈哈哈。\n制作Docker镜像 如果希望将OpenWrt系统制作为Docker镜像\n首先解压镜像文件，这里我们选择openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz\ngzip -d openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz 挂载镜像文件\nsudo losetup -fP openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img sudo mount /dev/loop0p2 /mnt 制作rootfs.tar\nsudo tar -C /mnt -czf rootfs.tar . sudo umount /mnt sudo losetup -d /dev/loop0 创建Dockerfile\nFROM arm64v8/alpine:latest ADD rootfs.tar / CMD [\"/sbin/init\"] 构建Docker镜像\nsudo docker buildx build --platform linux/arm64 -t openwrt-docker --load . 上传到Dockerhub\nsudo docker tag openwrt-docker dockerhub-username/openwrt-docker:latest sudo docker push dockerhub-username/openwrt-docker:latest 然后回到树莓派，拉取镜像，注意这里最好用命令行\ndocker pull dockerhub-username/openwrt-docker:latest 创建一个容器来运行镜像\ndocker run -it --name openwrt-docker dockerhub-username/openwrt-docker:latest 烧录 直接烧录的image我们选择openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz\nWindows 可以使用Balena Etcher或者其他的disk imager软件将image烧录到SD卡中，非常简单，按顺序一步一步来即可\nMacOS MacOS也可以使用Balena Etcher将镜像导入到SD卡中，但是我不喜欢下乱七八糟的软件，干脆直接使用命令行了\n找到SD卡的磁盘编号，这里我的SD卡磁盘为/dev/disk4\ndiskutil list /dev/disk4 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: FDisk_partition_scheme *7.9 GB disk4 1: Windows_FAT_32 BOOT 67.1 MB disk4s1 2: Linux 109.1 MB disk4s2 (free space) 7.7 GB - 由于我这里以前装过一个不带GUI版本的OpenWrt，SD卡多了几个分区，这次打算重新装一个带着GUI的\n首先恢复分区，这个命令同时把SD卡进行格式化\ndiskutil eraseDisk FAT32 SDCARD MBRFormat /dev/disk4 恢复分区之后\ndiskutil list /dev/disk4 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: FDisk_partition_scheme *7.9 GB disk4 1: DOS_FAT_32 SDCARD 7.9 GB disk4s1 输入以下命令卸载（但不移除） SD 卡，否则会显示busy\ndiskutil unmountDisk /dev/disk4 解压下载的image\ngunzip ./openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz 使用 dd 写入解压后的 .img 文件，注意这一步千万不要抄错了磁盘编号，否则伤害不可逆，dd是个很强的命令\nsudo dd if=/Users/xxx/Desktop/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img of=/dev/disk4 bs=1M status=progress 如果不报错一般就是成功了\n最后将SD卡从电脑拔出，插到树莓派上，启动树莓派，这时使用网线将树莓派的以太网接口和电脑的以太网接口相连。由于OpenWrt 默认将树莓派的eth0接口桥接到br-lan并使用 IP 地址 192.168.1.1，我们要配置一下电脑端的Ethernet接口是否也在192.168.1.x的子网，x可以选2 - 255的随便一个数\n当树莓派就跟电脑在相同子网后，在浏览器中输入192.168.1.1，就能登录到OpenWrt的GUI（LuCI）了，默认用户名和密码是root和password\n大功告成了\n连接路由器 我家主路由器使用的子网为192.168.2.x，需要将树莓派改为这个子网下（当然如果主路由器子网为192.168.1.x的话就不用多折腾这一步了）。我们先禁用桥接模式和修改IP地址\nvi /etc/config/network 修改文件为\nconfig interface 'lan' option device 'eth0' option proto 'static' option ipaddr '192.168.2.66' option netmask '255.255.255.0' option gateway '192.168.2.1' option dns '192.168.2.1' option ip6assign '60' 禁用DHCP，防止跟主路由器的DHCP冲突\nvi /etc/config/dhcp config dhcp 'lan' option interface 'lan' option ignore '1' 检查防火墙配置\nvi /etc/config/firewall config zone option name 'lan' list network 'lan' option input 'ACCEPT' option output 'ACCEPT' option forward 'ACCEPT' 应用设置\n/etc/init.d/network restart 这时由于我们电脑还在192.168.1.x子网，但是树莓派已经到了192.168.2.x子网了，所以连接必定是断开的，我们再把电脑端的Ethernet端口改回192.168.2.x子网，就又能重新访问了\n将树莓派与电脑断开连接，插到路由器的LAN口上，应该能正常访问网络，而且电脑也能访问树莓派了\n设置旁路由 以上步骤只是将树莓派作为一个用网设备加入了家庭的局域网，我们的终端设备还是沿着主路由这条线进行通信，要想作为旁路由还需要进一步设置\n其实很简单，我们只要将Wifi的网关从路由器之前DHCP自动分配的地址改为旁路由树莓派即可，假设我的主路由器IP地址为192.168.2.1，我的电脑IP地址为192.168.2.54，我的树莓派的IP地址为192.168.2.66，我需要这么修改：\nMacBook也一样\n同样的iPhone也可以设置，这里我就不放图了\n因为怕炸网我暂时先使用这种非侵入式的设置，它只影响把网关设置为软路由的终端，这样一旦网坏了只影响部分设备，或者我修改一下网关修改到主路由器的IP地址就可以了\n详见：软路由做旁路由三步搞定！openwrt软路由 R2S R4S openwrt软路由上网设置\n安装插件 卸载插件 可以在System → Software → Installed中卸载插件 注意直接编译进内核固件的插件无法卸载 安装插件 直接安装 国外使用\nsrc/gz openwrt_core https://downloads.openwrt.org/releases/23.05.0/targets/bcm27xx/bcm2711/packages src/gz openwrt_base https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/base src/gz openwrt_luci https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/luci src/gz openwrt_packages https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/packages src/gz openwrt_routing https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/routing src/gz openwrt_telephony https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/telephony 国内使用\nsrc/gz openwrt_core https://mirrors.tencent.com/lede/snapshots/targets/bcm27xx/bcm2711/packages src/gz openwrt_base https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/base src/gz openwrt_luci https://mirrors.tencent.com/lede/releases/18.06.9/packages/aarch64_cortex-a72/luci src/gz openwrt_packages https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/packages src/gz openwrt_routing https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/routing src/gz openwrt_telephony https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/telephony 自己编译 首先需要在Ubuntu上编译插件\nmake menuconfig 在LuCI → Applications可以把固件全选上，毕竟我们是做个固件库，之后有啥需求就装啥。选择时应该模块化，按空格让前面括号里出现一个M。保存后回到命令行开始编译\nmake -j1 V=s 编译完成后在bin\\packages中就能找到我们编译的全部插件了，而且都为.ipk格式\n常见使用场景 去广告 所需插件（具体配置路径见这里） luci-app-adguardhome 配置参考：【韩风Talk】Openwrt插件对广告说不，怎么做？两款热门插件随你用！_哔哩哔哩_bilibili 外网访问我的Windows台式机 Wireguard Wireguard因为比OpenVPN轻量化速度更快，因此是我目前首选 所需插件（具体配置路径见这里） kmod-wireguard luci-proto-wireguard wireguard-tools luci-app-wireguard（可以不选，而且在我的menuconfig没找到） 配置参考：Wireguard配置 | Kunyang’s Blog ZeroTire 所需插件\nluci-app-zerotire 配置参考：【韩风Talk】Openwrt的Zerotier插件玩法，异地组网不求人，大虚拟局域网走起！_哔哩哔哩_bilibili\nOpenVPN 所需插件 luci-app-openvpn luci-app-openvpn-server luci-i18n-openvpn-server-zh-cn luci-i18n-openvpn-zh-cn open-vpn-easy-rsa openvpn-openssl 文件管理 文件管理器 luci-app-filebrowser luci-app-filetransfer luci-app-samba 配置参考：【韩风Talk】Openwrt文件管理的玩法合集，这期顺便解决中文乱码问题！_哔哩哔哩_bilibili 云盘管理器 luci-app-alist luci-app-cloudflared 配置参考： ",
+  "wordCount" : "4732",
   "inLanguage": "zh",
   "datePublished": "2024-11-11T13:13:13-04:00",
   "dateModified": "2024-11-15T14:35:15-05:00",
@@ -204,7 +204,7 @@
     <div class="post-meta">
 
 
-<span title='2024-11-11 13:13:13 -0400 -0400'>2024-11-11</span>&nbsp;·&nbsp;11 分钟&nbsp;·&nbsp;5169 字&nbsp;·&nbsp;Kyxie
+<span title='2024-11-11 13:13:13 -0400 -0400'>2024-11-11</span>&nbsp;·&nbsp;10 分钟&nbsp;·&nbsp;4732 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -229,7 +229,7 @@
                         <li>
                             <a href="#%e4%b8%8b%e8%bd%bd%e9%95%9c%e5%83%8f" aria-label="下载镜像">下载镜像</a></li>
                         <li>
-                            <a href="#%e7%bc%96%e8%af%91%e9%95%9c%e5%83%8f" aria-label="编译镜像">编译镜像</a><ul>
+                            <a href="#%e6%9c%ac%e5%9c%b0%e7%bc%96%e8%af%91" aria-label="本地编译">本地编译</a><ul>
                                     
                         <li>
                             <a href="#%e7%ac%ac%e4%b8%80%e6%ac%a1%e7%bc%96%e8%af%91" aria-label="第一次编译">第一次编译</a></li>
@@ -238,6 +238,8 @@
                         <li>
                             <a href="#%e7%ac%ac%e4%ba%8c%e6%ac%a1%e7%bc%96%e8%af%91" aria-label="第二次编译">第二次编译</a></li></ul>
                         </li>
+                        <li>
+                            <a href="#github-actions%e7%bc%96%e8%af%91" aria-label="GitHub Actions编译">GitHub Actions编译</a></li>
                         <li>
                             <a href="#%e5%88%b6%e4%bd%9cdocker%e9%95%9c%e5%83%8f" aria-label="制作Docker镜像">制作Docker镜像</a></li></ul>
                         </li>
@@ -283,11 +285,10 @@
                             <a href="#openvpn" aria-label="OpenVPN">OpenVPN</a></li></ul>
                         </li>
                         <li>
-                            <a href="#%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86" aria-label="文件管理">文件管理</a></li></ul>
+                            <a href="#%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86" aria-label="文件管理">文件管理</a>
                         </li>
-                        <li>
-                            <a href="#%e6%89%a9%e5%ae%b9" aria-label="扩容">扩容</a>
-                        </li>
+                    </ul>
+                    </li>
                     </ul>
                 </div>
             </details>
@@ -373,9 +374,8 @@
 <p>可以从OpenWrt的<a href="https://openwrt.org/toh/views/toh_fwdownload">官网</a>下载镜像</p>
 <p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/a2f4260c7818d9c1b8c826a37f6aab0b.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="OpenWrt Images"  />
 </p>
-<h4 id="编译镜像">编译镜像<a hidden class="anchor" aria-hidden="true" href="#编译镜像">#</a></h4>
-<p>但我是比较能折腾的，我找到了这个仓库：<a href="https://github.com/coolsnowwolf/lede">Lean</a>，readme有比较详细的编译步骤，于是决定自己尝试一下</p>
-<p>建议使用GitHub Action自动编译，详见：https://kyxie.me/zh/blog/tech/router/github-actions/</p>
+<p>但我是比较能折腾的，我找到了这个仓库：<a href="https://github.com/coolsnowwolf/lede">Lean</a>，readme有比较详细的编译步骤，于是决定自己尝试一下。可以先在本地编译一次熟悉一下编译的流程，然后再使用GitHub Actions编译。</p>
+<h4 id="本地编译">本地编译<a hidden class="anchor" aria-hidden="true" href="#本地编译">#</a></h4>
 <h5 id="第一次编译">第一次编译<a hidden class="anchor" aria-hidden="true" href="#第一次编译">#</a></h5>
 <ul>
 <li>
@@ -425,37 +425,36 @@
 </span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">wireless-tools</span> <span style="color:#75715e"># 无线扩展工具</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">Administration</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">htop</span> <span style="color:#75715e"># 添加htop命令</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Firmware</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">xxx</span> <span style="color:#75715e"># 选择你需要的网卡固件，默认即可</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 文件系统</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">KernelModules</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">Filesystems</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fs-ext4</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fs-f2fs</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fs-ntfs</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fs-squashfs</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fs-vfat</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fuse</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 网卡支持</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">NetworkDevices</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-xxx</span> <span style="color:#75715e"># 有线网卡支持，跟以下几项可根据需求选择性添加</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># # 网卡支持</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># NetworkDevices:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - kmod-xxx # 有线网卡支持，跟以下几项可根据需求选择性添加</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">NetworkSupport</span>:
 </span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">kmod-wireguard</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">WirelessDrivers</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-rt2800-usb</span> <span style="color:#75715e"># 添加Ralink RT5370芯片的USB无线网卡驱动</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># WirelessDrivers:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - kmod-rt2800-usb # 添加Ralink RT5370芯片的USB无线网卡驱动</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">USBSupport</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#f92672">kmod-usb-net</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">kmod-usb-net-asix</span> <span style="color:#75715e"># 添加支持亚信的有线网卡支持</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">kmod-usb-net-asix-ax88179</span> <span style="color:#75715e"># 添加USB3.0的有线网卡芯片AX88179的驱动</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">kmod-usb-net-rtl8152</span> <span style="color:#75715e"># 添加USB2/3的有线网卡RTL8152/3芯片支持</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">kmod-usb-net-sr9700</span> <span style="color:#75715e"># 添加USB2.0的有线网卡SR9700芯片支持</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># - kmod-usb-net-asix # 添加支持亚信的有线网卡支持</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># - kmod-usb-net-asix-ax88179 # 添加USB3.0的有线网卡芯片AX88179的驱动</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># - kmod-usb-net-rtl8152 # 添加USB2/3的有线网卡RTL8152/3芯片支持</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># - kmod-usb-net-sr9700 # 添加USB2.0的有线网卡SR9700芯片支持</span>
 </span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">kmod-usb-core</span> <span style="color:#75715e"># 启用USB支持</span>
 </span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb-hid</span> <span style="color:#75715e"># USB键鼠支持</span>
-</span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb-ohci</span> <span style="color:#75715e"># 添加OHCI支持</span>
+</span></span><span style="display:flex;"><span>  	  <span style="color:#75715e"># - kmod-usb-ohci # 添加OHCI支持，老USB才需要</span>
 </span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb-storage</span> <span style="color:#75715e"># 启用USB存储</span>
 </span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb-storage-extras</span>
-</span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb-uhci</span> <span style="color:#75715e"># 添加UHCI支持</span>
+</span></span><span style="display:flex;"><span>  	  <span style="color:#75715e"># - kmod-usb-uhci # 添加UHCI支持，老USB才需要</span>
 </span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb2</span> <span style="color:#75715e"># 开启USB2支持</span>
 </span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb3</span> <span style="color:#75715e"># 开启USB3支持</span>
 </span></span><span style="display:flex;"><span>
@@ -471,24 +470,29 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#75715e"># LuCI应用</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">Applications</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-adguardhome</span> <span style="color:#75715e"># 去广告</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-advanced-reoot</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-alist</span> <span style="color:#75715e"># 文件共享</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-aria2</span> <span style="color:#75715e"># 下载工具</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-advanced-reoot</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-cloudflared</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-ddns</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-diskman</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-dockerman</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-filebrowser</span> <span style="color:#75715e"># 文件管理</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-filetransfer</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-firewall</span> <span style="color:#75715e"># 防火墙</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-frps</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-frpc</span> <span style="color:#75715e"># 内网穿透</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-hd-idle</span> <span style="color:#75715e"># 硬盘休眠</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - luci-app-frps</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - luci-app-frpc # 内网穿透</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - luci-app-hd-idle # 硬盘休眠</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - luci-app-lucky</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-opkg</span> <span style="color:#75715e"># 软件包</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-openvpn</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-openvpn-server</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-qos</span> <span style="color:#75715e"># 服务质量</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - luci-app-openvpn</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - luci-app-openvpn-server</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-passwall</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - luci-app-qos # 服务质量</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-samba</span> <span style="color:#75715e"># 网络共享</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-shadowsocks-libev</span> <span style="color:#75715e"># 翻墙软件</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-smartdns</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-upnp</span> <span style="color:#75715e"># UPnP服务</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># - luci-app-usb-printer</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-wol</span> <span style="color:#75715e"># 网络唤醒</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">Protocols</span>:
 </span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">luci-protocol-wireguard</span>
@@ -498,10 +502,8 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">DownloadManager</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">ariang</span> <span style="color:#75715e"># Aria2管理页面</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">FileTransfer</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">Aria2Configuration</span>:
-</span></span><span style="display:flex;"><span>        - <span style="color:#75715e">***</span> <span style="color:#75715e"># 选择Aria2支持的功能</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">curl</span> <span style="color:#75715e"># 添加curl命令</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">wget</span> <span style="color:#75715e"># 添加wget命令</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">wget-ssl</span> <span style="color:#75715e"># 添加wget命令</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">IP Addresses and Names</span>:
 </span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">ddns-scripts-cloudflare</span>
 </span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">drill</span>
@@ -517,15 +519,15 @@
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">fdisk</span> <span style="color:#75715e"># 磁盘分区工具</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">lsblk</span> <span style="color:#75715e"># 磁盘查看工具</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">Filesystem</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">f2fs-tools</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">ntfs-3g</span> <span style="color:#75715e"># NTFS读写支持</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">resize2fs</span> <span style="color:#75715e"># 分区大小调整</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">f2fs-tools</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">Terminal</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">screen</span> <span style="color:#75715e"># 添加screen</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">pciutils</span> <span style="color:#75715e"># 添加lspci命令</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">usbutils</span> <span style="color:#75715e"># 添加lsusb命令</span>
 </span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">losetup</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">pciutils</span> <span style="color:#75715e"># 添加lspci命令</span>
 </span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">qrencode</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">usbutils</span> <span style="color:#75715e"># 添加lsusb命令</span>
 </span></span></code></pre></div></li>
 <li>
 <p>配置完成后选择Save，会保存为一个<code>.config</code>文件。在最后一步安装之前还需要安装screen，用于创建持久会话，否则如果不小心关了ssh之前编译的就都没了（你猜我是怎么知道的）</p>
@@ -594,8 +596,10 @@
 </span></span><span style="display:flex;"><span>make -j<span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span> <span style="color:#f92672">||</span> make -j1 <span style="color:#f92672">||</span> make -j1 V<span style="color:#f92672">=</span>s
 </span></span></code></pre></div></li>
 </ul>
+<h4 id="github-actions编译">GitHub Actions编译<a hidden class="anchor" aria-hidden="true" href="#github-actions编译">#</a></h4>
+<p>熟悉了本地编译的流程之后就推荐使用GitHub Actions进行编译了，这样可以把脏活累活全部交给云，本来想自己写Workflow的<code>yaml</code>，但是找到了这个<a href="https://github.com/P3TERX/Actions-OpenWrt">仓库</a>，决定还是不重复造轮子了哈哈哈。</p>
 <h4 id="制作docker镜像">制作Docker镜像<a hidden class="anchor" aria-hidden="true" href="#制作docker镜像">#</a></h4>
-<p>以上的教程能得到使OpenWrt直接在树莓派上运行的镜像，但是目前我的想法是，让树莓派运行Ubuntu作为主系统，OpenWrt作为Docker Image部署在树莓派上，这样我们还可以运行一些其他的服务，以后更换重新编译的OpenWrt镜像也就不需要重新刷机了，仅仅换个Docker镜像即可。</p>
+<p>如果希望将OpenWrt系统制作为Docker镜像</p>
 <ul>
 <li>
 <p>首先解压镜像文件，这里我们选择<code>openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz</code></p>
@@ -817,7 +821,7 @@
 <li>luci-app-wireguard（可以不选，而且在我的menuconfig没找到）</li>
 </ul>
 </li>
-<li>详细配置见：<a href="https://kyxie.me/zh/blog/tech/router/wireguard/">Wireguard配置 | Kunyang&rsquo;s Blog</a></li>
+<li>配置参考：<a href="https://kyxie.me/zh/blog/tech/router/wireguard/">Wireguard配置 | Kunyang&rsquo;s Blog</a></li>
 </ul>
 <h5 id="zerotire">ZeroTire<a hidden class="anchor" aria-hidden="true" href="#zerotire">#</a></h5>
 <ul>
@@ -846,25 +850,21 @@
 </ul>
 <h4 id="文件管理">文件管理<a hidden class="anchor" aria-hidden="true" href="#文件管理">#</a></h4>
 <ul>
-<li>推荐插件
+<li>文件管理器
 <ul>
-<li>luci-app-filebrowser：Service → File Browser</li>
-<li>luci-app-samba：NAS → Network Shares，有一点视频里说的点击Path会进入<code>/luci/admin/system/fstab</code>，但是我的menuconfig没有luci-app-fstab，因此会404，好在如果编译了BaseSystem → block-mount的话这个url：<code>/luci/admin/system/mounts</code>跟视频里的是一样的。我认为这是个bug</li>
-<li>luci-app-filetransfer：System → File Transfer，用于上传ipk包</li>
-<li>luci-app-alist：Services → AList</li>
+<li>luci-app-filebrowser</li>
+<li>luci-app-filetransfer</li>
+<li>luci-app-samba</li>
+<li>配置参考：<a href="https://www.bilibili.com/video/BV1n54y1278r/?spm_id_from=333.999.0.0&amp;vd_source=021fb7b43d05a73d1ec2f8288f7b4303">【韩风Talk】Openwrt文件管理的玩法合集，这期顺便解决中文乱码问题！_哔哩哔哩_bilibili</a></li>
 </ul>
 </li>
-<li>配置参考：
+<li>云盘管理器
 <ul>
-<li><a href="https://www.bilibili.com/video/BV1n54y1278r/?spm_id_from=333.999.0.0&amp;vd_source=021fb7b43d05a73d1ec2f8288f7b4303">【韩风Talk】Openwrt文件管理的玩法合集，这期顺便解决中文乱码问题！_哔哩哔哩_bilibili</a></li>
-<li><a href="https://www.bilibili.com/video/BV1sj411w7Wm/?spm_id_from=333.999.0.0&amp;vd_source=021fb7b43d05a73d1ec2f8288f7b4303">这期玩Alist的网络安全防护，随便折腾一下免费的内网穿透_哔哩哔哩_bilibili</a></li>
+<li>luci-app-alist</li>
+<li>luci-app-cloudflared</li>
+<li>配置参考：</li>
 </ul>
 </li>
-</ul>
-<h3 id="扩容">扩容<a hidden class="anchor" aria-hidden="true" href="#扩容">#</a></h3>
-<ul>
-<li><a href="https://www.bilibili.com/video/BV1WK411Z79q/?spm_id_from=333.999.0.0&amp;vd_source=021fb7b43d05a73d1ec2f8288f7b4303">OpenWrt的空间扩容问题，可以这么直接解决！_哔哩哔哩_bilibili</a></li>
-<li><a href="https://www.bilibili.com/video/BV1uz42187AR/?spm_id_from=333.999.0.0&amp;vd_source=021fb7b43d05a73d1ec2f8288f7b4303">OpenWrt空间扩容：这波补充超有料！_哔哩哔哩_bilibili</a></li>
 </ul>
 
 

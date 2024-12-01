@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 26 Nov 2024 16:03:19 -0500</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用树莓派4B&#43;安装OpenWrt用作旁路由</title>
       <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
@@ -71,7 +71,7 @@
     </item>
     
     <item>
-      <title>Wireguard配置</title>
+      <title>OpenWrt配置Wireguard</title>
       <link>https://kyxie.me/zh/blog/tech/router/wireguard/</link>
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
       
@@ -86,15 +86,6 @@
       
       <guid>https://kyxie.me/zh/blog/wool/checking-account/</guid>
       <description>Sep 2021, Scotiabank 之前办学签来加拿大走SDS用的是Scotiabank，因此我第一张checking account是Scotiabank的。学生账户的话</description>
-    </item>
-    
-    <item>
-      <title>使用GitHub Actions自动编译OpenWrt镜像</title>
-      <link>https://kyxie.me/zh/blog/tech/router/github-actions/</link>
-      <pubDate>Tue, 26 Nov 2024 16:03:19 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/github-actions/</guid>
-      <description>这篇文章提到了自己编译Lean的OpenWrt镜像，之前一直在Linux虚拟机编译，耗时耗力还耗电。现在换成了GitHub Actions，编</description>
     </item>
     
     <item>
@@ -116,6 +107,15 @@
     </item>
     
     <item>
+      <title>OpenWrt配置AList</title>
+      <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
+      <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 使</description>
+    </item>
+    
+    <item>
       <title>OINP移民加拿大🇨🇦时间线</title>
       <link>https://kyxie.me/zh/blog/life/pr/</link>
       <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
@@ -130,7 +130,7 @@
       <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
-      <description>前言 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到</description>
+      <description>Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了</description>
     </item>
     
     <item>
