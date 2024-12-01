@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>OpenWrt配置AList | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Cloudflare, OpenWrt, Alist">
-<meta name="description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 使">
+<meta name="description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/alist/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.d0958031cf49f400cc602dcdcb6fbfc54da190b50aaf1a3f5a054b2e378c0a4c.css" integrity="sha256-0JWAMc9J9ADMYC3Ny2&#43;/xU2hkLUKrxo/WgVLLjeMCkw=" rel="preload stylesheet" as="style">
@@ -45,7 +45,7 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="OpenWrt配置AList" />
-<meta property="og:description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 使" />
+<meta property="og:description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/alist/" /><meta property="article:section" content="blog" />
 
@@ -53,7 +53,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="OpenWrt配置AList"/>
-<meta name="twitter:description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 使"/>
+<meta name="twitter:description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我"/>
 
 
 <script type="application/ld+json">
@@ -94,12 +94,12 @@
   "@type": "BlogPosting",
   "headline": "OpenWrt配置AList",
   "name": "OpenWrt配置AList",
-  "description": "Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 使",
+  "description": "Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我",
   "keywords": [
     "Cloudflare", "OpenWrt", "Alist"
   ],
-  "articleBody": "Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用\n挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 使用Cloudflared公网访问AList服务 AList服务用来管理网盘是非常方便的，同时AList还允许挂载本机的文件。这让我突然想起一个场景，假如我和小伙伴出去玩用单反拍了许多照片，体积非常大，分享这些照片就非常麻烦了，如果上传到百度云，那么小伙伴下载完不知道要等多久，而且也没开其他云的会员账号。\n假如使用AList挂载本地的SD卡，再让小伙伴访问我的AList服务不就解决问题了嘛。但是如何让小伙伴在家也能访问我的OpenWrt呢，可以使用Cloudflare的内网穿透服务。\n本教程参考：【韩风Talk】这期玩Alist的网络安全防护，随便折腾一下免费的内网穿透 哔哩哔哩_bilibili\n前置条件 需要一个域名 OpenWrt安装luci-app-cloudflared 配置 首先在Cloudflare开启Zero Trust，选择免费版即可\n在LuCI开启Cloudflared服务，位于VPN → Cloudflare Zero Trust Tunnel，勾选Enable\nssh登录到OpenWrt，运行\ncloudflared tunnel login 点击显示的连接，登录\n登录成功后会下载一个授权证书，位于/root/.cloudflared/cert.pem，我们把授权证书复制到cloudflared的配置文件夹下\ncp /root/.cloudflared/cert.pem /etc/cloudflared 创建隧道，后面是隧道名称，可以随便填\ncloudflared tunnel create alist 创建完成之后，会在之前的文件夹（/root/.cloudflared/cert.pem）创建一个.json文件，把它也复制到cloudflared的配置文件夹中\ncp /root/.cloudflared/xxx.json /etc/cloudflared 进入cloudflared配置文件夹（/etc/cloudflared），修改config.yml\n# url: http://localhost:8000 tunnel: credentials-file: /etc/cloudflared/.json 替换为刚才的.json文件名\n重启cloudflared服务\n/etc/init.d/cloudflared restart 回到Cloudflare官网，Zero Trust → Networks → Tunnels就能找到刚才创建的隧道了，我们点击Edit，把本地配置迁移到云端，一直点击Confirm即可\n迁移完成后，重新点击Edit，进入Public Hostname，我们添加一个子域名，Type选择HTTP协议，URL就是局域网内AList服务器的地址和端口。\n这样就可以直接在公网通过域名访问家中的服务器了\n还有一些其他的安全配置\nCloudflare → SSL/TLS → Overview → Configure encryption mode，选择Full Cloudflare → SSL/TLS → Edge Certificates → Always Use HTTPS，选择True 开启2FA ",
-  "wordCount" : "1035",
+  "articleBody": "Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用\n挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我们插上U盘，在System → MountPoint可以看到U盘/dev/sda1被挂载到了/mnt/sda1 进入AList前端页面 → Manage → Storages → Add，Driver选择Local Mount Path随便填，我使用了/local Root folder path填mnt/sda1，这样回到主页面就能访问到U盘的内容了 使用Cloudflared公网访问AList服务 AList服务用来管理网盘是非常方便的，同时AList还允许挂载本机的文件。这让我突然想起一个场景，假如我和小伙伴出去玩用单反拍了许多照片，体积非常大，分享这些照片就非常麻烦了，如果上传到百度云，那么小伙伴下载完不知道要等多久，而且也没开其他云的会员账号。\n假如使用AList挂载本地的SD卡，再让小伙伴访问我的AList服务不就解决问题了嘛。但是如何让小伙伴在家也能访问我的OpenWrt呢，可以使用Cloudflare的内网穿透服务。\n本教程参考：【韩风Talk】这期玩Alist的网络安全防护，随便折腾一下免费的内网穿透 哔哩哔哩_bilibili\n前置条件 需要一个域名 OpenWrt安装luci-app-cloudflared 配置 首先在Cloudflare开启Zero Trust，选择免费版即可\n在LuCI开启Cloudflared服务，位于VPN → Cloudflare Zero Trust Tunnel，勾选Enable\nssh登录到OpenWrt，运行\ncloudflared tunnel login 点击显示的连接，登录\n登录成功后会下载一个授权证书，位于/root/.cloudflared/cert.pem，我们把授权证书复制到cloudflared的配置文件夹下\ncp /root/.cloudflared/cert.pem /etc/cloudflared 创建隧道，后面是隧道名称，可以随便填\ncloudflared tunnel create alist 创建完成之后，会在之前的文件夹（/root/.cloudflared/cert.pem）创建一个.json文件，把它也复制到cloudflared的配置文件夹中\ncp /root/.cloudflared/xxx.json /etc/cloudflared 进入cloudflared配置文件夹（/etc/cloudflared），修改config.yml\n# url: http://localhost:8000 tunnel: credentials-file: /etc/cloudflared/.json 替换为刚才的.json文件名\n重启cloudflared服务\n/etc/init.d/cloudflared restart 回到Cloudflare官网，Zero Trust → Networks → Tunnels就能找到刚才创建的隧道了，我们点击Edit，把本地配置迁移到云端，一直点击Confirm即可\n迁移完成后，重新点击Edit，进入Public Hostname，我们添加一个子域名，Type选择HTTP协议，URL就是局域网内AList服务器的地址和端口。\n这样就可以直接在公网通过域名访问家中的服务器了\n还有一些其他的安全配置\nCloudflare → SSL/TLS → Overview → Configure encryption mode，选择Full Cloudflare → SSL/TLS → Edge Certificates → Always Use HTTPS，选择True 开启2FA ",
+  "wordCount" : "1175",
   "inLanguage": "zh",
   "datePublished": "0001-01-01T00:00:00Z",
   "dateModified": "0001-01-01T00:00:00Z",
@@ -204,7 +204,7 @@
     <div class="post-meta">
 
 
-3 分钟&nbsp;·&nbsp;1035 字&nbsp;·&nbsp;Kyxie
+3 分钟&nbsp;·&nbsp;1175 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -310,6 +310,12 @@
 <li><a href="https://www.bilibili.com/video/BV18v4y1W7vo/?spm_id_from=333.337.search-card.all.click&amp;vd_source=021fb7b43d05a73d1ec2f8288f7b4303">视频教程</a></li>
 </ul>
 <h3 id="挂载本地">挂载本地<a hidden class="anchor" aria-hidden="true" href="#挂载本地">#</a></h3>
+<ul>
+<li>我们插上U盘，在System → MountPoint可以看到U盘<code>/dev/sda1</code>被挂载到了<code>/mnt/sda1</code></li>
+<li>进入AList前端页面 → Manage → Storages → Add，Driver选择Local</li>
+<li>Mount Path随便填，我使用了<code>/local</code></li>
+<li>Root folder path填<code>mnt/sda1</code>，这样回到主页面就能访问到U盘的内容了</li>
+</ul>
 <h3 id="使用cloudflared公网访问alist服务">使用Cloudflared公网访问AList服务<a hidden class="anchor" aria-hidden="true" href="#使用cloudflared公网访问alist服务">#</a></h3>
 <p>AList服务用来管理网盘是非常方便的，同时AList还允许挂载本机的文件。这让我突然想起一个场景，假如我和小伙伴出去玩用单反拍了许多照片，体积非常大，分享这些照片就非常麻烦了，如果上传到百度云，那么小伙伴下载完不知道要等多久，而且也没开其他云的会员账号。</p>
 <p>假如使用AList挂载本地的SD卡，再让小伙伴访问我的AList服务不就解决问题了嘛。但是如何让小伙伴在家也能访问我的OpenWrt呢，可以使用Cloudflare的内网穿透服务。</p>
