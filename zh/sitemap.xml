@@ -7,7 +7,7 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.me/zh/blog/tech/web/"
+                href="https://kyxie.me/en/blog/tech/web/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -20,7 +20,7 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.me/zh/blog/tech/router/"
+                href="https://kyxie.me/en/blog/tech/router/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -69,23 +69,13 @@
   </url><url>
     <loc>https://kyxie.me/zh/blog/wool/credit-card/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/wool/credit-card/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/wool/credit-card/"
-                />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/</loc>
     <lastmod>2022-07-30T01:22:36-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.me/zh/blog/tech/"
+                href="https://kyxie.me/en/blog/tech/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -147,23 +137,13 @@
   </url><url>
     <loc>https://kyxie.me/zh/blog/wool/checking-account/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/wool/checking-account/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/wool/checking-account/"
-                />
   </url><url>
     <loc>https://kyxie.me/zh/blog/life/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.me/zh/blog/life/"
+                href="https://kyxie.me/en/blog/life/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -199,16 +179,6 @@
   </url><url>
     <loc>https://kyxie.me/zh/blog/wool/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/zh/blog/wool/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/wool/"
-                />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/others/bash/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
@@ -293,7 +263,7 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://kyxie.me/zh/blog/tech/others/"
+                href="https://kyxie.me/en/blog/tech/others/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -303,16 +273,6 @@
   </url><url>
     <loc>https://kyxie.me/zh/blog/wool/stock-brokers/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/wool/stock-brokers/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/wool/stock-brokers/"
-                />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/keys/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
