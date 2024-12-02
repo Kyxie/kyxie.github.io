@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Dec 2024 12:58:22 -0500</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用树莓派4B&#43;安装OpenWrt用作旁路由</title>
       <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
@@ -89,6 +89,15 @@
     </item>
     
     <item>
+      <title>OpenWrt配置AList</title>
+      <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
+      <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
+      <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我</description>
+    </item>
+    
+    <item>
       <title>Algonquin旅行攻略</title>
       <link>https://kyxie.me/zh/blog/life/algonquin/</link>
       <pubDate>Mon, 30 Sep 2024 14:03:55 -0400</pubDate>
@@ -104,15 +113,6 @@
       
       <guid>https://kyxie.me/zh/blog/tech/others/bash/</guid>
       <description>前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo</description>
-    </item>
-    
-    <item>
-      <title>OpenWrt配置AList</title>
-      <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
-      <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我</description>
     </item>
     
     <item>
@@ -179,15 +179,6 @@
     </item>
     
     <item>
-      <title>友链 🤝</title>
-      <link>https://kyxie.me/zh/links/</link>
-      <pubDate>Sat, 21 May 2022 21:50:30 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/links/</guid>
-      <description>Kyxie&amp;#39;s Blog A Hello World Printer Sulv’s Blog 记录技术、阅读、生活的博客 嘰嘰乞乞 但願我靈魂沒有生鏽 友链格式： name=&amp;#34;Kyxie&amp;#39;s Blog&amp;#34; url=&amp;#34;https://kyxie.me/zh&amp;#34; logo=&amp;#34;https://kyxie.me/Avatar.jpg&amp;#34; word=&amp;#34;A Hello World Printer&amp;#34;</description>
-    </item>
-    
-    <item>
       <title>留言板 📋</title>
       <link>https://kyxie.me/zh/comment/comments/</link>
       <pubDate>Thu, 12 May 2022 21:33:11 -0400</pubDate>
@@ -196,15 +187,6 @@
       <description>👉️填写QQ邮箱可以自动获取QQ头像哦</description>
     </item>
     
-    
-    <item>
-      <title>项目 👨‍💻</title>
-      <link>https://kyxie.me/zh/projects/</link>
-      <pubDate>Wed, 13 Apr 2022 14:39:53 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/projects/</guid>
-      <description>研究生项目 Turbo Wallet - 记账软件 2022年1月 至 2022年3月，JavaScript GitHub (前端仓库): https://github.com/Kyxie/money-management.git GitHub (后端仓库): https://github.com/Kyxie/money-back.git 这是一个帮助我们记录每天生活</description>
-    </item>
     
     <item>
       <title>关于我 👋</title>

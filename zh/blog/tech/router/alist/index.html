@@ -20,6 +20,7 @@
 <link rel="mask-icon" href="https://kyxie.me/Favicon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/router/alist/">
 <link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/router/alist/">
 <noscript>
     <style>
@@ -48,8 +49,8 @@
 <meta property="og:description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/alist/" /><meta property="article:section" content="blog" />
-
-<meta property="og:site_name" content="Kyxie" />
+<meta property="article:published_time" content="2024-12-01T12:58:22-05:00" />
+<meta property="article:modified_time" content="2024-12-01T12:58:22-05:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="OpenWrt配置AList"/>
@@ -101,8 +102,8 @@
   "articleBody": "Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用\n挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我们插上U盘，在System → MountPoint可以看到U盘/dev/sda1被挂载到了/mnt/sda1 进入AList前端页面 → Manage → Storages → Add，Driver选择Local Mount Path随便填，我使用了/local Root folder path填mnt/sda1，这样回到主页面就能访问到U盘的内容了 使用Cloudflared公网访问AList服务 AList服务用来管理网盘是非常方便的，同时AList还允许挂载本机的文件。这让我突然想起一个场景，假如我和小伙伴出去玩用单反拍了许多照片，体积非常大，分享这些照片就非常麻烦了，如果上传到百度云，那么小伙伴下载完不知道要等多久，而且也没开其他云的会员账号。\n假如使用AList挂载本地的SD卡，再让小伙伴访问我的AList服务不就解决问题了嘛。但是如何让小伙伴在家也能访问我的OpenWrt呢，可以使用Cloudflare的内网穿透服务。\n本教程参考：【韩风Talk】这期玩Alist的网络安全防护，随便折腾一下免费的内网穿透 哔哩哔哩_bilibili\n前置条件 需要一个域名 OpenWrt安装luci-app-cloudflared 配置 首先在Cloudflare开启Zero Trust，选择免费版即可\n在LuCI开启Cloudflared服务，位于VPN → Cloudflare Zero Trust Tunnel，勾选Enable\nssh登录到OpenWrt，运行\ncloudflared tunnel login 点击显示的连接，登录\n登录成功后会下载一个授权证书，位于/root/.cloudflared/cert.pem，我们把授权证书复制到cloudflared的配置文件夹下\ncp /root/.cloudflared/cert.pem /etc/cloudflared 创建隧道，后面是隧道名称，可以随便填\ncloudflared tunnel create alist 创建完成之后，会在之前的文件夹（/root/.cloudflared/cert.pem）创建一个.json文件，把它也复制到cloudflared的配置文件夹中\ncp /root/.cloudflared/xxx.json /etc/cloudflared 进入cloudflared配置文件夹（/etc/cloudflared），修改config.yml\n# url: http://localhost:8000 tunnel: credentials-file: /etc/cloudflared/.json 替换为刚才的.json文件名\n重启cloudflared服务\n/etc/init.d/cloudflared restart 回到Cloudflare官网，Zero Trust → Networks → Tunnels就能找到刚才创建的隧道了，我们点击Edit，把本地配置迁移到云端，一直点击Confirm即可\n迁移完成后，重新点击Edit，进入Public Hostname，我们添加一个子域名，Type选择HTTP协议，URL就是局域网内AList服务器的地址和端口。\n这样就可以直接在公网通过域名访问家中的服务器了\n还有一些其他的安全配置\nCloudflare → SSL/TLS → Overview → Configure encryption mode，选择Full Cloudflare → SSL/TLS → Edge Certificates → Always Use HTTPS，选择True 开启2FA ",
   "wordCount" : "1175",
   "inLanguage": "zh",
-  "datePublished": "0001-01-01T00:00:00Z",
-  "dateModified": "0001-01-01T00:00:00Z",
+  "datePublished": "2024-12-01T12:58:22-05:00",
+  "dateModified": "2024-12-01T12:58:22-05:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
@@ -185,11 +186,6 @@
                     <span>留言板</span>
                 </a>
             </li>
-            <li>
-                <a href="https://kyxie.me/zh/search" title="搜索 (Alt &#43; /)" accesskey=/>
-                    <span>搜索</span>
-                </a>
-            </li>
         </ul>
     </nav>
 </header>
@@ -204,7 +200,12 @@
     <div class="post-meta">
 
 
-3 分钟&nbsp;·&nbsp;1175 字&nbsp;·&nbsp;Kyxie
+<span title='2024-12-01 12:58:22 -0500 EST'>2024-12-01</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1175 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<ul class="i18n_list">语言:
+    <li>
+        <a href="https://kyxie.me/en/blog/tech/router/alist/">English🇨🇦</a>
+    </li>
+</ul>
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -385,15 +386,15 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/tech/others/bash/">
+  <a class="prev" href="https://kyxie.me/zh/blog/wool/checking-account/">
     <span class="title">« 上一页</span>
     <br>
-    <span>Windows 11 打造个性化终端</span>
+    <span>我使用过的加拿大🇨🇦支票账户</span>
   </a>
-  <a class="next" href="https://kyxie.me/zh/blog/life/pr/">
+  <a class="next" href="https://kyxie.me/zh/blog/life/algonquin/">
     <span class="title">下一页 »</span>
     <br>
-    <span>OINP移民加拿大🇨🇦时间线</span>
+    <span>Algonquin旅行攻略</span>
   </a>
 </nav>
 
