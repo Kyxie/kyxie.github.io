@@ -148,7 +148,7 @@
       <pubDate>Thu, 05 May 2022 17:28:17 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/others/java/</guid>
-      <description>Character 判断是否为字母或数字： boolean res = Character.isLetterOrDigit(char); 转小写： char res = Character.toLowerCase(char); 下一个字符： &amp;#39;b&amp;#39; == (char) (&amp;#39;a&amp;#39; + 1); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等： Integer a = 1; Integer b = 1; a == b; // true</description>
+      <description>Character 判断是否为字母或数字 boolean res = Character.isLetterOrDigit(char); 转小写 char res = Character.toLowerCase(char); 下一个字符 &amp;#39;b&amp;#39; == (char) (&amp;#39;a&amp;#39; + 1); Integer 最大值最小值 int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等 Integer a = 1; Integer b = 1; a == b; // true Integer c = 200; Integer</description>
     </item>
     
     <item>
