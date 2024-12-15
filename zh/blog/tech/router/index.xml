@@ -35,6 +35,24 @@
     </item>
     
     <item>
+      <title>将OpenWrt制作为Docker镜像</title>
+      <link>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</link>
+      <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</guid>
+      <description>Header 在将OpenWrt制作为Docker镜像之前我是直接将OpenWrt作为主系统运行在树莓派上的，买了一台Mini PC之后感觉把OpenWr</description>
+    </item>
+    
+    <item>
+      <title>使用U盘安装Ubuntu Server</title>
+      <link>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</link>
+      <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</guid>
+      <description>Header 刚买了一台新的Mini PC打算作为自己的服务器，现在使用U盘引导它安装Ubuntu Server。 装系统 官网下载Ubuntu Server镜像</description>
+    </item>
+    
+    <item>
       <title>使用Samba将Linux映射为Windows磁盘</title>
       <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
       <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
