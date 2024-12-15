@@ -96,19 +96,6 @@
                 href="https://kyxie.me/zh/blog/tech/web/papermod/"
                 />
   </url><url>
-    <loc>https://kyxie.me/zh/blog/tech/others/aws-server-gui/</loc>
-    <lastmod>2024-12-10T00:05:01-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/tech/others/aws-server-gui/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/tech/others/aws-server-gui/"
-                />
-  </url><url>
     <loc>https://kyxie.me/zh/blog/life/banff/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
     <xhtml:link
@@ -209,8 +196,11 @@
                 href="https://kyxie.me/zh/blog/life/pr/"
                 />
   </url><url>
-    <loc>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</loc>
-    <lastmod>2024-12-14T23:17:50-05:00</lastmod>
+    <loc>https://kyxie.me/zh/blog/tech/router/debian-server/</loc>
+    <lastmod>2024-12-14T12:36:01-05:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/router/aws-server-gui/</loc>
+    <lastmod>2024-11-07T00:22:51-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/samba/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>

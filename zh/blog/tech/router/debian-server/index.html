@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>使用Samba将Linux映射为Windows磁盘 | Kunyang&#39;s Blog</title>
-<meta name="keywords" content="Linux, Windows, Samba">
-<meta name="description" content="Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了">
+<title>使用U盘安装Debian Server | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="UEFI, Debian, IP Address">
+<meta name="description" content="Header 刚买了一台新的Mini PC打算作为自己的服务器，现在使用U盘引导它安装Debian。 需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘">
 <meta name="author" content="Kyxie">
-<link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/samba/">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/debian-server/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -20,8 +20,7 @@
 <link rel="mask-icon" href="https://kyxie.me/Favicon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/router/samba/">
-<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/router/samba/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/router/debian-server/">
 <noscript>
     <style>
         #theme-toggle,
@@ -45,16 +44,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用Samba将Linux映射为Windows磁盘" />
-<meta property="og:description" content="Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用U盘安装Debian Server" />
+<meta property="og:description" content="Header 刚买了一台新的Mini PC打算作为自己的服务器，现在使用U盘引导它安装Debian。 需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/samba/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2023-12-17T17:19:19-04:00" />
-<meta property="article:modified_time" content="2024-12-10T00:05:01-05:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/debian-server/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-12-14T12:36:01-05:00" />
+<meta property="article:modified_time" content="2024-12-14T12:36:01-05:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="使用Samba将Linux映射为Windows磁盘"/>
-<meta name="twitter:description" content="Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了"/>
+<meta name="twitter:title" content="使用U盘安装Debian Server"/>
+<meta name="twitter:description" content="Header 刚买了一台新的Mini PC打算作为自己的服务器，现在使用U盘引导它安装Debian。 需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘"/>
 
 
 <script type="application/ld+json">
@@ -83,8 +82,8 @@
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "使用Samba将Linux映射为Windows磁盘",
-      "item": "https://kyxie.me/zh/blog/tech/router/samba/"
+      "name": "使用U盘安装Debian Server",
+      "item": "https://kyxie.me/zh/blog/tech/router/debian-server/"
     }
   ]
 }
@@ -93,24 +92,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "使用Samba将Linux映射为Windows磁盘",
-  "name": "使用Samba将Linux映射为Windows磁盘",
-  "description": "Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了",
+  "headline": "使用U盘安装Debian Server",
+  "name": "使用U盘安装Debian Server",
+  "description": "Header 刚买了一台新的Mini PC打算作为自己的服务器，现在使用U盘引导它安装Debian。 需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘",
   "keywords": [
-    "Linux", "Windows", "Samba"
+    "UEFI", "Debian", "IP Address"
   ],
-  "articleBody": "Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了个办法将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了。\nLinux 假如我现在登录用户为user1，我希望把home/user1的所有文件共享给Windows，当然也可以新建用户和新建文件夹来作为共享文件夹。\n安装Samba：\nsudo apt update sudo apt install samba 编辑Samba配置文件：\nsudo nano /etc/samba/smb.conf 在文本末尾添加：\n[Name] path = /home/user1/shared read only = no browsable = yes [Name]是共享文件夹的名称，会显示在Windows磁盘上\n设置Samba账户密码：\nsudo smbpasswd -a user1 sudo smbpasswd -e user1 重启Samba服务：\nsudo systemctl restart smbd Windows 打开文件资源管理器 右键点击“此电脑”，选择“映射网络驱动器” 选择一个驱动器字母（例如Z:） 在文件夹栏中输入：\\\\Linux IP Address\\Name 完成剩余步骤 ",
-  "wordCount" : "381",
+  "articleBody": "Header 刚买了一台新的Mini PC打算作为自己的服务器，现在使用U盘引导它安装Debian。\n需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 官网下载Debian镜像 准备一个至少8GB的U盘，安装Etcher，按照流程将Ubuntu镜像烧写到U盘中 将U盘插入PC，启动，然后不断点击F7键，不同的主板按键不同，然后进入Bios 我需要将整个磁盘都分配给Debian，后续也不折腾的话可以不选择LVM Group，这样只会产生两个分区，/和/boot/efi 后面的无脑填就可以了，等到进入系统 修改IP地址 我打算将一个网口连接在路由器上，因此需要修改默认的IP地址\n首先ip addr查看当前的地址信息\n我们打算把enp0s1的IP地址修改为192.168.2.66，然后默认网关为主路由器192.168.2.1。我们需要编辑文件01-netcfg.yaml，没有的话就新建\nnetwork: version: 2 renderer: networkd ethernets: enp1s0: dhcp4: no addresses: - 192.168.2.66/24 routes: - to: default via: 192.168.2.1 nameservers: addresses: - 8.8.8.8 - 8.8.4.4 应用Netplan配置\nsudo netplan apply 重启网络服务（可选）\nsudo systemctl restart systemd-networkd 插入网线，验证配置\nip addr 其他配置 剩下的就是一些基本的其他配置了\n更换时区\nsudo timedatectl set-timezone America/Toronto 安装Cockpit（端口9090）\nsudo apt install cockpit -y sudo apt install cockpit-podman -y sudo apt install cockpit-networkmanager -y sudo apt install cockpit-storaged -y sudo systemctl start cockpit sudo systemctl enable cockpit ",
+  "wordCount" : "519",
   "inLanguage": "zh",
-  "datePublished": "2023-12-17T17:19:19-04:00",
-  "dateModified": "2024-12-10T00:05:01-05:00",
+  "datePublished": "2024-12-14T12:36:01-05:00",
+  "dateModified": "2024-12-14T12:36:01-05:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyxie.me/zh/blog/tech/router/samba/"
+    "@id": "https://kyxie.me/zh/blog/tech/router/debian-server/"
   },
   "publisher": {
     "@type": "Organization",
@@ -180,17 +179,12 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/router/">路由 🛜</a></div>
     <h1 class="post-title">
-      使用Samba将Linux映射为Windows磁盘
+      使用U盘安装Debian Server
     </h1>
     <div class="post-meta">
 
 
-<span title='2023-12-17 17:19:19 -0400 -0400'>2023-12-17</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;381 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
-<ul class="i18n_list">语言:
-    <li>
-        <a href="https://kyxie.me/en/blog/tech/router/samba/">English🇨🇦</a>
-    </li>
-</ul>
+<span title='2024-12-14 12:36:01 -0500 EST'>2024-12-14</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;519 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -204,9 +198,13 @@
                         <li>
                             <a href="#header" aria-label="Header">Header</a></li>
                         <li>
-                            <a href="#linux" aria-label="Linux">Linux</a></li>
+                            <a href="#%e9%9c%80%e8%a6%81%e5%87%86%e5%a4%87" aria-label="需要准备">需要准备</a></li>
                         <li>
-                            <a href="#windows" aria-label="Windows">Windows</a>
+                            <a href="#%e8%a3%85%e7%b3%bb%e7%bb%9f" aria-label="装系统">装系统</a></li>
+                        <li>
+                            <a href="#%e4%bf%ae%e6%94%b9ip%e5%9c%b0%e5%9d%80" aria-label="修改IP地址">修改IP地址</a></li>
+                        <li>
+                            <a href="#%e5%85%b6%e4%bb%96%e9%85%8d%e7%bd%ae" aria-label="其他配置">其他配置</a>
                         </li>
                     </ul>
                 </div>
@@ -273,42 +271,78 @@
         }
     </script>
   <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
-<p>我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了个办法将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了。</p>
-<h3 id="linux">Linux<a hidden class="anchor" aria-hidden="true" href="#linux">#</a></h3>
-<p>假如我现在登录用户为<code>user1</code>，我希望把<code>home/user1</code>的所有文件共享给Windows，当然也可以新建用户和新建文件夹来作为共享文件夹。</p>
+<p>刚买了一台新的Mini PC打算作为自己的服务器，现在使用U盘引导它安装Debian。</p>
+<h3 id="需要准备">需要准备<a hidden class="anchor" aria-hidden="true" href="#需要准备">#</a></h3>
+<ul>
+<li>显示器</li>
+<li>HDMI线连接显示器</li>
+<li>键盘</li>
+<li>至少8GB的U盘</li>
+<li>网线</li>
+</ul>
+<h3 id="装系统">装系统<a hidden class="anchor" aria-hidden="true" href="#装系统">#</a></h3>
+<ul>
+<li><a href="https://www.debian.org/">官网</a>下载Debian镜像</li>
+<li>准备一个至少8GB的U盘，安装<a href="https://etcher.balena.io/">Etcher</a>，按照流程将Ubuntu镜像烧写到U盘中</li>
+<li>将U盘插入PC，启动，然后不断点击<code>F7</code>键，不同的主板按键不同，然后进入Bios</li>
+<li>我需要将整个磁盘都分配给Debian，后续也不折腾的话可以不选择LVM Group，这样只会产生两个分区，<code>/</code>和<code>/boot/efi</code></li>
+<li>后面的无脑填就可以了，等到进入系统</li>
+</ul>
+<h3 id="修改ip地址">修改IP地址<a hidden class="anchor" aria-hidden="true" href="#修改ip地址">#</a></h3>
 <ul>
 <li>
-<p>安装Samba：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
-</span></span><span style="display:flex;"><span>sudo apt install samba
-</span></span></code></pre></div></li>
-<li>
-<p>编辑Samba配置文件：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/samba/smb.conf
-</span></span></code></pre></div><p>在文本末尾添加：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>Name<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>path <span style="color:#f92672">=</span> /home/user1/shared
-</span></span><span style="display:flex;"><span>read only <span style="color:#f92672">=</span> no
-</span></span><span style="display:flex;"><span>browsable <span style="color:#f92672">=</span> yes
-</span></span></code></pre></div><p><code>[Name]</code>是共享文件夹的名称，会显示在Windows磁盘上</p>
+<p>我打算将一个网口连接在路由器上，因此需要修改默认的IP地址</p>
 </li>
 <li>
-<p>设置Samba账户密码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo smbpasswd -a user1
-</span></span><span style="display:flex;"><span>sudo smbpasswd -e user1
+<p>首先<code>ip addr</code>查看当前的地址信息</p>
+</li>
+<li>
+<p>我们打算把<code>enp0s1</code>的IP地址修改为<code>192.168.2.66</code>，然后默认网关为主路由器<code>192.168.2.1</code>。我们需要编辑文件<code>01-netcfg.yaml</code>，没有的话就新建</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">network</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">version</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">renderer</span>: <span style="color:#ae81ff">networkd</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ethernets</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enp1s0</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">dhcp4</span>: <span style="color:#66d9ef">no</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">addresses</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">192.168.2.66</span><span style="color:#ae81ff">/24</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">routes</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">to</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">via</span>: <span style="color:#ae81ff">192.168.2.1</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">nameservers</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">addresses</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">8.8.8.8</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">8.8.4.4</span>
 </span></span></code></pre></div></li>
 <li>
-<p>重启Samba服务：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart smbd
+<p>应用Netplan配置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo netplan apply
+</span></span></code></pre></div></li>
+<li>
+<p>重启网络服务（可选）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart systemd-networkd
+</span></span></code></pre></div></li>
+<li>
+<p>插入网线，验证配置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ip addr
 </span></span></code></pre></div></li>
 </ul>
-<h3 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h3>
+<h3 id="其他配置">其他配置<a hidden class="anchor" aria-hidden="true" href="#其他配置">#</a></h3>
+<p>剩下的就是一些基本的其他配置了</p>
 <ul>
-<li>打开文件资源管理器</li>
-<li>右键点击“此电脑”，选择“映射网络驱动器”</li>
-<li>选择一个驱动器字母（例如Z:）</li>
-<li>在文件夹栏中输入：<code>\\Linux IP Address\Name</code></li>
-<li>完成剩余步骤</li>
+<li>
+<p>更换时区</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo timedatectl set-timezone America/Toronto
+</span></span></code></pre></div></li>
+<li>
+<p>安装Cockpit（端口9090）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install cockpit -y
+</span></span><span style="display:flex;"><span>sudo apt install cockpit-podman -y
+</span></span><span style="display:flex;"><span>sudo apt install cockpit-networkmanager -y
+</span></span><span style="display:flex;"><span>sudo apt install cockpit-storaged -y
+</span></span><span style="display:flex;"><span>sudo systemctl start cockpit
+</span></span><span style="display:flex;"><span>sudo systemctl enable cockpit
+</span></span></code></pre></div></li>
 </ul>
 
 
@@ -316,15 +350,15 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/aws-server-gui/">
+  <a class="prev" href="https://kyxie.me/zh/blog/life/pr/">
     <span class="title">« 上一页</span>
     <br>
-    <span>Server安装GUI</span>
+    <span>OINP移民加拿大🇨🇦时间线</span>
   </a>
-  <a class="next" href="https://kyxie.me/zh/blog/tech/router/openvpn/">
+  <a class="next" href="https://kyxie.me/zh/blog/tech/router/aws-server-gui/">
     <span class="title">下一页 »</span>
     <br>
-    <span>OpenVPN的简单配置</span>
+    <span>Server安装GUI</span>
   </a>
 </nav>
 

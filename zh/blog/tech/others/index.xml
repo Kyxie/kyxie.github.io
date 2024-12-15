@@ -17,15 +17,6 @@
     </item>
     
     <item>
-      <title>AWS Ubuntu Server安装GUI</title>
-      <link>https://kyxie.me/zh/blog/tech/others/aws-server-gui/</link>
-      <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/others/aws-server-gui/</guid>
-      <description>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都</description>
-    </item>
-    
-    <item>
       <title>Windows 11 打造个性化终端</title>
       <link>https://kyxie.me/zh/blog/tech/others/bash/</link>
       <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>

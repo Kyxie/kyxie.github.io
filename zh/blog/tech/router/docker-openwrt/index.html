@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>将OpenWrt制作为Docker镜像 | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Docker, OpenWrt">
-<meta name="description" content="Header 在将OpenWrt制作为Docker镜像之前我是直接将OpenWrt作为主系统运行在树莓派上的，买了一台Mini PC之后感觉把OpenWr">
+<meta name="description" content="安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/docker-openwrt/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
@@ -45,7 +45,7 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="将OpenWrt制作为Docker镜像" />
-<meta property="og:description" content="Header 在将OpenWrt制作为Docker镜像之前我是直接将OpenWrt作为主系统运行在树莓派上的，买了一台Mini PC之后感觉把OpenWr" />
+<meta property="og:description" content="安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/docker-openwrt/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-12-12T22:33:58-05:00" />
@@ -53,7 +53,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="将OpenWrt制作为Docker镜像"/>
-<meta name="twitter:description" content="Header 在将OpenWrt制作为Docker镜像之前我是直接将OpenWrt作为主系统运行在树莓派上的，买了一台Mini PC之后感觉把OpenWr"/>
+<meta name="twitter:description" content="安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done"/>
 
 
 <script type="application/ld+json">
@@ -94,12 +94,12 @@
   "@type": "BlogPosting",
   "headline": "将OpenWrt制作为Docker镜像",
   "name": "将OpenWrt制作为Docker镜像",
-  "description": "Header 在将OpenWrt制作为Docker镜像之前我是直接将OpenWrt作为主系统运行在树莓派上的，买了一台Mini PC之后感觉把OpenWr",
+  "description": "安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done",
   "keywords": [
     "Docker", "OpenWrt"
   ],
-  "articleBody": "Header 在将OpenWrt制作为Docker镜像之前我是直接将OpenWrt作为主系统运行在树莓派上的，买了一台Mini PC之后感觉把OpenWrt作为Docker镜像运行在Ubuntu也是个不错的选择。这样借助GitHub Actions我们可以很方便的得到属于自己的OpenWrt固件，也不需要重新刷机，直接换一个Docker镜像即可。主系统使用Ubuntu还可以做一些其他的服务，比如部署我的网站，搭建我的世界服务器之类的，配置就更灵活了。\n我也一直在想干脆直接用Ubuntu做软路由算了，毕竟我软路由最大的功能似乎就是Wireguard，而Wireguard已经内置在Linux内核了。但是想到OpenWrt的Web Manager做的确实不错，于是就开始继续折腾了。\n安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包\nfor pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done 设置Docker的apt储存库\n# Add Docker's official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a+r /etc/apt/keyrings/docker.asc # Add the repository to Apt sources: echo \\ \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\ $(. /etc/os-release \u0026\u0026 echo \"$VERSION_CODENAME\") stable\" | \\ sudo tee /etc/apt/sources.list.d/docker.list \u003e /dev/null sudo apt-get update 安装Docker\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 编译 编译就不多说了，使用GitHub云编译，在这里记录一下.config的配置（带’#‘的是GitHub云编译编译不了的，因为占用太多储存了，可以选择在本地编译）\nTargetSystem: - x86 Subtarget: - x86_64 TargetProfile: - Generic x86/64 TargetImages: - tar.gz - squashfs LuCI: Themes: - luci-theme-agron Applications: - luci-app-accesscontrol # - luci-app-adguardhome # - luci-app-alist - luci-app-aria2 - luci-app-cloudflared - luci-app-ddns - luci-app-filebrowser - luci-app-filetransfer - luci-app-firewall - luci-app-ksmbd - luci-app-nlbwmon - luci-app-opkg - luci-app-samba - luci-app-upnp - luci-app-wol Protocols: - luci-protocol-wireguard Network: DownloadManager: - ariang IP Addresses and Names: - ddns-scripts-cloudflare Utilities: - qrencode 编译完成后在Release中能找到 openwrt-x86-64-generic-rootfs.tar.gz文件，我们把它下载下来制作成Docker镜像。\n制作为Docker镜像 注意这一步也完全并入GitHub Actions中，我暂时先手动制作，等有时间了再更新GitHub Actions。\n制作Dockerfile\nFROM scratch ADD openwrt-x86-64-generic-rootfs.tar.gz / WORKDIR / CMD [\"/sbin/init\"] 制作Docker镜像\ndocker build -t openwrt:latest . 使用Host模式运行容器\ndocker run --privileged --network host --name openwrt openwrt:latest 这样我们访问Mini PC的IP地址就可以访问OpenWrt了\n",
-  "wordCount" : "884",
+  "articleBody": "安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包\nfor pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done 设置Docker的apt储存库\n# Add Docker's official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a+r /etc/apt/keyrings/docker.asc # Add the repository to Apt sources: echo \\ \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\ $(. /etc/os-release \u0026\u0026 echo \"$VERSION_CODENAME\") stable\" | \\ sudo tee /etc/apt/sources.list.d/docker.list \u003e /dev/null sudo apt-get update 安装Docker\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 编译 编译就不多说了，使用GitHub云编译，在这里记录一下.config的配置（带’#‘的是GitHub云编译编译不了的，因为占用太多储存了，可以选择在本地编译）\nTargetSystem: - x86 Subtarget: - x86_64 TargetProfile: - Generic x86/64 TargetImages: - tar.gz - squashfs LuCI: Themes: - luci-theme-agron Applications: - luci-app-accesscontrol # - luci-app-adguardhome # - luci-app-alist - luci-app-aria2 - luci-app-cloudflared - luci-app-ddns - luci-app-filebrowser - luci-app-filetransfer - luci-app-firewall - luci-app-ksmbd - luci-app-nlbwmon - luci-app-opkg - luci-app-samba4 - luci-app-upnp - luci-app-wol Protocols: - luci-protocol-wireguard Network: DownloadManager: - ariang IP Addresses and Names: - ddns-scripts-cloudflare Utilities: - qrencode 编译完成后在Release中能找到 openwrt-x86-64-generic-rootfs.tar.gz文件，我们把它下载下来制作成Docker镜像。\n制作为Docker镜像 注意这一步也完全并入GitHub Actions中，我暂时先手动制作，等有时间了再更新GitHub Actions。\n制作Dockerfile\nFROM scratch ADD openwrt-x86-64-generic-rootfs.tar.gz / WORKDIR / CMD [\"/sbin/init\"] 制作Docker镜像\ndocker build -t openwrt:latest . 使用Host模式运行容器\ndocker run --privileged --network host --name openwrt openwrt:latest 这样我们访问Mini PC的IP地址就可以访问OpenWrt了\n",
+  "wordCount" : "552",
   "inLanguage": "zh",
   "datePublished": "2024-12-12T22:33:58-05:00",
   "dateModified": "2024-12-14T23:17:50-05:00",
@@ -184,7 +184,7 @@
     <div class="post-meta">
 
 
-<span title='2024-12-12 22:33:58 -0500 EST'>2024-12-12</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;884 字&nbsp;·&nbsp;Kyxie
+<span title='2024-12-12 22:33:58 -0500 EST'>2024-12-12</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;552 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -195,8 +195,6 @@
                 </summary>
 
                 <div class="inner"><ul>
-                        <li>
-                            <a href="#header" aria-label="Header">Header</a></li>
                         <li>
                             <a href="#%e5%ae%89%e8%a3%85docker" aria-label="安装Docker">安装Docker</a></li>
                         <li>
@@ -268,10 +266,7 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
-<p>在将OpenWrt制作为Docker镜像之前我是直接将OpenWrt作为主系统运行在树莓派上的，买了一台Mini PC之后感觉把OpenWrt作为Docker镜像运行在Ubuntu也是个不错的选择。这样借助GitHub Actions我们可以很方便的得到属于自己的OpenWrt固件，也不需要重新刷机，直接换一个Docker镜像即可。主系统使用Ubuntu还可以做一些其他的服务，比如部署我的网站，搭建我的世界服务器之类的，配置就更灵活了。</p>
-<p>我也一直在想干脆直接用Ubuntu做软路由算了，毕竟我软路由最大的功能似乎就是Wireguard，而Wireguard已经内置在Linux内核了。但是想到OpenWrt的Web Manager做的确实不错，于是就开始继续折腾了。</p>
-<h3 id="安装docker">安装Docker<a hidden class="anchor" aria-hidden="true" href="#安装docker">#</a></h3>
+  <div class="post-content"><h3 id="安装docker">安装Docker<a hidden class="anchor" aria-hidden="true" href="#安装docker">#</a></h3>
 <ul>
 <li>
 <p>按照<a href="https://docs.docker.com/engine/install/ubuntu/">Docker官网</a>的教程，我们首先卸载所有冲突的包，<code>apt-get</code>可能会提示没有安装这些包</p>
@@ -327,7 +322,7 @@
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-ksmbd</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-nlbwmon</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-opkg</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-samba</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-samba4</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-upnp</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-wol</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">Protocols</span>:
