@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>USB多个分区格式化</title>
+      <link>https://kyxie.me/zh/blog/tech/others/format-usb/</link>
+      <pubDate>Sun, 15 Dec 2024 23:45:35 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/format-usb/</guid>
+      <description>Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B+安装</description>
+    </item>
+    
+    <item>
       <title>Windows 11 打造个性化终端</title>
       <link>https://kyxie.me/zh/blog/tech/others/bash/</link>
       <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>

@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 14 Dec 2024 12:36:01 -0500</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Dec 2024 23:45:35 -0500</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用树莓派4B&#43;安装OpenWrt用作旁路由</title>
       <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
@@ -53,6 +53,15 @@
     </item>
     
     <item>
+      <title>USB多个分区格式化</title>
+      <link>https://kyxie.me/zh/blog/tech/others/format-usb/</link>
+      <pubDate>Sun, 15 Dec 2024 23:45:35 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/format-usb/</guid>
+      <description>Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B+安装</description>
+    </item>
+    
+    <item>
       <title>Banff旅行游记</title>
       <link>https://kyxie.me/zh/blog/life/banff/</link>
       <pubDate>Wed, 11 Sep 2024 12:35:55 -0400</pubDate>
@@ -80,7 +89,7 @@
     </item>
     
     <item>
-      <title>OpenWrt配置AList</title>
+      <title>配置AList</title>
       <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
       <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
       
@@ -107,15 +116,6 @@
     </item>
     
     <item>
-      <title>将OpenWrt制作为Docker镜像</title>
-      <link>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</link>
-      <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</guid>
-      <description>安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done</description>
-    </item>
-    
-    <item>
       <title>OINP移民加拿大🇨🇦时间线</title>
       <link>https://kyxie.me/zh/blog/life/pr/</link>
       <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
@@ -125,16 +125,25 @@
     </item>
     
     <item>
-      <title>使用U盘安装Debian Server</title>
-      <link>https://kyxie.me/zh/blog/tech/router/debian-server/</link>
+      <title>使用U盘安装Ubuntu Server</title>
+      <link>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</link>
       <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/debian-server/</guid>
-      <description>Header 刚买了一台新的Mini PC打算作为自己的服务器，现在使用U盘引导它安装Debian。 需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘</description>
+      <guid>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</guid>
+      <description>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 官网下载Ubuntu Server镜像 准备一个至少8GB的U盘，安装Etche</description>
     </item>
     
     <item>
-      <title>Server安装GUI</title>
+      <title>将OpenWrt制作为Docker镜像</title>
+      <link>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</link>
+      <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</guid>
+      <description>安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 Ubuntu for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg;</description>
+    </item>
+    
+    <item>
+      <title>AWS Server安装GUI</title>
       <link>https://kyxie.me/zh/blog/tech/router/aws-server-gui/</link>
       <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
       

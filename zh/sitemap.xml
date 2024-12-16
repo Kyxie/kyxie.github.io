@@ -29,7 +29,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</loc>
-    <lastmod>2024-12-14T23:17:50-05:00</lastmod>
+    <lastmod>2024-12-15T17:14:07-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -95,6 +95,9 @@
                 hreflang="zh"
                 href="https://kyxie.me/zh/blog/tech/web/papermod/"
                 />
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/others/format-usb/</loc>
+    <lastmod>2024-12-15T23:45:35-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/life/banff/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
@@ -180,9 +183,6 @@
                 href="https://kyxie.me/zh/blog/tech/others/bash/"
                 />
   </url><url>
-    <loc>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</loc>
-    <lastmod>2024-12-14T23:17:50-05:00</lastmod>
-  </url><url>
     <loc>https://kyxie.me/zh/blog/life/pr/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
     <xhtml:link
@@ -196,11 +196,14 @@
                 href="https://kyxie.me/zh/blog/life/pr/"
                 />
   </url><url>
-    <loc>https://kyxie.me/zh/blog/tech/router/debian-server/</loc>
-    <lastmod>2024-12-14T12:36:01-05:00</lastmod>
+    <loc>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</loc>
+    <lastmod>2024-12-15T17:14:07-05:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</loc>
+    <lastmod>2024-12-15T17:14:07-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/aws-server-gui/</loc>
-    <lastmod>2024-11-07T00:22:51-04:00</lastmod>
+    <lastmod>2024-12-15T17:14:07-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/samba/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
@@ -284,7 +287,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/</loc>
-    <lastmod>2024-12-14T23:17:50-05:00</lastmod>
+    <lastmod>2024-12-15T23:45:35-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"

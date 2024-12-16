@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Server安装GUI | Kunyang&#39;s Blog</title>
+<title>AWS Server安装GUI | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="AWS, EC2, Gnome, Xfce, GUI, Ubuntu Server, Debian">
 <meta name="description" content="最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都">
 <meta name="author" content="Kyxie">
@@ -44,15 +44,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Server安装GUI" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="AWS Server安装GUI" />
 <meta property="og:description" content="最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/aws-server-gui/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-11-07T00:22:51-04:00" />
-<meta property="article:modified_time" content="2024-11-07T00:22:51-04:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="article:modified_time" content="2024-12-15T17:14:07-05:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Server安装GUI"/>
+<meta name="twitter:title" content="AWS Server安装GUI"/>
 <meta name="twitter:description" content="最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都"/>
 
 
@@ -82,7 +82,7 @@
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "Server安装GUI",
+      "name": "AWS Server安装GUI",
       "item": "https://kyxie.me/zh/blog/tech/router/aws-server-gui/"
     }
   ]
@@ -92,17 +92,17 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Server安装GUI",
-  "name": "Server安装GUI",
+  "headline": "AWS Server安装GUI",
+  "name": "AWS Server安装GUI",
   "description": "最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都",
   "keywords": [
     "AWS", "EC2", "Gnome", "Xfce", "GUI", "Ubuntu Server", "Debian"
   ],
-  "articleBody": "最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都卡，AWS的免费用户又只能使用只有命令行的Ubuntu server。然后突发奇想诶我可不可以在Ubuntu server上安装一个GUI，查了一下这个方法似乎可行（其实还是不太可行，我已经打算放弃折腾了，不过倒是成功装上了GUI）。\n安装xrdp并enable，安装GUI就需要远程桌面系统，这是Linux的客户端\nsudo apt-get update sudo apt install xrdp -y sudo systemctl enable xrdp 我首先尝试的是gnome，尝试发现这个消耗资源太严重了，免费版用户用起来应该跟Windows一样卡\nsudo add-apt-repository ppa:gnome3-team/gnome3 sudo apt-get install gnome-shell ubuntu-gnome-desktop 后来我决定试试更轻量化的XFCE\nsudo apt install tasksel sudo tasksel install xubuntu-desktop sudo apt install xfce4 xfce4-goodies sudo update-alternatives --config x-session-manager sudo apt install lightdm sudo dpkg-reconfigure lightdm 设置密码（AWS的话会需要）\nsudo passwd ubuntu 在EC2 Security group中选择Allow All Traffic\n在MacBook中应用商店下载Windows App，这是Window开发的远程桌面应用，有一说一Windows给Mac开发的软件是真不错\n选择Add a PC，Computer使用AWS提供的DNS，用户名一般为ubuntu，密码为刚才设置的密码\n之后就可以连接上了\n但是尽管XFCE已经很轻量化了，我下载完Chrome之后还是觉得卡，于是放弃折腾了，AWS免费版用户不推荐这么做。\n",
-  "wordCount" : "557",
+  "articleBody": "最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都卡，AWS的免费用户又只能使用只有命令行的Ubuntu server。然后突发奇想诶我可不可以在Ubuntu server上安装一个GUI，查了一下这个方法似乎可行（其实还是不太可行，我已经打算放弃折腾了，不过倒是成功装上了GUI）。\n安装xrdp并enable，安装GUI就需要远程桌面系统，这是Linux的客户端\nsudo apt-get update sudo apt install xrdp -y sudo systemctl enable xrdp 我首先尝试的是gnome，尝试发现这个消耗资源太严重了，免费版用户用起来应该跟Windows一样卡\nsudo add-apt-repository ppa:gnome3-team/gnome3 sudo apt-get install gnome-shell ubuntu-gnome-desktop 后来我决定试试更轻量化的XFCE\napt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils -y adduser xrdp ssl-cert systemctl restart xrdp 设置密码（AWS的话会需要）\nsudo passwd ubuntu 在EC2 Security group中选择Allow All Traffic\n在MacBook中应用商店下载Windows App，这是Window开发的远程桌面应用，有一说一Windows给Mac开发的软件是真不错\n选择Add a PC，Computer使用AWS提供的DNS，用户名一般为ubuntu，密码为刚才设置的密码\n之后就可以连接上了\n但是尽管XFCE已经很轻量化了，我下载完Chrome之后还是觉得卡，于是放弃折腾了，AWS免费版用户不推荐这么做。\n",
+  "wordCount" : "547",
   "inLanguage": "zh",
   "datePublished": "2024-11-07T00:22:51-04:00",
-  "dateModified": "2024-11-07T00:22:51-04:00",
+  "dateModified": "2024-12-15T17:14:07-05:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
@@ -179,12 +179,12 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/router/">路由 🛜</a></div>
     <h1 class="post-title">
-      Server安装GUI
+      AWS Server安装GUI
     </h1>
     <div class="post-meta">
 
 
-<span title='2024-11-07 00:22:51 -0400 -0400'>2024-11-07</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;557 字&nbsp;·&nbsp;Kyxie
+<span title='2024-11-07 00:22:51 -0400 -0400'>2024-11-07</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;547 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> 
@@ -203,12 +203,9 @@
 </span></span></code></pre></div></li>
 <li>
 <p>后来我决定试试更轻量化的XFCE</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install tasksel
-</span></span><span style="display:flex;"><span>sudo tasksel install xubuntu-desktop
-</span></span><span style="display:flex;"><span>sudo apt install xfce4 xfce4-goodies
-</span></span><span style="display:flex;"><span>sudo update-alternatives --config x-session-manager
-</span></span><span style="display:flex;"><span>sudo apt install lightdm
-</span></span><span style="display:flex;"><span>sudo dpkg-reconfigure lightdm
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils -y
+</span></span><span style="display:flex;"><span>adduser xrdp ssl-cert
+</span></span><span style="display:flex;"><span>systemctl restart xrdp
 </span></span></code></pre></div></li>
 <li>
 <p>设置密码（AWS的话会需要）</p>
@@ -240,10 +237,10 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/debian-server/">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/docker-openwrt/">
     <span class="title">« 上一页</span>
     <br>
-    <span>使用U盘安装Debian Server</span>
+    <span>将OpenWrt制作为Docker镜像</span>
   </a>
   <a class="next" href="https://kyxie.me/zh/blog/tech/router/samba/">
     <span class="title">下一页 »</span>

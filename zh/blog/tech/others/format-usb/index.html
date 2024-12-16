@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>配置AList | Kunyang&#39;s Blog</title>
-<meta name="keywords" content="Cloudflare, OpenWrt, Alist">
-<meta name="description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我">
+<title>USB多个分区格式化 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="USB, Flash, Format">
+<meta name="description" content="Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B&#43;安装">
 <meta name="author" content="Kyxie">
-<link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/alist/">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/others/format-usb/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -20,8 +20,7 @@
 <link rel="mask-icon" href="https://kyxie.me/Favicon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/router/alist/">
-<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/router/alist/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/others/format-usb/">
 <noscript>
     <style>
         #theme-toggle,
@@ -45,16 +44,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="配置AList" />
-<meta property="og:description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="USB多个分区格式化" />
+<meta property="og:description" content="Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B&#43;安装" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/alist/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2024-12-01T12:58:22-05:00" />
-<meta property="article:modified_time" content="2024-12-10T00:05:01-05:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/others/format-usb/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-12-15T23:45:35-05:00" />
+<meta property="article:modified_time" content="2024-12-15T23:45:35-05:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="配置AList"/>
-<meta name="twitter:description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我"/>
+<meta name="twitter:title" content="USB多个分区格式化"/>
+<meta name="twitter:description" content="Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B&#43;安装"/>
 
 
 <script type="application/ld+json">
@@ -77,14 +76,14 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "路由 🛜",
-      "item": "https://kyxie.me/zh/blog/tech/router/"
+      "name": "其他 💡",
+      "item": "https://kyxie.me/zh/blog/tech/others/"
     }, 
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "配置AList",
-      "item": "https://kyxie.me/zh/blog/tech/router/alist/"
+      "name": "USB多个分区格式化",
+      "item": "https://kyxie.me/zh/blog/tech/others/format-usb/"
     }
   ]
 }
@@ -93,24 +92,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "配置AList",
-  "name": "配置AList",
-  "description": "Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我",
+  "headline": "USB多个分区格式化",
+  "name": "USB多个分区格式化",
+  "description": "Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B+安装",
   "keywords": [
-    "Cloudflare", "OpenWrt", "Alist"
+    "USB", "Flash", "Format"
   ],
-  "articleBody": "Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用\n挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我们插上U盘，在System → MountPoint可以看到U盘/dev/sda1被挂载到了/mnt/sda1 进入AList前端页面 → Manage → Storages → Add，Driver选择Local Mount Path随便填，我使用了/local Root folder path填mnt/sda1，这样回到主页面就能访问到U盘的内容了 使用Cloudflared公网访问AList服务 AList服务用来管理网盘是非常方便的，同时AList还允许挂载本机的文件。这让我突然想起一个场景，假如我和小伙伴出去玩用单反拍了许多照片，体积非常大，分享这些照片就非常麻烦了，如果上传到百度云，那么小伙伴下载完不知道要等多久，而且也没开其他云的会员账号。\n假如使用AList挂载本地的SD卡，再让小伙伴访问我的AList服务不就解决问题了嘛。但是如何让小伙伴在家也能访问我的OpenWrt呢，可以使用Cloudflare的内网穿透服务。\n本教程参考：【韩风Talk】这期玩Alist的网络安全防护，随便折腾一下免费的内网穿透 哔哩哔哩_bilibili\n前置条件 需要一个域名 OpenWrt安装luci-app-cloudflared 配置 首先在Cloudflare开启Zero Trust，选择免费版即可\n在LuCI开启Cloudflared服务，位于VPN → Cloudflare Zero Trust Tunnel，勾选Enable\nssh登录到OpenWrt，运行\ncloudflared tunnel login 点击显示的连接，登录\n登录成功后会下载一个授权证书，位于/root/.cloudflared/cert.pem，我们把授权证书复制到cloudflared的配置文件夹下\ncp /root/.cloudflared/cert.pem /etc/cloudflared 创建隧道，后面是隧道名称，可以随便填\ncloudflared tunnel create alist 创建完成之后，会在之前的文件夹（/root/.cloudflared/cert.pem）创建一个.json文件，把它也复制到cloudflared的配置文件夹中\ncp /root/.cloudflared/xxx.json /etc/cloudflared 进入cloudflared配置文件夹（/etc/cloudflared），修改config.yml\n# url: http://localhost:8000 tunnel: credentials-file: /etc/cloudflared/.json 替换为刚才的.json文件名\n重启cloudflared服务\n/etc/init.d/cloudflared restart 回到Cloudflare官网，Zero Trust → Networks → Tunnels就能找到刚才创建的隧道了，我们点击Edit，把本地配置迁移到云端，一直点击Confirm即可\n迁移完成后，重新点击Edit，进入Public Hostname，我们添加一个子域名，Type选择HTTP协议，URL就是局域网内AList服务器的地址和端口。\n这样就可以直接在公网通过域名访问家中的服务器了\n还有一些其他的安全配置\nCloudflare → SSL/TLS → Overview → Configure encryption mode，选择Full Cloudflare → SSL/TLS → Edge Certificates → Always Use HTTPS，选择True 开启2FA ",
-  "wordCount" : "1175",
+  "articleBody": "Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化\nMacOs 详见：使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang’s Blog\nWindows 打开命令行\ndiskpart 列出磁盘\nlist disk Disk ### Status Size Free Dyn Gpt -------- ------------- ------- ------- --- --- Disk 0 Online 931 GB 1024 KB * Disk 1 Online 931 GB 1024 KB * Disk 2 Online 7696 MB 5050 MB * 选中磁盘，注意别选错了\nsel disk 2 清理\nclean 列出磁盘再看一眼\nDisk ### Status Size Free Dyn Gpt -------- ------------- ------- ------- --- --- Disk 0 Online 931 GB 1024 KB * Disk 1 Online 931 GB 1024 KB * * Disk 2 Online 7696 MB 7695 MB * Win + X打开Disk Management，找到U盘新建简单卷，按照默认步骤一步一步来即可\n",
+  "wordCount" : "241",
   "inLanguage": "zh",
-  "datePublished": "2024-12-01T12:58:22-05:00",
-  "dateModified": "2024-12-10T00:05:01-05:00",
+  "datePublished": "2024-12-15T23:45:35-05:00",
+  "dateModified": "2024-12-15T23:45:35-05:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyxie.me/zh/blog/tech/router/alist/"
+    "@id": "https://kyxie.me/zh/blog/tech/others/format-usb/"
   },
   "publisher": {
     "@type": "Organization",
@@ -178,19 +177,14 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/router/">路由 🛜</a></div>
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/others/">其他 💡</a></div>
     <h1 class="post-title">
-      配置AList
+      USB多个分区格式化
     </h1>
     <div class="post-meta">
 
 
-<span title='2024-12-01 12:58:22 -0500 EST'>2024-12-01</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1175 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
-<ul class="i18n_list">语言:
-    <li>
-        <a href="https://kyxie.me/en/blog/tech/router/alist/">English🇨🇦</a>
-    </li>
-</ul>
+<span title='2024-12-15 23:45:35 -0500 EST'>2024-12-15</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;241 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -204,21 +198,10 @@
                         <li>
                             <a href="#header" aria-label="Header">Header</a></li>
                         <li>
-                            <a href="#%e6%8c%82%e8%bd%bdbaidu%e7%bd%91%e7%9b%98" aria-label="挂载Baidu网盘">挂载Baidu网盘</a></li>
+                            <a href="#macos" aria-label="MacOs">MacOs</a></li>
                         <li>
-                            <a href="#%e6%8c%82%e8%bd%bdgoogle-drive" aria-label="挂载Google Drive">挂载Google Drive</a></li>
-                        <li>
-                            <a href="#%e6%8c%82%e8%bd%bd%e6%9c%ac%e5%9c%b0" aria-label="挂载本地">挂载本地</a></li>
-                        <li>
-                            <a href="#%e4%bd%bf%e7%94%a8cloudflared%e5%85%ac%e7%bd%91%e8%ae%bf%e9%97%aealist%e6%9c%8d%e5%8a%a1" aria-label="使用Cloudflared公网访问AList服务">使用Cloudflared公网访问AList服务</a><ul>
-                                    
-                        <li>
-                            <a href="#%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6" aria-label="前置条件">前置条件</a></li>
-                        <li>
-                            <a href="#%e9%85%8d%e7%bd%ae" aria-label="配置">配置</a>
+                            <a href="#windows" aria-label="Windows">Windows</a>
                         </li>
-                    </ul>
-                    </li>
                     </ul>
                 </div>
             </details>
@@ -284,85 +267,42 @@
         }
     </script>
   <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
-<p>以下是AList的一些常见配置教程，仅作为个人记录和学习使用</p>
-<h3 id="挂载baidu网盘">挂载Baidu网盘<a hidden class="anchor" aria-hidden="true" href="#挂载baidu网盘">#</a></h3>
-<ul>
-<li><a href="https://alist.nn.ci/zh/guide/drivers/baidu.html">官方教程</a></li>
-<li><a href="https://www.bilibili.com/video/BV1Te4y1G7r1/?t=241">视频教程</a></li>
-</ul>
-<h3 id="挂载google-drive">挂载Google Drive<a hidden class="anchor" aria-hidden="true" href="#挂载google-drive">#</a></h3>
-<ul>
-<li><a href="https://alist.nn.ci/zh/guide/drivers/googledrive.html">官方教程</a></li>
-<li><a href="https://www.bilibili.com/video/BV18v4y1W7vo/?spm_id_from=333.337.search-card.all.click&amp;vd_source=021fb7b43d05a73d1ec2f8288f7b4303">视频教程</a></li>
-</ul>
-<h3 id="挂载本地">挂载本地<a hidden class="anchor" aria-hidden="true" href="#挂载本地">#</a></h3>
-<ul>
-<li>我们插上U盘，在System → MountPoint可以看到U盘<code>/dev/sda1</code>被挂载到了<code>/mnt/sda1</code></li>
-<li>进入AList前端页面 → Manage → Storages → Add，Driver选择Local</li>
-<li>Mount Path随便填，我使用了<code>/local</code></li>
-<li>Root folder path填<code>mnt/sda1</code>，这样回到主页面就能访问到U盘的内容了</li>
-</ul>
-<h3 id="使用cloudflared公网访问alist服务">使用Cloudflared公网访问AList服务<a hidden class="anchor" aria-hidden="true" href="#使用cloudflared公网访问alist服务">#</a></h3>
-<p>AList服务用来管理网盘是非常方便的，同时AList还允许挂载本机的文件。这让我突然想起一个场景，假如我和小伙伴出去玩用单反拍了许多照片，体积非常大，分享这些照片就非常麻烦了，如果上传到百度云，那么小伙伴下载完不知道要等多久，而且也没开其他云的会员账号。</p>
-<p>假如使用AList挂载本地的SD卡，再让小伙伴访问我的AList服务不就解决问题了嘛。但是如何让小伙伴在家也能访问我的OpenWrt呢，可以使用Cloudflare的内网穿透服务。</p>
-<p>本教程参考：<a href="https://www.bilibili.com/video/BV1sj411w7Wm/?spm_id_from=333.999.0.0&amp;vd_source=021fb7b43d05a73d1ec2f8288f7b4303">【韩风Talk】这期玩Alist的网络安全防护，随便折腾一下免费的内网穿透 哔哩哔哩_bilibili</a></p>
-<h4 id="前置条件">前置条件<a hidden class="anchor" aria-hidden="true" href="#前置条件">#</a></h4>
-<ul>
-<li>需要一个域名</li>
-<li>OpenWrt安装luci-app-cloudflared</li>
-</ul>
-<h4 id="配置">配置<a hidden class="anchor" aria-hidden="true" href="#配置">#</a></h4>
+<p>使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化</p>
+<h3 id="macos">MacOs<a hidden class="anchor" aria-hidden="true" href="#macos">#</a></h3>
+<p>详见：<a href="https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/#macos">使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang&rsquo;s Blog</a></p>
+<h3 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h3>
 <ul>
 <li>
-<p>首先在Cloudflare开启Zero Trust，选择免费版即可</p>
-</li>
-<li>
-<p>在LuCI开启Cloudflared服务，位于VPN → Cloudflare Zero Trust Tunnel，勾选Enable</p>
-</li>
-<li>
-<p>ssh登录到OpenWrt，运行</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cloudflared tunnel login
-</span></span></code></pre></div><p>点击显示的连接，登录</p>
-</li>
-<li>
-<p>登录成功后会下载一个授权证书，位于<code>/root/.cloudflared/cert.pem</code>，我们把授权证书复制到cloudflared的配置文件夹下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp /root/.cloudflared/cert.pem /etc/cloudflared
+<p>打开命令行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>diskpart
 </span></span></code></pre></div></li>
 <li>
-<p>创建隧道，后面是隧道名称，可以随便填</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cloudflared tunnel create alist
+<p>列出磁盘</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>list disk
+</span></span><span style="display:flex;"><span>Disk <span style="color:#75715e">###  Status         Size     Free     Dyn  Gpt</span>
+</span></span><span style="display:flex;"><span>  --------  -------------  -------  -------  ---  ---
+</span></span><span style="display:flex;"><span>  Disk <span style="color:#ae81ff">0</span>    Online          <span style="color:#ae81ff">931</span> GB  <span style="color:#ae81ff">1024</span> KB        *
+</span></span><span style="display:flex;"><span>  Disk <span style="color:#ae81ff">1</span>    Online          <span style="color:#ae81ff">931</span> GB  <span style="color:#ae81ff">1024</span> KB        *
+</span></span><span style="display:flex;"><span>  Disk <span style="color:#ae81ff">2</span>    Online         <span style="color:#ae81ff">7696</span> MB  <span style="color:#ae81ff">5050</span> MB        *
 </span></span></code></pre></div></li>
 <li>
-<p>创建完成之后，会在之前的文件夹（<code>/root/.cloudflared/cert.pem</code>）创建一个<code>.json</code>文件，把它也复制到cloudflared的配置文件夹中</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp /root/.cloudflared/xxx.json /etc/cloudflared
+<p>选中磁盘，注意别选错了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sel disk <span style="color:#ae81ff">2</span>
 </span></span></code></pre></div></li>
 <li>
-<p>进入cloudflared配置文件夹（<code>/etc/cloudflared</code>），修改<code>config.yml</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># url: http://localhost:8000</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">tunnel</span>: <span style="color:#ae81ff">&lt;Tunnel-UUID&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">credentials-file</span>: <span style="color:#ae81ff">/etc/cloudflared/&lt;Tunnel-UUID&gt;.json</span>
-</span></span></code></pre></div><p><code>&lt;Tunnel-UUID&gt;</code>替换为刚才的<code>.json</code>文件名</p>
-</li>
-<li>
-<p>重启cloudflared服务</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/etc/init.d/cloudflared restart
+<p>清理</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>clean
 </span></span></code></pre></div></li>
 <li>
-<p>回到Cloudflare官网，Zero Trust → Networks → Tunnels就能找到刚才创建的隧道了，我们点击Edit，把本地配置迁移到云端，一直点击Confirm即可</p>
-</li>
+<p>列出磁盘再看一眼</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  Disk <span style="color:#75715e">###  Status         Size     Free     Dyn  Gpt</span>
+</span></span><span style="display:flex;"><span>  --------  -------------  -------  -------  ---  ---
+</span></span><span style="display:flex;"><span>  Disk <span style="color:#ae81ff">0</span>    Online          <span style="color:#ae81ff">931</span> GB  <span style="color:#ae81ff">1024</span> KB        *
+</span></span><span style="display:flex;"><span>  Disk <span style="color:#ae81ff">1</span>    Online          <span style="color:#ae81ff">931</span> GB  <span style="color:#ae81ff">1024</span> KB        *
+</span></span><span style="display:flex;"><span>* Disk <span style="color:#ae81ff">2</span>    Online         <span style="color:#ae81ff">7696</span> MB  <span style="color:#ae81ff">7695</span> MB        *
+</span></span></code></pre></div></li>
 <li>
-<p>迁移完成后，重新点击Edit，进入Public Hostname，我们添加一个子域名，Type选择HTTP协议，URL就是局域网内AList服务器的地址和端口。</p>
-</li>
-<li>
-<p>这样就可以直接在公网通过域名访问家中的服务器了</p>
-</li>
-<li>
-<p>还有一些其他的安全配置</p>
-<ul>
-<li>Cloudflare → SSL/TLS → Overview → Configure encryption mode，选择Full</li>
-<li>Cloudflare → SSL/TLS → Edge Certificates → Always Use HTTPS，选择True</li>
-<li>开启2FA</li>
-</ul>
+<p><code>Win</code> + <code>X</code>打开Disk Management，找到U盘新建简单卷，按照默认步骤一步一步来即可</p>
 </li>
 </ul>
 
@@ -371,15 +311,15 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/wool/checking-account/">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/web/papermod/">
     <span class="title">« 上一页</span>
     <br>
-    <span>我使用过的加拿大🇨🇦支票账户</span>
+    <span>Hugo &#43; PaperMod搭建技术博客</span>
   </a>
-  <a class="next" href="https://kyxie.me/zh/blog/life/algonquin/">
+  <a class="next" href="https://kyxie.me/zh/blog/life/banff/">
     <span class="title">下一页 »</span>
     <br>
-    <span>Algonquin旅行攻略</span>
+    <span>Banff旅行游记</span>
   </a>
 </nav>
 
