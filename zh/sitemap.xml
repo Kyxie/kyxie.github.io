@@ -29,7 +29,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</loc>
-    <lastmod>2024-12-15T17:14:07-05:00</lastmod>
+    <lastmod>2024-12-16T02:45:26-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -97,7 +97,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/others/format-usb/</loc>
-    <lastmod>2024-12-15T23:45:35-05:00</lastmod>
+    <lastmod>2024-12-16T02:45:26-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/life/banff/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
@@ -142,7 +142,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/alist/</loc>
-    <lastmod>2024-12-10T00:05:01-05:00</lastmod>
+    <lastmod>2024-12-16T02:45:26-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -196,14 +196,20 @@
                 href="https://kyxie.me/zh/blog/life/pr/"
                 />
   </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/router/pve/</loc>
+    <lastmod>2024-12-16T02:45:26-05:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/router/ddns/</loc>
+    <lastmod>2024-12-22T21:37:58-05:00</lastmod>
+  </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</loc>
-    <lastmod>2024-12-15T17:14:07-05:00</lastmod>
+    <lastmod>2024-12-16T02:45:26-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</loc>
-    <lastmod>2024-12-15T17:14:07-05:00</lastmod>
+    <lastmod>2024-12-16T02:45:26-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/aws-server-gui/</loc>
-    <lastmod>2024-12-15T17:14:07-05:00</lastmod>
+    <lastmod>2024-12-16T02:45:26-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/samba/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
@@ -287,7 +293,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/</loc>
-    <lastmod>2024-12-15T23:45:35-05:00</lastmod>
+    <lastmod>2024-12-22T21:37:58-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"

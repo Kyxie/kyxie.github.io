@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 15 Dec 2024 23:45:35 -0500</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Dec 2024 21:37:58 -0500</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用树莓派4B&#43;安装OpenWrt用作旁路由</title>
       <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
@@ -125,12 +125,30 @@
     </item>
     
     <item>
-      <title>使用U盘安装Ubuntu Server</title>
+      <title>在Mini PC安装PVE</title>
+      <link>https://kyxie.me/zh/blog/tech/router/pve/</link>
+      <pubDate>Sun, 15 Dec 2024 23:20:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/pve/</guid>
+      <description>Header 我的折腾历史： 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界</description>
+    </item>
+    
+    <item>
+      <title>OpenWrt配置DDNS</title>
+      <link>https://kyxie.me/zh/blog/tech/router/ddns/</link>
+      <pubDate>Sun, 22 Dec 2024 21:37:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/ddns/</guid>
+      <description>OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v</description>
+    </item>
+    
+    <item>
+      <title>使用U盘安装Linux Server</title>
       <link>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</link>
       <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</guid>
-      <description>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 官网下载Ubuntu Server镜像 准备一个至少8GB的U盘，安装Etche</description>
+      <description>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch</description>
     </item>
     
     <item>
