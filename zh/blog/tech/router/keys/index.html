@@ -99,8 +99,8 @@
   "keywords": [
     "SSH", "Keys"
   ],
-  "articleBody": "通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。\n首先在windows上生成一个密钥对，一般会生成在C:\\Users\\Username/.ssh/id_rsa，而且都是成对生成的，会有一个公钥id_rsa.pub和一个私钥。\nssh-keygen 在Linux中查看是否有.ssh目录，如果没有则新建\ncd ~ mkdir -p ~/.ssh chmod 700 ~/.ssh 将公钥id_rsa.pub上传到Linux\ncd C:\\Users\\Username/.ssh/ scp .\\id_rsa.pub username@address:~/.ssh 在Linux中查看是否有authorized_keys文件，如果没有则新建\ncd ~/.ssh touch authorized_keys chmod 600 ./authorized_keys cat id_rsa.pub \u003e\u003e ./authorized_keys 添加完之后就可以将id_rsa.pub删除了\ncd ~/.ssh rm id_rsa.pub 这样以后就不再需要输密码了。\n",
-  "wordCount" : "292",
+  "articleBody": "通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。\n首先在windows上生成一个密钥对，一般会生成在C:\\Users\\Username\\.ssh\\，而且都是成对生成的，会有一个公钥id_rsa.pub或者id_ed25519.pub和一个私钥。\nssh-keygen 在Linux中查看是否有.ssh目录，如果没有则新建\ncd ~ mkdir -p ~/.ssh chmod 700 ~/.ssh 将公钥上传到Linux\ncd C:\\Users\\Username\\.ssh\\ scp .\\id_rsa.pub username@address:~/.ssh scp .\\id_ed25519.pub username@address:~/.ssh 在Linux中查看是否有authorized_keys文件，如果没有则新建\ncd ~/.ssh touch authorized_keys chmod 600 ./authorized_keys cat id_rsa.pub \u003e\u003e ./authorized_keys cat id_ed25519.pub \u003e\u003e ./authorized_keys 添加完之后就可以将公钥删除了\ncd ~/.ssh rm id_rsa.pub rm id_ed25519.pub 这样以后就不再需要输密码了。\n",
+  "wordCount" : "293",
   "inLanguage": "zh",
   "datePublished": "2024-04-25T20:47:19-04:00",
   "dateModified": "2024-11-15T14:35:15-05:00",
@@ -185,7 +185,7 @@
     <div class="post-meta">
 
 
-<span title='2024-04-25 20:47:19 -0400 EDT'>2024-04-25</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;292 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<span title='2024-04-25 20:47:19 -0400 EDT'>2024-04-25</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;293 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
 <ul class="i18n_list">语言:
     <li>
         <a href="https://kyxie.me/en/blog/tech/router/keys/">English🇨🇦</a>
@@ -197,7 +197,7 @@
   <div class="post-content"><p>通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。</p>
 <ul>
 <li>
-<p>首先在windows上生成一个密钥对，一般会生成在<code>C:\Users\Username/.ssh/id_rsa</code>，而且都是成对生成的，会有一个公钥<code>id_rsa.pub</code>和一个私钥。</p>
+<p>首先在windows上生成一个密钥对，一般会生成在<code>C:\Users\Username\.ssh\</code>，而且都是成对生成的，会有一个公钥<code>id_rsa.pub</code>或者<code>id_ed25519.pub</code>和一个私钥。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh-keygen
 </span></span></code></pre></div></li>
 <li>
@@ -207,9 +207,10 @@
 </span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">700</span> ~/.ssh
 </span></span></code></pre></div></li>
 <li>
-<p>将公钥<code>id_rsa.pub</code>上传到Linux</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\U</span>sername/.ssh/
-</span></span><span style="display:flex;"><span>scp .<span style="color:#ae81ff">\i</span>d_rsa.pub username@address:~/.ssh
+<p>将公钥上传到Linux</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\U</span>sername<span style="color:#ae81ff">\.</span>ssh<span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>scp .<span style="color:#ae81ff">\i</span>d_rsa.pub username@address:~/.ssh
+</span></span><span style="display:flex;"><span>scp .<span style="color:#ae81ff">\i</span>d_ed25519.pub username@address:~/.ssh
 </span></span></code></pre></div></li>
 <li>
 <p>在Linux中查看是否有<code>authorized_keys</code>文件，如果没有则新建</p>
@@ -217,11 +218,13 @@
 </span></span><span style="display:flex;"><span>touch authorized_keys
 </span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">600</span> ./authorized_keys
 </span></span><span style="display:flex;"><span>cat id_rsa.pub &gt;&gt; ./authorized_keys
+</span></span><span style="display:flex;"><span>cat id_ed25519.pub &gt;&gt; ./authorized_keys
 </span></span></code></pre></div></li>
 <li>
-<p>添加完之后就可以将<code>id_rsa.pub</code>删除了</p>
+<p>添加完之后就可以将公钥删除了</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~/.ssh
 </span></span><span style="display:flex;"><span>rm id_rsa.pub
+</span></span><span style="display:flex;"><span>rm id_ed25519.pub
 </span></span></code></pre></div></li>
 </ul>
 <p>这样以后就不再需要输密码了。</p>
@@ -231,10 +234,15 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/wool/stock-brokers/">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/ddns/">
     <span class="title">« 上一页</span>
     <br>
-    <span>加拿大券商对比</span>
+    <span>OpenWrt配置DDNS</span>
+  </a>
+  <a class="next" href="https://kyxie.me/zh/blog/tech/router/ubuntu-server/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>使用U盘安装Linux Server</span>
   </a>
 </nav>
 

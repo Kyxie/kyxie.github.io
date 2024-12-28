@@ -99,8 +99,8 @@
   "keywords": [
     "Linux", "Windows", "Samba"
   ],
-  "articleBody": "Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了个办法将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了。\nLinux 假如我现在登录用户为user1，我希望把home/user1的所有文件共享给Windows，当然也可以新建用户和新建文件夹来作为共享文件夹。\n安装Samba：\nsudo apt update sudo apt install samba 编辑Samba配置文件：\nsudo nano /etc/samba/smb.conf 在文本末尾添加：\n[Name] path = /home/user1/shared read only = no browsable = yes [Name]是共享文件夹的名称，会显示在Windows磁盘上\n设置Samba账户密码：\nsudo smbpasswd -a user1 sudo smbpasswd -e user1 重启Samba服务：\nsudo systemctl restart smbd Windows 打开文件资源管理器 右键点击“此电脑”，选择“映射网络驱动器” 选择一个驱动器字母（例如Z:） 在文件夹栏中输入：\\\\Linux IP Address\\Name 完成剩余步骤 ",
-  "wordCount" : "381",
+  "articleBody": "Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了个办法将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了。\nLinux 安装Samba\nsudo apt update sudo apt install samba 编辑Samba配置文件\nsudo nano /etc/samba/smb.conf 首先建议把[homes]下的所有内容注释掉，否则会自动把所有用户的~目录也一起共享出，我们可以在文本末尾添加内容来手动控制需要共享的目录\n[Name] path = /home/user1 browsable = yes read only = no guest ok = yes [Name]是共享文件夹的名称，会显示在Windows磁盘上\n设置Samba账户密码\nsudo smbpasswd -a user1 sudo smbpasswd -e user1 重启Samba服务\nsudo systemctl restart smbd Windows 打开文件资源管理器 右键点击“此电脑”，选择“映射网络驱动器” 选择一个驱动器字母（例如Z:） 在文件夹栏中输入：\\\\Linux IP Address\\Name ",
+  "wordCount" : "365",
   "inLanguage": "zh",
   "datePublished": "2023-12-17T17:19:19-04:00",
   "dateModified": "2024-12-10T00:05:01-05:00",
@@ -185,7 +185,7 @@
     <div class="post-meta">
 
 
-<span title='2023-12-17 17:19:19 -0400 -0400'>2023-12-17</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;381 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<span title='2023-12-17 17:19:19 -0400 -0400'>2023-12-17</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;365 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
 <ul class="i18n_list">语言:
     <li>
         <a href="https://kyxie.me/en/blog/tech/router/samba/">English🇨🇦</a>
@@ -275,30 +275,30 @@
   <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
 <p>我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了个办法将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了。</p>
 <h3 id="linux">Linux<a hidden class="anchor" aria-hidden="true" href="#linux">#</a></h3>
-<p>假如我现在登录用户为<code>user1</code>，我希望把<code>home/user1</code>的所有文件共享给Windows，当然也可以新建用户和新建文件夹来作为共享文件夹。</p>
 <ul>
 <li>
-<p>安装Samba：</p>
+<p>安装Samba</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
 </span></span><span style="display:flex;"><span>sudo apt install samba
 </span></span></code></pre></div></li>
 <li>
-<p>编辑Samba配置文件：</p>
+<p>编辑Samba配置文件</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/samba/smb.conf
-</span></span></code></pre></div><p>在文本末尾添加：</p>
+</span></span></code></pre></div><p>首先建议把<code>[homes]</code>下的所有内容注释掉，否则会自动把所有用户的<code>~</code>目录也一起共享出，我们可以在文本末尾添加内容来手动控制需要共享的目录</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>Name<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>path <span style="color:#f92672">=</span> /home/user1/shared
-</span></span><span style="display:flex;"><span>read only <span style="color:#f92672">=</span> no
+</span></span><span style="display:flex;"><span>path <span style="color:#f92672">=</span> /home/user1
 </span></span><span style="display:flex;"><span>browsable <span style="color:#f92672">=</span> yes
+</span></span><span style="display:flex;"><span>read only <span style="color:#f92672">=</span> no
+</span></span><span style="display:flex;"><span>guest ok <span style="color:#f92672">=</span> yes
 </span></span></code></pre></div><p><code>[Name]</code>是共享文件夹的名称，会显示在Windows磁盘上</p>
 </li>
 <li>
-<p>设置Samba账户密码：</p>
+<p>设置Samba账户密码</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo smbpasswd -a user1
 </span></span><span style="display:flex;"><span>sudo smbpasswd -e user1
 </span></span></code></pre></div></li>
 <li>
-<p>重启Samba服务：</p>
+<p>重启Samba服务</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart smbd
 </span></span></code></pre></div></li>
 </ul>
@@ -308,7 +308,6 @@
 <li>右键点击“此电脑”，选择“映射网络驱动器”</li>
 <li>选择一个驱动器字母（例如Z:）</li>
 <li>在文件夹栏中输入：<code>\\Linux IP Address\Name</code></li>
-<li>完成剩余步骤</li>
 </ul>
 
 
@@ -316,15 +315,15 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/aws-server-gui/">
+  <a class="prev" href="https://kyxie.me/zh/blog/life/pr/">
     <span class="title">« 上一页</span>
     <br>
-    <span>AWS Server安装GUI</span>
+    <span>OINP移民加拿大🇨🇦时间线</span>
   </a>
-  <a class="next" href="https://kyxie.me/zh/blog/tech/router/openvpn/">
+  <a class="next" href="https://kyxie.me/zh/blog/tech/router/pve/">
     <span class="title">下一页 »</span>
     <br>
-    <span>OpenVPN的简单配置</span>
+    <span>x86 Mini PC安装PVE</span>
   </a>
 </nav>
 

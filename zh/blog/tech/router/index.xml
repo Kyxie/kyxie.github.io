@@ -8,7 +8,7 @@
     <language>zh</language>
     <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/blog/tech/router/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>使用树莓派4B&#43;安装OpenWrt用作旁路由</title>
+      <title>树莓派4B&#43;安装OpenWrt用作旁路由</title>
       <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
       <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
       
@@ -22,20 +22,20 @@
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/wireguard/</guid>
-      <description>Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey &amp;gt; publickey 编辑配置文件wg0.conf [Interface] PrivateKey</description>
+      <description>OpenWrt 安装 所需插件详见：使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang&amp;rsquo;s Blog 配置 Network → Interface → Add new interface，创建一个wireguard，名字就</description>
     </item>
     
     <item>
-      <title>配置AList</title>
-      <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
-      <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
+      <title>使用Samba将Linux映射为Windows磁盘</title>
+      <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
+      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
-      <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我</description>
+      <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
+      <description>Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了</description>
     </item>
     
     <item>
-      <title>在Mini PC安装PVE</title>
+      <title>x86 Mini PC安装PVE</title>
       <link>https://kyxie.me/zh/blog/tech/router/pve/</link>
       <pubDate>Sun, 15 Dec 2024 23:20:58 -0500</pubDate>
       
@@ -53,6 +53,15 @@
     </item>
     
     <item>
+      <title>使用Keys免密ssh到Linux</title>
+      <link>https://kyxie.me/zh/blog/tech/router/keys/</link>
+      <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/keys/</guid>
+      <description>通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一</description>
+    </item>
+    
+    <item>
       <title>使用U盘安装Linux Server</title>
       <link>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</link>
       <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
@@ -62,30 +71,21 @@
     </item>
     
     <item>
+      <title>Debian使用Docker部署AList</title>
+      <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
+      <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
+      <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 Token链接：https://openap</description>
+    </item>
+    
+    <item>
       <title>将OpenWrt制作为Docker镜像</title>
       <link>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</link>
       <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</guid>
       <description>安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 Ubuntu for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg;</description>
-    </item>
-    
-    <item>
-      <title>AWS Server安装GUI</title>
-      <link>https://kyxie.me/zh/blog/tech/router/aws-server-gui/</link>
-      <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/aws-server-gui/</guid>
-      <description>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都</description>
-    </item>
-    
-    <item>
-      <title>使用Samba将Linux映射为Windows磁盘</title>
-      <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
-      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
-      <description>Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了</description>
     </item>
     
     <item>
@@ -107,12 +107,12 @@
     </item>
     
     <item>
-      <title>使用Keys免密ssh到Linux</title>
-      <link>https://kyxie.me/zh/blog/tech/router/keys/</link>
-      <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
+      <title>AWS Server安装GUI</title>
+      <link>https://kyxie.me/zh/blog/tech/router/aws-server-gui/</link>
+      <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/keys/</guid>
-      <description>通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一</description>
+      <guid>https://kyxie.me/zh/blog/tech/router/aws-server-gui/</guid>
+      <description>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都</description>
     </item>
     
   </channel>

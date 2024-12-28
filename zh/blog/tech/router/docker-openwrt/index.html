@@ -49,7 +49,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/docker-openwrt/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-12-12T22:33:58-05:00" />
-<meta property="article:modified_time" content="2024-12-16T02:45:26-05:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="article:modified_time" content="2024-12-16T19:23:26-05:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="将OpenWrt制作为Docker镜像"/>
@@ -98,11 +98,11 @@
   "keywords": [
     "Docker", "OpenWrt"
   ],
-  "articleBody": "安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包\nUbuntu\nfor pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done Debian\nfor pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done 设置Docker的apt储存库\nUbuntu\n# Add Docker's official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a+r /etc/apt/keyrings/docker.asc # Add the repository to Apt sources: echo \\ \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\ $(. /etc/os-release \u0026\u0026 echo \"$VERSION_CODENAME\") stable\" | \\ sudo tee /etc/apt/sources.list.d/docker.list \u003e /dev/null sudo apt-get update Debian\n# Add Docker's official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a+r /etc/apt/keyrings/docker.asc # Add the repository to Apt sources: echo \\ \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \\ $(. /etc/os-release \u0026\u0026 echo \"$VERSION_CODENAME\") stable\" | \\ sudo tee /etc/apt/sources.list.d/docker.list \u003e /dev/null sudo apt-get update 安装Docker\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 编译 编译就不多说了，使用GitHub云编译，编译完成后在Release中能找到 openwrt-x86-64-generic-rootfs.tar.gz文件，我们把它下载下来制作成Docker镜像。\n制作为Docker镜像 这一步其实也完全并入GitHub Actions中，我暂时先手动制作，等有时间了再更新GitHub Actions。\n制作Dockerfile\nFROM scratch ADD openwrt-x86-64-generic-rootfs.tar.gz / WORKDIR / CMD [\"/sbin/init\"] 制作Docker镜像\ndocker build -t openwrt:latest . 在Linux上部署 假设我的lan口为enp0s1，开启混杂模式\nip link set enp0s1 promisc on 设置macvlan\ndocker network create -d macvlan \\ --subnet=192.168.2.0/24 \\ --gateway=192.168.2.1 \\ -o parent=enp0s1 \\ wrt_lan 启动OpenWrt镜像\ndocker run -d --name openwrt \\ --net wrt_lan \\ --ip 192.168.2.66 \\ --privileged \\ openwrt /sbin/init 进入OpenWrt容器内将LAN口修改为静态IP地址\ndocker exec -it openwrt sh 然后编辑/etc/config/network\nvi /etc/config/network 修改为以下内容\nconfig interface 'lan' option type 'bridge' option ifname 'eth0' option proto 'static' option netmask '255.255.255.0' option ip6assign '60' option ipaddr '192.168.2.66'\t# OpenWrt的IP地址 option gateway '192.168.2.1'\t# 局域网主路由 option dns '192.168.2.1'\t# 局域网主路由 重启OpenWrt网络服务\n/etc/init.d/network restart ",
-  "wordCount" : "662",
+  "articleBody": "安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包\nUbuntu\nfor pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done Debian\nfor pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done 设置Docker的apt储存库\nUbuntu\n# Add Docker's official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a+r /etc/apt/keyrings/docker.asc # Add the repository to Apt sources: echo \\ \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\ $(. /etc/os-release \u0026\u0026 echo \"$VERSION_CODENAME\") stable\" | \\ sudo tee /etc/apt/sources.list.d/docker.list \u003e /dev/null sudo apt-get update Debian\n# Add Docker's official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a+r /etc/apt/keyrings/docker.asc # Add the repository to Apt sources: echo \\ \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \\ $(. /etc/os-release \u0026\u0026 echo \"$VERSION_CODENAME\") stable\" | \\ sudo tee /etc/apt/sources.list.d/docker.list \u003e /dev/null sudo apt-get update 安装Docker\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 编译 编译就不多说了，使用GitHub云编译，编译完成后在Release中能找到 openwrt-x86-64-generic-rootfs.tar.gz文件，我们把它下载下来制作成Docker镜像。\n制作为Docker镜像 这一步其实也完全并入GitHub Actions中，我暂时先手动制作，等有时间了再更新GitHub Actions。\n制作Dockerfile\nFROM scratch ADD openwrt-x86-64-generic-rootfs.tar.gz / WORKDIR / CMD [\"/sbin/init\"] 制作Docker镜像\ndocker build -t openwrt:latest . 在Linux上部署 由于macvlan限制了宿主机和Docker容器之间的通信，我执行完这些命令之后还是无法ping通OpenWrt的IP地址，以下内容仅作为个人记录。\n假设我的lan口为enp0s1，开启混杂模式\nip link set enp0s1 promisc on 设置macvlan\ndocker network create -d macvlan \\ --subnet=192.168.2.0/24 \\ --gateway=192.168.2.1 \\ -o parent=enp0s1 \\ wrt_lan 启动OpenWrt镜像\ndocker run -d --name openwrt \\ --net wrt_lan \\ --ip 192.168.2.66 \\ --privileged \\ openwrt /sbin/init 进入OpenWrt容器内将LAN口修改为静态IP地址\ndocker exec -it openwrt sh 然后编辑/etc/config/network\nvi /etc/config/network 修改为以下内容\nconfig interface 'lan' option type 'bridge' option ifname 'eth0' option proto 'static' option netmask '255.255.255.0' option ip6assign '60' option ipaddr '192.168.2.66'\t# OpenWrt的IP地址 option gateway '192.168.2.1'\t# 局域网主路由 option dns '192.168.2.1'\t# 局域网主路由 重启OpenWrt网络服务\n/etc/init.d/network restart ",
+  "wordCount" : "736",
   "inLanguage": "zh",
   "datePublished": "2024-12-12T22:33:58-05:00",
-  "dateModified": "2024-12-16T02:45:26-05:00",
+  "dateModified": "2024-12-16T19:23:26-05:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
@@ -184,7 +184,7 @@
     <div class="post-meta">
 
 
-<span title='2024-12-12 22:33:58 -0500 EST'>2024-12-12</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;662 字&nbsp;·&nbsp;Kyxie
+<span title='2024-12-12 22:33:58 -0500 EST'>2024-12-12</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;736 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -331,6 +331,7 @@
 </span></span></code></pre></div></li>
 </ul>
 <h3 id="在linux上部署">在Linux上部署<a hidden class="anchor" aria-hidden="true" href="#在linux上部署">#</a></h3>
+<p>由于macvlan限制了宿主机和Docker容器之间的通信，我执行完这些命令之后还是无法ping通OpenWrt的IP地址，以下内容仅作为个人记录。</p>
 <ul>
 <li>
 <p>假设我的<code>lan</code>口为<code>enp0s1</code>，开启混杂模式</p>
@@ -379,15 +380,15 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/ubuntu-server/">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/alist/">
     <span class="title">« 上一页</span>
     <br>
-    <span>使用U盘安装Linux Server</span>
+    <span>Debian使用Docker部署AList</span>
   </a>
-  <a class="next" href="https://kyxie.me/zh/blog/tech/router/aws-server-gui/">
+  <a class="next" href="https://kyxie.me/zh/blog/tech/router/openvpn/">
     <span class="title">下一页 »</span>
     <br>
-    <span>AWS Server安装GUI</span>
+    <span>OpenVPN的简单配置</span>
   </a>
 </nav>
 
