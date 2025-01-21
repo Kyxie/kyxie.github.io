@@ -26,12 +26,12 @@
     </item>
     
     <item>
-      <title>使用Samba将Linux映射为Windows磁盘</title>
-      <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
-      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
+      <title>Debian使用Docker部署AList</title>
+      <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
+      <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
-      <description>Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了</description>
+      <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
+      <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 Token链接：https://openap</description>
     </item>
     
     <item>
@@ -62,21 +62,21 @@
     </item>
     
     <item>
+      <title>使用Samba将Linux映射为Windows磁盘</title>
+      <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
+      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
+      <description>Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了</description>
+    </item>
+    
+    <item>
       <title>使用U盘安装Linux Server</title>
       <link>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</link>
       <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/ubuntu-server/</guid>
       <description>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch</description>
-    </item>
-    
-    <item>
-      <title>Debian使用Docker部署AList</title>
-      <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
-      <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
-      <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 Token链接：https://openap</description>
     </item>
     
     <item>
