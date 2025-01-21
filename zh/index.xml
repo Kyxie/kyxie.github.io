@@ -89,7 +89,7 @@
     </item>
     
     <item>
-      <title>Algonquin旅行攻略</title>
+      <title>Algonquin旅行游记</title>
       <link>https://kyxie.me/zh/blog/life/algonquin/</link>
       <pubDate>Mon, 30 Sep 2024 14:03:55 -0400</pubDate>
       
@@ -104,15 +104,6 @@
       
       <guid>https://kyxie.me/zh/blog/tech/others/bash/</guid>
       <description>前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo</description>
-    </item>
-    
-    <item>
-      <title>坎昆旅行攻略</title>
-      <link>https://kyxie.me/zh/blog/life/cancun/</link>
-      <pubDate>Tue, 21 Jan 2025 11:57:55 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/life/cancun/</guid>
-      <description>圣诞节之前去了趟Cancun四天三晚，写一写在Cancun踩的坑和旅游攻略。 酒店我们选的是Haven Riviera All Inclusive，我个人感觉已经非</description>
     </item>
     
     <item>
@@ -140,6 +131,15 @@
       
       <guid>https://kyxie.me/zh/blog/tech/router/pve/</guid>
       <description>Header 我的折腾历史： 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界</description>
+    </item>
+    
+    <item>
+      <title>Cancun旅行游记</title>
+      <link>https://kyxie.me/zh/blog/life/cancun/</link>
+      <pubDate>Tue, 21 Jan 2025 11:57:55 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/life/cancun/</guid>
+      <description>Header 圣诞节之前去了趟Cancun四天三晚，写一写在Cancun踩的坑和旅游攻略。 酒店我们选的是Haven Riviera All Inclusive，我个人感觉已经</description>
     </item>
     
     <item>
