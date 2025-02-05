@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 21 Jan 2025 11:57:55 -0500</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Feb 2025 00:16:46 -0500</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>树莓派4B&#43;安装OpenWrt用作旁路由</title>
       <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
@@ -107,6 +107,15 @@
     </item>
     
     <item>
+      <title>如何找回Homebrew下载的MySQL的密码</title>
+      <link>https://kyxie.me/zh/blog/tech/others/recover-mysql/</link>
+      <pubDate>Wed, 05 Feb 2025 00:16:46 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/recover-mysql/</guid>
+      <description>如题目所知，我这几天把MySQL的密码给忘记了，于是想办法恢复，下面是教程： 打开并编辑配置文件my.cnf sudo vim /opt/homebrew/etc/my.cnf 在配置文件添加skip-gr</description>
+    </item>
+    
+    <item>
       <title>Debian使用Docker部署AList</title>
       <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
       <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
@@ -139,7 +148,7 @@
       <pubDate>Tue, 21 Jan 2025 11:57:55 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/life/cancun/</guid>
-      <description>Header 圣诞节之前去了趟Cancun四天三晚，写一写在Cancun踩的坑和旅游攻略。 酒店我们选的是Haven Riviera All Inclusive，我个人感觉已经</description>
+      <description>Header 圣诞节之前去了趟坎昆四天三晚，写一写在坎昆踩的坑和旅游攻略。 酒店我们选的是Haven Riviera All Inclusive，我个人感觉已经非常不错了，餐厅</description>
     </item>
     
     <item>
@@ -194,15 +203,6 @@
       
       <guid>https://kyxie.me/zh/blog/tech/router/openvpn/</guid>
       <description>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli</description>
-    </item>
-    
-    <item>
-      <title>Java Cheat Sheet</title>
-      <link>https://kyxie.me/zh/blog/tech/others/java/</link>
-      <pubDate>Thu, 05 May 2022 17:28:17 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/others/java/</guid>
-      <description>Character 判断是否为字母或数字 boolean res = Character.isLetterOrDigit(char); 转小写 char res = Character.toLowerCase(char); 下一个字符 &amp;#39;b&amp;#39; == (char) (&amp;#39;a&amp;#39; + 1); Integer 最大值最小值 int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等 Integer a = 1; Integer b = 1; a == b; // true Integer c = 200; Integer</description>
     </item>
     
     <item>

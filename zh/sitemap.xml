@@ -142,7 +142,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/life/algonquin/</loc>
-    <lastmod>2024-12-10T00:05:01-05:00</lastmod>
+    <lastmod>2025-01-21T14:10:23-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -169,6 +169,9 @@
                 hreflang="zh"
                 href="https://kyxie.me/zh/blog/tech/others/bash/"
                 />
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/others/recover-mysql/</loc>
+    <lastmod>2025-02-05T00:16:46-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/alist/</loc>
     <lastmod>2025-01-21T13:54:51-05:00</lastmod>
@@ -200,7 +203,7 @@
     <lastmod>2024-12-27T21:01:52-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/life/cancun/</loc>
-    <lastmod>2025-01-21T13:54:51-05:00</lastmod>
+    <lastmod>2025-01-21T14:10:23-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/ddns/</loc>
     <lastmod>2024-12-23T23:29:56-05:00</lastmod>
@@ -250,19 +253,6 @@
                 href="https://kyxie.me/zh/blog/tech/router/openvpn/"
                 />
   </url><url>
-    <loc>https://kyxie.me/zh/blog/tech/others/java/</loc>
-    <lastmod>2025-01-21T13:54:51-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/tech/others/java/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/tech/others/java/"
-                />
-  </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/ldap/</loc>
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
     <xhtml:link
@@ -296,7 +286,7 @@
     <lastmod>2024-11-15T14:35:15-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/</loc>
-    <lastmod>2025-01-21T13:54:51-05:00</lastmod>
+    <lastmod>2025-02-05T00:16:46-05:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
