@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>建站 🚧 on Kunyang&#39;s Blog</title>
+    <title>建站 🌐 on Kunyang&#39;s Blog</title>
     <link>https://kyxie.me/zh/blog/tech/web/</link>
-    <description>Recent content in 建站 🚧 on Kunyang&#39;s Blog</description>
+    <description>Recent content in 建站 🌐 on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/blog/tech/web/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <pubDate>Fri, 15 Apr 2022 00:28:55 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/web/papermod/</guid>
-      <description>安装过程 首先需要安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo可以直接用Winget来安装，打开终端输入 winget</description>
+      <description>安装过程 首先需要 安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo可以直接用Winget来安装，打开终端输入 winget</description>
     </item>
     
   </channel>

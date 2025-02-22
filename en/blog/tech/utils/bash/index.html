@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Windows 11 打造个性化终端 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Windows, OhMyPosh, Bash">
+<meta name="description" content="前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/en/blog/tech/utils/bash/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/utils/bash/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/utils/bash/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Windows 11 打造个性化终端" />
+<meta property="og:description" content="前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/en/blog/tech/utils/bash/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-04-01T00:07:17-04:00" />
+<meta property="article:modified_time" content="2023-04-01T00:07:17-04:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Windows 11 打造个性化终端"/>
+<meta name="twitter:description" content="前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs 📒",
+      "item": "https://kyxie.me/en/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Tech 🔧",
+      "item": "https://kyxie.me/en/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Windows 11 打造个性化终端",
+      "item": "https://kyxie.me/en/blog/tech/utils/bash/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Windows 11 打造个性化终端",
+  "name": "Windows 11 打造个性化终端",
+  "description": "前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo",
+  "keywords": [
+    "Windows", "OhMyPosh", "Bash"
+  ],
+  "articleBody": "前言 我就喜欢搞一些简洁而又花里胡哨的东西。\n教程基于Windows 11自带的Terminal。\n字体 我使用的字体是CodeNewRoman Nerd Font，这个字体同样是我博客的字体，可以从这里下载，下载后安装即可，也可以在VS Code上使用这个字体。\n下载 oh-my-posh winget install JanDeDobbeleer.OhMyPosh 终端设置 我这里直接修改了Windows PowerShell的配置，如果不想破坏默认的配置也可以新建一个配置文件。\n在配色方案的选项下，我选择的Campbell，但是我打开设置的json file里面把第一个主题的background改成了#0C0C0C，避免了纯黑的背景。\n在Windows PowerShell的常规选项下，取消勾选使用父进程目录，在外观选项下选取下载的字体CodeNowRoman Nerd Font。\n文件配置 在终端输入\necho $profile 找到这个文件，如果找不到自己新建一个。\n从这里选择一个自己喜欢的主题，点击主题名字进入相应的github并且下载.json源码，保存在本地，粘贴下面语句到这个文件中，修改路径为你保存的路径。\noh-my-posh init pwsh --config 'C:/Users/Posh/jandedobbeleer.omp.json' | Invoke-Expression 保存后运行：\n. $profile FAQ 如果运行失败，可能需要更新PSReadLine。\n如果识别不了icon，大概率字体的问题，查看是否在PowerShell的页面下设置字体为Nerd字体。\n效果展示 ",
+  "wordCount" : "529",
+  "inLanguage": "en",
+  "datePublished": "2023-04-01T00:07:17-04:00",
+  "dateModified": "2023-04-01T00:07:17-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/en/blog/tech/utils/bash/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/en/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/zh/" title="中文🇨🇳"
+                            aria-label="中文🇨🇳">中文🇨🇳</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/en/">Home</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/">Blogs 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/">Tech 🔧</a></div>
+    <h1 class="post-title">
+      Windows 11 打造个性化终端
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2023-04-01 00:07:17 -0400 EDT'>2023-04-01</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;529 words&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://kyxie.me/zh/blog/tech/utils/bash/">中文🇨🇳</a>
+    </li>
+</ul>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#%e5%89%8d%e8%a8%80" aria-label="前言">前言</a></li>
+                        <li>
+                            <a href="#%e5%ad%97%e4%bd%93" aria-label="字体">字体</a></li>
+                        <li>
+                            <a href="#%e4%b8%8b%e8%bd%bd-oh-my-posh" aria-label="下载 oh-my-posh">下载 oh-my-posh</a></li>
+                        <li>
+                            <a href="#%e7%bb%88%e7%ab%af%e8%ae%be%e7%bd%ae" aria-label="终端设置">终端设置</a></li>
+                        <li>
+                            <a href="#%e6%96%87%e4%bb%b6%e9%85%8d%e7%bd%ae" aria-label="文件配置">文件配置</a></li>
+                        <li>
+                            <a href="#faq" aria-label="FAQ">FAQ</a></li>
+                        <li>
+                            <a href="#%e6%95%88%e6%9e%9c%e5%b1%95%e7%a4%ba" aria-label="效果展示">效果展示</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h3 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h3>
+<ul>
+<li>
+<p>我就喜欢搞一些简洁而又花里胡哨的东西。</p>
+</li>
+<li>
+<p>教程基于Windows 11自带的Terminal。</p>
+</li>
+</ul>
+<h3 id="字体">字体<a hidden class="anchor" aria-hidden="true" href="#字体">#</a></h3>
+<p>我使用的字体是<code>CodeNewRoman Nerd Font</code>，这个字体同样是我博客的字体，可以从<a href="https://www.nerdfonts.com/font-downloads">这里</a>下载，下载后安装即可，也可以在VS Code上使用这个字体。</p>
+<h3 id="下载-oh-my-posh">下载 oh-my-posh<a hidden class="anchor" aria-hidden="true" href="#下载-oh-my-posh">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>winget install JanDeDobbeleer.OhMyPosh
+</span></span></code></pre></div><h3 id="终端设置">终端设置<a hidden class="anchor" aria-hidden="true" href="#终端设置">#</a></h3>
+<p>我这里直接修改了<code>Windows PowerShell</code>的配置，如果不想破坏默认的配置也可以新建一个配置文件。</p>
+<p>在<code>配色方案</code>的选项下，我选择的<code>Campbell</code>，但是我打开设置的json file里面把第一个主题的<code>background</code>改成了<code>#0C0C0C</code>，避免了纯黑的背景。</p>
+<p>在<code>Windows PowerShell</code>的<code>常规</code>选项下，取消勾选使用父进程目录，在<code>外观</code>选项下选取下载的字体<code>CodeNowRoman Nerd Font</code>。</p>
+<h3 id="文件配置">文件配置<a hidden class="anchor" aria-hidden="true" href="#文件配置">#</a></h3>
+<p>在终端输入</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo $profile
+</span></span></code></pre></div><p>找到这个文件，如果找不到自己新建一个。</p>
+<p>从<a href="https://ohmyposh.dev/docs/themes">这里</a>选择一个自己喜欢的主题，点击主题名字进入相应的github并且下载<code>.json</code>源码，保存在本地，粘贴下面语句到这个文件中，修改路径为你保存的路径。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>oh-my-posh init pwsh --config <span style="color:#e6db74">&#39;C:/Users/Posh/jandedobbeleer.omp.json&#39;</span> | Invoke-Expression
+</span></span></code></pre></div><p>保存后运行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>. $profile
+</span></span></code></pre></div><h3 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h3>
+<p>如果运行失败，可能需要更新<a href="https://github.com/PowerShell/PSReadLine#installation">PSReadLine</a>。</p>
+<p>如果识别不了icon，大概率字体的问题，查看是否在PowerShell的页面下设置字体为Nerd字体。</p>
+<h3 id="效果展示">效果展示<a hidden class="anchor" aria-hidden="true" href="#效果展示">#</a></h3>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/5e626f87ed4b70ef936a9bfbd235be8d.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Bash"  />
+</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/en/blog/life/algonquin/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>Algonquin旅行攻略</span>
+  </a>
+  <a class="next" href="https://kyxie.me/en/blog/life/pr/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>OINP移民加拿大🇨🇦时间线</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://kyxie.me/en/">Kunyang&#39;s Blog</a></span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        Visitors: <span id="busuanzi_value_site_uv"></span>
+        Views: <span id="busuanzi_value_site_pv"></span>
+    </span>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const uvElement = document.getElementById('busuanzi_value_site_uv');
+            const pvElement = document.getElementById('busuanzi_value_site_pv');
+            const initialUv = 29000;
+            const initialPv = 70000;
+            if (!uvElement || !pvElement) {
+                console.error("Busuanzi elements not found.");
+                return;
+            }
+            const uvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        uvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialUv;
+                        break;
+                    }
+                }
+            });
+            const pvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        pvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialPv;
+                        break;
+                    }
+                }
+            });
+            uvObs.observe(uvElement, { childList: true });
+            pvObs.observe(pvElement, { childList: true });
+        });
+    </script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

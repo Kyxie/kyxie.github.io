@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Java Cheat Sheet | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Java">
+<meta name="description" content="Character 判断是否为字母或数字： boolean res = Character.isLetterOrDigit(char); 转小写： char res = Character.toLowerCase(char); 下一个字符： &#39;b&#39; == (char) (&#39;a&#39; &#43; 1); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等： Integer a = 1; Integer b = 1; a == b; // true">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/en/blog/tech/utils/java/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/utils/java/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script>
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Java Cheat Sheet" />
+<meta property="og:description" content="Character 判断是否为字母或数字： boolean res = Character.isLetterOrDigit(char); 转小写： char res = Character.toLowerCase(char); 下一个字符： &#39;b&#39; == (char) (&#39;a&#39; &#43; 1); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等： Integer a = 1; Integer b = 1; a == b; // true" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/en/blog/tech/utils/java/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2022-05-05T17:28:17-04:00" />
+<meta property="article:modified_time" content="2022-05-05T17:28:17-04:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java Cheat Sheet"/>
+<meta name="twitter:description" content="Character 判断是否为字母或数字： boolean res = Character.isLetterOrDigit(char); 转小写： char res = Character.toLowerCase(char); 下一个字符： &#39;b&#39; == (char) (&#39;a&#39; &#43; 1); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等： Integer a = 1; Integer b = 1; a == b; // true"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs 📒",
+      "item": "https://kyxie.me/en/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Tech 🔧",
+      "item": "https://kyxie.me/en/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Java Cheat Sheet",
+      "item": "https://kyxie.me/en/blog/tech/utils/java/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Java Cheat Sheet",
+  "name": "Java Cheat Sheet",
+  "description": "Character 判断是否为字母或数字： boolean res = Character.isLetterOrDigit(char); 转小写： char res = Character.toLowerCase(char); 下一个字符： \u0026#39;b\u0026#39; == (char) (\u0026#39;a\u0026#39; + 1); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等： Integer a = 1; Integer b = 1; a == b; // true",
+  "keywords": [
+    "Java"
+  ],
+  "articleBody": "Character 判断是否为字母或数字：\nboolean res = Character.isLetterOrDigit(char); 转小写：\nchar res = Character.toLowerCase(char); 下一个字符：\n'b' == (char) ('a' + 1); Integer 最大值最小值：\nint max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等：\nInteger a = 1; Integer b = 1; a == b;\t// true Integer c = 200; Integer d = 200; c == d;\t// false Objects.equals(c, d);\t// true Array 创建数组：\nint[] array = new int[5]; int[] array = new int[]{1,2,3,4}; int[] array = {1,2,3,4}; int[][] array = {{1,2}, {3,4}}; 引用：\narray[3]; 获取长度：\narray.length; 快速初始化：\n// 我们要给这个Map的值快速填充 Map\u003cInteger, List\u003cInteger\u003e\u003e map = new HashMap\u003c\u003e(); map.put(1, Arrays.asList(1, 2, 3)); map.put(2, Arrays.asList(2, 3, 4)); 排序：\nArrays.sort(array); // int[] 不能直接做降序排列 // 想做降序排列只能用Integer[] Integer[] array = new Integer[2]; Arrays.sort(array, Comparitor.naturalOrder());\t// 升序排列 Arrays.sort(array, Comparator.reverseOrder());\t// 降序排列 二维数组排序：\nint[][] array = new int[][]{{1, 2}, {2, 3}}; Arrays.sort(array, (o1, o2) -\u003e o1[0] - o2[0]);\t// 按照二维数组的第一个元素从小到大排序 Arrays.sort(array, (o1, o2) -\u003e o1[1] - o2[1]);\t// 按照二维数组的第二个元素从小到大排序 复制子数组：\n// array: 原始数组，不包括to的结束索引 subArray = Arrays.copyOfRange(array, from, to); // array = [4, 2, 5, 1, 6, 3, 7] subArray = Arrays.copyOfRange(array, 0, 3); // subArray = [4, 2, 5] 打印：\nSystem.out.println(Arrays.toString(array)); 填满：\nint[] array = new int[]; int num; Arrays.fill(array, num);\t// array全部元素等于num String 创建字符串：\nString string = \"java\"; 指定位置的字符\nchar charAt3 = string.charAt(3);\t// charAt3 = 'a' 字符串相等：\nString string1 = \"abc\"; String string2 = \"abc\"; string1.equals(string2); 字符串转整数：\nString string = \"123\"; int integer = Integer.parseInt(string); 字符串长度：\nint length = string.length(); 截取字符串：\nString sb = \"abcdef\"; String str = sb.substring(0, 1);\t// str = \"a\"; String str = sb.substring(1);\t// str = \"bcdef\";\t如果只有一个参数则为beginIndex 字符的位置：\nString str = \"abc\"; int index = str.indexOf(b);\t// index = 1 字符串转字符数组：\nString str; char[] temp = str.toCharArray(); 字符串分割：\nString str = \"hello world\"; String[] word = str.split(\" \");\t// word = [\"hello\", \"world\"] // 这里必须是字符串 // 如果有两个空格连在一起，会在数组中加入一个\"\"（空字符串） 将字符串数组合并为长字符串（中间插入）：\nString[] words = new String[]{\"hello\", \"world\"}; String str = String.join(\" \", words); // str = \"hello world\"; 字符串替换：\nString str = \"a! b\"; str = str.replace(\"!\", \" \");\t// str = \"a b\"; // 字符或者字符串都可以替换 删除字符串头尾的空格：\nString str = \" abc \"; str.trim();\t// str = \"abc\" 字符串拼接：\nString str = \"abc\"; System.out.println(str + \"def\");\t// 可以直接使用+ Stack 创建 stack：\nDeque\u003cInteger\u003e stack = new ArrayDeque\u003c\u003e(); 栈顶：\nstack.peek() 入栈：\nstack.push(); 出栈：\nstack.pop(); 栈是否为空：\nstack.isEmpty(); 栈的长度：\nstack.size(); ArrayList 创建列表：\nList\u003cInteger\u003e array = new ArrayList\u003c\u003e(); List\u003cInteger\u003e array = new ArrayList\u003c\u003e(Arrays.asList(1, 2, 3, 4));\t// 初始化值 添加元素：\narray.add(1);\t// List只能在末尾添加元素，在中间插入元素会导致额外的内存开销，可以选择使用LinkedList 指定位置的元素：\narray.get(0); 列表中是否存在某元素：\narray.contains(0); 删除列表元素：\narray.remove(0);\t// 删除array[0] array.remove(Integer.valueOf(0));\t// 删除元素0 列表大小：\narray.size(); 判断列表是否为空：\narray.isEmpty(); 清空列表：\narray.clear(); 升序排列：\narray.sort(Comparator.naturalOrder()); 降序排列：\narray.sort(Comparator.reverseOrder()); 修改值：\narray.set(int index, int value); 反转：\nCollections.reverse(array); HashMap 创建一个哈希映射：\nMap\u003cInteger, Integer\u003e map = new HashMap\u003c\u003e(); 存储键值对（修改键值对）：\nmap.put(key, value); // 如果不知道key存不存在 map.putIfAbsent(key, defVal); 获取 key 的内容：\nmap.get(key); // 如果不知道key存不存在 map.getOrDefault(key, defVal); // 常见用法 map.put(key, map.getOrDefault(key, 0) + 1); 计算：\n// 键不存在时执行的操作 map.computeIfAbsent(key, k -\u003e mappingFunc); // 键存在时执行的操作 map.computeIfPresent(key, (k, v) -\u003e mappingFunc); 查询是否存在 key：\nmap.containsKey(key); 键集合和值集合：\n// 返回一个Collections视图，keys组成的集合 map.keySet(); // 返回一个Collections视图，values组成的集合 map.values(); // 假设map为{1: {1, 2, 3}, 2: {2, 3, 4}} map.keySet = {1, 2}; map.values = {{1, 2, 3}, {2, 3, 4}}; 遍历键值对：\n// 遍历key for (Integer key : map.keySet()) { } // 遍历value for (Integer value : map.values()) { } // 如果需要同时访问键和值，使用map.entrySet()会更直观 for (Map.Entry\u003cInteger, Integer\u003e entry : map.entrySet()) { Integer key = entry.getKey(); Integer value = entry.getValue(); } 是否为空：\nmap.isEmpty(); 删除Key：\nmap.remove(key); 大小：\nmap.size(); HashSet 创建哈希表：\nSet\u003cInteger\u003e set = new HashSet\u003c\u003e(); 添加元素：\nset.add(); 判断元素是否存在：\nset.contains();\t// HashSet查找元素要优于ArrayList 删除元素：\nset.remove(); 清空：\nset.clear(); 遍历：\nfor (int temp : set) { ... } StringBuilder 创建 StringBuilder：\nStringBuilder sb = new StringBuilder(); 在末尾添加字符或字符串：\nsb.append(char); 在末尾删除字符：\nsb.deleteCharAt(sb.length() - 1); 长度：\nsb.length(); 转化为 String：\nsb.toString(); 取反：\nsb.reverse(); 插入：\nsb.insert(0, \"abcd\");\t// 在第0个元素插入\"abcd\" 清空：\nsb.setLength(0); 取字符：\nsb.charAt(i); 修改位置的字符：\nsb.setCharAt(i); Queue 创建queue:\nQueue\u003cInteger\u003e q = new LinkedList\u003c\u003e(); 加入元素：\nq.offer(1); 删除元素（先进先出）：\nq.poll(); 队首元素：\nq.peek(); 队列大小：\nq.size(); 是否为空：\nq.isEmpty(); 队列清空：\nq.clear(); Deque 创建Deque：\nDeque\u003cInteger\u003e deque = new ArrayDeque\u003c\u003e(); 队尾添加元素：\ndeque.offerLast();\t// queue的用法 队首弹出元素：\ndeque.pollFirst();\t// queue的用法 取队首元素：\ndeque.peekFirst();\t// queue的用法 队首添加元素：\ndeque.offerFirst(); 队尾弹出元素：\ndeque.pollLast(); 取队尾元素：\ndeque.peekLast(); LinkedList 新建链表：\nLinkedList\u003cInteger\u003e link = new LinkedList\u003c\u003e(); 头部插入：\nlink.addFirst(); 末尾插入：\nlink.addLast(); link.add(); 指定位置插入：\nlink.add(int index, int Ele); 清空：\nlink.clear(); 删除并返回第一个：\nlink.removeFirst(); 删除并返回最后一个：\nlink.removeLast(); 删除特定位置：\nlink.remove(int index); 删除特定元素：\nlink.remove(Object o); link.remove(Integer.valueOf(2)); 重设：\nlink.set(); 头部取值：\nlink.getFirst(); 尾部取值：\nlink.getLast(); 特定位置取值：\nlink.get(int index); 是否存在：\nlink.contains(int key); 遍历：\n// 不涉及元素增添或删除可以用for each for (String element : link) { } // 涉及到则需要使用迭代器 Iterator\u003cString\u003e iterator = link.iterator();\t// 初始化时指向哑节点 while (iterator.hasNext()) { String element = iterator.next(); } PriorityQueue 创建优先队列：\n// 小根堆 (Min Heap) PriorityQueue\u003cInteger\u003e pq = new PriorityQueue\u003c\u003e(); // 大根堆 (Max Heap) PriorityQueue\u003cInteger\u003e pq = new PriorityQueue\u003c\u003e((a, b) -\u003e b - a); 插入元素：\n// 每次插入一个元素，时间复杂度是O(log k)，其中k是堆中当前元素的个数 // 将n个元素逐个push到一个空的大根堆的时间复杂度为O(n log n) pq.offer(); 取堆顶：\npq.peek(); 弹出堆顶：\n// 同样，pop一次的时间复杂度为O(log n) // n个元素则为O(n log n) pq.poll(); 删除特定元素：\npq.remove(); 堆大小：\npq.size(); AtomicInteger 多线程中的integer，线程操作对其是原子性的，不会被其他线程打断。\n创建：\nAtomicInteger a = new AtomicInteger(0); 获取当前值：\nint value = a.get(); 设置值：\na.set(2); 先获取再设置：\nint oldValue = a.getAndSet(20); 先比较再设置：\nboolean updated = a.compareAndSet(20, 43); // 如果a == 20，则将a = 43，updated = true // 如果a != 20，则将a不更新，updated = false 加一，返回加一后的值：\nint incrementedValue = a.incrementAndGet(); 减一，返回减一后的值：\nint decrementedValue = a.decrementAndGet(); 互相转换 // int转String int i; String str = String.valueOf(i); // String转int String str; int i = Integer.parseInt(str); // char转int char ch; int i = ch - '0'; // int转char int i; char ch = (char) (i + '0'); // String转char[] String str; char[] ch = str.toCharArray(); // char[]转String char[] ch; String str = Arrays.toString(ch);\t// 转化后有[]包裹 // char转String char ch = 'a'; String str = ch + \"\"; // ArrayList转Integer[] List\u003cInteger\u003e list; Integer[] array = list.toArray(new Integer[list.size()]); // Integer[]转ArrayList Integer[] array; List\u003cInteger\u003e list = Arrays.asList(array); 坑 Math.ceil：\ndouble Math.ceil(double a);\t// 原函数 Math.ceil(24 / 23);\t// 1.0 Math.ceil(22 / 23);\t// 0.0 Math.ceil((double) 24 / 23);\t// 2.0 (int) Math.ceil((double) 24 / 23);\t// 2 Math.pow:\nMath.pow(10, 9);\t// 如果想求次方必须要用pow函数，返回double 10 ^ 9;\t// 这里表示的是亦或而不是次方 二维数组：\nint[][] a = new int[][] {{1, 2}, {3, 4}}; int[] b = a[1];\t// b = [3, 4] b[1] = 100; // a = [[1, 2], [3, 100]] ",
+  "wordCount" : "2379",
+  "inLanguage": "en",
+  "datePublished": "2022-05-05T17:28:17-04:00",
+  "dateModified": "2022-05-05T17:28:17-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/en/blog/tech/utils/java/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/en/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/zh/" title="中文🇨🇳"
+                            aria-label="中文🇨🇳">中文🇨🇳</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/en/">Home</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/">Blogs 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/">Tech 🔧</a></div>
+    <h1 class="post-title">
+      Java Cheat Sheet
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2022-05-05 17:28:17 -0400 EDT'>2022-05-05</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;2379 words&nbsp;·&nbsp;Kyxie
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#character" aria-label="Character">Character</a></li>
+                        <li>
+                            <a href="#integer" aria-label="Integer">Integer</a></li>
+                        <li>
+                            <a href="#array" aria-label="Array">Array</a></li>
+                        <li>
+                            <a href="#string" aria-label="String">String</a></li>
+                        <li>
+                            <a href="#stack" aria-label="Stack">Stack</a></li>
+                        <li>
+                            <a href="#arraylist" aria-label="ArrayList">ArrayList</a></li>
+                        <li>
+                            <a href="#hashmap" aria-label="HashMap">HashMap</a></li>
+                        <li>
+                            <a href="#hashset" aria-label="HashSet">HashSet</a></li>
+                        <li>
+                            <a href="#stringbuilder" aria-label="StringBuilder">StringBuilder</a></li>
+                        <li>
+                            <a href="#queue" aria-label="Queue">Queue</a></li>
+                        <li>
+                            <a href="#deque" aria-label="Deque">Deque</a></li>
+                        <li>
+                            <a href="#linkedlist" aria-label="LinkedList">LinkedList</a></li>
+                        <li>
+                            <a href="#priorityqueue" aria-label="PriorityQueue">PriorityQueue</a></li>
+                        <li>
+                            <a href="#atomicinteger" aria-label="AtomicInteger">AtomicInteger</a></li>
+                        <li>
+                            <a href="#%e4%ba%92%e7%9b%b8%e8%bd%ac%e6%8d%a2" aria-label="互相转换">互相转换</a></li>
+                        <li>
+                            <a href="#%e5%9d%91" aria-label="坑">坑</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h3 id="character">Character<a hidden class="anchor" aria-hidden="true" href="#character">#</a></h3>
+<p>判断是否为字母或数字：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">boolean</span> res <span style="color:#f92672">=</span> Character<span style="color:#f92672">.</span><span style="color:#a6e22e">isLetterOrDigit</span><span style="color:#f92672">(</span><span style="color:#66d9ef">char</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>转小写：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> res <span style="color:#f92672">=</span> Character<span style="color:#f92672">.</span><span style="color:#a6e22e">toLowerCase</span><span style="color:#f92672">(</span><span style="color:#66d9ef">char</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>下一个字符：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#e6db74">&#39;b&#39;</span> <span style="color:#f92672">==</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">char</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span><span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">+</span> 1<span style="color:#f92672">);</span>
+</span></span></code></pre></div><h3 id="integer">Integer<a hidden class="anchor" aria-hidden="true" href="#integer">#</a></h3>
+<p>最大值最小值：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> max <span style="color:#f92672">=</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">MAX_VALUE</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> min <span style="color:#f92672">=</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">MIN_VALUE</span><span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>比较相等：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Integer a <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>Integer b <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">==</span> b<span style="color:#f92672">;</span>	<span style="color:#75715e">// true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Integer c <span style="color:#f92672">=</span> 200<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>Integer d <span style="color:#f92672">=</span> 200<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>c <span style="color:#f92672">==</span> d<span style="color:#f92672">;</span>	<span style="color:#75715e">// false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>c<span style="color:#f92672">,</span> d<span style="color:#f92672">);</span>	<span style="color:#75715e">// true
+</span></span></span></code></pre></div><h3 id="array">Array<a hidden class="anchor" aria-hidden="true" href="#array">#</a></h3>
+<p>创建数组：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>5<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]{</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">,</span>4<span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">,</span>3<span style="color:#f92672">,</span>4<span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[][]</span> array <span style="color:#f92672">=</span> <span style="color:#f92672">{{</span>1<span style="color:#f92672">,</span>2<span style="color:#f92672">},</span> <span style="color:#f92672">{</span>3<span style="color:#f92672">,</span>4<span style="color:#f92672">}};</span>
+</span></span></code></pre></div><p>引用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">[</span>3<span style="color:#f92672">];</span>
+</span></span></code></pre></div><p>获取长度：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>快速初始化：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 我们要给这个Map的值快速填充
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Map<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span> List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;&gt;</span> map <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 3<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>2<span style="color:#f92672">,</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>2<span style="color:#f92672">,</span> 3<span style="color:#f92672">,</span> 4<span style="color:#f92672">));</span>
+</span></span></code></pre></div><p>排序：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>array<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// int[] 不能直接做降序排列
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 想做降序排列只能用Integer[]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Integer<span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Integer<span style="color:#f92672">[</span>2<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> Comparitor<span style="color:#f92672">.</span><span style="color:#a6e22e">naturalOrder</span><span style="color:#f92672">());</span>	<span style="color:#75715e">// 升序排列
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> Comparator<span style="color:#f92672">.</span><span style="color:#a6e22e">reverseOrder</span><span style="color:#f92672">());</span>	<span style="color:#75715e">// 降序排列
+</span></span></span></code></pre></div><p>二维数组排序：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[][]</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[][]{{</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">},</span> <span style="color:#f92672">{</span>2<span style="color:#f92672">,</span> 3<span style="color:#f92672">}};</span>
+</span></span><span style="display:flex;"><span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>o1<span style="color:#f92672">,</span> o2<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> o1<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">-</span> o2<span style="color:#f92672">[</span>0<span style="color:#f92672">]);</span>	<span style="color:#75715e">// 按照二维数组的第一个元素从小到大排序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>o1<span style="color:#f92672">,</span> o2<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> o1<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">-</span> o2<span style="color:#f92672">[</span>1<span style="color:#f92672">]);</span>	<span style="color:#75715e">// 按照二维数组的第二个元素从小到大排序
+</span></span></span></code></pre></div><p>复制子数组：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// array: 原始数组，不包括to的结束索引
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>subArray <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">copyOfRange</span><span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> from<span style="color:#f92672">,</span> to<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// array = [4, 2, 5, 1, 6, 3, 7]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>subArray <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">copyOfRange</span><span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> 3<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// subArray = [4, 2, 5]
+</span></span></span></code></pre></div><p>打印：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span>array<span style="color:#f92672">));</span>
+</span></span></code></pre></div><p>填满：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[];</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> num<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">fill</span><span style="color:#f92672">(</span>array<span style="color:#f92672">,</span> num<span style="color:#f92672">);</span>	<span style="color:#75715e">// array全部元素等于num
+</span></span></span></code></pre></div><h3 id="string">String<a hidden class="anchor" aria-hidden="true" href="#string">#</a></h3>
+<p>创建字符串：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;java&#34;</span><span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>指定位置的字符</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">char</span> charAt3 <span style="color:#f92672">=</span> string<span style="color:#f92672">.</span><span style="color:#a6e22e">charAt</span><span style="color:#f92672">(</span>3<span style="color:#f92672">);</span>	<span style="color:#75715e">// charAt3 = &#39;a&#39;
+</span></span></span></code></pre></div><p>字符串相等：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String string1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>String string2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>string1<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>string2<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>字符串转整数：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String string <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;123&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> integer <span style="color:#f92672">=</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>string<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>字符串长度：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> length <span style="color:#f92672">=</span> string<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>截取字符串：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String sb <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abcdef&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> sb<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> 1<span style="color:#f92672">);</span>	<span style="color:#75715e">// str = &#34;a&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String str <span style="color:#f92672">=</span> sb<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>	<span style="color:#75715e">// str = &#34;bcdef&#34;;	如果只有一个参数则为beginIndex
+</span></span></span></code></pre></div><p>字符的位置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> str<span style="color:#f92672">.</span><span style="color:#a6e22e">indexOf</span><span style="color:#f92672">(</span>b<span style="color:#f92672">);</span>	<span style="color:#75715e">// index = 1
+</span></span></span></code></pre></div><p>字符串转字符数组：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String str<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> temp <span style="color:#f92672">=</span> str<span style="color:#f92672">.</span><span style="color:#a6e22e">toCharArray</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>字符串分割：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello world&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>String<span style="color:#f92672">[]</span> word <span style="color:#f92672">=</span> str<span style="color:#f92672">.</span><span style="color:#a6e22e">split</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>	<span style="color:#75715e">// word = [&#34;hello&#34;, &#34;world&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 这里必须是字符串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 如果有两个空格连在一起，会在数组中加入一个&#34;&#34;（空字符串）
+</span></span></span></code></pre></div><p>将字符串数组合并为长字符串（中间插入）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#f92672">[]</span> words <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;hello&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;world&#34;</span><span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">join</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">,</span> words<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// str = &#34;hello world&#34;;
+</span></span></span></code></pre></div><p>字符串替换：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;a! b&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>str <span style="color:#f92672">=</span> str<span style="color:#f92672">.</span><span style="color:#a6e22e">replace</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;!&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>	<span style="color:#75715e">// str = &#34;a  b&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 字符或者字符串都可以替换
+</span></span></span></code></pre></div><p>删除字符串头尾的空格：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;  abc  &#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>str<span style="color:#f92672">.</span><span style="color:#a6e22e">trim</span><span style="color:#f92672">();</span>	<span style="color:#75715e">// str = &#34;abc&#34;
+</span></span></span></code></pre></div><p>字符串拼接：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>str <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;def&#34;</span><span style="color:#f92672">);</span>	<span style="color:#75715e">// 可以直接使用+
+</span></span></span></code></pre></div><h3 id="stack">Stack<a hidden class="anchor" aria-hidden="true" href="#stack">#</a></h3>
+<p>创建 stack：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Deque<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> stack <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayDeque<span style="color:#f92672">&lt;&gt;();</span>
+</span></span></code></pre></div><p>栈顶：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>stack<span style="color:#f92672">.</span><span style="color:#a6e22e">peek</span><span style="color:#f92672">()</span>
+</span></span></code></pre></div><p>入栈：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>stack<span style="color:#f92672">.</span><span style="color:#a6e22e">push</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>出栈：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>stack<span style="color:#f92672">.</span><span style="color:#a6e22e">pop</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>栈是否为空：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>stack<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>栈的长度：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>stack<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><h3 id="arraylist">ArrayList<a hidden class="anchor" aria-hidden="true" href="#arraylist">#</a></h3>
+<p>创建列表：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;(</span>Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 3<span style="color:#f92672">,</span> 4<span style="color:#f92672">));</span>	<span style="color:#75715e">// 初始化值
+</span></span></span></code></pre></div><p>添加元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>	<span style="color:#75715e">// List只能在末尾添加元素，在中间插入元素会导致额外的内存开销，可以选择使用LinkedList
+</span></span></span></code></pre></div><p>指定位置的元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>列表中是否存在某元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>删除列表元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>	<span style="color:#75715e">// 删除array[0]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>0<span style="color:#f92672">));</span>	<span style="color:#75715e">// 删除元素0
+</span></span></span></code></pre></div><p>列表大小：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>判断列表是否为空：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>清空列表：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">clear</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>升序排列：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>Comparator<span style="color:#f92672">.</span><span style="color:#a6e22e">naturalOrder</span><span style="color:#f92672">());</span>
+</span></span></code></pre></div><p>降序排列：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>Comparator<span style="color:#f92672">.</span><span style="color:#a6e22e">reverseOrder</span><span style="color:#f92672">());</span>
+</span></span></code></pre></div><p>修改值：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>array<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> value<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>反转：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">reverse</span><span style="color:#f92672">(</span>array<span style="color:#f92672">);</span>
+</span></span></code></pre></div><h3 id="hashmap">HashMap<a hidden class="anchor" aria-hidden="true" href="#hashmap">#</a></h3>
+<p>创建一个哈希映射：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Map<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span> Integer<span style="color:#f92672">&gt;</span> map <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;();</span>
+</span></span></code></pre></div><p>存储键值对（修改键值对）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>key<span style="color:#f92672">,</span> value<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 如果不知道key存不存在
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">putIfAbsent</span><span style="color:#f92672">(</span>key<span style="color:#f92672">,</span> defVal<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>获取 key 的内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 如果不知道key存不存在
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">getOrDefault</span><span style="color:#f92672">(</span>key<span style="color:#f92672">,</span> defVal<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 常见用法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>key<span style="color:#f92672">,</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">getOrDefault</span><span style="color:#f92672">(</span>key<span style="color:#f92672">,</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">+</span> 1<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>计算：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 键不存在时执行的操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">computeIfAbsent</span><span style="color:#f92672">(</span>key<span style="color:#f92672">,</span> k <span style="color:#f92672">-&gt;</span> mappingFunc<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 键存在时执行的操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">computeIfPresent</span><span style="color:#f92672">(</span>key<span style="color:#f92672">,</span> <span style="color:#f92672">(</span>k<span style="color:#f92672">,</span> v<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> mappingFunc<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>查询是否存在 key：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">containsKey</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>键集合和值集合：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 返回一个Collections&lt;V&gt;视图，keys组成的集合
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 返回一个Collections&lt;V&gt;视图，values组成的集合
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">values</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 假设map为{1: {1, 2, 3}, 2: {2, 3, 4}}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">values</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{{</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 3<span style="color:#f92672">},</span> <span style="color:#f92672">{</span>2<span style="color:#f92672">,</span> 3<span style="color:#f92672">,</span> 4<span style="color:#f92672">}};</span>
+</span></span></code></pre></div><p>遍历键值对：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 遍历key
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Integer key <span style="color:#f92672">:</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 遍历value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Integer value <span style="color:#f92672">:</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">values</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 如果需要同时访问键和值，使用map.entrySet()会更直观
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Map<span style="color:#f92672">.</span><span style="color:#a6e22e">Entry</span><span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span> Integer<span style="color:#f92672">&gt;</span> entry <span style="color:#f92672">:</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">entrySet</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Integer key <span style="color:#f92672">=</span> entry<span style="color:#f92672">.</span><span style="color:#a6e22e">getKey</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    Integer value <span style="color:#f92672">=</span> entry<span style="color:#f92672">.</span><span style="color:#a6e22e">getValue</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>是否为空：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>删除Key：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>大小：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>map<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><h3 id="hashset">HashSet<a hidden class="anchor" aria-hidden="true" href="#hashset">#</a></h3>
+<p>创建哈希表：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Set<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> set <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;();</span>
+</span></span></code></pre></div><p>添加元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>判断元素是否存在：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>set<span style="color:#f92672">.</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">();</span>	<span style="color:#75715e">// HashSet查找元素要优于ArrayList
+</span></span></span></code></pre></div><p>删除元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>set<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>清空：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>set<span style="color:#f92672">.</span><span style="color:#a6e22e">clear</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>遍历：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> temp <span style="color:#f92672">:</span> set<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="stringbuilder">StringBuilder<a hidden class="anchor" aria-hidden="true" href="#stringbuilder">#</a></h3>
+<p>创建 StringBuilder：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>在末尾添加字符或字符串：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#66d9ef">char</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>在末尾删除字符：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">deleteCharAt</span><span style="color:#f92672">(</span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> 1<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>长度：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>转化为 String：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>取反：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">reverse</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>插入：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">insert</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;abcd&#34;</span><span style="color:#f92672">);</span>	<span style="color:#75715e">// 在第0个元素插入&#34;abcd&#34;
+</span></span></span></code></pre></div><p>清空：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">setLength</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>取字符：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">charAt</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>修改位置的字符：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">setCharAt</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+</span></span></code></pre></div><h3 id="queue">Queue<a hidden class="anchor" aria-hidden="true" href="#queue">#</a></h3>
+<p>创建queue:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Queue<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> q <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinkedList<span style="color:#f92672">&lt;&gt;();</span>
+</span></span></code></pre></div><p>加入元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>q<span style="color:#f92672">.</span><span style="color:#a6e22e">offer</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>删除元素（先进先出）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>q<span style="color:#f92672">.</span><span style="color:#a6e22e">poll</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>队首元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>q<span style="color:#f92672">.</span><span style="color:#a6e22e">peek</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>队列大小：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>q<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>是否为空：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>q<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>队列清空：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>q<span style="color:#f92672">.</span><span style="color:#a6e22e">clear</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><h3 id="deque">Deque<a hidden class="anchor" aria-hidden="true" href="#deque">#</a></h3>
+<p>创建Deque：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Deque<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> deque <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayDeque<span style="color:#f92672">&lt;&gt;();</span>
+</span></span></code></pre></div><p>队尾添加元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>deque<span style="color:#f92672">.</span><span style="color:#a6e22e">offerLast</span><span style="color:#f92672">();</span>	<span style="color:#75715e">// queue的用法
+</span></span></span></code></pre></div><p>队首弹出元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>deque<span style="color:#f92672">.</span><span style="color:#a6e22e">pollFirst</span><span style="color:#f92672">();</span>	<span style="color:#75715e">// queue的用法
+</span></span></span></code></pre></div><p>取队首元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>deque<span style="color:#f92672">.</span><span style="color:#a6e22e">peekFirst</span><span style="color:#f92672">();</span>	<span style="color:#75715e">// queue的用法
+</span></span></span></code></pre></div><p>队首添加元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>deque<span style="color:#f92672">.</span><span style="color:#a6e22e">offerFirst</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>队尾弹出元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>deque<span style="color:#f92672">.</span><span style="color:#a6e22e">pollLast</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>取队尾元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>deque<span style="color:#f92672">.</span><span style="color:#a6e22e">peekLast</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><h3 id="linkedlist">LinkedList<a hidden class="anchor" aria-hidden="true" href="#linkedlist">#</a></h3>
+<p>新建链表：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>LinkedList<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> link <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinkedList<span style="color:#f92672">&lt;&gt;();</span>
+</span></span></code></pre></div><p>头部插入：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">addFirst</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>末尾插入：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">addLast</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>指定位置插入：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> Ele<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>清空：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">clear</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>删除并返回第一个：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">removeFirst</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>删除并返回最后一个：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">removeLast</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>删除特定位置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>删除特定元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>Object o<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>2<span style="color:#f92672">));</span>
+</span></span></code></pre></div><p>重设：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>头部取值：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">getFirst</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>尾部取值：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">getLast</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>特定位置取值：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>是否存在：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>link<span style="color:#f92672">.</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> key<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>遍历：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 不涉及元素增添或删除可以用for each
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String element <span style="color:#f92672">:</span> link<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 涉及到则需要使用迭代器
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Iterator<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> iterator <span style="color:#f92672">=</span> link<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>	<span style="color:#75715e">// 初始化时指向哑节点
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>iterator<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String element <span style="color:#f92672">=</span> iterator<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="priorityqueue">PriorityQueue<a hidden class="anchor" aria-hidden="true" href="#priorityqueue">#</a></h3>
+<p>创建优先队列：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 小根堆 (Min Heap)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>PriorityQueue<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> pq <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PriorityQueue<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 大根堆 (Max Heap)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>PriorityQueue<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> pq <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PriorityQueue<span style="color:#f92672">&lt;&gt;((</span>a<span style="color:#f92672">,</span> b<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> b <span style="color:#f92672">-</span> a<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>插入元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 每次插入一个元素，时间复杂度是O(log k)，其中k是堆中当前元素的个数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 将n个元素逐个push到一个空的大根堆的时间复杂度为O(n log n)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>pq<span style="color:#f92672">.</span><span style="color:#a6e22e">offer</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>取堆顶：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>pq<span style="color:#f92672">.</span><span style="color:#a6e22e">peek</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>弹出堆顶：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 同样，pop一次的时间复杂度为O(log n)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// n个元素则为O(n log n)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>pq<span style="color:#f92672">.</span><span style="color:#a6e22e">poll</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>删除特定元素：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>pq<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>堆大小：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>pq<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><h3 id="atomicinteger">AtomicInteger<a hidden class="anchor" aria-hidden="true" href="#atomicinteger">#</a></h3>
+<p>多线程中的integer，线程操作对其是原子性的，不会被其他线程打断。</p>
+<p>创建：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>AtomicInteger a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AtomicInteger<span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>获取当前值：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> value <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>设置值：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>a<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>先获取再设置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> oldValue <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span><span style="color:#a6e22e">getAndSet</span><span style="color:#f92672">(</span>20<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>先比较再设置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">boolean</span> updated <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span><span style="color:#a6e22e">compareAndSet</span><span style="color:#f92672">(</span>20<span style="color:#f92672">,</span> 43<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 如果a == 20，则将a = 43，updated = true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 如果a != 20，则将a不更新，updated = false
+</span></span></span></code></pre></div><p>加一，返回加一后的值：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> incrementedValue <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span><span style="color:#a6e22e">incrementAndGet</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>减一，返回减一后的值：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> decrementedValue <span style="color:#f92672">=</span> a<span style="color:#f92672">.</span><span style="color:#a6e22e">decrementAndGet</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><h3 id="互相转换">互相转换<a hidden class="anchor" aria-hidden="true" href="#互相转换">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// int转String
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// String转int
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String str<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>str<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// char转int
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> ch<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> ch <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// int转char
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">char</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;0&#39;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// String转char[]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String str<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> ch <span style="color:#f92672">=</span> str<span style="color:#f92672">.</span><span style="color:#a6e22e">toCharArray</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// char[]转String
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> ch<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span>ch<span style="color:#f92672">);</span>	<span style="color:#75715e">// 转化后有[]包裹
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// char转String
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> ch <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ArrayList转Integer[]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>Integer<span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> list<span style="color:#f92672">.</span><span style="color:#a6e22e">toArray</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Integer<span style="color:#f92672">[</span>list<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()]);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Integer[]转ArrayList
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Integer<span style="color:#f92672">[]</span> array<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>array<span style="color:#f92672">);</span>
+</span></span></code></pre></div><h3 id="坑">坑<a hidden class="anchor" aria-hidden="true" href="#坑">#</a></h3>
+<p>Math.ceil：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">(</span><span style="color:#66d9ef">double</span> a<span style="color:#f92672">);</span>	<span style="color:#75715e">// 原函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">(</span>24 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">(</span>22 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 0.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">((</span><span style="color:#66d9ef">double</span><span style="color:#f92672">)</span> 24 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 2.0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">ceil</span><span style="color:#f92672">((</span><span style="color:#66d9ef">double</span><span style="color:#f92672">)</span> 24 <span style="color:#f92672">/</span> 23<span style="color:#f92672">);</span>	<span style="color:#75715e">// 2
+</span></span></span></code></pre></div><p>Math.pow:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Math<span style="color:#f92672">.</span><span style="color:#a6e22e">pow</span><span style="color:#f92672">(</span>10<span style="color:#f92672">,</span> 9<span style="color:#f92672">);</span>	<span style="color:#75715e">// 如果想求次方必须要用pow函数，返回double
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>10 <span style="color:#f92672">^</span> 9<span style="color:#f92672">;</span>	<span style="color:#75715e">// 这里表示的是亦或而不是次方
+</span></span></span></code></pre></div><p>二维数组：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[][]</span> a <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[][]</span> <span style="color:#f92672">{{</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">},</span> <span style="color:#f92672">{</span>3<span style="color:#f92672">,</span> 4<span style="color:#f92672">}};</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> b <span style="color:#f92672">=</span> a<span style="color:#f92672">[</span>1<span style="color:#f92672">];</span>	<span style="color:#75715e">// b = [3, 4]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>b<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 100<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// a = [[1, 2], [3, 100]]
+</span></span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/en/blog/tech/router/openvpn/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>OpenVPN的简单配置</span>
+  </a>
+  <a class="next" href="https://kyxie.me/en/blog/tech/router/ldap/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Linux配置LDAP Server</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://kyxie.me/en/">Kunyang&#39;s Blog</a></span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        Visitors: <span id="busuanzi_value_site_uv"></span>
+        Views: <span id="busuanzi_value_site_pv"></span>
+    </span>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const uvElement = document.getElementById('busuanzi_value_site_uv');
+            const pvElement = document.getElementById('busuanzi_value_site_pv');
+            const initialUv = 29000;
+            const initialPv = 70000;
+            if (!uvElement || !pvElement) {
+                console.error("Busuanzi elements not found.");
+                return;
+            }
+            const uvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        uvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialUv;
+                        break;
+                    }
+                }
+            });
+            const pvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        pvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialPv;
+                        break;
+                    }
+                }
+            });
+            uvObs.observe(uvElement, { childList: true });
+            pvObs.observe(pvElement, { childList: true });
+        });
+    </script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

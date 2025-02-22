@@ -18,10 +18,10 @@
     
     <item>
       <title>使用Homebrew在M芯片的MacBook安装Python和Git</title>
-      <link>https://kyxie.me/en/blog/tech/others/python-and-git-for-macos/</link>
+      <link>https://kyxie.me/en/blog/tech/utils/python-and-git-for-macos/</link>
       <pubDate>Mon, 11 Nov 2024 11:11:11 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/tech/others/python-and-git-for-macos/</guid>
+      <guid>https://kyxie.me/en/blog/tech/utils/python-and-git-for-macos/</guid>
       <description>Mac用户非常推荐使用Homebrew来安装一些软件，就Python来说如果在官网直接下载会在Launch Pad出现IDLE和Python L</description>
     </item>
     
@@ -45,10 +45,10 @@
     
     <item>
       <title>AWS Ubuntu Server安装GUI</title>
-      <link>https://kyxie.me/en/blog/tech/others/aws-server-gui/</link>
+      <link>https://kyxie.me/en/blog/tech/utils/aws-server-gui/</link>
       <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/tech/others/aws-server-gui/</guid>
+      <guid>https://kyxie.me/en/blog/tech/utils/aws-server-gui/</guid>
       <description>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都</description>
     </item>
     
@@ -90,10 +90,10 @@
     
     <item>
       <title>Windows 11 打造个性化终端</title>
-      <link>https://kyxie.me/en/blog/tech/others/bash/</link>
+      <link>https://kyxie.me/en/blog/tech/utils/bash/</link>
       <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/tech/others/bash/</guid>
+      <guid>https://kyxie.me/en/blog/tech/utils/bash/</guid>
       <description>前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo</description>
     </item>
     
@@ -126,10 +126,10 @@
     
     <item>
       <title>Java Cheat Sheet</title>
-      <link>https://kyxie.me/en/blog/tech/others/java/</link>
+      <link>https://kyxie.me/en/blog/tech/utils/java/</link>
       <pubDate>Thu, 05 May 2022 17:28:17 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/tech/others/java/</guid>
+      <guid>https://kyxie.me/en/blog/tech/utils/java/</guid>
       <description>Character 判断是否为字母或数字： boolean res = Character.isLetterOrDigit(char); 转小写： char res = Character.toLowerCase(char); 下一个字符： &amp;#39;b&amp;#39; == (char) (&amp;#39;a&amp;#39; + 1); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等： Integer a = 1; Integer b = 1; a == b; // true</description>
     </item>
     

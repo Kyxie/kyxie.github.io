@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>Debian使用Docker部署AList | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Cloudflare, OpenWrt, Alist">
-<meta name="description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 Token链接：https://openap">
+<meta name="description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地目">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/alist/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
@@ -46,7 +46,7 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Debian使用Docker部署AList" />
-<meta property="og:description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 Token链接：https://openap" />
+<meta property="og:description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地目" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/alist/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-12-01T12:58:22-05:00" />
@@ -54,7 +54,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Debian使用Docker部署AList"/>
-<meta name="twitter:description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 Token链接：https://openap"/>
+<meta name="twitter:description" content="Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地目"/>
 
 
 <script type="application/ld+json">
@@ -95,12 +95,12 @@
   "@type": "BlogPosting",
   "headline": "Debian使用Docker部署AList",
   "name": "Debian使用Docker部署AList",
-  "description": "Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 Token链接：https://openap",
+  "description": "Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地目",
   "keywords": [
     "Cloudflare", "OpenWrt", "Alist"
   ],
-  "articleBody": "Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用\n挂载Baidu网盘 官方教程 视频教程 Token链接：https://openapi.baidu.com/oauth/2.0/authorize?response_type=code\u0026client_id=iYCeC9g08h5vuP9UqvPHKKSVrKFXGa1v\u0026redirect_uri=https://alist.nn.ci/tool/baidu/callback\u0026scope=basic,netdisk\u0026qrcode=1 挂载Google Drive 官方教程 视频教程 挂载本地 假如我们要挂载U盘上的内容\n我们插上U盘，在System → MountPoint可以看到U盘/dev/sda1被挂载到了/mnt/sda1 进入AList前端页面 → Manage → Storages → Add，Driver选择Local Mount Path随便填，我使用了/local Root folder path填mnt/sda1，这样回到主页面就能访问到U盘的内容了 假如alist服务部署在docker中，那么我们在运行docker的时候要把要分享的文件夹一起挂载\nsudo docker run -d --restart=always \\ -v /alist:/opt/alist/data \\ -v :/home/share \\ -p 5244:5244 \\ --name=\"alist\" \\ xhofe/alist:latest 使用Cloudflared公网访问AList服务 AList服务用来管理网盘是非常方便的，同时AList还允许挂载本机的文件。这让我突然想起一个场景，假如我和小伙伴出去玩用单反拍了许多照片，体积非常大，分享这些照片就非常麻烦了，如果上传到百度云，那么小伙伴下载完不知道要等多久，而且也没开其他云的会员账号。\n假如使用AList挂载本地的SD卡，再让小伙伴访问我的AList服务不就解决问题了嘛。但是如何让小伙伴在家也能访问我的OpenWrt呢，可以使用Cloudflare的内网穿透服务。\n本教程参考：【韩风Talk】这期玩Alist的网络安全防护，随便折腾一下免费的内网穿透 哔哩哔哩_bilibili\n前置条件 需要一个域名 OpenWrt安装luci-app-cloudflared 配置 部署在OpenWrt 首先在Cloudflare开启Zero Trust，选择免费版即可\n在LuCI开启Cloudflared服务，位于VPN → Cloudflare Zero Trust Tunnel，勾选Enable\nssh登录到OpenWrt，运行\ncloudflared tunnel login 点击显示的连接，登录\n登录成功后会下载一个授权证书，位于/root/.cloudflared/cert.pem，我们把授权证书复制到cloudflared的配置文件夹下\ncp /root/.cloudflared/cert.pem /etc/cloudflared 创建隧道，后面是隧道名称\ncloudflared tunnel create alist 创建完成之后，会在之前的文件夹（~/.cloudflared/）创建一个.json文件，把它也复制到cloudflared的配置文件夹中\ncp /root/.cloudflared/xxx.json /etc/cloudflared 进入cloudflared配置文件夹（/etc/cloudflared），修改config.yml\n# url: http://localhost:8000 tunnel: credentials-file: /etc/cloudflared/.json 替换为刚才的.json文件名\n重启cloudflared服务\n/etc/init.d/cloudflared restart 迁移完成后，重新点击Edit，进入Public Hostname，我们添加一个子域名，Type选择HTTP协议，URL就是局域网内AList服务器的地址和端口。\n这样就可以直接在公网通过域名访问家中的服务器了\n还有一些其他的安全配置\nCloudflare → SSL/TLS → Overview → Configure encryption mode，选择Full Cloudflare → SSL/TLS → Edge Certificates → Always Use HTTPS，选择True 开启2FA 部署在Linux 建议使用Docker部署\n拉取仓库，注意这里创建了一个文件夹~/alist，用于管理配置文件\ncd ~ mkdir alist su sudo docker run -d --restart=always \\ -v /alist:/opt/alist/data \\ -p 5244:5244 \\ --name=\"alist\" \\ xhofe/alist:latest 修改密码\nsudo docker exec -it alist ./alist admin random 会产生一个随机临时密码，登陆后修改密码即可\n下载cloudflared\nwget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared sudo mv cloudflared /usr/local/bin/ sudo chmod +x /usr/local/bin/cloudflared cloudflared --version 登录同上，此时cert.pem会创建在~/.cloudflared\ncloudflared tunnel login 创建隧道同上\ncloudflared tunnel create 创建~/.cloudflared/config-alist.yml\ntunnel: # 创建隧道时生成的隧道ID credentials-file: /home//alist/xxx.json # 隧道凭据文件的绝对路径 ingress: - hostname: alist.example.com # 你的域名 service: http://localhost:5244 # 本地服务地址 - service: http_status:404 # 未匹配时返回 404 重启服务\nsudo cloudflared tunnel --config ~/.cloudflared/config-alist.yml run 如果出现以下警告\n2024-12-24T02:24:10Z WRN The user running cloudflared process has a GID (group ID) that is not within ping_group_range. You might need to add that user to a group within that range, or instead update the range to encompass a group the user is already in by modifying /proc/sys/net/ipv4/ping_group_range. Otherwise cloudflared will not be able to ping this network error=\"Group ID 0 is not between ping group 1 to 0\" 2024-12-24T02:24:10Z WRN ICMP proxy feature is disabled error=\"cannot create ICMPv4 proxy: Group ID 0 is not between ping group 1 to 0 nor ICMPv6 proxy: socket: permission denied\" 这个警告不影响tunnel运行，可以通过修改系统配置以扩大允许的 ping_group_range 范围，可以输入下面命令\necho \"0 2147483647\" | sudo tee /proc/sys/net/ipv4/ping_group_range 去Cloudflare官网migrate\n测试发现正常可用，则为alist创建一个systemd自动服务和后台运行，创建systemd单元文件\nsudo nano /etc/systemd/system/alist.service 填写以下内容\n[Unit] Description=Cloudflare Tunnel for Alist After=network.target [Service] ExecStart=/usr/local/bin/cloudflared tunnel --config /home/kyxie/alist/config-alist.yml run Restart=always User= Group= [Install] WantedBy=multi-user.target 启动服务\nsudo systemctl daemon-reload sudo systemctl start alist 设置开机自启\nsudo systemctl enable alist ",
-  "wordCount" : "1939",
+  "articleBody": "Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用\n挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地目录 假如我们要挂载U盘上的内容\n我们插上U盘，在System → MountPoint可以看到U盘/dev/sda1被挂载到了/mnt/sda1 进入AList前端页面 → Manage → Storages → Add，Driver选择Local Mount Path随便填，我使用了/local Root folder path填mnt/sda1，这样回到主页面就能访问到U盘的内容了 假如alist服务部署在docker中，那么我们在运行docker的时候要把要分享的文件夹一起挂载\nsudo docker run -d --restart=always \\ -v /alist:/opt/alist/data \\ -v :/home/share \\ -p 5244:5244 \\ --name=\"alist\" \\ xhofe/alist:latest 使用Cloudflared公网访问AList服务 本教程参考：\n\u003c!DOCTYPE HTML\u003e\r前置条件 需要一个域名 OpenWrt安装luci-app-cloudflared 配置 部署在OpenWrt 首先在Cloudflare开启Zero Trust，选择免费版即可\n在LuCI开启Cloudflared服务，位于VPN → Cloudflare Zero Trust Tunnel，勾选Enable\nssh登录到OpenWrt，运行\ncloudflared tunnel login 点击显示的连接，登录\n登录成功后会下载一个授权证书，位于/root/.cloudflared/cert.pem，我们把授权证书复制到cloudflared的配置文件夹下\ncp /root/.cloudflared/cert.pem /etc/cloudflared 创建隧道，后面是隧道名称\ncloudflared tunnel create alist 创建完成之后，会在之前的文件夹（~/.cloudflared/）创建一个.json文件，把它也复制到cloudflared的配置文件夹中\ncp /root/.cloudflared/xxx.json /etc/cloudflared 进入cloudflared配置文件夹（/etc/cloudflared），修改config.yml\n# url: http://localhost:8000 tunnel: credentials-file: /etc/cloudflared/.json 替换为刚才的.json文件名\n重启cloudflared服务\n/etc/init.d/cloudflared restart 迁移完成后，重新点击Edit，进入Public Hostname，我们添加一个子域名，Type选择HTTP协议，URL就是局域网内AList服务器的地址和端口。\n这样就可以直接在公网通过域名访问家中的服务器了\n还有一些其他的安全配置\nCloudflare → SSL/TLS → Overview → Configure encryption mode，选择Full Cloudflare → SSL/TLS → Edge Certificates → Always Use HTTPS，选择True 开启2FA 部署在Linux 建议使用Docker部署\n拉取仓库，注意这里创建了一个文件夹~/alist，用于管理配置文件\ncd ~ mkdir alist su sudo docker run -d --restart=always \\ -v /alist:/opt/alist/data \\ -p 5244:5244 \\ --name=\"alist\" \\ xhofe/alist:latest 修改密码\nsudo docker exec -it alist ./alist admin random 会产生一个随机临时密码，登陆后修改密码即可\n下载cloudflared\nwget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared sudo mv cloudflared /usr/local/bin/ sudo chmod +x /usr/local/bin/cloudflared cloudflared --version 登录同上，此时cert.pem会创建在~/.cloudflared\ncloudflared tunnel login 创建隧道同上\ncloudflared tunnel create 创建~/.cloudflared/config-alist.yml\ntunnel: # 创建隧道时生成的隧道ID credentials-file: /home//alist/xxx.json # 隧道凭据文件的绝对路径 ingress: - hostname: alist.example.com # 你的域名 service: http://localhost:5244 # 本地服务地址 - service: http_status:404 # 未匹配时返回 404 重启服务\nsudo cloudflared tunnel --config ~/.cloudflared/config-alist.yml run 如果出现以下警告\n2024-12-24T02:24:10Z WRN The user running cloudflared process has a GID (group ID) that is not within ping_group_range. You might need to add that user to a group within that range, or instead update the range to encompass a group the user is already in by modifying /proc/sys/net/ipv4/ping_group_range. Otherwise cloudflared will not be able to ping this network error=\"Group ID 0 is not between ping group 1 to 0\" 2024-12-24T02:24:10Z WRN ICMP proxy feature is disabled error=\"cannot create ICMPv4 proxy: Group ID 0 is not between ping group 1 to 0 nor ICMPv6 proxy: socket: permission denied\" 这个警告不影响tunnel运行，可以通过修改系统配置以扩大允许的 ping_group_range 范围，可以输入下面命令\necho \"0 2147483647\" | sudo tee /proc/sys/net/ipv4/ping_group_range 去Cloudflare官网migrate\n测试发现正常可用，则为alist创建一个systemd自动服务和后台运行，创建systemd单元文件\nsudo nano /etc/systemd/system/alist.service 填写以下内容\n[Unit] Description=Cloudflare Tunnel for Alist After=network.target [Service] ExecStart=/usr/local/bin/cloudflared tunnel --config /home/kyxie/alist/config-alist.yml run Restart=always User= Group= [Install] WantedBy=multi-user.target 启动服务\nsudo systemctl daemon-reload sudo systemctl start alist 设置开机自启\nsudo systemctl enable alist ",
+  "wordCount" : "1462",
   "inLanguage": "zh",
   "datePublished": "2024-12-01T12:58:22-05:00",
   "dateModified": "2025-01-21T13:54:51-05:00",
@@ -185,7 +185,7 @@
     <div class="post-meta">
 
 
-<span title='2024-12-01 12:58:22 -0500 EST'>2024-12-01</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;1939 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<span title='2024-12-01 12:58:22 -0500 EST'>2024-12-01</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1462 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
 <ul class="i18n_list">语言:
     <li>
         <a href="https://kyxie.me/en/blog/tech/router/alist/">English🇨🇦</a>
@@ -208,7 +208,7 @@
                         <li>
                             <a href="#%e6%8c%82%e8%bd%bdgoogle-drive" aria-label="挂载Google Drive">挂载Google Drive</a></li>
                         <li>
-                            <a href="#%e6%8c%82%e8%bd%bd%e6%9c%ac%e5%9c%b0" aria-label="挂载本地">挂载本地</a></li>
+                            <a href="#%e6%8c%82%e8%bd%bd%e6%9c%ac%e5%9c%b0%e7%9b%ae%e5%bd%95" aria-label="挂载本地目录">挂载本地目录</a></li>
                         <li>
                             <a href="#%e4%bd%bf%e7%94%a8cloudflared%e5%85%ac%e7%bd%91%e8%ae%bf%e9%97%aealist%e6%9c%8d%e5%8a%a1" aria-label="使用Cloudflared公网访问AList服务">使用Cloudflared公网访问AList服务</a><ul>
                                     
@@ -296,14 +296,13 @@
 <ul>
 <li><a href="https://alist.nn.ci/zh/guide/drivers/baidu.html">官方教程</a></li>
 <li><a href="https://www.bilibili.com/video/BV1Te4y1G7r1/?t=241">视频教程</a></li>
-<li>Token链接：https://openapi.baidu.com/oauth/2.0/authorize?response_type=code&amp;client_id=iYCeC9g08h5vuP9UqvPHKKSVrKFXGa1v&amp;redirect_uri=https://alist.nn.ci/tool/baidu/callback&amp;scope=basic,netdisk&amp;qrcode=1</li>
 </ul>
 <h3 id="挂载google-drive">挂载Google Drive<a hidden class="anchor" aria-hidden="true" href="#挂载google-drive">#</a></h3>
 <ul>
 <li><a href="https://alist.nn.ci/zh/guide/drivers/googledrive.html">官方教程</a></li>
 <li><a href="https://www.bilibili.com/video/BV18v4y1W7vo/?spm_id_from=333.337.search-card.all.click&amp;vd_source=021fb7b43d05a73d1ec2f8288f7b4303">视频教程</a></li>
 </ul>
-<h3 id="挂载本地">挂载本地<a hidden class="anchor" aria-hidden="true" href="#挂载本地">#</a></h3>
+<h3 id="挂载本地目录">挂载本地目录<a hidden class="anchor" aria-hidden="true" href="#挂载本地目录">#</a></h3>
 <p>假如我们要挂载U盘上的内容</p>
 <ul>
 <li>我们插上U盘，在System → MountPoint可以看到U盘<code>/dev/sda1</code>被挂载到了<code>/mnt/sda1</code></li>
@@ -319,9 +318,44 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alist&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>xhofe/alist:latest
 </span></span></code></pre></div><h3 id="使用cloudflared公网访问alist服务">使用Cloudflared公网访问AList服务<a hidden class="anchor" aria-hidden="true" href="#使用cloudflared公网访问alist服务">#</a></h3>
-<p>AList服务用来管理网盘是非常方便的，同时AList还允许挂载本机的文件。这让我突然想起一个场景，假如我和小伙伴出去玩用单反拍了许多照片，体积非常大，分享这些照片就非常麻烦了，如果上传到百度云，那么小伙伴下载完不知道要等多久，而且也没开其他云的会员账号。</p>
-<p>假如使用AList挂载本地的SD卡，再让小伙伴访问我的AList服务不就解决问题了嘛。但是如何让小伙伴在家也能访问我的OpenWrt呢，可以使用Cloudflare的内网穿透服务。</p>
-<p>本教程参考：<a href="https://www.bilibili.com/video/BV1sj411w7Wm/?spm_id_from=333.999.0.0&amp;vd_source=021fb7b43d05a73d1ec2f8288f7b4303">【韩风Talk】这期玩Alist的网络安全防护，随便折腾一下免费的内网穿透 哔哩哔哩_bilibili</a></p>
+<p>本教程参考：</p>
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <style type="text/css">
+        .bilibili_shortcodes {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 66%;
+            margin: auto;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .bilibili_shortcodes iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+    </style>
+    <title></title>
+</head>
+
+<body>
+    <div class="bilibili_shortcodes">
+        <iframe
+            src="https://player.bilibili.com/player.html?bvid=BV1sj411w7Wm&page=1&high_quality=1&danmaku=0&as_wide=0"
+            scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true">
+        </iframe>
+    </div>
+</body>
+
+</html>
 <h4 id="前置条件">前置条件<a hidden class="anchor" aria-hidden="true" href="#前置条件">#</a></h4>
 <ul>
 <li>需要一个域名</li>
@@ -472,15 +506,15 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/tech/others/recover-mysql/">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/docker-openwrt/">
     <span class="title">« 上一页</span>
     <br>
-    <span>如何找回Homebrew下载的MySQL的密码</span>
+    <span>将OpenWrt制作为Docker镜像</span>
   </a>
-  <a class="next" href="https://kyxie.me/zh/blog/life/pr/">
+  <a class="next" href="https://kyxie.me/zh/blog/tech/utils/python-and-git-for-macos/">
     <span class="title">下一页 »</span>
     <br>
-    <span>OINP移民加拿大🇨🇦时间线</span>
+    <span>使用Homebrew在M芯片的MacBook安装Python和Git</span>
   </a>
 </nav>
 
