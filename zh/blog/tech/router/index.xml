@@ -44,21 +44,21 @@
     </item>
     
     <item>
-      <title>将OpenWrt制作为Docker镜像</title>
-      <link>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</link>
-      <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</guid>
-      <description>安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 Ubuntu for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg;</description>
-    </item>
-    
-    <item>
       <title>Debian使用Docker部署AList</title>
       <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
       <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
       <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地目</description>
+    </item>
+    
+    <item>
+      <title>将OpenWrt制作为Docker镜像</title>
+      <link>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</link>
+      <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</guid>
+      <description>安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 Ubuntu for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg;</description>
     </item>
     
   </channel>

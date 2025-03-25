@@ -44,15 +44,6 @@
     </item>
     
     <item>
-      <title>Banff旅行游记</title>
-      <link>https://kyxie.me/zh/blog/life/banff/</link>
-      <pubDate>Wed, 11 Sep 2024 12:35:55 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/life/banff/</guid>
-      <description>Header 最近妈妈来了加拿大，打算带她去Calgary和Banff旅行，发现Banff旅游真的好多坑啊，正好写一篇游记博客，顺便记录一下Banff旅</description>
-    </item>
-    
-    <item>
       <title>OpenWrt配置Wireguard</title>
       <link>https://kyxie.me/zh/blog/tech/router/wireguard/</link>
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
@@ -89,15 +80,6 @@
     </item>
     
     <item>
-      <title>Algonquin旅行游记</title>
-      <link>https://kyxie.me/zh/blog/life/algonquin/</link>
-      <pubDate>Mon, 30 Sep 2024 14:03:55 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/life/algonquin/</guid>
-      <description>常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:</description>
-    </item>
-    
-    <item>
       <title>x86 Mini PC安装PVE</title>
       <link>https://kyxie.me/zh/blog/tech/router/pve/</link>
       <pubDate>Sun, 15 Dec 2024 23:20:58 -0500</pubDate>
@@ -107,21 +89,21 @@
     </item>
     
     <item>
-      <title>OINP移民加拿大🇨🇦时间线</title>
-      <link>https://kyxie.me/zh/blog/life/pr/</link>
-      <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
+      <title>Debian使用Docker部署AList</title>
+      <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
+      <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/life/pr/</guid>
-      <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
+      <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
+      <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地目</description>
     </item>
     
     <item>
-      <title>Cancun旅行游记</title>
-      <link>https://kyxie.me/zh/blog/life/cancun/</link>
-      <pubDate>Tue, 21 Jan 2025 11:57:55 -0500</pubDate>
+      <title>将OpenWrt制作为Docker镜像</title>
+      <link>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</link>
+      <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/life/cancun/</guid>
-      <description>Header 圣诞节之前去了趟坎昆四天三晚，写一写在坎昆踩的坑和旅游攻略。 酒店我们选的是Haven Riviera All Inclusive，我个人感觉已经非常不错了，餐厅</description>
+      <guid>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</guid>
+      <description>安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 Ubuntu for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg;</description>
     </item>
     
     <item>
@@ -143,6 +125,15 @@
     </item>
     
     <item>
+      <title>Cancun旅行游记</title>
+      <link>https://kyxie.me/zh/blog/life/cancun/</link>
+      <pubDate>Tue, 21 Jan 2025 11:57:55 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/life/cancun/</guid>
+      <description>Header 圣诞节之前去了趟坎昆四天三晚，写一写在坎昆踩的坑和旅游攻略。 酒店我们选的是Haven Riviera All Inclusive，我个人感觉已经非常不错了，餐厅</description>
+    </item>
+    
+    <item>
       <title>USB多个分区格式化</title>
       <link>https://kyxie.me/zh/blog/tech/utils/format-usb/</link>
       <pubDate>Sun, 15 Dec 2024 23:45:35 -0500</pubDate>
@@ -161,24 +152,6 @@
     </item>
     
     <item>
-      <title>将OpenWrt制作为Docker镜像</title>
-      <link>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</link>
-      <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</guid>
-      <description>安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 Ubuntu for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg;</description>
-    </item>
-    
-    <item>
-      <title>Debian使用Docker部署AList</title>
-      <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
-      <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
-      <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地目</description>
-    </item>
-    
-    <item>
       <title>使用Homebrew在M芯片的MacBook安装Python和Git</title>
       <link>https://kyxie.me/zh/blog/tech/utils/python-and-git-for-macos/</link>
       <pubDate>Mon, 11 Nov 2024 11:11:11 -0400</pubDate>
@@ -194,6 +167,24 @@
       
       <guid>https://kyxie.me/zh/blog/tech/utils/aws-server-gui/</guid>
       <description>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都</description>
+    </item>
+    
+    <item>
+      <title>Algonquin旅行游记</title>
+      <link>https://kyxie.me/zh/blog/life/algonquin/</link>
+      <pubDate>Mon, 30 Sep 2024 14:03:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/life/algonquin/</guid>
+      <description>常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:</description>
+    </item>
+    
+    <item>
+      <title>Banff旅行游记</title>
+      <link>https://kyxie.me/zh/blog/life/banff/</link>
+      <pubDate>Wed, 11 Sep 2024 12:35:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/life/banff/</guid>
+      <description>Header 最近妈妈来了加拿大，打算带她去Calgary和Banff旅行，发现Banff旅游真的好多坑啊，正好写一篇游记博客，顺便记录一下Banff旅</description>
     </item>
     
     <item>
@@ -221,6 +212,15 @@
       
       <guid>https://kyxie.me/zh/blog/tech/utils/ldap/</guid>
       <description>Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username</description>
+    </item>
+    
+    <item>
+      <title>OINP移民加拿大🇨🇦时间线</title>
+      <link>https://kyxie.me/zh/blog/life/pr/</link>
+      <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/life/pr/</guid>
+      <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
     </item>
     
     <item>
