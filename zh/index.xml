@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 05 Feb 2025 00:16:46 -0500</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 May 2025 12:41:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>树莓派4B&#43;安装OpenWrt用作旁路由</title>
       <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
@@ -18,10 +18,10 @@
     
     <item>
       <title>Specialized Tarmac SL6装车</title>
-      <link>https://kyxie.me/zh/blog/life/8170/</link>
+      <link>https://kyxie.me/zh/blog/bike/8170/</link>
       <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/life/8170/</guid>
+      <guid>https://kyxie.me/zh/blog/bike/8170/</guid>
       <description>Header 好久没折腾自行车了，最近刚换了roval的破风把，准备打算在车把也内走线，这样车把握起来就爽快多了。我自己拆车试了一下，结果被Shiman</description>
     </item>
     
@@ -54,10 +54,10 @@
     
     <item>
       <title>我使用过的加拿大🇨🇦支票账户</title>
-      <link>https://kyxie.me/zh/blog/wool/checking-accounts/</link>
+      <link>https://kyxie.me/zh/blog/wool/checking-account/</link>
       <pubDate>Sat, 18 May 2024 10:51:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/wool/checking-accounts/</guid>
+      <guid>https://kyxie.me/zh/blog/wool/checking-account/</guid>
       <description>Sep 2021, Scotiabank 之前办学签来加拿大走SDS用的是Scotiabank，因此我第一张checking account是Scotiabank的。学生账户的话</description>
     </item>
     
@@ -71,12 +71,12 @@
     </item>
     
     <item>
-      <title>Data Points</title>
-      <link>https://kyxie.me/zh/blog/wool/data-points/</link>
-      <pubDate>Sat, 09 Nov 2024 17:37:03 -0400</pubDate>
+      <title>加拿大券商对比</title>
+      <link>https://kyxie.me/zh/blog/wool/stock-brokers/</link>
+      <pubDate>Sun, 02 Jun 2024 22:48:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/wool/data-points/</guid>
-      <description>Header 感觉可以开个帖子专门放一下喜欢去的餐厅或超市刷卡积分情况的Data Points 像PC家不收的，Walmart这些只能1x的，或者其他比较常见的就不放</description>
+      <guid>https://kyxie.me/zh/blog/wool/stock-brokers/</guid>
+      <description>Wealthsimple 使用链接(https://wealthsimple.com/invite/VXU-UQ)或推荐码VXU-UQ开设账号，在开户后的30天内存</description>
     </item>
     
     <item>
@@ -99,20 +99,20 @@
     
     <item>
       <title>将OpenWrt制作为Docker镜像</title>
-      <link>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</link>
+      <link>https://kyxie.me/zh/blog/tech/router/docker/</link>
       <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/docker-openwrt/</guid>
+      <guid>https://kyxie.me/zh/blog/tech/router/docker/</guid>
       <description>安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 Ubuntu for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg;</description>
     </item>
     
     <item>
-      <title>加拿大券商对比</title>
-      <link>https://kyxie.me/zh/blog/wool/stock-brokers/</link>
-      <pubDate>Sun, 02 Jun 2024 22:48:55 -0400</pubDate>
+      <title>Data Points</title>
+      <link>https://kyxie.me/zh/blog/wool/data-points/</link>
+      <pubDate>Sat, 09 Nov 2024 17:37:03 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/wool/stock-brokers/</guid>
-      <description>Wealthsimple 使用链接或推荐码VXU-UQ开设账号，在开户后的30天内存$1即可获得$25奖励 Features Core Premium 资金要求 $0 $100000 Commission Fee $0 $0 Cash Account 4% 4.5% USD FX 1.5% 1.5% Crypto Trading Fee 2% 1% USD Account $10</description>
+      <guid>https://kyxie.me/zh/blog/wool/data-points/</guid>
+      <description>Header 感觉可以开个帖子专门放一下喜欢去的餐厅或超市刷卡积分情况的Data Points 像PC家不收的，Walmart这些只能1x的，或者其他比较常见的就不放</description>
     </item>
     
     <item>
@@ -126,10 +126,10 @@
     
     <item>
       <title>Cancun旅行游记</title>
-      <link>https://kyxie.me/zh/blog/life/cancun/</link>
+      <link>https://kyxie.me/zh/blog/tour/cancun/</link>
       <pubDate>Tue, 21 Jan 2025 11:57:55 -0500</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/life/cancun/</guid>
+      <guid>https://kyxie.me/zh/blog/tour/cancun/</guid>
       <description>Header 圣诞节之前去了趟坎昆四天三晚，写一写在坎昆踩的坑和旅游攻略。 酒店我们选的是Haven Riviera All Inclusive，我个人感觉已经非常不错了，餐厅</description>
     </item>
     
@@ -171,19 +171,19 @@
     
     <item>
       <title>Algonquin旅行游记</title>
-      <link>https://kyxie.me/zh/blog/life/algonquin/</link>
+      <link>https://kyxie.me/zh/blog/tour/algonquin/</link>
       <pubDate>Mon, 30 Sep 2024 14:03:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/life/algonquin/</guid>
+      <guid>https://kyxie.me/zh/blog/tour/algonquin/</guid>
       <description>常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:</description>
     </item>
     
     <item>
       <title>Banff旅行游记</title>
-      <link>https://kyxie.me/zh/blog/life/banff/</link>
+      <link>https://kyxie.me/zh/blog/tour/banff/</link>
       <pubDate>Wed, 11 Sep 2024 12:35:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/life/banff/</guid>
+      <guid>https://kyxie.me/zh/blog/tour/banff/</guid>
       <description>Header 最近妈妈来了加拿大，打算带她去Calgary和Banff旅行，发现Banff旅游真的好多坑啊，正好写一篇游记博客，顺便记录一下Banff旅</description>
     </item>
     
@@ -216,10 +216,10 @@
     
     <item>
       <title>OINP移民加拿大🇨🇦时间线</title>
-      <link>https://kyxie.me/zh/blog/life/pr/</link>
+      <link>https://kyxie.me/zh/blog/utils/pr/</link>
       <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/life/pr/</guid>
+      <guid>https://kyxie.me/zh/blog/utils/pr/</guid>
       <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
     </item>
     

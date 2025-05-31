@@ -98,16 +98,6 @@
   </url><url>
     <loc>https://kyxie.me/en/blog/life/banff/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/life/banff/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/life/banff/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/router/wireguard/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
@@ -124,16 +114,6 @@
   </url><url>
     <loc>https://kyxie.me/en/blog/life/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/life/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/life/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/router/alist/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
@@ -150,16 +130,6 @@
   </url><url>
     <loc>https://kyxie.me/en/blog/life/algonquin/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/life/algonquin/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/life/algonquin/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/utils/bash/</loc>
     <lastmod>2025-02-22T00:44:43-05:00</lastmod>
@@ -176,16 +146,6 @@
   </url><url>
     <loc>https://kyxie.me/en/blog/life/pr/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/life/pr/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/life/pr/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/router/samba/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
