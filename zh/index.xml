@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 31 May 2025 12:41:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 31 May 2025 21:07:12 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>树莓派4B&#43;安装OpenWrt用作旁路由</title>
       <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
@@ -80,6 +80,15 @@
     </item>
     
     <item>
+      <title>如何在加拿大兑换美元和其他货币</title>
+      <link>https://kyxie.me/zh/blog/wool/us-dollar/</link>
+      <pubDate>Tue, 27 May 2025 11:49:55 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/wool/us-dollar/</guid>
+      <description>兑换美元的重要性不言而喻，去拉美旅游人家见了美元眼睛都放光，比见了自己国家货币都高兴。我自己试过几种方法，以及在各种场合我会怎么使用美元，文</description>
+    </item>
+    
+    <item>
       <title>x86 Mini PC安装PVE</title>
       <link>https://kyxie.me/zh/blog/tech/router/pve/</link>
       <pubDate>Sun, 15 Dec 2024 23:20:58 -0500</pubDate>
@@ -113,6 +122,24 @@
       
       <guid>https://kyxie.me/zh/blog/wool/data-points/</guid>
       <description>Header 感觉可以开个帖子专门放一下喜欢去的餐厅或超市刷卡积分情况的Data Points 像PC家不收的，Walmart这些只能1x的，或者其他比较常见的就不放</description>
+    </item>
+    
+    <item>
+      <title>Cities Skylines II 画面设置</title>
+      <link>https://kyxie.me/zh/blog/game/cities-skylines-ii/config/</link>
+      <pubDate>Sat, 31 May 2025 21:07:12 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/cities-skylines-ii/config/</guid>
+      <description>设置 选项 画面设置 分辨率：显示器的分辨率 垂直同步：关 景深模式：关 Nvidia DLSS超级分辨率：极致性能 全局画面质量：高 雾气质量设置：关闭 环境光遮蔽质量</description>
+    </item>
+    
+    <item>
+      <title>Cities Skylines II 模组推荐</title>
+      <link>https://kyxie.me/zh/blog/game/cities-skylines-ii/mods/</link>
+      <pubDate>Sat, 31 May 2025 15:26:12 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/cities-skylines-ii/mods/</guid>
+      <description>管理模组 Skyve 一个管理其他模组的模组 官方Mod平台下载后重启游戏，会有Install Skyve选项，可以安装Skyve 之后再开始游戏前先打开Sk</description>
     </item>
     
     <item>
