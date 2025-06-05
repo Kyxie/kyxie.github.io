@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>路由 🛜 on Kunyang&#39;s Blog</title>
+    <title>服务器 🐧 on Kunyang&#39;s Blog</title>
     <link>https://kyxie.me/zh/blog/tech/router/</link>
-    <description>Recent content in 路由 🛜 on Kunyang&#39;s Blog</description>
+    <description>Recent content in 服务器 🐧 on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/blog/tech/router/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</guid>
-      <description>需要的硬件和软件 硬件 一台有网线接口的电脑 内存2GB以上的树莓派4B+ 8GB以上的小SD卡，可以插在树莓派上 SD卡的读卡器 一根网线 显示器（非必</description>
+      <description>我的折腾历史 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界服务</description>
     </item>
     
     <item>
@@ -40,7 +40,7 @@
       <pubDate>Sun, 15 Dec 2024 23:20:58 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/pve/</guid>
-      <description>Header 我的折腾历史： 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界</description>
+      <description>PVE安装步骤 官网下载PVE 使用Etcher烧写镜像到U盘 HDMI线连接到显示器，键盘鼠标连到mini PC，插入U盘，启动主机 按F7进入Bi</description>
     </item>
     
     <item>

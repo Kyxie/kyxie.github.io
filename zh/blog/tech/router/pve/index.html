@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>x86 Mini PC安装PVE | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Home Server, Proxmox VE, Linux, Ubuntu, Debian, All in One, All in Boom">
-<meta name="description" content="Header 我的折腾历史： 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界">
+<meta name="description" content="PVE安装步骤 官网下载PVE 使用Etcher烧写镜像到U盘 HDMI线连接到显示器，键盘鼠标连到mini PC，插入U盘，启动主机 按F7进入Bi">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/pve/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
@@ -39,7 +39,7 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="x86 Mini PC安装PVE" />
-<meta property="og:description" content="Header 我的折腾历史： 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界" />
+<meta property="og:description" content="PVE安装步骤 官网下载PVE 使用Etcher烧写镜像到U盘 HDMI线连接到显示器，键盘鼠标连到mini PC，插入U盘，启动主机 按F7进入Bi" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/pve/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-12-15T23:20:58-05:00" />
@@ -47,7 +47,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="x86 Mini PC安装PVE"/>
-<meta name="twitter:description" content="Header 我的折腾历史： 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界"/>
+<meta name="twitter:description" content="PVE安装步骤 官网下载PVE 使用Etcher烧写镜像到U盘 HDMI线连接到显示器，键盘鼠标连到mini PC，插入U盘，启动主机 按F7进入Bi"/>
 
 
 <script type="application/ld+json">
@@ -70,7 +70,7 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "路由 🛜",
+      "name": "服务器 🐧",
       "item": "https://kyxie.me/zh/blog/tech/router/"
     }, 
     {
@@ -88,12 +88,12 @@
   "@type": "BlogPosting",
   "headline": "x86 Mini PC安装PVE",
   "name": "x86 Mini PC安装PVE",
-  "description": "Header 我的折腾历史： 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界",
+  "description": "PVE安装步骤 官网下载PVE 使用Etcher烧写镜像到U盘 HDMI线连接到显示器，键盘鼠标连到mini PC，插入U盘，启动主机 按F7进入Bi",
   "keywords": [
     "Home Server", "Proxmox VE", "Linux", "Ubuntu", "Debian", "All in One", "All in Boom"
   ],
-  "articleBody": "Header 我的折腾历史：\n使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界服务器，Debian本身也可以做软路由，全部使用命令行也不是不行，但是还是觉得OpenWrt的Web Manager做的挺不错的，有点不想放弃 尝试过一些可以在Debian上跑的Web Manager比如Cockpit觉得还是差点意思，Webmin就更不行了，像是20年前的系统 使用Debian作为主系统，部署OpenWrt的Docker容器，先是使用Docker的Host模式但觉得失去的Docker隔离的意义而且无故添加了很多复杂的配置，实在是不优雅。然后折腾macvlan发现docker容器和宿主机无法通信折腾到头疼，遂放弃 使用PVE虚拟机安装OpenWrt，再安装Debian将默认网关指向OpenWrt 家里突然停电了一次，害怕使用PVE不稳定，于是回归之前的设定，树莓派做OpenWrt网关，Mini PC做Debian服务器，自己干自己的事儿 PVE安装步骤 官网下载PVE 使用Etcher烧写镜像到U盘 HDMI线连接到显示器，键盘鼠标连到mini PC，插入U盘，启动主机 按F7进入Bios，选择U盘安装 选择Graphical安装，配置IP地址，用户名密码，按照提示一步一步来 安装完成后将mini PC插入路由器，然后进入:8006进入PVE Web Manager，用户名为root，密码为刚才设置的密码 OpenWrt安装步骤 编译OpenWrt系统 编译就不多说了，使用GitHub进行云编译，这里记录一下.config\nTargetSystem: - x86 Subtarget: - x86_64 TargetProfile: - Generic x86/64 TargetImages: - squashfs - Build GRUB images - Use Console Terminal (in addition to Serial) - GZip images LuCI: Themes: - luci-theme-agron Applications: - luci-app-accesscontrol - luci-app-adguardhome - luci-app-arpbind - luci-app-banip - luci-app-ddns - luci-app-filetransfer - luci-app-firewall - luci-app-frpc - luci-app-ksmbd - luci-app-nlbwmon - luci-app-opkg - luci-app-passwall - luci-app-samba - luci-app-sqm - luci-app-statistics - luci-app-upnp - luci-app-vnstat - luci-app-vsftpd - luci-app-wol - luci-app-zerotier Protocols: - luci-protocol-wireguard Network: IP Addresses and Names: - ddns-scripts-cloudflare - drill - tcpdump Utilities: - qrencode 创建虚拟机 编辑VM ID, Name，我填了100和OpenWrt\n系统选择Do not use any media\nDisks删除，暂时使用No Disks\n核心数选择2 Cores\n内存设置为1024M\n创建完成后点击运行VM，我们就可以进入OpenWrt的命令行界面了，按照使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang’s Blog修改IP地址\n上传镜像 直接使用scp将编译好的openwrt-x86-64-generic-squashfs-combined.img.gz上传，要上传到/var/lib/vz/template/iso/这个目录\nscp .\\openwrt-x86-64-generic-squashfs-combined.img.gz root@192.168.2.100:/var/lib/vz/template/iso 注意要使用-combined.img.gz这个文件\n解压文件\ngzip -d openwrt-x86-64-generic-squashfs-combined.img.gz 挂载为虚拟机的磁盘\nqm importdisk openwrt-x86-64-generic-squashfs-combined.img local-lvm 出现successfully imported disk 'local-lvm:vm-100-disk-0'就是成功了\n在Options → Boot Order将这块磁盘选中，并设置为第一启动顺序\n完事儿之后可以把.img文件删除\nDebian安装步骤 可以直接在官网下载Debian镜像，进入PVE管理后台，在pve → local (pve) → ISO Images上传镜像（对应位置在/var/lib/vz/template/iso/），安装完后不要删除这个镜像 Disk Size我选了256GB，核心数选择了4核心，因为我的N100本身就是4核心，内存设置为了12GB 安装完之后的.iso文件不能删除 PVE优化 使用了人人都在用的老虎大佬的脚本\nwget -q -O /root/pve_source.tar.gz 'https://bbs.x86pi.cn/file/topic/2024-01-06/file/24f723efc6ab4913b1f99c97a1d1a472b2.gz' \u0026\u0026 tar zxvf /root/pve_source.tar.gz \u0026\u0026 /root/./pve_source PVE关机 最后强调一下如果服务器想要关机的话一定要每个子系统都单独关机一次，直接把电源有可能会造成不可挽回的后果，毕竟PVE是虚拟的。如果害怕家里突然停电可以买个UPS电源\n这篇文章参考了视频：\n\u003c!DOCTYPE HTML\u003e\r",
-  "wordCount" : "1470",
+  "articleBody": "PVE安装步骤 官网下载PVE 使用Etcher烧写镜像到U盘 HDMI线连接到显示器，键盘鼠标连到mini PC，插入U盘，启动主机 按F7进入Bios，选择U盘安装 选择Graphical安装，配置IP地址，用户名密码，按照提示一步一步来 安装完成后将mini PC插入路由器，然后进入:8006进入PVE Web Manager，用户名为root，密码为刚才设置的密码 OpenWrt安装步骤 编译OpenWrt系统 编译就不多说了，使用GitHub进行云编译，这里记录一下.config\nTargetSystem: - x86 Subtarget: - x86_64 TargetProfile: - Generic x86/64 TargetImages: - squashfs - Build GRUB images - Use Console Terminal (in addition to Serial) - GZip images LuCI: Themes: - luci-theme-agron Applications: - luci-app-accesscontrol - luci-app-adguardhome - luci-app-arpbind - luci-app-banip - luci-app-ddns - luci-app-filetransfer - luci-app-firewall - luci-app-frpc - luci-app-ksmbd - luci-app-nlbwmon - luci-app-opkg - luci-app-passwall - luci-app-samba - luci-app-sqm - luci-app-statistics - luci-app-upnp - luci-app-vnstat - luci-app-vsftpd - luci-app-wol - luci-app-zerotier Protocols: - luci-protocol-wireguard Network: IP Addresses and Names: - ddns-scripts-cloudflare - drill - tcpdump Utilities: - qrencode 创建虚拟机 编辑VM ID, Name，我填了100和OpenWrt\n系统选择Do not use any media\nDisks删除，暂时使用No Disks\n核心数选择2 Cores\n内存设置为1024M\n创建完成后点击运行VM，我们就可以进入OpenWrt的命令行界面了，按照使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang’s Blog修改IP地址\n上传镜像 直接使用scp将编译好的openwrt-x86-64-generic-squashfs-combined.img.gz上传，要上传到/var/lib/vz/template/iso/这个目录\nscp .\\openwrt-x86-64-generic-squashfs-combined.img.gz root@192.168.2.100:/var/lib/vz/template/iso 注意要使用-combined.img.gz这个文件\n解压文件\ngzip -d openwrt-x86-64-generic-squashfs-combined.img.gz 挂载为虚拟机的磁盘\nqm importdisk openwrt-x86-64-generic-squashfs-combined.img local-lvm 出现successfully imported disk 'local-lvm:vm-100-disk-0'就是成功了\n在Options → Boot Order将这块磁盘选中，并设置为第一启动顺序\n完事儿之后可以把.img文件删除\nDebian安装步骤 可以直接在官网下载Debian镜像，进入PVE管理后台，在pve → local (pve) → ISO Images上传镜像（对应位置在/var/lib/vz/template/iso/），安装完后不要删除这个镜像 Disk Size我选了256GB，核心数选择了4核心，因为我的N100本身就是4核心，内存设置为了12GB 安装完之后的.iso文件不能删除 PVE优化 使用了人人都在用的老虎大佬的脚本\nwget -q -O /root/pve_source.tar.gz 'https://bbs.x86pi.cn/file/topic/2024-01-06/file/24f723efc6ab4913b1f99c97a1d1a472b2.gz' \u0026\u0026 tar zxvf /root/pve_source.tar.gz \u0026\u0026 /root/./pve_source PVE关机 最后强调一下如果服务器想要关机的话一定要每个子系统都单独关机一次，直接把电源有可能会造成不可挽回的后果，毕竟PVE是虚拟的。如果害怕家里突然停电可以买个UPS电源\n这篇文章参考了视频：\n\u003c!DOCTYPE HTML\u003e\r",
+  "wordCount" : "1026",
   "inLanguage": "zh",
   "datePublished": "2024-12-15T23:20:58-05:00",
   "dateModified": "2025-05-31T13:29:57-04:00",
@@ -171,14 +171,14 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/router/">路由 🛜</a></div>
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/router/">服务器 🐧</a></div>
     <h1 class="post-title">
       x86 Mini PC安装PVE
     </h1>
     <div class="post-meta">
 
 
-<span title='2024-12-15 23:20:58 -0500 EST'>2024-12-15</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1470 字&nbsp;·&nbsp;Kyxie
+<span title='2024-12-15 23:20:58 -0500 EST'>2024-12-15</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1026 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -189,8 +189,6 @@
                 </summary>
 
                 <div class="inner"><ul>
-                        <li>
-                            <a href="#header" aria-label="Header">Header</a></li>
                         <li>
                             <a href="#pve%e5%ae%89%e8%a3%85%e6%ad%a5%e9%aa%a4" aria-label="PVE安装步骤">PVE安装步骤</a></li>
                         <li>
@@ -274,17 +272,7 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
-<p>我的折腾历史：</p>
-<ul>
-<li>使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备</li>
-<li>买了Mini PC准备做我的世界服务器，Debian本身也可以做软路由，全部使用命令行也不是不行，但是还是觉得OpenWrt的Web Manager做的挺不错的，有点不想放弃</li>
-<li>尝试过一些可以在Debian上跑的Web Manager比如Cockpit觉得还是差点意思，Webmin就更不行了，像是20年前的系统</li>
-<li>使用Debian作为主系统，部署OpenWrt的Docker容器，先是使用Docker的Host模式但觉得失去的Docker隔离的意义而且无故添加了很多复杂的配置，实在是不优雅。然后折腾macvlan发现docker容器和宿主机无法通信折腾到头疼，遂放弃</li>
-<li>使用PVE虚拟机安装OpenWrt，再安装Debian将默认网关指向OpenWrt</li>
-<li>家里突然停电了一次，害怕使用PVE不稳定，于是回归之前的设定，树莓派做OpenWrt网关，Mini PC做Debian服务器，自己干自己的事儿</li>
-</ul>
-<h3 id="pve安装步骤">PVE安装步骤<a hidden class="anchor" aria-hidden="true" href="#pve安装步骤">#</a></h3>
+  <div class="post-content"><h3 id="pve安装步骤">PVE安装步骤<a hidden class="anchor" aria-hidden="true" href="#pve安装步骤">#</a></h3>
 <ul>
 <li><a href="https://www.proxmox.com/en/downloads">官网</a>下载PVE</li>
 <li>使用<a href="https://etcher.balena.io/">Etcher</a>烧写镜像到U盘</li>

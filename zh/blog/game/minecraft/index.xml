@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Minecraft ⛏️ on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.me/zh/blog/game/minecraft/</link>
+    <description>Recent content in Minecraft ⛏️ on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 31 May 2025 12:49:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/blog/game/minecraft/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows安装Minecraft</title>
+      <link>https://kyxie.me/zh/blog/game/minecraft/install-minecraft-on-windows/</link>
+      <pubDate>Fri, 13 Dec 2024 00:55:12 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/minecraft/install-minecraft-on-windows/</guid>
+      <description>Header 我本人也算是Minecraft的老粉丝了，初中就开始在手机上玩，还记得高一的时候每天晚上10点上完晚自习回家之后都得盖个楼修个桥的。后来换</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker搭建Minecraft服务器</title>
+      <link>https://kyxie.me/zh/blog/game/minecraft/docker-minecraft-server/</link>
+      <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/minecraft/docker-minecraft-server/</guid>
+      <description>Header 上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种</description>
+    </item>
+    
+  </channel>
+</rss>

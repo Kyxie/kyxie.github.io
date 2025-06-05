@@ -8,12 +8,21 @@
     <language>zh</language>
     <lastBuildDate>Sat, 31 May 2025 21:07:12 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Windows安装Minecraft</title>
+      <link>https://kyxie.me/zh/blog/game/minecraft/install-minecraft-on-windows/</link>
+      <pubDate>Fri, 13 Dec 2024 00:55:12 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/minecraft/install-minecraft-on-windows/</guid>
+      <description>Header 我本人也算是Minecraft的老粉丝了，初中就开始在手机上玩，还记得高一的时候每天晚上10点上完晚自习回家之后都得盖个楼修个桥的。后来换</description>
+    </item>
+    
+    <item>
       <title>树莓派4B&#43;安装OpenWrt用作旁路由</title>
       <link>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</link>
       <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</guid>
-      <description>需要的硬件和软件 硬件 一台有网线接口的电脑 内存2GB以上的树莓派4B+ 8GB以上的小SD卡，可以插在树莓派上 SD卡的读卡器 一根网线 显示器（非必</description>
+      <description>我的折腾历史 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界服务</description>
     </item>
     
     <item>
@@ -41,6 +50,15 @@
       
       <guid>https://kyxie.me/zh/blog/tech/web/papermod/</guid>
       <description>安装过程 首先需要 安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo可以直接用Winget来安装，打开终端输入 winget</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker搭建Minecraft服务器</title>
+      <link>https://kyxie.me/zh/blog/game/minecraft/docker-minecraft-server/</link>
+      <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/minecraft/docker-minecraft-server/</guid>
+      <description>Header 上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种</description>
     </item>
     
     <item>
@@ -94,7 +112,7 @@
       <pubDate>Sun, 15 Dec 2024 23:20:58 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/pve/</guid>
-      <description>Header 我的折腾历史： 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界</description>
+      <description>PVE安装步骤 官网下载PVE 使用Etcher烧写镜像到U盘 HDMI线连接到显示器，键盘鼠标连到mini PC，插入U盘，启动主机 按F7进入Bi</description>
     </item>
     
     <item>
@@ -130,7 +148,7 @@
       <pubDate>Sat, 31 May 2025 21:07:12 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/game/cities-skylines-ii/config/</guid>
-      <description>设置 选项 画面设置 分辨率：显示器的分辨率 垂直同步：关 景深模式：关 Nvidia DLSS超级分辨率：极致性能 全局画面质量：高 雾气质量设置：关闭 环境光遮蔽质量</description>
+      <description>设置 选项 → 画面设置： 分辨率：显示器的分辨率 垂直同步：关 景深模式：关 Nvidia DLSS超级分辨率：极致性能 全局画面质量：高 雾气质量设置：关闭 环境光遮蔽</description>
     </item>
     
     <item>

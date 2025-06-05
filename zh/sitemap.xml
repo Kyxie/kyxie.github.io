@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://kyxie.me/zh/blog/game/minecraft/install-minecraft-on-windows/</loc>
+    <lastmod>2024-12-13T00:55:12-05:00</lastmod>
+  </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
     <xhtml:link
@@ -63,6 +66,9 @@
     <loc>https://kyxie.me/zh/blog/tour/</loc>
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
   </url><url>
+    <loc>https://kyxie.me/zh/blog/game/minecraft/docker-minecraft-server/</loc>
+    <lastmod>2024-12-13T00:50:58-05:00</lastmod>
+  </url><url>
     <loc>https://kyxie.me/zh/blog/tech/web/</loc>
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
     <xhtml:link
@@ -93,7 +99,7 @@
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/game/</loc>
-    <lastmod>2025-05-31T13:29:57-04:00</lastmod>
+    <lastmod>2025-05-31T21:31:41-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/ddns/</loc>
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
@@ -105,7 +111,7 @@
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/wool/us-dollar/</loc>
-    <lastmod>2025-05-31T13:29:57-04:00</lastmod>
+    <lastmod>2025-05-31T21:31:41-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/pve/</loc>
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
@@ -152,7 +158,7 @@
     <lastmod>2025-05-31T21:07:12-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/</loc>
-    <lastmod>2025-05-31T21:07:12-04:00</lastmod>
+    <lastmod>2025-05-31T21:31:41-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -169,6 +175,9 @@
   </url><url>
     <loc>https://kyxie.me/zh/blog/game/cities-skylines-ii/</loc>
     <lastmod>2025-05-31T12:51:32-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/game/minecraft/</loc>
+    <lastmod>2025-05-31T13:29:57-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/utils/recover-mysql/</loc>
     <lastmod>2025-02-22T00:44:43-05:00</lastmod>
