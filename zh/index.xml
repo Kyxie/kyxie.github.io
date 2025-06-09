@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 31 May 2025 21:07:12 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Jun 2025 23:29:42 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Minecraft安装客户端</title>
       <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-client/</link>
@@ -53,21 +53,21 @@
     </item>
     
     <item>
-      <title>Debian使用Docker搭建Minecraft服务器</title>
+      <title>使用U盘安装Linux Server</title>
+      <link>https://kyxie.me/zh/blog/tech/router/linux-server/</link>
+      <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/linux-server/</guid>
+      <description>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署Minecraft服务器</title>
       <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/</link>
       <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/</guid>
       <description>Header 上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种</description>
-    </item>
-    
-    <item>
-      <title>OpenWrt配置Wireguard</title>
-      <link>https://kyxie.me/zh/blog/tech/router/wireguard/</link>
-      <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/wireguard/</guid>
-      <description>OpenWrt 安装 所需插件： kmod-wireguard luci-proto-wireguard wireguard-tools 配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0 点击Generate new key pair，会自动</description>
     </item>
     
     <item>
@@ -80,21 +80,21 @@
     </item>
     
     <item>
-      <title>OpenWrt配置DDNS</title>
-      <link>https://kyxie.me/zh/blog/tech/router/ddns/</link>
-      <pubDate>Sun, 22 Dec 2024 21:37:58 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/ddns/</guid>
-      <description>OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v</description>
-    </item>
-    
-    <item>
       <title>加拿大券商对比</title>
       <link>https://kyxie.me/zh/blog/wool/stock-brokers/</link>
       <pubDate>Sun, 02 Jun 2024 22:48:55 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/wool/stock-brokers/</guid>
       <description>Wealthsimple 使用链接(https://wealthsimple.com/invite/VXU-UQ)或推荐码VXU-UQ开设账号，在开户后的30天内存</description>
+    </item>
+    
+    <item>
+      <title>OpenWrt配置Wireguard</title>
+      <link>https://kyxie.me/zh/blog/tech/router/wireguard/</link>
+      <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/wireguard/</guid>
+      <description>OpenWrt 安装 所需插件： kmod-wireguard luci-proto-wireguard wireguard-tools 配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0 点击Generate new key pair，会自动</description>
     </item>
     
     <item>
@@ -107,12 +107,48 @@
     </item>
     
     <item>
-      <title>x86 Mini PC安装PVE</title>
-      <link>https://kyxie.me/zh/blog/tech/router/pve/</link>
-      <pubDate>Sun, 15 Dec 2024 23:20:58 -0500</pubDate>
+      <title>OpenWrt配置DDNS</title>
+      <link>https://kyxie.me/zh/blog/tech/router/ddns/</link>
+      <pubDate>Sun, 22 Dec 2024 21:37:58 -0500</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/router/pve/</guid>
-      <description>PVE安装步骤 官网下载PVE 使用Etcher烧写镜像到U盘 HDMI线连接到显示器，键盘鼠标连到mini PC，插入U盘，启动主机 按F7进入Bi</description>
+      <guid>https://kyxie.me/zh/blog/tech/router/ddns/</guid>
+      <description>OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署Minecraft服务器</title>
+      <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/</link>
+      <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/</guid>
+      <description>Header 上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署Nginx</title>
+      <link>https://kyxie.me/zh/blog/tech/router/nginx/</link>
+      <pubDate>Sun, 08 Jun 2025 23:26:42 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/nginx/</guid>
+      <description>Header 我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署Cloudflared</title>
+      <link>https://kyxie.me/zh/blog/tech/router/cloudflared/</link>
+      <pubDate>Sun, 08 Jun 2025 23:29:42 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/cloudflared/</guid>
+      <description>Header 这篇文章讲了使用Docker + Nginx的方式来部署服务，但是我的服务是部署在家里的miniPC的，Cloudflared更适合我。 本质上</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署Vaultwarden</title>
+      <link>https://kyxie.me/zh/blog/tech/router/vaultwarden/</link>
+      <pubDate>Tue, 21 Jan 2025 11:51:00 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/vaultwarden/</guid>
+      <description>Header Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置</description>
     </item>
     
     <item>
@@ -121,7 +157,16 @@
       <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
-      <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地目</description>
+      <description>Header AList是一个轻量级的网盘目录索引程序，支持多种存储策略，包括本地目录、阿里云盘、百度网盘、OneDrive、Google Drive等。</description>
+    </item>
+    
+    <item>
+      <title>x86 Mini PC安装PVE</title>
+      <link>https://kyxie.me/zh/blog/tech/router/pve/</link>
+      <pubDate>Sun, 15 Dec 2024 23:20:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/pve/</guid>
+      <description>PVE安装步骤 官网下载PVE 使用Etcher烧写镜像到U盘 HDMI线连接到显示器，键盘鼠标连到mini PC，插入U盘，启动主机 按F7进入Bi</description>
     </item>
     
     <item>
@@ -185,15 +230,6 @@
       
       <guid>https://kyxie.me/zh/blog/tech/utils/format-usb/</guid>
       <description>Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B+安装</description>
-    </item>
-    
-    <item>
-      <title>使用U盘安装Linux Server</title>
-      <link>https://kyxie.me/zh/blog/tech/utils/linux-server/</link>
-      <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/utils/linux-server/</guid>
-      <description>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch</description>
     </item>
     
     <item>

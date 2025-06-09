@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>USB多个分区格式化 | Kunyang&#39;s Blog</title>
-<meta name="keywords" content="USB, Flash, Format">
-<meta name="description" content="Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B&#43;安装">
+<title>Debian使用Docker部署Nginx | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Nginx, Docker, Nginx">
+<meta name="description" content="Header 我们在浏览器地址栏输入localhost &#43; 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更">
 <meta name="author" content="Kyxie">
-<link rel="canonical" href="https://kyxie.me/zh/blog/tech/utils/format-usb/">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/nginx/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://kyxie.me/Favicon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/utils/format-usb/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/router/nginx/">
 <noscript>
     <style>
         #theme-toggle,
@@ -38,16 +38,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="USB多个分区格式化" />
-<meta property="og:description" content="Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B&#43;安装" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Debian使用Docker部署Nginx" />
+<meta property="og:description" content="Header 我们在浏览器地址栏输入localhost &#43; 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyxie.me/zh/blog/tech/utils/format-usb/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2024-12-15T23:45:35-05:00" />
-<meta property="article:modified_time" content="2025-05-31T13:29:57-04:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/nginx/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2025-06-08T23:26:42-04:00" />
+<meta property="article:modified_time" content="2025-06-08T23:26:42-04:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="USB多个分区格式化"/>
-<meta name="twitter:description" content="Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B&#43;安装"/>
+<meta name="twitter:title" content="Debian使用Docker部署Nginx"/>
+<meta name="twitter:description" content="Header 我们在浏览器地址栏输入localhost &#43; 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更"/>
 
 
 <script type="application/ld+json">
@@ -70,14 +70,14 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "Utils 🛠️",
-      "item": "https://kyxie.me/zh/blog/tech/utils/"
+      "name": "服务器 🐧",
+      "item": "https://kyxie.me/zh/blog/tech/router/"
     }, 
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "USB多个分区格式化",
-      "item": "https://kyxie.me/zh/blog/tech/utils/format-usb/"
+      "name": "Debian使用Docker部署Nginx",
+      "item": "https://kyxie.me/zh/blog/tech/router/nginx/"
     }
   ]
 }
@@ -86,24 +86,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "USB多个分区格式化",
-  "name": "USB多个分区格式化",
-  "description": "Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B+安装",
+  "headline": "Debian使用Docker部署Nginx",
+  "name": "Debian使用Docker部署Nginx",
+  "description": "Header 我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更",
   "keywords": [
-    "USB", "Flash", "Format"
+    "Nginx", "Docker", "Nginx"
   ],
-  "articleBody": "Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化\nMacOs 详见：使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang’s Blog\nWindows 打开命令行\ndiskpart 列出磁盘\nlist disk Disk ### Status Size Free Dyn Gpt -------- ------------- ------- ------- --- --- Disk 0 Online 931 GB 1024 KB * Disk 1 Online 931 GB 1024 KB * Disk 2 Online 7696 MB 5050 MB * 选中磁盘，注意别选错了\nsel disk 2 清理\nclean 列出磁盘再看一眼\nDisk ### Status Size Free Dyn Gpt -------- ------------- ------- ------- --- --- Disk 0 Online 931 GB 1024 KB * Disk 1 Online 931 GB 1024 KB * * Disk 2 Online 7696 MB 7695 MB * Win + X打开Disk Management，找到U盘新建简单卷，按照默认步骤一步一步来即可\n",
-  "wordCount" : "241",
+  "articleBody": "Header 我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多的配置。常见的方法有两个，Nginx和使用内网穿透。\n先说一下结论，Nginx比较适合部署在云服务器，而在自己家里的小服务器部署的服务更适合用内网穿透。一般云服务器都有公网IP且443端口是开放的，配置好之后我们就可以直接输入域名访问了。假设你的服务在家里，家里网络的HTTP 80和HTTPS 443端口一般是被运营商屏蔽了的，目的基本上除了安全就是防止用户因为商业用途私自搭建网站。\n解决的办法就是不用443端口了，使用一个别的端口然后Nginx再转发到443端口，那么访问服务的时候就得加上新的端口，比如yourdomain.com:4433，但是我个人感觉不是很优雅。第二个办法就是使用内网穿透，常见的解决方案有Cloudflared，详见这篇文章：Debian使用Docker部署Cloudflared | Kunyang’s Blog。\n使用80/443端口 首先创建一个新的文件夹，假设就放在~下，那么目录结构为\n~ ├── nginx │ └── docker-compose.yml └── service1 │ ├── docker-compose.yml │ └── volume └── service2 ├── docker-compose.yml └── volume 编辑Nginx的docker-compose.yml，这里我们使用了Let's Encrypt去自动签发HTTPS证书。\nservices: nginx-proxy: image: jwilder/nginx-proxy container_name: nginx-proxy restart: unless-stopped ports: - \"80:80\" - \"443:443\" volumes: - /var/run/docker.sock:/tmp/docker.sock:ro - ./certs:/etc/nginx/certs:ro - ./vhost.d:/etc/nginx/vhost.d - ./html:/usr/share/nginx/html - ./conf.d:/etc/nginx/conf.d networks: - nginx letsencrypt: image: jrcs/letsencrypt-nginx-proxy-companion container_name: nginx-letsencrypt restart: unless-stopped environment: - NGINX_PROXY_CONTAINER=nginx-proxy volumes: - /var/run/docker.sock:/var/run/docker.sock:ro - ./certs:/etc/nginx/certs - ./vhost.d:/etc/nginx/vhost.d - ./html:/usr/share/nginx/html depends_on: - nginx-proxy networks: - nginx networks: nginx: external: true 创建一个docker网络，名叫nginx\ndocker network create nginx 启动容器\ndocker compose up -d 这样Nginx和Let’s Encrypt就启动好了，后面当我们暴露服务（这篇文章讲述了我使用这个Nginx来配置Vaultwarden服务）的时候，就可以直接使用Nginx做反向代理了。\n使用其他端口 只需要将ports改成其他的端口，比如\nports: - \"8080:80\" - \"8443:443\" 注意事项：Let’s Encrypt仍然需要80端口用于更新证书，而且这个是无法修改的，所以如果这两个端口被封掉，可以进行访问，但是只能手动更新证书了。\n",
+  "wordCount" : "860",
   "inLanguage": "zh",
-  "datePublished": "2024-12-15T23:45:35-05:00",
-  "dateModified": "2025-05-31T13:29:57-04:00",
+  "datePublished": "2025-06-08T23:26:42-04:00",
+  "dateModified": "2025-06-08T23:26:42-04:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyxie.me/zh/blog/tech/utils/format-usb/"
+    "@id": "https://kyxie.me/zh/blog/tech/router/nginx/"
   },
   "publisher": {
     "@type": "Organization",
@@ -171,14 +171,14 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/utils/">Utils 🛠️</a></div>
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/router/">服务器 🐧</a></div>
     <h1 class="post-title">
-      USB多个分区格式化
+      Debian使用Docker部署Nginx
     </h1>
     <div class="post-meta">
 
 
-<span title='2024-12-15 23:45:35 -0500 EST'>2024-12-15</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;241 字&nbsp;·&nbsp;Kyxie
+<span title='2025-06-08 23:26:42 -0400 EDT'>2025-06-08</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;860 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -192,9 +192,9 @@
                         <li>
                             <a href="#header" aria-label="Header">Header</a></li>
                         <li>
-                            <a href="#macos" aria-label="MacOs">MacOs</a></li>
+                            <a href="#%e4%bd%bf%e7%94%a880443%e7%ab%af%e5%8f%a3" aria-label="使用80/443端口">使用80/443端口</a></li>
                         <li>
-                            <a href="#windows" aria-label="Windows">Windows</a>
+                            <a href="#%e4%bd%bf%e7%94%a8%e5%85%b6%e4%bb%96%e7%ab%af%e5%8f%a3" aria-label="使用其他端口">使用其他端口</a>
                         </li>
                     </ul>
                 </div>
@@ -261,59 +261,93 @@
         }
     </script>
   <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
-<p>使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化</p>
-<h3 id="macos">MacOs<a hidden class="anchor" aria-hidden="true" href="#macos">#</a></h3>
-<p>详见：<a href="/zh/blog/tech/router/raspberrypi-openwrt/#macos">使用树莓派4B+安装OpenWrt用作旁路由 | Kunyang&rsquo;s Blog</a></p>
-<h3 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h3>
+<p>我们在浏览器地址栏输入<code>localhost + 端口</code> 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多的配置。常见的方法有两个，Nginx和使用内网穿透。</p>
+<p>先说一下结论，Nginx比较适合部署在云服务器，而在自己家里的小服务器部署的服务更适合用内网穿透。一般云服务器都有公网IP且443端口是开放的，配置好之后我们就可以直接输入域名访问了。假设你的服务在家里，家里网络的HTTP 80和HTTPS 443端口一般是被运营商屏蔽了的，目的基本上除了安全就是防止用户因为商业用途私自搭建网站。</p>
+<p>解决的办法就是不用443端口了，使用一个别的端口然后Nginx再转发到443端口，那么访问服务的时候就得加上新的端口，比如<code>yourdomain.com:4433</code>，但是我个人感觉不是很优雅。第二个办法就是使用内网穿透，常见的解决方案有Cloudflared，详见这篇文章：<a href="/zh/blog/tech/router/cloudflared/">Debian使用Docker部署Cloudflared | Kunyang&rsquo;s Blog</a>。</p>
+<h3 id="使用80443端口">使用80/443端口<a hidden class="anchor" aria-hidden="true" href="#使用80443端口">#</a></h3>
 <ul>
 <li>
-<p>打开命令行</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>diskpart
+<p>首先创建一个新的文件夹，假设就放在<code>~</code>下，那么目录结构为</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~
+</span></span><span style="display:flex;"><span>├── nginx
+</span></span><span style="display:flex;"><span>│   └── docker-compose.yml
+</span></span><span style="display:flex;"><span>└── service1
+</span></span><span style="display:flex;"><span>│   ├── docker-compose.yml
+</span></span><span style="display:flex;"><span>│   └── volume
+</span></span><span style="display:flex;"><span>└── service2
+</span></span><span style="display:flex;"><span>    ├── docker-compose.yml
+</span></span><span style="display:flex;"><span>    └── volume
 </span></span></code></pre></div></li>
 <li>
-<p>列出磁盘</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>list disk
-</span></span><span style="display:flex;"><span>Disk <span style="color:#75715e">###  Status         Size     Free     Dyn  Gpt</span>
-</span></span><span style="display:flex;"><span>  --------  -------------  -------  -------  ---  ---
-</span></span><span style="display:flex;"><span>  Disk <span style="color:#ae81ff">0</span>    Online          <span style="color:#ae81ff">931</span> GB  <span style="color:#ae81ff">1024</span> KB        *
-</span></span><span style="display:flex;"><span>  Disk <span style="color:#ae81ff">1</span>    Online          <span style="color:#ae81ff">931</span> GB  <span style="color:#ae81ff">1024</span> KB        *
-</span></span><span style="display:flex;"><span>  Disk <span style="color:#ae81ff">2</span>    Online         <span style="color:#ae81ff">7696</span> MB  <span style="color:#ae81ff">5050</span> MB        *
+<p>编辑Nginx的<code>docker-compose.yml</code>，这里我们使用了<code>Let's Encrypt</code>去自动签发HTTPS证书。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">nginx-proxy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">jwilder/nginx-proxy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">nginx-proxy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;80:80&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;443:443&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/var/run/docker.sock:/tmp/docker.sock:ro</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./certs:/etc/nginx/certs:ro</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./vhost.d:/etc/nginx/vhost.d</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./html:/usr/share/nginx/html</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./conf.d:/etc/nginx/conf.d</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">letsencrypt</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">jrcs/letsencrypt-nginx-proxy-companion</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">nginx-letsencrypt</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">NGINX_PROXY_CONTAINER=nginx-proxy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock:ro</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./certs:/etc/nginx/certs</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./vhost.d:/etc/nginx/vhost.d</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./html:/usr/share/nginx/html</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">nginx-proxy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">nginx</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div></li>
 <li>
-<p>选中磁盘，注意别选错了</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sel disk <span style="color:#ae81ff">2</span>
+<p>创建一个docker网络，名叫<code>nginx</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker network create nginx
 </span></span></code></pre></div></li>
 <li>
-<p>清理</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>clean
-</span></span></code></pre></div></li>
-<li>
-<p>列出磁盘再看一眼</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>  Disk <span style="color:#75715e">###  Status         Size     Free     Dyn  Gpt</span>
-</span></span><span style="display:flex;"><span>  --------  -------------  -------  -------  ---  ---
-</span></span><span style="display:flex;"><span>  Disk <span style="color:#ae81ff">0</span>    Online          <span style="color:#ae81ff">931</span> GB  <span style="color:#ae81ff">1024</span> KB        *
-</span></span><span style="display:flex;"><span>  Disk <span style="color:#ae81ff">1</span>    Online          <span style="color:#ae81ff">931</span> GB  <span style="color:#ae81ff">1024</span> KB        *
-</span></span><span style="display:flex;"><span>* Disk <span style="color:#ae81ff">2</span>    Online         <span style="color:#ae81ff">7696</span> MB  <span style="color:#ae81ff">7695</span> MB        *
-</span></span></code></pre></div></li>
-<li>
-<p><code>Win</code> + <code>X</code>打开Disk Management，找到U盘新建简单卷，按照默认步骤一步一步来即可</p>
+<p>启动容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div><p>这样Nginx和Let&rsquo;s Encrypt就启动好了，后面当我们暴露服务（<a href="/zh/blog/tech/router/vaultwarden/#nginx">这篇文章</a>讲述了我使用这个Nginx来配置Vaultwarden服务）的时候，就可以直接使用Nginx做反向代理了。</p>
 </li>
 </ul>
+<h3 id="使用其他端口">使用其他端口<a hidden class="anchor" aria-hidden="true" href="#使用其他端口">#</a></h3>
+<p>只需要将ports改成其他的端口，比如</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ports:
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;8080:80&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;8443:443&#34;</span>
+</span></span></code></pre></div><p>注意事项：Let&rsquo;s Encrypt仍然需要80端口用于更新证书，而且这个是无法修改的，所以如果这两个端口被封掉，可以进行访问，但是只能手动更新证书了。</p>
 
 
   </div>
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/tour/cancun/">
+  <a class="prev" href="https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/">
     <span class="title">« 上一页</span>
     <br>
-    <span>Cancun旅行游记</span>
+    <span>Debian使用Docker部署Minecraft服务器</span>
   </a>
-  <a class="next" href="https://kyxie.me/zh/blog/tech/utils/python-and-git-for-macos/">
+  <a class="next" href="https://kyxie.me/zh/blog/tech/router/cloudflared/">
     <span class="title">下一页 »</span>
     <br>
-    <span>使用Homebrew在M芯片的MacBook安装Python和Git</span>
+    <span>Debian使用Docker部署Cloudflared</span>
   </a>
 </nav>
 
