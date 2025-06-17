@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://kyxie.me/zh/blog/game/minecraft/minecraft-client/</loc>
-    <lastmod>2025-06-05T01:14:38-04:00</lastmod>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/</loc>
     <lastmod>2025-06-04T22:44:18-04:00</lastmod>
@@ -19,7 +19,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/</loc>
-    <lastmod>2025-06-04T22:44:18-04:00</lastmod>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -66,11 +66,8 @@
     <loc>https://kyxie.me/zh/blog/tour/</loc>
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
   </url><url>
-    <loc>https://kyxie.me/zh/blog/tech/router/linux-server/</loc>
-    <lastmod>2024-12-14T12:36:01-05:00</lastmod>
-  </url><url>
     <loc>https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/</loc>
-    <lastmod>2025-06-05T01:14:38-04:00</lastmod>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/web/</loc>
     <lastmod>2025-06-04T22:44:18-04:00</lastmod>
@@ -85,17 +82,8 @@
                 href="https://kyxie.me/zh/blog/tech/web/"
                 />
   </url><url>
-    <loc>https://kyxie.me/zh/blog/wool/checking-account/</loc>
-    <lastmod>2025-05-31T13:29:57-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.me/zh/blog/game/</loc>
-    <lastmod>2025-05-31T21:31:41-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.me/zh/blog/wool/stock-brokers/</loc>
-    <lastmod>2025-05-31T13:29:57-04:00</lastmod>
-  </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/wireguard/</loc>
-    <lastmod>2025-05-31T13:29:57-04:00</lastmod>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -107,32 +95,63 @@
                 href="https://kyxie.me/zh/blog/tech/router/wireguard/"
                 />
   </url><url>
+    <loc>https://kyxie.me/zh/blog/wool/checking-account/</loc>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/game/</loc>
+    <lastmod>2025-05-31T21:31:41-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/router/ddns/</loc>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/wool/stock-brokers/</loc>
+    <lastmod>2025-05-31T13:29:57-04:00</lastmod>
+  </url><url>
     <loc>https://kyxie.me/zh/blog/bike/</loc>
     <lastmod>2025-06-04T22:44:18-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/wool/us-dollar/</loc>
     <lastmod>2025-05-31T21:31:41-04:00</lastmod>
   </url><url>
-    <loc>https://kyxie.me/zh/blog/tech/router/ddns/</loc>
-    <lastmod>2025-05-31T13:29:57-04:00</lastmod>
-  </url><url>
     <loc>https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/</loc>
-    <lastmod>2025-06-04T22:44:18-04:00</lastmod>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/router/nginx/</loc>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/wool/</loc>
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
   </url><url>
-    <loc>https://kyxie.me/zh/blog/tech/router/nginx/</loc>
-    <lastmod>2025-06-08T23:26:42-04:00</lastmod>
-  </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/cloudflared/</loc>
-    <lastmod>2025-06-08T23:29:42-04:00</lastmod>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/vaultwarden/</loc>
-    <lastmod>2025-01-21T11:51:00-05:00</lastmod>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/router/aria2/</loc>
+    <lastmod>2025-06-09T18:27:22-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/router/filebrowser/</loc>
+    <lastmod>2025-06-14T21:30:13-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/router/dashboard/</loc>
+    <lastmod>2025-06-15T00:41:59-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/router/samba/</loc>
+    <lastmod>2025-02-22T00:44:43-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.me/en/blog/tech/router/samba/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.me/zh/blog/tech/router/samba/"
+                />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/alist/</loc>
-    <lastmod>2025-05-31T13:29:57-04:00</lastmod>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -145,7 +164,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/router/pve/</loc>
-    <lastmod>2025-06-04T22:44:18-04:00</lastmod>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/utils/</loc>
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
@@ -170,7 +189,7 @@
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/</loc>
-    <lastmod>2025-06-08T23:29:42-04:00</lastmod>
+    <lastmod>2025-06-15T00:41:59-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -181,6 +200,9 @@
                 hreflang="zh"
                 href="https://kyxie.me/zh/"
                 />
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/utils/automount/</loc>
+    <lastmod>2025-06-14T17:36:33-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/game/cities-skylines-ii/config/</loc>
     <lastmod>2025-05-31T21:07:12-04:00</lastmod>
@@ -202,6 +224,9 @@
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/utils/format-usb/</loc>
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/utils/linux-server/</loc>
+    <lastmod>2025-06-09T16:46:15-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/utils/python-and-git-for-macos/</loc>
     <lastmod>2025-02-22T00:44:43-05:00</lastmod>
@@ -246,9 +271,6 @@
   </url><url>
     <loc>https://kyxie.me/zh/blog/utils/pr/</loc>
     <lastmod>2025-05-31T13:29:57-04:00</lastmod>
-  </url><url>
-    <loc>https://kyxie.me/zh/blog/tech/utils/samba/</loc>
-    <lastmod>2025-02-22T00:44:43-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/utils/bash/</loc>
     <lastmod>2025-02-22T00:44:43-05:00</lastmod>

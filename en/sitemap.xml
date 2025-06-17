@@ -149,6 +149,16 @@
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/router/samba/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.me/zh/blog/tech/router/samba/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.me/en/blog/tech/router/samba/"
+                />
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/router/openvpn/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>

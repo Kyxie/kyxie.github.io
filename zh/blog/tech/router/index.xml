@@ -17,15 +17,6 @@
     </item>
     
     <item>
-      <title>使用U盘安装Linux Server</title>
-      <link>https://kyxie.me/zh/blog/tech/router/linux-server/</link>
-      <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/linux-server/</guid>
-      <description>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch</description>
-    </item>
-    
-    <item>
       <title>OpenWrt配置Wireguard</title>
       <link>https://kyxie.me/zh/blog/tech/router/wireguard/</link>
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
@@ -80,12 +71,48 @@
     </item>
     
     <item>
+      <title>Debian使用Docker部署Aria2</title>
+      <link>https://kyxie.me/zh/blog/tech/router/aria2/</link>
+      <pubDate>Mon, 09 Jun 2025 18:27:22 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/aria2/</guid>
+      <description>Header Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用P3TERX的aria2-pro镜像在De</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署File Browser</title>
+      <link>https://kyxie.me/zh/blog/tech/router/filebrowser/</link>
+      <pubDate>Sat, 14 Jun 2025 21:30:13 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/filebrowser/</guid>
+      <description>Header File Browser是一个文件浏览器，适合图形化地管理MiniPC的文件。如果挂载的SD卡或者U盘，再结合cloudflared将服务映射到公</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署管理页面</title>
+      <link>https://kyxie.me/zh/blog/tech/router/dashboard/</link>
+      <pubDate>Sun, 15 Jun 2025 00:41:59 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/dashboard/</guid>
+      <description>Header 现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署Samba</title>
+      <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
+      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
+      <description>Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我</description>
+    </item>
+    
+    <item>
       <title>Debian使用Docker部署AList</title>
       <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
       <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
-      <description>Header AList是一个轻量级的网盘目录索引程序，支持多种存储策略，包括本地目录、阿里云盘、百度网盘、OneDrive、Google Drive等。</description>
+      <description>Header 2025年6月，AList已经被原作者卖掉了，据说卖给了一个贵州黑产公司，因此不建议再使用AList了。 AList是一个轻量级的网盘目录索</description>
     </item>
     
     <item>

@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 08 Jun 2025 23:29:42 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 15 Jun 2025 00:41:59 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Minecraft安装客户端</title>
       <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-client/</link>
@@ -53,39 +53,12 @@
     </item>
     
     <item>
-      <title>使用U盘安装Linux Server</title>
-      <link>https://kyxie.me/zh/blog/tech/router/linux-server/</link>
-      <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/linux-server/</guid>
-      <description>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch</description>
-    </item>
-    
-    <item>
       <title>Debian使用Docker部署Minecraft服务器</title>
       <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/</link>
       <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/</guid>
       <description>Header 上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种</description>
-    </item>
-    
-    <item>
-      <title>我使用过的加拿大🇨🇦支票账户</title>
-      <link>https://kyxie.me/zh/blog/wool/checking-account/</link>
-      <pubDate>Sat, 18 May 2024 10:51:55 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/wool/checking-account/</guid>
-      <description>Sep 2021, Scotiabank 之前办学签来加拿大走SDS用的是Scotiabank，因此我第一张checking account是Scotiabank的。学生账户的话</description>
-    </item>
-    
-    <item>
-      <title>加拿大券商对比</title>
-      <link>https://kyxie.me/zh/blog/wool/stock-brokers/</link>
-      <pubDate>Sun, 02 Jun 2024 22:48:55 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/wool/stock-brokers/</guid>
-      <description>Wealthsimple 使用链接(https://wealthsimple.com/invite/VXU-UQ)或推荐码VXU-UQ开设账号，在开户后的30天内存</description>
     </item>
     
     <item>
@@ -98,12 +71,12 @@
     </item>
     
     <item>
-      <title>如何在加拿大兑换美元和其他货币</title>
-      <link>https://kyxie.me/zh/blog/wool/us-dollar/</link>
-      <pubDate>Tue, 27 May 2025 11:49:55 -0500</pubDate>
+      <title>我使用过的加拿大🇨🇦支票账户</title>
+      <link>https://kyxie.me/zh/blog/wool/checking-account/</link>
+      <pubDate>Sat, 18 May 2024 10:51:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/wool/us-dollar/</guid>
-      <description>兑换美元的重要性不言而喻，去拉美旅游人家见了美元眼睛都放光，比见了自己国家货币都高兴。我自己试过几种方法，以及在各种场合我会怎么使用美元，文</description>
+      <guid>https://kyxie.me/zh/blog/wool/checking-account/</guid>
+      <description>Sep 2021, Scotiabank 之前办学签来加拿大走SDS用的是Scotiabank，因此我第一张checking account是Scotiabank的。学生账户的话</description>
     </item>
     
     <item>
@@ -113,6 +86,24 @@
       
       <guid>https://kyxie.me/zh/blog/tech/router/ddns/</guid>
       <description>OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v</description>
+    </item>
+    
+    <item>
+      <title>加拿大券商对比</title>
+      <link>https://kyxie.me/zh/blog/wool/stock-brokers/</link>
+      <pubDate>Sun, 02 Jun 2024 22:48:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/wool/stock-brokers/</guid>
+      <description>Wealthsimple 使用链接(https://wealthsimple.com/invite/VXU-UQ)或推荐码VXU-UQ开设账号，在开户后的30天内存</description>
+    </item>
+    
+    <item>
+      <title>如何在加拿大兑换美元和其他货币</title>
+      <link>https://kyxie.me/zh/blog/wool/us-dollar/</link>
+      <pubDate>Tue, 27 May 2025 11:49:55 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/wool/us-dollar/</guid>
+      <description>兑换美元的重要性不言而喻，去拉美旅游人家见了美元眼睛都放光，比见了自己国家货币都高兴。我自己试过几种方法，以及在各种场合我会怎么使用美元，文</description>
     </item>
     
     <item>
@@ -152,12 +143,48 @@
     </item>
     
     <item>
+      <title>Debian使用Docker部署Aria2</title>
+      <link>https://kyxie.me/zh/blog/tech/router/aria2/</link>
+      <pubDate>Mon, 09 Jun 2025 18:27:22 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/aria2/</guid>
+      <description>Header Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用P3TERX的aria2-pro镜像在De</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署File Browser</title>
+      <link>https://kyxie.me/zh/blog/tech/router/filebrowser/</link>
+      <pubDate>Sat, 14 Jun 2025 21:30:13 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/filebrowser/</guid>
+      <description>Header File Browser是一个文件浏览器，适合图形化地管理MiniPC的文件。如果挂载的SD卡或者U盘，再结合cloudflared将服务映射到公</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署管理页面</title>
+      <link>https://kyxie.me/zh/blog/tech/router/dashboard/</link>
+      <pubDate>Sun, 15 Jun 2025 00:41:59 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/dashboard/</guid>
+      <description>Header 现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署Samba</title>
+      <link>https://kyxie.me/zh/blog/tech/router/samba/</link>
+      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
+      <description>Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我</description>
+    </item>
+    
+    <item>
       <title>Debian使用Docker部署AList</title>
       <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
       <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
-      <description>Header AList是一个轻量级的网盘目录索引程序，支持多种存储策略，包括本地目录、阿里云盘、百度网盘、OneDrive、Google Drive等。</description>
+      <description>Header 2025年6月，AList已经被原作者卖掉了，据说卖给了一个贵州黑产公司，因此不建议再使用AList了。 AList是一个轻量级的网盘目录索</description>
     </item>
     
     <item>
@@ -185,6 +212,15 @@
       
       <guid>https://kyxie.me/zh/blog/wool/data-points/</guid>
       <description>Header 感觉可以开个帖子专门放一下喜欢去的餐厅或超市刷卡积分情况的Data Points 像PC家不收的，Walmart这些只能1x的，或者其他比较常见的就不放</description>
+    </item>
+    
+    <item>
+      <title>使用udev自动挂载U盘</title>
+      <link>https://kyxie.me/zh/blog/tech/utils/automount/</link>
+      <pubDate>Sat, 14 Jun 2025 17:36:33 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/utils/automount/</guid>
+      <description>Header 这是现在基本上所有电脑都能实现的功能了，无非就是后台自动搜索设备，然后自动挂载。可能这个场景在没有GUI版的Linux用处不大，因此每次插</description>
     </item>
     
     <item>
@@ -230,6 +266,15 @@
       
       <guid>https://kyxie.me/zh/blog/tech/utils/format-usb/</guid>
       <description>Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B+安装</description>
+    </item>
+    
+    <item>
+      <title>使用U盘安装Linux Server</title>
+      <link>https://kyxie.me/zh/blog/tech/utils/linux-server/</link>
+      <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/utils/linux-server/</guid>
+      <description>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch</description>
     </item>
     
     <item>
@@ -302,15 +347,6 @@
       
       <guid>https://kyxie.me/zh/blog/utils/pr/</guid>
       <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
-    </item>
-    
-    <item>
-      <title>使用Samba将Linux映射为Windows磁盘</title>
-      <link>https://kyxie.me/zh/blog/tech/utils/samba/</link>
-      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/utils/samba/</guid>
-      <description>Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我</description>
     </item>
     
     <item>

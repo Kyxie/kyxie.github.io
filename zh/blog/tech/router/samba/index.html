@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>使用Samba将Linux映射为Windows磁盘 | Kunyang&#39;s Blog</title>
+<title>Debian使用Docker部署Samba | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Linux, Windows, Samba">
 <meta name="description" content="Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我">
 <meta name="author" content="Kyxie">
-<link rel="canonical" href="https://kyxie.me/zh/blog/tech/utils/samba/">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/samba/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -20,7 +20,8 @@
 <link rel="mask-icon" href="https://kyxie.me/Favicon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/utils/samba/">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/router/samba/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/router/samba/">
 <noscript>
     <style>
         #theme-toggle,
@@ -38,15 +39,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用Samba将Linux映射为Windows磁盘" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Debian使用Docker部署Samba" />
 <meta property="og:description" content="Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyxie.me/zh/blog/tech/utils/samba/" /><meta property="article:section" content="blog" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/samba/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2023-12-17T17:19:19-04:00" />
 <meta property="article:modified_time" content="2025-02-22T00:44:43-05:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="使用Samba将Linux映射为Windows磁盘"/>
+<meta name="twitter:title" content="Debian使用Docker部署Samba"/>
 <meta name="twitter:description" content="Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我"/>
 
 
@@ -70,14 +71,14 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "Utils 🛠️",
-      "item": "https://kyxie.me/zh/blog/tech/utils/"
+      "name": "服务器 🐧",
+      "item": "https://kyxie.me/zh/blog/tech/router/"
     }, 
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "使用Samba将Linux映射为Windows磁盘",
-      "item": "https://kyxie.me/zh/blog/tech/utils/samba/"
+      "name": "Debian使用Docker部署Samba",
+      "item": "https://kyxie.me/zh/blog/tech/router/samba/"
     }
   ]
 }
@@ -86,14 +87,14 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "使用Samba将Linux映射为Windows磁盘",
-  "name": "使用Samba将Linux映射为Windows磁盘",
+  "headline": "Debian使用Docker部署Samba",
+  "name": "Debian使用Docker部署Samba",
   "description": "Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我",
   "keywords": [
     "Linux", "Windows", "Samba"
   ],
-  "articleBody": "Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我们使用命令行来管理Linux文件。\nLinux 安装Samba\nsudo apt update sudo apt install samba 编辑Samba配置文件\nsudo nano /etc/samba/smb.conf 首先建议把[homes]下的所有内容注释掉，否则会自动把所有用户的~目录也一起共享出，我们可以在文本末尾添加内容来手动控制需要共享的目录\n[Name] path = /home/user1 browsable = yes read only = no guest ok = yes [Name]是共享文件夹的名称，会显示在Windows磁盘上\n设置Samba账户密码\nsudo smbpasswd -a user1 sudo smbpasswd -e user1 重启Samba服务\nsudo systemctl restart smbd Windows 打开文件资源管理器 右键点击“此电脑”，选择“映射网络驱动器” 选择一个驱动器字母（例如Z:） 在文件夹栏中输入：\\\\Linux IP Address\\Name ",
-  "wordCount" : "325",
+  "articleBody": "Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我们使用命令行来管理Linux文件。\n我写这篇文章的时候是直接安装在Linux上的，后来试了试用Docker也完全可以，因此把之前的教程再做个补充。\nLinux直接安装 安装Samba\nsudo apt update sudo apt install samba 编辑Samba配置文件\nsudo nano /etc/samba/smb.conf 首先建议把[homes]下的所有内容注释掉，否则会自动把所有用户的~目录也一起共享出，我们可以在文本末尾添加内容来手动控制需要共享的目录\n[Name] path = /home/user1 browsable = yes read only = no guest ok = yes [Name]是共享文件夹的名称，会显示在Windows磁盘上\n设置Samba账户密码\nsudo smbpasswd -a user1 sudo smbpasswd -e user1 重启Samba服务\nsudo systemctl restart smbd Docker 使用Docker Compose安装Samba\nservices: samba: image: dperson/samba container_name: samba restart: unless-stopped ports: - \"137:137/udp\" - \"138:138/udp\" - \"139:139/tcp\" - \"445:445/tcp\" volumes: - [host_path]:/mount/home # 替换成宿主机要共享的目录路径 environment: - USERID=[your_uid] # 替换成宿主机对应用户的UID，运行`id -u`获取 - GROUPID=[your_gid] # 替换成宿主机对应用户的GID，运行`id -g`获取 command: \u003e -u \"[username];[password]\" -s \"[Name];/mount/home;yes;no;no;[username]\" 替换[username]，[password]，[Name]为自己想要的值\nWindows 打开文件资源管理器 右键点击“此电脑”，选择“映射网络驱动器” 选择一个驱动器字母（例如Z:） 在文件夹栏中输入：\\\\Linux IP Address\\[Name] ",
+  "wordCount" : "546",
   "inLanguage": "zh",
   "datePublished": "2023-12-17T17:19:19-04:00",
   "dateModified": "2025-02-22T00:44:43-05:00",
@@ -103,7 +104,7 @@
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyxie.me/zh/blog/tech/utils/samba/"
+    "@id": "https://kyxie.me/zh/blog/tech/router/samba/"
   },
   "publisher": {
     "@type": "Organization",
@@ -171,14 +172,19 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/utils/">Utils 🛠️</a></div>
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/router/">服务器 🐧</a></div>
     <h1 class="post-title">
-      使用Samba将Linux映射为Windows磁盘
+      Debian使用Docker部署Samba
     </h1>
     <div class="post-meta">
 
 
-<span title='2023-12-17 17:19:19 -0400 -0400'>2023-12-17</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;325 字&nbsp;·&nbsp;Kyxie
+<span title='2023-12-17 17:19:19 -0400 -0400'>2023-12-17</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;546 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<ul class="i18n_list">语言:
+    <li>
+        <a href="https://kyxie.me/en/blog/tech/router/samba/">English🇨🇦</a>
+    </li>
+</ul>
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -192,7 +198,9 @@
                         <li>
                             <a href="#header" aria-label="Header">Header</a></li>
                         <li>
-                            <a href="#linux" aria-label="Linux">Linux</a></li>
+                            <a href="#linux%e7%9b%b4%e6%8e%a5%e5%ae%89%e8%a3%85" aria-label="Linux直接安装">Linux直接安装</a></li>
+                        <li>
+                            <a href="#docker" aria-label="Docker">Docker</a></li>
                         <li>
                             <a href="#windows" aria-label="Windows">Windows</a>
                         </li>
@@ -262,7 +270,8 @@
     </script>
   <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
 <p>使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我们使用命令行来管理Linux文件。</p>
-<h3 id="linux">Linux<a hidden class="anchor" aria-hidden="true" href="#linux">#</a></h3>
+<p>我写这篇文章的时候是直接安装在Linux上的，后来试了试用Docker也完全可以，因此把之前的教程再做个补充。</p>
+<h3 id="linux直接安装">Linux直接安装<a hidden class="anchor" aria-hidden="true" href="#linux直接安装">#</a></h3>
 <ul>
 <li>
 <p>安装Samba</p>
@@ -290,12 +299,36 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart smbd
 </span></span></code></pre></div></li>
 </ul>
+<h3 id="docker">Docker<a hidden class="anchor" aria-hidden="true" href="#docker">#</a></h3>
+<ul>
+<li>
+<p>使用Docker Compose安装Samba</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">samba</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">dperson/samba</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">samba</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;137:137/udp&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;138:138/udp&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;139:139/tcp&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;445:445/tcp&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - [<span style="color:#ae81ff">host_path]:/mount/home    </span> <span style="color:#75715e"># 替换成宿主机要共享的目录路径</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">USERID=[your_uid]          </span> <span style="color:#75715e"># 替换成宿主机对应用户的UID，运行`id -u`获取</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">GROUPID=[your_gid]         </span> <span style="color:#75715e"># 替换成宿主机对应用户的GID，运行`id -g`获取</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      -u &#34;[username];[password]&#34; -s &#34;[Name];/mount/home;yes;no;no;[username]&#34;</span>      
+</span></span></code></pre></div><p>替换<code>[username]</code>，<code>[password]</code>，<code>[Name]</code>为自己想要的值</p>
+</li>
+</ul>
 <h3 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h3>
 <ul>
 <li>打开文件资源管理器</li>
 <li>右键点击“此电脑”，选择“映射网络驱动器”</li>
 <li>选择一个驱动器字母（例如Z:）</li>
-<li>在文件夹栏中输入：<code>\\Linux IP Address\Name</code></li>
+<li>在文件夹栏中输入：<code>\\Linux IP Address\[Name]</code></li>
 </ul>
 
 
@@ -303,15 +336,15 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/utils/pr/">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/dashboard/">
     <span class="title">« 上一页</span>
     <br>
-    <span>OINP移民加拿大🇨🇦时间线</span>
+    <span>Debian使用Docker部署管理页面</span>
   </a>
-  <a class="next" href="https://kyxie.me/zh/blog/tech/utils/bash/">
+  <a class="next" href="https://kyxie.me/zh/blog/tech/router/alist/">
     <span class="title">下一页 »</span>
     <br>
-    <span>Windows 11 打造个性化终端</span>
+    <span>Debian使用Docker部署AList</span>
   </a>
 </nav>
 

@@ -8,6 +8,15 @@
     <language>zh</language>
     <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/blog/tech/utils/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>使用udev自动挂载U盘</title>
+      <link>https://kyxie.me/zh/blog/tech/utils/automount/</link>
+      <pubDate>Sat, 14 Jun 2025 17:36:33 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/utils/automount/</guid>
+      <description>Header 这是现在基本上所有电脑都能实现的功能了，无非就是后台自动搜索设备，然后自动挂载。可能这个场景在没有GUI版的Linux用处不大，因此每次插</description>
+    </item>
+    
+    <item>
       <title>如何找回Homebrew下载的MySQL的密码</title>
       <link>https://kyxie.me/zh/blog/tech/utils/recover-mysql/</link>
       <pubDate>Wed, 05 Feb 2025 00:16:46 -0500</pubDate>
@@ -23,6 +32,15 @@
       
       <guid>https://kyxie.me/zh/blog/tech/utils/format-usb/</guid>
       <description>Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B+安装</description>
+    </item>
+    
+    <item>
+      <title>使用U盘安装Linux Server</title>
+      <link>https://kyxie.me/zh/blog/tech/utils/linux-server/</link>
+      <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/utils/linux-server/</guid>
+      <description>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch</description>
     </item>
     
     <item>
@@ -68,15 +86,6 @@
       
       <guid>https://kyxie.me/zh/blog/tech/utils/ldap/</guid>
       <description>Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username</description>
-    </item>
-    
-    <item>
-      <title>使用Samba将Linux映射为Windows磁盘</title>
-      <link>https://kyxie.me/zh/blog/tech/utils/samba/</link>
-      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/utils/samba/</guid>
-      <description>Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我</description>
     </item>
     
     <item>
