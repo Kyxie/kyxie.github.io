@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Debian使用Docker部署Aria2 | Kunyang&#39;s Blog</title>
-<meta name="keywords" content="Cloudflared, Docker, Debian, Aria2">
-<meta name="description" content="Header Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用P3TERX的aria2-pro镜像在De">
+<title>Debian使用Docker部署BaiduPCS Go | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="BaiduPCS Go, Docker, Debian">
+<meta name="description" content="Header 由于 miniPC 可以 24 小时运行，既省电又几乎没有噪音，自然而然就想到用它来部署百度网盘客户端，方便在夜间空闲时间自动上传或下载文件。虽然百度网盘经常">
 <meta name="author" content="Kyxie">
-<link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/aria2/">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/baidupcs-go/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://kyxie.me/Favicon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/router/aria2/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/router/baidupcs-go/">
 <noscript>
     <style>
         #theme-toggle,
@@ -38,16 +38,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Debian使用Docker部署Aria2" />
-<meta property="og:description" content="Header Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用P3TERX的aria2-pro镜像在De" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Debian使用Docker部署BaiduPCS Go" />
+<meta property="og:description" content="Header 由于 miniPC 可以 24 小时运行，既省电又几乎没有噪音，自然而然就想到用它来部署百度网盘客户端，方便在夜间空闲时间自动上传或下载文件。虽然百度网盘经常" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/aria2/" /><meta property="article:section" content="blog" />
-<meta property="article:published_time" content="2025-06-09T18:27:22-04:00" />
-<meta property="article:modified_time" content="2025-06-17T00:30:20-04:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/baidupcs-go/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2025-06-18T20:03:42-04:00" />
+<meta property="article:modified_time" content="2025-06-18T20:03:42-04:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Debian使用Docker部署Aria2"/>
-<meta name="twitter:description" content="Header Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用P3TERX的aria2-pro镜像在De"/>
+<meta name="twitter:title" content="Debian使用Docker部署BaiduPCS Go"/>
+<meta name="twitter:description" content="Header 由于 miniPC 可以 24 小时运行，既省电又几乎没有噪音，自然而然就想到用它来部署百度网盘客户端，方便在夜间空闲时间自动上传或下载文件。虽然百度网盘经常"/>
 
 
 <script type="application/ld+json">
@@ -76,8 +76,8 @@
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "Debian使用Docker部署Aria2",
-      "item": "https://kyxie.me/zh/blog/tech/router/aria2/"
+      "name": "Debian使用Docker部署BaiduPCS Go",
+      "item": "https://kyxie.me/zh/blog/tech/router/baidupcs-go/"
     }
   ]
 }
@@ -86,24 +86,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Debian使用Docker部署Aria2",
-  "name": "Debian使用Docker部署Aria2",
-  "description": "Header Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用P3TERX的aria2-pro镜像在De",
+  "headline": "Debian使用Docker部署BaiduPCS Go",
+  "name": "Debian使用Docker部署BaiduPCS Go",
+  "description": "Header 由于 miniPC 可以 24 小时运行，既省电又几乎没有噪音，自然而然就想到用它来部署百度网盘客户端，方便在夜间空闲时间自动上传或下载文件。虽然百度网盘经常",
   "keywords": [
-    "Cloudflared", "Docker", "Debian", "Aria2"
+    "BaiduPCS Go", "Docker", "Debian"
   ],
-  "articleBody": "Header Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用P3TERX的aria2-pro镜像在Debian中部署Aria2。\n部署 同样的本地创建一个文件夹，然后创建docker-compose.yml\nservices: Aria2-Pro: container_name: aria2 image: p3terx/aria2-pro environment: - PUID=1000 - PGID=1000 - UMASK_SET=022 - RPC_SECRET=YOUR_SECRET - RPC_PORT=6800 - LISTEN_PORT=6888 - DISK_CACHE=64M - IPV6_MODE=false - UPDATE_TRACKERS=true - CUSTOM_TRACKER_URL= - TZ=America/Toronto volumes: - ${PWD}/config:/config - ${PWD}/downloads:/downloads ports: - 6800:6800 - 6888:6888 - 6888:6888/udp restart: unless-stopped logging: driver: json-file options: max-size: 1m AriaNg: container_name: ariang image: p3terx/ariang command: --port 6880 ports: - 6880:6880 restart: unless-stopped logging: driver: json-file options: max-size: 1m 启动容器\ndocker compose up -d 打开浏览器，进入SERVER IP:6880打开AriaNg，进入这个页面\n填入Docker Compose的Token\n",
-  "wordCount" : "253",
+  "articleBody": "Header 由于 miniPC 可以 24 小时运行，既省电又几乎没有噪音，自然而然就想到用它来部署百度网盘客户端，方便在夜间空闲时间自动上传或下载文件。虽然百度网盘经常被吐槽，但我是比较早期的用户，一直保有 2T 的存储空间，因此它非常适合用来备份一些“电子鸡肋”，现在相机拍一张 RAW 格式照片动辄就是 30MB，正好可以利用这个空间长期存放。\n但是需要一个Docker版本的百度网盘，查了一下可以使用BaiduPCS Go\n部署 直接运行\ndocker run -d -it --name baidupcs-go \\ -v $(pwd)/data:/data \\ -v $(pwd)/upload:/upload \\ -v $(pwd)/config:/root/.config/BaiduPCS-Go \\ -w /upload \\ kyxie/baidupcs-go:latest 使用Docker Compose部署（推荐）\nservices: baidupcs-go: image: kyxie/baidupcs-go:latest container_name: baidupcs-go stdin_open: true tty: true volumes: - ./data:/data - ./upload:/upload - ./config:/root/.config/BaiduPCS-Go working_dir: /upload 常见命令 进入容器\ndocker exec -it baidupcs-go BaiduPCS-Go 登录\n使用浏览器登录百度网盘\n键盘F12 → Application → Cookies → https://pan.baidu.com → 找到BDUSS字段，复制\n输入命令\nlogin -bduss= 其余详见：GitHub - qjfoidnh/BaiduPCS-Go: iikira/BaiduPCS-Go原版基础上集成了分享链接/秒传链接转存功能\n",
+  "wordCount" : "363",
   "inLanguage": "zh",
-  "datePublished": "2025-06-09T18:27:22-04:00",
-  "dateModified": "2025-06-17T00:30:20-04:00",
+  "datePublished": "2025-06-18T20:03:42-04:00",
+  "dateModified": "2025-06-18T20:03:42-04:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyxie.me/zh/blog/tech/router/aria2/"
+    "@id": "https://kyxie.me/zh/blog/tech/router/baidupcs-go/"
   },
   "publisher": {
     "@type": "Organization",
@@ -173,12 +173,12 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/router/">服务器 🐧</a></div>
     <h1 class="post-title">
-      Debian使用Docker部署Aria2
+      Debian使用Docker部署BaiduPCS Go
     </h1>
     <div class="post-meta">
 
 
-<span title='2025-06-09 18:27:22 -0400 EDT'>2025-06-09</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;253 字&nbsp;·&nbsp;Kyxie
+<span title='2025-06-18 20:03:42 -0400 EDT'>2025-06-18</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;363 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -192,7 +192,9 @@
                         <li>
                             <a href="#header" aria-label="Header">Header</a></li>
                         <li>
-                            <a href="#%e9%83%a8%e7%bd%b2" aria-label="部署">部署</a>
+                            <a href="#%e9%83%a8%e7%bd%b2" aria-label="部署">部署</a></li>
+                        <li>
+                            <a href="#%e5%b8%b8%e8%a7%81%e5%91%bd%e4%bb%a4" aria-label="常见命令">常见命令</a>
                         </li>
                     </ul>
                 </div>
@@ -259,61 +261,62 @@
         }
     </script>
   <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
-<p>Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用<code>P3TERX</code>的<code>aria2-pro</code>镜像在Debian中部署Aria2。</p>
+<p>由于 miniPC 可以 24 小时运行，既省电又几乎没有噪音，自然而然就想到用它来部署百度网盘客户端，方便在夜间空闲时间自动上传或下载文件。虽然百度网盘经常被吐槽，但我是比较早期的用户，一直保有 2T 的存储空间，因此它非常适合用来备份一些“电子鸡肋”，现在相机拍一张 RAW 格式照片动辄就是 30MB，正好可以利用这个空间长期存放。</p>
+<p>但是需要一个Docker版本的百度网盘，查了一下可以使用BaiduPCS Go</p>
 <h3 id="部署">部署<a hidden class="anchor" aria-hidden="true" href="#部署">#</a></h3>
 <ul>
 <li>
-<p>同样的本地创建一个文件夹，然后创建<code>docker-compose.yml</code></p>
+<p>直接运行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -it --name baidupcs-go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/data:/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/upload:/upload <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/config:/root/.config/BaiduPCS-Go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -w /upload <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  kyxie/baidupcs-go:latest
+</span></span></code></pre></div></li>
+<li>
+<p>使用Docker Compose部署（推荐）</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Aria2-Pro</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">aria2 </span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">p3terx/aria2-pro</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">UMASK_SET=022</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">RPC_SECRET=YOUR_SECRET</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">RPC_PORT=6800</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">LISTEN_PORT=6888</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DISK_CACHE=64M</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">IPV6_MODE=false</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">UPDATE_TRACKERS=true</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">CUSTOM_TRACKER_URL=</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=America/Toronto</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">${PWD}/config:/config</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">${PWD}/downloads:/downloads</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">6800</span>:<span style="color:#ae81ff">6800</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">6888</span>:<span style="color:#ae81ff">6888</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">6888</span>:<span style="color:#ae81ff">6888</span><span style="color:#ae81ff">/udp</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">logging</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">json-file</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">options</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">max-size</span>: <span style="color:#ae81ff">1m</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">baidupcs-go</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">kyxie/baidupcs-go:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">baidupcs-go</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">AriaNg</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">ariang</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">p3terx/ariang</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: --<span style="color:#ae81ff">port 6880</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">6880</span>:<span style="color:#ae81ff">6880</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">logging</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">json-file</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">options</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">max-size</span>: <span style="color:#ae81ff">1m</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">stdin_open</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">tty</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./data:/data</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./upload:/upload</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./config:/root/.config/BaiduPCS-Go</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">working_dir</span>: <span style="color:#ae81ff">/upload</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="常见命令">常见命令<a hidden class="anchor" aria-hidden="true" href="#常见命令">#</a></h3>
+<ul>
+<li>
+<p>进入容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it baidupcs-go BaiduPCS-Go
 </span></span></code></pre></div></li>
 <li>
-<p>启动容器</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
-</span></span></code></pre></div></li>
+<p>登录</p>
+<ul>
 <li>
-<p>打开浏览器，进入<code>SERVER IP:6880</code>打开AriaNg，进入这个页面</p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/5a890297efb66ae49cb53341f8495cf8.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="AriaNg设置"  />
+<p>使用浏览器登录百度网盘</p>
+</li>
+<li>
+<p>键盘<code>F12</code> → Application → Cookies → <code>https://pan.baidu.com</code> → 找到<code>BDUSS</code>字段，复制</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/c7ac44e0689881a8125b89effc57fb7c.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="BDUSS"  />
 </p>
-<p>填入Docker Compose的Token</p>
+</li>
+<li>
+<p>输入命令</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>login -bduss<span style="color:#f92672">=</span>&lt;BDUSS&gt;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>其余详见：<a href="https://github.com/qjfoidnh/BaiduPCS-Go?tab=readme-ov-file#%E5%91%BD%E4%BB%A4%E5%88%97%E8%A1%A8%E5%8F%8A%E8%AF%B4%E6%98%8E">GitHub - qjfoidnh/BaiduPCS-Go: iikira/BaiduPCS-Go原版基础上集成了分享链接/秒传链接转存功能</a></p>
 </li>
 </ul>
 
@@ -322,15 +325,15 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/vaultwarden/">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/samba/">
     <span class="title">« 上一页</span>
     <br>
-    <span>Debian使用Docker部署Vaultwarden</span>
+    <span>Debian使用Docker部署Samba</span>
   </a>
-  <a class="next" href="https://kyxie.me/zh/blog/tech/router/filebrowser/">
+  <a class="next" href="https://kyxie.me/zh/blog/tech/router/alist/">
     <span class="title">下一页 »</span>
     <br>
-    <span>Debian使用Docker部署File Browser</span>
+    <span>Debian使用Docker部署AList</span>
   </a>
 </nav>
 

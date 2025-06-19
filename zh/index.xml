@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 15 Jun 2025 00:41:59 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Jun 2025 20:03:42 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Minecraft安装客户端</title>
       <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-client/</link>
@@ -176,6 +176,15 @@
       
       <guid>https://kyxie.me/zh/blog/tech/router/samba/</guid>
       <description>Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署BaiduPCS Go</title>
+      <link>https://kyxie.me/zh/blog/tech/router/baidupcs-go/</link>
+      <pubDate>Wed, 18 Jun 2025 20:03:42 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/baidupcs-go/</guid>
+      <description>Header 由于 miniPC 可以 24 小时运行，既省电又几乎没有噪音，自然而然就想到用它来部署百度网盘客户端，方便在夜间空闲时间自动上传或下载文件。虽然百度网盘经常</description>
     </item>
     
     <item>

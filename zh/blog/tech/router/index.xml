@@ -107,6 +107,15 @@
     </item>
     
     <item>
+      <title>Debian使用Docker部署BaiduPCS Go</title>
+      <link>https://kyxie.me/zh/blog/tech/router/baidupcs-go/</link>
+      <pubDate>Wed, 18 Jun 2025 20:03:42 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/baidupcs-go/</guid>
+      <description>Header 由于 miniPC 可以 24 小时运行，既省电又几乎没有噪音，自然而然就想到用它来部署百度网盘客户端，方便在夜间空闲时间自动上传或下载文件。虽然百度网盘经常</description>
+    </item>
+    
+    <item>
       <title>Debian使用Docker部署AList</title>
       <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
       <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
