@@ -196,11 +196,11 @@
 
                 <div class="inner"><ul>
                         <li>
-                            <a href="#header" aria-label="Header">Header</a></li>
+                            <a href="#header" aria-label="Header"><del>Header</del></a></li>
                         <li>
-                            <a href="#%e9%83%a8%e7%bd%b2" aria-label="部署">部署</a></li>
+                            <a href="#%e9%83%a8%e7%bd%b2" aria-label="部署"><del>部署</del></a></li>
                         <li>
-                            <a href="#%e6%8c%82%e8%bd%bd%e4%ba%91%e7%9b%98" aria-label="挂载云盘">挂载云盘</a>
+                            <a href="#%e6%8c%82%e8%bd%bd%e4%ba%91%e7%9b%98" aria-label="挂载云盘"><del>挂载云盘</del></a>
                         </li>
                     </ul>
                 </div>
@@ -266,21 +266,21 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
-<p><strong>2025年6月，AList已经被原作者卖掉了，据说卖给了一个贵州黑产公司，因此不建议再使用AList了。</strong></p>
+  <div class="post-content"><h3 id="header"><del>Header</del><a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
+<p><del><strong>2025年6月，AList已经被原作者卖掉了，据说卖给了一个贵州黑产公司，因此不建议再使用AList了。</strong></del></p>
 <hr>
-<p>AList是一个轻量级的网盘目录索引程序，支持多种存储策略，包括本地目录、阿里云盘、百度网盘、OneDrive、Google Drive等。</p>
-<h3 id="部署">部署<a hidden class="anchor" aria-hidden="true" href="#部署">#</a></h3>
+<p><del>AList是一个轻量级的网盘目录索引程序，支持多种存储策略，包括本地目录、阿里云盘、百度网盘、OneDrive、Google Drive等。</del></p>
+<h3 id="部署"><del>部署</del><a hidden class="anchor" aria-hidden="true" href="#部署">#</a></h3>
 <ul>
 <li>
-<p>在Cloudflare ZeroTrust之前创建的Tunnel再创建一个新的public hostname，一个Example：</p>
+<p><del>在Cloudflare ZeroTrust之前创建的Tunnel再创建一个新的public hostname，一个Example：</del></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">Subdomain</span>: <span style="color:#ae81ff">alist</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">Domain</span>: <span style="color:#ae81ff">example.com</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">Type</span>: <span style="color:#ae81ff">HTTP</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">URL</span>: <span style="color:#ae81ff">alist:5244</span>
 </span></span></code></pre></div></li>
 <li>
-<p>同样的本地创建一个文件夹，然后创建<code>docker-compose.yml</code></p>
+<p><del>同样的本地创建一个文件夹，然后创建<code>docker-compose.yml</code></del></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">alist</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">xhofe/alist:latest</span>
@@ -303,20 +303,20 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div></li>
 <li>
-<p>启动容器</p>
+<p><del>启动容器</del></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
 </span></span></code></pre></div></li>
 <li>
-<p>产生一个临时的随机密码，使用这个密码就可以登录了，登录之后再去修改密码</p>
+<p><del>产生一个临时的随机密码，使用这个密码就可以登录了，登录之后再去修改密码</del></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it alist ./alist admin random
 </span></span></code></pre></div></li>
 </ul>
-<h3 id="挂载云盘">挂载云盘<a hidden class="anchor" aria-hidden="true" href="#挂载云盘">#</a></h3>
+<h3 id="挂载云盘"><del>挂载云盘</del><a hidden class="anchor" aria-hidden="true" href="#挂载云盘">#</a></h3>
 <ul>
-<li>挂载百度网盘：<a href="https://alist-doc.nn.ci/en/docs/driver/baidu/">Baidu Disk | Alist Document</a></li>
-<li>挂载Google Drive：<a href="https://alist-doc.nn.ci/en/docs/driver/googledrive">Google Cloud Disk | Alist Document</a></li>
+<li><del>挂载百度网盘：<a href="https://alist-doc.nn.ci/en/docs/driver/baidu/">Baidu Disk | Alist Document</a></del></li>
+<li><del>挂载Google Drive：<a href="https://alist-doc.nn.ci/en/docs/driver/googledrive">Google Cloud Disk | Alist Document</a></del></li>
 </ul>
-<p>目前我只使用了这两个，文档里也有很详细的挂载其他网盘的教程。</p>
+<p><del>目前我只使用了这两个，文档里也有很详细的挂载其他网盘的教程。</del></p>
 
 
   </div>
