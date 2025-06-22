@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>OpenWrt配置Wireguard | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Linux, Wireguard">
-<meta name="description" content="OpenWrt 安装 所需插件： kmod-wireguard luci-proto-wireguard wireguard-tools 配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0 点击Generate new key pair，会自动">
+<meta name="description" content="Header Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/wireguard/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
@@ -40,7 +40,7 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="OpenWrt配置Wireguard" />
-<meta property="og:description" content="OpenWrt 安装 所需插件： kmod-wireguard luci-proto-wireguard wireguard-tools 配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0 点击Generate new key pair，会自动" />
+<meta property="og:description" content="Header Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/wireguard/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-05-25T00:19:19-04:00" />
@@ -48,7 +48,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="OpenWrt配置Wireguard"/>
-<meta name="twitter:description" content="OpenWrt 安装 所需插件： kmod-wireguard luci-proto-wireguard wireguard-tools 配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0 点击Generate new key pair，会自动"/>
+<meta name="twitter:description" content="Header Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先"/>
 
 
 <script type="application/ld+json">
@@ -89,12 +89,12 @@
   "@type": "BlogPosting",
   "headline": "OpenWrt配置Wireguard",
   "name": "OpenWrt配置Wireguard",
-  "description": "OpenWrt 安装 所需插件： kmod-wireguard luci-proto-wireguard wireguard-tools 配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0 点击Generate new key pair，会自动",
+  "description": "Header Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先",
   "keywords": [
     "Linux", "Wireguard"
   ],
-  "articleBody": "OpenWrt 安装 所需插件：\nkmod-wireguard luci-proto-wireguard wireguard-tools 配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0\n点击Generate new key pair，会自动生成一个公钥一个私钥，IP地址可以随便写一个私有地址的网段，我填写192.168.100.1/24，这就是这个VPN的子网，然后设置默认端口，可以随便写，这里我设置55555\n然后来到Network → Firewall → General Setting，为wireguard单独创建一个zone，Input, Output和Forward全部开启，由于我目前使用的是单网口，OpenWrt的lan口连接到主路由器，因此可以不设置wan的转发，将package全部转给主路由器即可，如果使用双网口的不要忘记一起配置wan口，使wireguard子网内的设备也能访问wan口，从而正常上网\n配置完之后在Interface → wg0 → Firewall Settings就能看到wg0被单独分配到了自己的zone\n在Network → Firewall → Custom Rules添加一条自定义命令\niptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE 这条命令的意思是针对子网192.168.100.0/24内的数据包，当数据从eth0也就是外接端口转发出去的时候，将数据包的源地址伪装成路由器的公网IP\n如果OpenWrt是主路由，则需要在Firewall → Traffic Rules中开放端口\n如果OpenWrt是旁路由，则需要在主路由上做端口转发\n在Network → Interface → wg0点击Edit，然后转到Peers，点击Add peer\n添加Description，比如我的Windows台式机 我们可以点击创建新的密钥对 建议创建Preshared Key Allow IPs就是这个节点在这个VPN网络的IP地址，我输入192.168.100.2/32，注意掩码一定是32，一个设备应该只含有一个IP地址 Keep Alive可以设置为25 Reload一下wg0接口\nWindows或Mac Os 安装 从这里下载Wireguard App\n配置 在OpenWrt → Network → Interface → wg0 → Edit Peer中可以很方便地为每个终端导出配置文件，复制粘贴在Windows客户端的wireguard中就可以了\n这是Windows的配置例子\n[Interface] PrivateKey = [Windows_PRIVATE_KEY] ListenPort = Port Address = 192.168.100.2/32\t# 这个IP是Windows在wireguard子网的IP DNS = [OpenWrt IP]\t# 可以设置为Wireguard Server（即OpenWrt）的真实IP地址 [Peer] PublicKey = [OpenWrt_PUBLIC_KEY] PresharedKey = [Windows_PSK] AllowedIPs = 192.168.100.0/24\t# 我的Windows和主路由在同一个子网，因此可以设置只有192.168.100.0/24的流量经过VPN Endpoint = [Home Public IP]:Port\t# 公网IP，注意这个Port与上面的Port可以不一样 PersistentKeepalive = 25 MacBook 我的MacBook一般是带出家门使用的，因此不常常在我家的内网，除了AllowedIPs设置为所有流量经过VPN以外其他与上面相同\n[Interface] PrivateKey = [MacBook_PRIVATE_KEY] Address = 192.168.100.3/32 ListenPort = PORT DNS = [OpenWrt IP] [Peer] PublicKey = [OpenWrt_PUBLIC_KEY] PresharedKey = [MacBook_PSK] AllowedIPs = 0.0.0.0/0, ::/0\t# All traffic Endpoint = [Home Public IP]:Port PersistentKeepAlive = 25 Linux 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对，也可以使用OpenWrt的Web manager来生成密钥对（使用OpenWrt集中的管理密钥对更方便，但是不安全）\nsudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey \u003e publickey 编辑配置文件wg0.conf\n[Interface] PrivateKey = [LINUX_PRIVATE_KEY] Address = 192.168.100.4/32 ListenPort = Port DNS = [OpenWrt IP] [Peer] PublicKey = [OpenWrt_PUBLIC_KEY] PresharedKey = [LINUX_PSK] AllowedIPs = 192.168.100.0/24\t# 我的Linux作为服务器也一直在家里 Endpoint = [Home Public IP]:Port PersistentKeepAlive = 25 启动Wireguard\nsudo wg-quick up wg0 如果需要reloead\nsudo wg-quick down wg0 sudo wg-quick up wg0 问题分析 如果报错\nroot@debian:/etc/wireguard# sudo wg-quick up wg0 [#] ip link add wg0 type wireguard [#] wg setconf wg0 /dev/fd/63 [#] ip -4 address add 192.168.100.4/32 dev wg0 [#] ip link set mtu 1420 up dev wg0 [#] resolvconf -a wg0 -m 0 -x /usr/bin/wg-quick: line 32: resolvconf: command not found [#] ip link delete dev wg0 没有安装resolvconf，需要下载\nsudo apt install resolvconf ",
-  "wordCount" : "1447",
+  "articleBody": "Header Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连接到家里的VPN，然后再访问内网了。\n下图是我家的网络拓扑（详见：树莓派4B+安装OpenWrt用作旁路由 | Kunyang’s Blog）是把OpenWrt作为旁路由使用，其他设备的默认网关和DNS指向OpenWrt\nOpenWrt 安装 所需插件：\nkmod-wireguard luci-proto-wireguard wireguard-tools 配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0\n点击Generate new key pair，会自动生成一个公钥一个私钥，IP地址可以随便写一个私有地址的网段，我填写192.168.100.1/24，这就是这个VPN的子网，然后设置默认端口，可以随便写，这里我设置55555\n然后来到Network → Firewall → General Setting，可以选择为wireguard单独创建一个zone，Input, Output和Forward全部开启，Masq关闭\n配置完之后在Interface → wg0 → Firewall Settings就能看到wg0被单独分配到了自己的zone\n如果OpenWrt是主路由，则需要在Firewall → Traffic Rules中开放端口\n像我家的情况OpenWrt是旁路由，则需要在主路由上做端口转发\n在Network → Interface → wg0点击Edit，然后转到Peers，点击Add peer\n添加Description，比如我的Windows台式机 我们可以点击创建新的密钥对 建议创建Preshared Key Allow IPs就是这个节点在这个VPN网络的IP地址，我输入192.168.100.2/32，注意掩码一定是32，一个设备应该只含有一个IP地址 如果该设备在家里，比如我的台式机，Endpoint填OpenWrt的地址，如果设备在外网，比如我的MacBook，则填家里的公网IP Keep Alive可以设置为25 Reload一下wg0接口\nWindows或Mac Os 安装 从这里下载Wireguard App\n配置 在OpenWrt → Network → Interface → wg0 → Edit Peer中可以很方便地为每个终端导出配置文件，复制粘贴在Windows客户端的wireguard中就可以了\n这是Windows的配置例子\n[Interface] PrivateKey = [Windows_PRIVATE_KEY] ListenPort = Port Address = 192.168.100.2/32\t# 这个IP是Windows在wireguard子网的IP DNS = [OpenWrt IP]\t# 可以设置为Wireguard Server（即OpenWrt）的真实IP地址 [Peer] PublicKey = [OpenWrt_PUBLIC_KEY] PresharedKey = [Windows_PSK] AllowedIPs = 192.168.100.0/24\t# 我的Windows和主路由在同一个子网，因此可以设置只有192.168.100.0/24的流量经过VPN Endpoint = [OpenWrt IP]:Port PersistentKeepalive = 25 MacBook 我的MacBook一般是带出家门使用的，因此不常常在我家的内网，除了AllowedIPs设置为所有流量经过VPN以外其他与上面相同\n[Interface] PrivateKey = [MacBook_PRIVATE_KEY] Address = 192.168.100.3/32 ListenPort = PORT DNS = [OpenWrt IP] [Peer] PublicKey = [OpenWrt_PUBLIC_KEY] PresharedKey = [MacBook_PSK] AllowedIPs = 0.0.0.0/0, ::/0\t# All traffic Endpoint = [Home Public IP]:Port\t# Public IP PersistentKeepAlive = 25 Linux 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对，也可以使用OpenWrt的Web manager来生成密钥对（使用OpenWrt集中的管理密钥对更方便，但是不安全）\nsudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey \u003e publickey 编辑配置文件wg0.conf\n[Interface] PrivateKey = [LINUX_PRIVATE_KEY] Address = 192.168.100.4/32 ListenPort = Port DNS = [OpenWrt IP] [Peer] PublicKey = [OpenWrt_PUBLIC_KEY] PresharedKey = [LINUX_PSK] AllowedIPs = 192.168.100.0/24\t# 我的Linux作为服务器也一直在家里 Endpoint = [OpenWrt IP]:Port PersistentKeepAlive = 25 启动Wireguard\nsudo wg-quick up wg0 如果需要reloead\nsudo wg-quick down wg0 sudo wg-quick up wg0 问题分析 如果报错\nroot@debian:/etc/wireguard# sudo wg-quick up wg0 [#] ip link add wg0 type wireguard [#] wg setconf wg0 /dev/fd/63 [#] ip -4 address add 192.168.100.4/32 dev wg0 [#] ip link set mtu 1420 up dev wg0 [#] resolvconf -a wg0 -m 0 -x /usr/bin/wg-quick: line 32: resolvconf: command not found [#] ip link delete dev wg0 没有安装resolvconf，需要下载\nsudo apt install resolvconf ",
+  "wordCount" : "1439",
   "inLanguage": "zh",
   "datePublished": "2024-05-25T00:19:19-04:00",
   "dateModified": "2025-06-17T00:30:20-04:00",
@@ -179,7 +179,7 @@
     <div class="post-meta">
 
 
-<span title='2024-05-25 00:19:19 -0400 EDT'>2024-05-25</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1447 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<span title='2024-05-25 00:19:19 -0400 EDT'>2024-05-25</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1439 字&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
 <ul class="i18n_list">语言:
     <li>
         <a href="https://kyxie.me/en/blog/tech/router/wireguard/">English🇨🇦</a>
@@ -195,6 +195,8 @@
                 </summary>
 
                 <div class="inner"><ul>
+                        <li>
+                            <a href="#header" aria-label="Header">Header</a></li>
                         <li>
                             <a href="#openwrt" aria-label="OpenWrt">OpenWrt</a><ul>
                                     
@@ -289,7 +291,12 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="openwrt">OpenWrt<a hidden class="anchor" aria-hidden="true" href="#openwrt">#</a></h3>
+  <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
+<p>Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连接到家里的VPN，然后再访问内网了。</p>
+<p>下图是我家的网络拓扑（详见：<a href="http://localhost:1313/zh/blog/tech/router/raspberrypi-openwrt/#%E8%BF%9E%E6%8E%A5%E8%B7%AF%E7%94%B1%E5%99%A8">树莓派4B+安装OpenWrt用作旁路由 | Kunyang&rsquo;s Blog</a>）是把OpenWrt作为旁路由使用，其他设备的默认网关和DNS指向OpenWrt</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/ffb05d6f2521453a9935857ac990244e.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Network Topologic"  />
+</p>
+<h3 id="openwrt">OpenWrt<a hidden class="anchor" aria-hidden="true" href="#openwrt">#</a></h3>
 <h4 id="安装">安装<a hidden class="anchor" aria-hidden="true" href="#安装">#</a></h4>
 <p>所需插件：</p>
 <ul>
@@ -310,15 +317,10 @@
 </p>
 </li>
 <li>
-<p>然后来到Network → Firewall → General Setting，为wireguard单独创建一个zone，Input, Output和Forward全部开启，由于我目前使用的是单网口，OpenWrt的lan口连接到主路由器，因此可以不设置wan的转发，将package全部转给主路由器即可，如果使用双网口的不要忘记一起配置wan口，使wireguard子网内的设备也能访问wan口，从而正常上网</p>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/f2138036e06c5b98ebd1f621c4d863e8.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Firewall"  />
+<p>然后来到Network → Firewall → General Setting，可以选择为wireguard单独创建一个zone，Input, Output和Forward全部开启，Masq关闭</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/4dab10eb116bf47cd12a657897698e40.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Firewall"  />
 </p>
 <p>配置完之后在Interface → wg0 → Firewall Settings就能看到<code>wg0</code>被单独分配到了自己的zone</p>
-</li>
-<li>
-<p>在Network → Firewall → Custom Rules添加一条自定义命令</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>iptables -t nat -A POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE
-</span></span></code></pre></div><p>这条命令的意思是针对子网<code>192.168.100.0/24</code>内的数据包，当数据从<code>eth0</code>也就是外接端口转发出去的时候，将数据包的源地址伪装成路由器的公网IP</p>
 </li>
 <li>
 <p>如果OpenWrt是主路由，则需要在Firewall → Traffic Rules中开放端口</p>
@@ -326,7 +328,7 @@
 </p>
 </li>
 <li>
-<p>如果OpenWrt是旁路由，则需要在主路由上做端口转发</p>
+<p>像我家的情况OpenWrt是旁路由，则需要在主路由上做端口转发</p>
 <p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/c4926488d62a1761b6ff74755b06d2c9.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="端口转发"  />
 </p>
 </li>
@@ -337,9 +339,10 @@
 <li>我们可以点击创建新的密钥对</li>
 <li>建议创建Preshared Key</li>
 <li>Allow IPs就是这个节点在这个VPN网络的IP地址，我输入<code>192.168.100.2/32</code>，注意掩码一定是32，一个设备应该只含有一个IP地址</li>
+<li>如果该设备在家里，比如我的台式机，Endpoint填OpenWrt的地址，如果设备在外网，比如我的MacBook，则填家里的公网IP</li>
 <li>Keep Alive可以设置为25</li>
 </ul>
-<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/e823394ccb6489cef51eb234b3602283.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Peer设置"  />
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/28948dbc057666f173dcd23c0dc3112e.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Peer设置"  />
 </p>
 </li>
 <li>
@@ -366,7 +369,7 @@
 </span></span><span style="display:flex;"><span>PublicKey <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>OpenWrt_PUBLIC_KEY<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>PresharedKey <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>Windows_PSK<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>AllowedIPs <span style="color:#f92672">=</span> 192.168.100.0/24		<span style="color:#75715e"># 我的Windows和主路由在同一个子网，因此可以设置只有192.168.100.0/24的流量经过VPN</span>
-</span></span><span style="display:flex;"><span>Endpoint <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>Home Public IP<span style="color:#f92672">]</span>:Port	<span style="color:#75715e"># 公网IP，注意这个Port与上面的Port可以不一样</span>
+</span></span><span style="display:flex;"><span>Endpoint <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>OpenWrt IP<span style="color:#f92672">]</span>:Port
 </span></span><span style="display:flex;"><span>PersistentKeepalive <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>
 </span></span></code></pre></div></li>
 </ul>
@@ -381,8 +384,8 @@
 </span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">Peer]</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">PublicKey = [OpenWrt_PUBLIC_KEY]</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">PresharedKey = [MacBook_PSK]</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">AllowedIPs = 0.0.0.0/0, ::/0	# All traffic</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Endpoint = [Home Public IP]:Port</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">AllowedIPs = 0.0.0.0/0, ::/0		# All traffic</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Endpoint = [Home Public IP]:Port	# Public IP</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">PersistentKeepAlive = 25</span>
 </span></span></code></pre></div><h3 id="linux">Linux<a hidden class="anchor" aria-hidden="true" href="#linux">#</a></h3>
 <h4 id="安装-2">安装<a hidden class="anchor" aria-hidden="true" href="#安装-2">#</a></h4>
@@ -410,7 +413,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">PublicKey = [OpenWrt_PUBLIC_KEY]</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">PresharedKey = [LINUX_PSK]</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">AllowedIPs = 192.168.100.0/24	# 我的Linux作为服务器也一直在家里</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Endpoint = [Home Public IP]:Port</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Endpoint = [OpenWrt IP]:Port</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">PersistentKeepAlive = 25</span>
 </span></span></code></pre></div></li>
 <li>

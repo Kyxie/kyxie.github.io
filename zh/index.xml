@@ -67,7 +67,7 @@
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/wireguard/</guid>
-      <description>OpenWrt 安装 所需插件： kmod-wireguard luci-proto-wireguard wireguard-tools 配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0 点击Generate new key pair，会自动</description>
+      <description>Header Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先</description>
     </item>
     
     <item>
@@ -152,6 +152,15 @@
     </item>
     
     <item>
+      <title>Debian使用Docker部署FreqTrade</title>
+      <link>https://kyxie.me/zh/blog/tech/router/freqtrade/</link>
+      <pubDate>Tue, 10 Jun 2025 00:31:13 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/freqtrade/</guid>
+      <description>Header FreqTrade是个加密货币的自动投资机器人。 部署 创建/data目录 mkdir -p ./user_data 创建docker-compose.yml services: freqtrade: image: freqtradeorg/freqtrade:stable container_name: freqtrade restart: unless-stopped volumes: - &amp;#34;./user_data:/freqtrade/user_data&amp;#34;</description>
+    </item>
+    
+    <item>
       <title>Debian使用Docker部署File Browser</title>
       <link>https://kyxie.me/zh/blog/tech/router/filebrowser/</link>
       <pubDate>Sat, 14 Jun 2025 21:30:13 -0400</pubDate>
@@ -212,15 +221,6 @@
       
       <guid>https://kyxie.me/zh/blog/tech/router/docker/</guid>
       <description>安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 Ubuntu for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg;</description>
-    </item>
-    
-    <item>
-      <title>Data Points</title>
-      <link>https://kyxie.me/zh/blog/wool/data-points/</link>
-      <pubDate>Sat, 09 Nov 2024 17:37:03 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/wool/data-points/</guid>
-      <description>Header 感觉可以开个帖子专门放一下喜欢去的餐厅或超市刷卡积分情况的Data Points 像PC家不收的，Walmart这些只能1x的，或者其他比较常见的就不放</description>
     </item>
     
     <item>

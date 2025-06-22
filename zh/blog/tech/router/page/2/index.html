@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Utils 🛠️ | Kunyang&#39;s Blog</title>
+<title>服务器 🐧 | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="">
-<meta name="description" content="Utils 🛠️ - Kunyang&#39;s Blog">
+<meta name="description" content="服务器 🐧 - Kunyang&#39;s Blog">
 <meta name="author" content="Kyxie">
-<link rel="canonical" href="https://kyxie.me/zh/blog/tech/utils/">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://kyxie.me/Favicon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
@@ -18,9 +18,9 @@
 <link rel="mask-icon" href="https://kyxie.me/Favicon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://kyxie.me/zh/blog/tech/utils/index.xml">
-<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/others/">
-<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/utils/">
+<link rel="alternate" type="application/rss+xml" href="https://kyxie.me/zh/blog/tech/router/index.xml">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/router/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/router/">
 <noscript>
     <style>
         #theme-toggle,
@@ -38,13 +38,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Utils 🛠️" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="服务器 🐧" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://kyxie.me/zh/blog/tech/utils/" /><meta property="og:site_name" content="Kyxie" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/router/" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Utils 🛠️"/>
+<meta name="twitter:title" content="服务器 🐧"/>
 <meta name="twitter:description" content=""/>
 
 
@@ -68,8 +68,8 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "Utils 🛠️",
-      "item": "https://kyxie.me/zh/blog/tech/utils/"
+      "name": "服务器 🐧",
+      "item": "https://kyxie.me/zh/blog/tech/router/"
     }
   ]
 }
@@ -128,158 +128,28 @@
 </header>
 <main class="main"> 
 <header class="page-header"><div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a></div>
-  <h1>Utils 🛠️</h1>
+  <h1>服务器 🐧</h1>
 </header>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>使用udev自动挂载U盘
+    <h2>将OpenWrt制作为Docker镜像
     </h2>
   </header>
   <section class="entry-content">
-    <p>Header 这是现在基本上所有电脑都能实现的功能了，无非就是后台自动搜索设备，然后自动挂载。可能这个场景在没有GUI版的Linux用处不大，因此每次插...</p>
+    <p>安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 Ubuntu for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg;...</p>
   </section>
   <footer class="entry-footer">
 
 
-<span title='2025-06-14 17:36:33 -0400 EDT'>2025-06-14</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;1754 字&nbsp;·&nbsp;Kyxie</footer>
-  <a class="entry-link" aria-label="post link to 使用udev自动挂载U盘" href="https://kyxie.me/zh/blog/tech/utils/automount/"></a>
+<span title='2024-12-12 22:33:58 -0500 EST'>2024-12-12</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;736 字&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to 将OpenWrt制作为Docker镜像" href="https://kyxie.me/zh/blog/tech/router/docker/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>如何找回Homebrew下载的MySQL的密码
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>我这几天把本机装的MySQL密码给忘记了，于是想办法恢复 打开并编辑配置文件my.cnf sudo vim /opt/homebrew/etc/my.cnf 在配置文件添加skip-grant-tables...</p>
-  </section>
-  <footer class="entry-footer">
-
-
-<span title='2025-02-05 00:16:46 -0500 EST'>2025-02-05</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;127 字&nbsp;·&nbsp;Kyxie</footer>
-  <a class="entry-link" aria-label="post link to 如何找回Homebrew下载的MySQL的密码" href="https://kyxie.me/zh/blog/tech/utils/recover-mysql/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>USB多个分区格式化
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B&#43;安装...</p>
-  </section>
-  <footer class="entry-footer">
-
-
-<span title='2024-12-15 23:45:35 -0500 EST'>2024-12-15</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;241 字&nbsp;·&nbsp;Kyxie</footer>
-  <a class="entry-link" aria-label="post link to USB多个分区格式化" href="https://kyxie.me/zh/blog/tech/utils/format-usb/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>使用U盘安装Linux Server
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch...</p>
-  </section>
-  <footer class="entry-footer">
-
-
-<span title='2024-12-14 12:36:01 -0500 EST'>2024-12-14</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;782 字&nbsp;·&nbsp;Kyxie</footer>
-  <a class="entry-link" aria-label="post link to 使用U盘安装Linux Server" href="https://kyxie.me/zh/blog/tech/utils/linux-server/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>使用Homebrew在M芯片的MacBook安装Python和Git
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Mac用户非常推荐使用Homebrew来安装一些软件，就Python来说如果在官网直接下载会在Launch Pad出现IDLE和Python L...</p>
-  </section>
-  <footer class="entry-footer">
-
-
-<span title='2024-11-11 11:11:11 -0400 -0400'>2024-11-11</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;665 字&nbsp;·&nbsp;Kyxie</footer>
-  <a class="entry-link" aria-label="post link to 使用Homebrew在M芯片的MacBook安装Python和Git" href="https://kyxie.me/zh/blog/tech/utils/python-and-git-for-macos/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>AWS Server安装GUI
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都...</p>
-  </section>
-  <footer class="entry-footer">
-
-
-<span title='2024-11-07 00:22:51 -0400 -0400'>2024-11-07</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;547 字&nbsp;·&nbsp;Kyxie</footer>
-  <a class="entry-link" aria-label="post link to AWS Server安装GUI" href="https://kyxie.me/zh/blog/tech/utils/aws-server-gui/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>OpenVPN的简单配置
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli...</p>
-  </section>
-  <footer class="entry-footer">
-
-
-<span title='2024-04-26 20:38:19 -0400 EDT'>2024-04-26</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;797 字&nbsp;·&nbsp;Kyxie</footer>
-  <a class="entry-link" aria-label="post link to OpenVPN的简单配置" href="https://kyxie.me/zh/blog/tech/utils/openvpn/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>使用Keys免密ssh到Linux
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一...</p>
-  </section>
-  <footer class="entry-footer">
-
-
-<span title='2024-04-25 20:47:19 -0400 EDT'>2024-04-25</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;293 字&nbsp;·&nbsp;Kyxie</footer>
-  <a class="entry-link" aria-label="post link to 使用Keys免密ssh到Linux" href="https://kyxie.me/zh/blog/tech/utils/keys/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Linux配置LDAP Server
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username...</p>
-  </section>
-  <footer class="entry-footer">
-
-
-<span title='2024-02-27 00:18:35 -0400 -0400'>2024-02-27</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;179 字&nbsp;·&nbsp;Kyxie</footer>
-  <a class="entry-link" aria-label="post link to Linux配置LDAP Server" href="https://kyxie.me/zh/blog/tech/utils/ldap/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>Windows 11 打造个性化终端
-    </h2>
-  </header>
-  <section class="entry-content">
-    <p>前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo...</p>
-  </section>
-  <footer class="entry-footer">
-
-
-<span title='2023-04-01 00:07:17 -0400 EDT'>2023-04-01</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;529 字&nbsp;·&nbsp;Kyxie</footer>
-  <a class="entry-link" aria-label="post link to Windows 11 打造个性化终端" href="https://kyxie.me/zh/blog/tech/utils/bash/"></a>
-</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://kyxie.me/zh/blog/tech/router/">« 上一页</a>
+  </nav>
+</footer>
     </main>
     
 <footer class="footer">

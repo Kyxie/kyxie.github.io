@@ -22,7 +22,7 @@
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/wireguard/</guid>
-      <description>OpenWrt 安装 所需插件： kmod-wireguard luci-proto-wireguard wireguard-tools 配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0 点击Generate new key pair，会自动</description>
+      <description>Header Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先</description>
     </item>
     
     <item>
@@ -77,6 +77,15 @@
       
       <guid>https://kyxie.me/zh/blog/tech/router/aria2/</guid>
       <description>Header Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用P3TERX的aria2-pro镜像在De</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署FreqTrade</title>
+      <link>https://kyxie.me/zh/blog/tech/router/freqtrade/</link>
+      <pubDate>Tue, 10 Jun 2025 00:31:13 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/router/freqtrade/</guid>
+      <description>Header FreqTrade是个加密货币的自动投资机器人。 部署 创建/data目录 mkdir -p ./user_data 创建docker-compose.yml services: freqtrade: image: freqtradeorg/freqtrade:stable container_name: freqtrade restart: unless-stopped volumes: - &amp;#34;./user_data:/freqtrade/user_data&amp;#34;</description>
     </item>
     
     <item>
