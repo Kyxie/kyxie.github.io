@@ -92,8 +92,8 @@
   "keywords": [
     "File Browser", "Docker", "Debian"
   ],
-  "articleBody": "Header File Browser是一个文件浏览器，适合图形化地管理MiniPC的文件。如果挂载的SD卡或者U盘，再结合cloudflared将服务映射到公网，就相当于自建了云盘，让朋友们远程访问你的SD卡。\n部署 本地创建一个文件夹，然后新建一个文件database.db，修改权限\ntouch ./database.db chown 1000:1000 ./database.db chmod 664 ./database.db 创建docker-compose.yml，我打算由cloudflared托管，因此接入它的网络\nservices: filebrowser: image: filebrowser/filebrowser container_name: filebrowser restart: unless-stopped volumes: - ./data:/srv - ./database.db:/database.db expose: - \"80\" environment: - PUID=1000 - PGID=1000 - UMASK=022 - TZ=America/Toronto user: \"1000:1000\" networks: - cloudflared networks: cloudflared: external: true 启动容器，默认用户名密码为admin和admin\ndocker compose up -d 挂载U盘 / SD卡 可以使用File Browser挂载U盘或者SD卡，相当于自建了个云盘，非常适合和朋友一起旅行完将拍的照片分享给朋友。\n先停止容器docker compose down\n首先需要把U盘挂载到miniPC，如果希望手动挂载，请继续往下看，但是这里建议自动挂载（详见：使用udev自动挂载U盘 | Kunyang’s Blog），U盘插入后直接挂载到对应的文件夹。下面是手动挂载的流程：\n假设U盘名称（Label）为Nikon-1，我们先手动挂载在~/filebrowser/Nikon-1下，这样我们访问~/filebrowser/Nikon-1这个文件夹就是在访问我们的U盘\n得到设备名\nlsblk 一般就叫/dev/sdb1\n创建挂载点目录\nsudo mkdir -p ~/filebrowser/nikon-1 挂载设备\nsudo mount /dev/sdb1 ~/filebrowser/nikon-1 假设我的尼康相机有两个SD卡，大疆有一个SD卡，SD卡都分别被我命名为了nikon-1，nikon-2和dji-1。本地的miniPC挂载完成后，修改File Browser的docker-compose.yml，把逻辑卷加入\nvolumes: - ./data:/srv - ./database.db:/database.db # 挂载SD卡 - ./nikon-1/DCIM/102NZ_FC:/srv/nikon/SD1 - ./nikon-2/DCIM/102NZ_FC:/srv/nikon/SD2 - ./dji-1/DCIM/DJI_001:/srv/dji/SD1 # 挂载服务器，不建议，如果用户名密码被破解很危险，建议使用VPN访问 - /home/username/:/srv/debian 重启容器\ndocker compose up -d ",
-  "wordCount" : "729",
+  "articleBody": "Header File Browser是一个文件浏览器，适合图形化地管理MiniPC的文件。如果挂载的SD卡或者U盘，再结合cloudflared将服务映射到公网，就相当于自建了云盘，让朋友们远程访问你的SD卡。\n部署 本地创建一个文件夹，然后新建一个文件database.db，修改权限\ntouch ./database.db chown 1000:1000 ./database.db chmod 664 ./database.db 创建docker-compose.yml，我打算由cloudflared托管，因此接入它的网络\nservices: filebrowser: image: filebrowser/filebrowser container_name: filebrowser restart: unless-stopped volumes: - ./data:/srv - ./database.db:/database.db expose: - \"80\" environment: - PUID=1000 - PGID=1000 - UMASK=022 - TZ=America/Toronto user: \"1000:1000\" networks: - cloudflared networks: cloudflared: external: true 启动容器，默认用户名密码为admin和admin\ndocker compose up -d 修改密码 先停掉容器\ndocker compose down 重置密码\ndocker run --rm \\ -v $(pwd)/database.db:/database.db \\ filebrowser/filebrowser \\ users update User --password 12345678 --database /database.db 挂载U盘 / SD卡 可以使用File Browser挂载U盘或者SD卡，相当于自建了个云盘，非常适合和朋友一起旅行完将拍的照片分享给朋友。\n先停止容器docker compose down\n首先需要把U盘挂载到miniPC，如果希望手动挂载，请继续往下看，但是这里建议自动挂载（详见：使用udev自动挂载U盘 | Kunyang’s Blog），U盘插入后直接挂载到对应的文件夹。下面是手动挂载的流程：\n假设U盘名称（Label）为Nikon-1，我们先手动挂载在~/filebrowser/Nikon-1下，这样我们访问~/filebrowser/Nikon-1这个文件夹就是在访问我们的U盘\n得到设备名\nlsblk 一般就叫/dev/sdb1\n创建挂载点目录\nsudo mkdir -p ~/filebrowser/nikon-1 挂载设备\nsudo mount /dev/sdb1 ~/filebrowser/nikon-1 假设我的尼康相机有两个SD卡，大疆有一个SD卡，SD卡都分别被我命名为了nikon-1，nikon-2和dji-1。本地的miniPC挂载完成后，修改File Browser的docker-compose.yml，把逻辑卷加入\nvolumes: - ./data:/srv - ./database.db:/database.db # 挂载SD卡 - ./nikon-1/DCIM/102NZ_FC:/srv/nikon/SD1 - ./nikon-2/DCIM/102NZ_FC:/srv/nikon/SD2 - ./dji-1/DCIM/DJI_001:/srv/dji/SD1 # 挂载服务器，不建议，如果用户名密码被破解很危险，建议使用VPN访问 - /home/username/:/srv/debian 重启容器\ndocker compose up -d ",
+  "wordCount" : "761",
   "inLanguage": "zh",
   "datePublished": "2025-06-14T21:30:13-04:00",
   "dateModified": "2025-06-17T00:30:20-04:00",
@@ -115,6 +115,8 @@
   }
 }
 </script>
+
+<script defer src="https://data.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
 </head>
 
 <body class=" dark" id="top">
@@ -178,7 +180,7 @@
     <div class="post-meta">
 
 
-<span title='2025-06-14 21:30:13 -0400 EDT'>2025-06-14</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;729 字&nbsp;·&nbsp;Kyxie
+<span title='2025-06-14 21:30:13 -0400 EDT'>2025-06-14</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;761 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -193,6 +195,8 @@
                             <a href="#header" aria-label="Header">Header</a></li>
                         <li>
                             <a href="#%e9%83%a8%e7%bd%b2" aria-label="部署">部署</a></li>
+                        <li>
+                            <a href="#%e4%bf%ae%e6%94%b9%e5%af%86%e7%a0%81" aria-label="修改密码">修改密码</a></li>
                         <li>
                             <a href="#%e6%8c%82%e8%bd%bdu%e7%9b%98--sd%e5%8d%a1" aria-label="挂载U盘 / SD卡">挂载U盘 / SD卡</a>
                         </li>
@@ -300,6 +304,20 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
 </span></span></code></pre></div></li>
 </ul>
+<h3 id="修改密码">修改密码<a hidden class="anchor" aria-hidden="true" href="#修改密码">#</a></h3>
+<ul>
+<li>
+<p>先停掉容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose down
+</span></span></code></pre></div></li>
+<li>
+<p>重置密码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --rm <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/database.db:/database.db <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  filebrowser/filebrowser <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  users update User --password <span style="color:#ae81ff">12345678</span> --database /database.db
+</span></span></code></pre></div></li>
+</ul>
 <h3 id="挂载u盘--sd卡">挂载U盘 / SD卡<a hidden class="anchor" aria-hidden="true" href="#挂载u盘--sd卡">#</a></h3>
 <p>可以使用File Browser挂载U盘或者SD卡，相当于自建了个云盘，非常适合和朋友一起旅行完将拍的照片分享给朋友。</p>
 <ul>
@@ -350,10 +368,10 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/freqtrade/">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/router/aria2/">
     <span class="title">« 上一页</span>
     <br>
-    <span>Debian使用Docker部署FreqTrade</span>
+    <span>Debian使用Docker部署Aria2</span>
   </a>
   <a class="next" href="https://kyxie.me/zh/blog/tech/router/dashboard/">
     <span class="title">下一页 »</span>

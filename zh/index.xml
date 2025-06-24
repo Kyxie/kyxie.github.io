@@ -152,15 +152,6 @@
     </item>
     
     <item>
-      <title>Debian使用Docker部署FreqTrade</title>
-      <link>https://kyxie.me/zh/blog/tech/router/freqtrade/</link>
-      <pubDate>Tue, 10 Jun 2025 00:31:13 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/tech/router/freqtrade/</guid>
-      <description>Header FreqTrade是个加密货币的自动投资机器人。 部署 创建/data目录 mkdir -p ./user_data 创建docker-compose.yml services: freqtrade: image: freqtradeorg/freqtrade:stable container_name: freqtrade restart: unless-stopped volumes: - &amp;#34;./user_data:/freqtrade/user_data&amp;#34;</description>
-    </item>
-    
-    <item>
       <title>Debian使用Docker部署File Browser</title>
       <link>https://kyxie.me/zh/blog/tech/router/filebrowser/</link>
       <pubDate>Sat, 14 Jun 2025 21:30:13 -0400</pubDate>

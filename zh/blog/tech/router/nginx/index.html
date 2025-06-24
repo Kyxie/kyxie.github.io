@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Debian使用Docker部署Nginx | Kunyang&#39;s Blog</title>
-<meta name="keywords" content="Nginx, Docker, Nginx">
+<meta name="keywords" content="Nginx, Docker, Debian">
 <meta name="description" content="Header 我们在浏览器地址栏输入localhost &#43; 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/zh/blog/tech/router/nginx/">
@@ -90,7 +90,7 @@
   "name": "Debian使用Docker部署Nginx",
   "description": "Header 我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更",
   "keywords": [
-    "Nginx", "Docker", "Nginx"
+    "Nginx", "Docker", "Debian"
   ],
   "articleBody": "Header 我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多的配置。常见的方法有两个，Nginx和使用内网穿透。\n先说一下结论，Nginx比较适合部署在云服务器，而在自己家里的小服务器部署的服务更适合用内网穿透。一般云服务器都有公网IP且443端口是开放的，配置好之后我们就可以直接输入域名访问了。假设你的服务在家里，家里网络的HTTP 80和HTTPS 443端口一般是被运营商屏蔽了的，目的基本上除了安全就是防止用户因为商业用途私自搭建网站。\n解决的办法就是不用443端口了，使用一个别的端口然后Nginx再转发到443端口，那么访问服务的时候就得加上新的端口，比如yourdomain.com:4433，但是我个人感觉不是很优雅。第二个办法就是使用内网穿透，常见的解决方案有Cloudflared，详见这篇文章：Debian使用Docker部署Cloudflared | Kunyang’s Blog。\n使用80/443端口 首先创建一个新的文件夹，假设就放在~下，那么目录结构为\n~ ├── nginx │ └── docker-compose.yml └── service1 │ ├── docker-compose.yml │ └── volume └── service2 ├── docker-compose.yml └── volume 编辑Nginx的docker-compose.yml，这里我们使用了Let's Encrypt去自动签发HTTPS证书。\nservices: nginx-proxy: image: jwilder/nginx-proxy container_name: nginx-proxy restart: unless-stopped ports: - \"80:80\" - \"443:443\" volumes: - /var/run/docker.sock:/tmp/docker.sock:ro - ./certs:/etc/nginx/certs:ro - ./vhost.d:/etc/nginx/vhost.d - ./html:/usr/share/nginx/html - ./conf.d:/etc/nginx/conf.d networks: - nginx letsencrypt: image: jrcs/letsencrypt-nginx-proxy-companion container_name: nginx-letsencrypt restart: unless-stopped environment: - NGINX_PROXY_CONTAINER=nginx-proxy volumes: - /var/run/docker.sock:/var/run/docker.sock:ro - ./certs:/etc/nginx/certs - ./vhost.d:/etc/nginx/vhost.d - ./html:/usr/share/nginx/html depends_on: - nginx-proxy networks: - nginx networks: nginx: external: true 创建一个docker网络，名叫nginx\ndocker network create nginx 启动容器\ndocker compose up -d 这样Nginx和Let’s Encrypt就启动好了，后面当我们暴露服务（这篇文章讲述了我使用这个Nginx来配置Vaultwarden服务）的时候，就可以直接使用Nginx做反向代理了。\n使用其他端口 只需要将ports改成其他的端口，比如\nports: - \"8080:80\" - \"8443:443\" 注意事项：Let’s Encrypt仍然需要80端口用于更新证书，而且这个是无法修改的，所以如果这两个端口被封掉，可以进行访问，但是只能手动更新证书了。\n",
   "wordCount" : "860",
@@ -115,6 +115,8 @@
   }
 }
 </script>
+
+<script defer src="https://data.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
 </head>
 
 <body class=" dark" id="top">

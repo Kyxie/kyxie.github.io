@@ -43,7 +43,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/utils/linux-server/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-12-14T12:36:01-05:00" />
-<meta property="article:modified_time" content="2025-06-17T00:30:20-04:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="article:modified_time" content="2025-06-21T23:51:53-04:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用U盘安装Linux Server"/>
@@ -92,11 +92,11 @@
   "keywords": [
     "UEFI", "Ubuntu", "Debian", "IP Address"
   ],
-  "articleBody": "需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etcher，按照流程将Ubuntu镜像烧写到U盘中 将U盘插入PC，启动，然后不断点击F7键，不同的主板按键不同，然后进入Bios 我需要将整个磁盘都分配给Ubuntu，后续也不折腾的话可以不选择LVM Group，这样只会产生两个分区，/和/boot/efi 后面的无脑填就可以了，等到进入系统 Ubuntu 24.04 我打算将一个网口连接在路由器上，因此需要修改默认的IP地址\n首先ip addr查看当前的地址信息\n我们打算把enp0s1的IP地址修改为192.168.2.66，然后默认网关为主路由器192.168.2.1。我们需要编辑文件01-netcfg.yaml，没有的话就新建\nnetwork: version: 2 renderer: networkd ethernets: enp1s0: dhcp4: no addresses: - 192.168.2.66/24 routes: - to: default via: 192.168.2.1 nameservers: addresses: - 8.8.8.8 - 8.8.4.4 如果提示Permission too open，则修改权限\nsudo chmod 600 /etc/netplan/01-netcfg.yaml 应用Netplan配置\nsudo netplan apply 重启网络服务（可选）\nsudo systemctl restart systemd-networkd 插入网线，验证配置\nip addr Debian 12 首先查看网卡名称\nip addr 我的是ens18\n编辑文件/etc/network/interfaces\n# This file describes the network interfaces available on your system # and how to activate them. For more information, see interfaces(5). source /etc/network/interfaces.d/* # The loopback network interface auto lo iface lo inet loopback # The primary network interface auto ens18 iface ens18 inet static address 192.168.2.111/24 # 本机的IP地址 network 192.168.2.0 broadcast 192.168.2.255 gateway 192.168.2.1 dns-nameservers 8.8.8.8 如果你的Linux是Wi-Fi连接，一样的\n# This file describes the network interfaces available on your system # and how to activate them. For more information, see interfaces(5). source /etc/network/interfaces.d/* # The loopback network interface auto lo iface lo inet loopback # The primary network interface allow-hotplug wlp2s0 iface wlp2s0 inet static address 192.168.2.111 # 本机的IP地址 netmask 255.255.255.0\t# Mask gateway 192.168.2.1\t# 网关 dns-nameservers 192.168.2.1\t# DNS wpa-ssid YourWiFiSSID wpa-psk YourWiFiPassword 重启网络服务\nsudo systemctl restart networking.service 其他配置 剩下的就是一些基本的其他配置了\n安装sudo\nsu root apt install sudo # 将用户添加到sudo组 sudo usermod -aG sudo username # 免密码 sudo visudo # 修改文件内容 %sudo ALL=(ALL:ALL) NOPASSWD: ALL 安装vim\nsudo apt install vim 更换时区\nsudo timedatectl set-timezone America/Toronto 安装Openssh\nsudo apt update sudo apt install openssh-server 安装Docker，详见：将OpenWrt制作为Docker镜像 | Kunyang’s Blog\n切换zsh\n下载\nsudo apt update sudo apt install zsh git curl -y sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" # 自动建议插件 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions # 语法高亮插件 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting 配置\ncat \u003e ~/.zshrc \u003c\u003c 'EOF' export ZSH=\"$HOME/.oh-my-zsh\" # ZSH_THEME=\"robbyrussell\" ZSH_THEME=\"philips\" plugins=( git docker docker-compose zsh-autosuggestions zsh-syntax-highlighting ) source $ZSH/oh-my-zsh.sh # 插件手动加载（路径确保和上面 clone 的一致） source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # 常用 alias alias ll='ls -alF' alias la='ls -A' alias l='ls -CF' alias grep='grep --color=auto' EOF 刷新\nsource ~/.zshrc ",
-  "wordCount" : "892",
+  "articleBody": "需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etcher，按照流程将Ubuntu镜像烧写到U盘中 将U盘插入PC，启动，然后不断点击F7键，不同的主板按键不同，然后进入Bios 我需要将整个磁盘都分配给Ubuntu，后续也不折腾的话可以不选择LVM Group，这样只会产生两个分区，/和/boot/efi 后面的无脑填就可以了，等到进入系统 Ubuntu 24.04 我打算将一个网口连接在路由器上，因此需要修改默认的IP地址\n首先ip addr查看当前的地址信息\n我们打算把enp0s1的IP地址修改为192.168.2.66，然后默认网关为主路由器192.168.2.1。我们需要编辑文件01-netcfg.yaml，没有的话就新建\nnetwork: version: 2 renderer: networkd ethernets: enp1s0: dhcp4: no addresses: - 192.168.2.66/24 routes: - to: default via: 192.168.2.1 nameservers: addresses: - 8.8.8.8 - 8.8.4.4 如果提示Permission too open，则修改权限\nsudo chmod 600 /etc/netplan/01-netcfg.yaml 应用Netplan配置\nsudo netplan apply 重启网络服务（可选）\nsudo systemctl restart systemd-networkd 插入网线，验证配置\nip addr Debian 12 首先查看网卡名称\nip addr 我的是ens18\n编辑文件/etc/network/interfaces\n# This file describes the network interfaces available on your system # and how to activate them. For more information, see interfaces(5). source /etc/network/interfaces.d/* # The loopback network interface auto lo iface lo inet loopback # The primary network interface auto ens18 iface ens18 inet static address 192.168.2.111/24 # 本机的IP地址 network 192.168.2.0 broadcast 192.168.2.255 gateway 192.168.2.1 dns-nameservers 8.8.8.8 如果你的Linux是Wi-Fi连接，一样的\n# This file describes the network interfaces available on your system # and how to activate them. For more information, see interfaces(5). source /etc/network/interfaces.d/* # The loopback network interface auto lo iface lo inet loopback # The primary network interface auto wlp2s0 allow-hotplug wlp2s0 iface wlp2s0 inet static address 192.168.2.111 # 本机的IP地址 netmask 255.255.255.0\t# Mask gateway 192.168.2.1\t# 网关 dns-nameservers 192.168.2.1\t# DNS wpa-ssid YourWiFiSSID wpa-psk YourWiFiPassword 重启网络服务\nsudo systemctl restart networking.service 其他配置 剩下的就是一些基本的其他配置了\n安装sudo\nsu root apt install sudo # 将用户添加到sudo组 sudo usermod -aG sudo username # 免密码 sudo visudo # 修改文件内容 %sudo ALL=(ALL:ALL) NOPASSWD: ALL 安装vim\nsudo apt install vim 更换时区\nsudo timedatectl set-timezone America/Toronto 安装Openssh\nsudo apt update sudo apt install openssh-server 安装Docker，详见：将OpenWrt制作为Docker镜像 | Kunyang’s Blog\n切换zsh\n下载\nsudo apt update sudo apt install zsh git curl -y sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" # 自动建议插件 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions # 语法高亮插件 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting 配置\ncat \u003e ~/.zshrc \u003c\u003c 'EOF' export ZSH=\"$HOME/.oh-my-zsh\" # ZSH_THEME=\"robbyrussell\" ZSH_THEME=\"philips\" plugins=( git docker docker-compose zsh-autosuggestions zsh-syntax-highlighting ) source $ZSH/oh-my-zsh.sh # 插件手动加载（路径确保和上面 clone 的一致） source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # 常用 alias alias ll='ls -alF' alias la='ls -A' alias l='ls -CF' alias grep='grep --color=auto' EOF 刷新\nsource ~/.zshrc ",
+  "wordCount" : "894",
   "inLanguage": "zh",
   "datePublished": "2024-12-14T12:36:01-05:00",
-  "dateModified": "2025-06-17T00:30:20-04:00",
+  "dateModified": "2025-06-21T23:51:53-04:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
@@ -115,6 +115,8 @@
   }
 }
 </script>
+
+<script defer src="https://data.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
 </head>
 
 <body class=" dark" id="top">
@@ -178,7 +180,7 @@
     <div class="post-meta">
 
 
-<span title='2024-12-14 12:36:01 -0500 EST'>2024-12-14</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;892 字&nbsp;·&nbsp;Kyxie
+<span title='2024-12-14 12:36:01 -0500 EST'>2024-12-14</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;894 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -364,6 +366,7 @@
 </span></span><span style="display:flex;"><span>iface lo inet loopback
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># The primary network interface</span>
+</span></span><span style="display:flex;"><span>auto wlp2s0
 </span></span><span style="display:flex;"><span>allow-hotplug wlp2s0
 </span></span><span style="display:flex;"><span>iface wlp2s0 inet static
 </span></span><span style="display:flex;"><span>        address 192.168.2.111    		<span style="color:#75715e"># 本机的IP地址</span>
