@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 18 Jun 2025 20:03:42 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Jun 2025 22:51:50 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Minecraft安装客户端</title>
       <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-client/</link>
@@ -50,6 +50,24 @@
       
       <guid>https://kyxie.me/zh/blog/tech/web/papermod/</guid>
       <description>安装过程 首先需要 安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo可以直接用Winget来安装，打开终端输入 winget</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署Strava数据分析面板</title>
+      <link>https://kyxie.me/zh/blog/bike/strava/</link>
+      <pubDate>Thu, 26 Jun 2025 22:51:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/bike/strava/</guid>
+      <description>Header 翻GitHub找到了statistics-for-strava这个仓库，看着更新还挺频繁的，文档也非常完善，于是打算自己部署一下。 部署 首先</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署Umami</title>
+      <link>https://kyxie.me/zh/blog/tech/web/umami/</link>
+      <pubDate>Thu, 26 Jun 2025 22:20:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/web/umami/</guid>
+      <description>Header Umami是个个人网站站点数据分析的工具，支持自己部署，使用他们的服务器好像最多可以跟踪三个站点。我还试过使用Plausible，但是对我</description>
     </item>
     
     <item>
@@ -188,12 +206,30 @@
     </item>
     
     <item>
+      <title>Debian使用Docker部署Umami</title>
+      <link>https://kyxie.me/zh/blog/tech/web/umami/</link>
+      <pubDate>Thu, 26 Jun 2025 22:20:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/web/umami/</guid>
+      <description>Header Umami是个个人网站站点数据分析的工具，支持自己部署，使用他们的服务器好像最多可以跟踪三个站点。我还试过使用Plausible，但是对我</description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署Strava数据分析面板</title>
+      <link>https://kyxie.me/zh/blog/bike/strava/</link>
+      <pubDate>Thu, 26 Jun 2025 22:51:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/bike/strava/</guid>
+      <description>Header 翻GitHub找到了statistics-for-strava这个仓库，看着更新还挺频繁的，文档也非常完善，于是打算自己部署一下。 部署 首先</description>
+    </item>
+    
+    <item>
       <title>Debian使用Docker部署AList</title>
       <link>https://kyxie.me/zh/blog/tech/router/alist/</link>
       <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/router/alist/</guid>
-      <description>Header 2025年6月，AList已经被原作者卖掉了，据说卖给了一个贵州黑产公司，因此不建议再使用AList了。 AList是一个轻量级的网盘目录索</description>
+      <description>Header 2025年6月，AList已经被原作者卖掉了，据说卖给了一个贵州黑产公司，因此不建议再使用AList了。 代替品可以使用OpenList。 A</description>
     </item>
     
     <item>

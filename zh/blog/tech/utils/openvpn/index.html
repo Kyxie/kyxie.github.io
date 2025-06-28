@@ -344,31 +344,31 @@
 </span></span></code></pre></div></li>
 <li>
 <p>编写<code>server.conf</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">client</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">dev tun0</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">remote [A_addr] 1194 udp</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ca ca.crt</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">cert client.crt</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">key client.key</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">user nobody</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">group nogroup</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-key</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-tun</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">verb 3</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>client
+</span></span><span style="display:flex;"><span>dev tun0
+</span></span><span style="display:flex;"><span>remote [A_addr] 1194 udp
+</span></span><span style="display:flex;"><span>ca ca.crt
+</span></span><span style="display:flex;"><span>cert client.crt
+</span></span><span style="display:flex;"><span>key client.key
+</span></span><span style="display:flex;"><span>user nobody
+</span></span><span style="display:flex;"><span>group nogroup
+</span></span><span style="display:flex;"><span>persist-key
+</span></span><span style="display:flex;"><span>persist-tun
+</span></span><span style="display:flex;"><span>verb 3
 </span></span></code></pre></div></li>
 <li>
 <p>如果是TCP连接则</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">client</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">dev tun0</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">remote [A_addr] 1194 tcp-client</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ca ca.crt</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">cert client.crt</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">key client.key</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">user nobody</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">group nogroup</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-key</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">persist-tun</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">verb 3</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>client
+</span></span><span style="display:flex;"><span>dev tun0
+</span></span><span style="display:flex;"><span>remote [A_addr] 1194 tcp-client
+</span></span><span style="display:flex;"><span>ca ca.crt
+</span></span><span style="display:flex;"><span>cert client.crt
+</span></span><span style="display:flex;"><span>key client.key
+</span></span><span style="display:flex;"><span>user nobody
+</span></span><span style="display:flex;"><span>group nogroup
+</span></span><span style="display:flex;"><span>persist-key
+</span></span><span style="display:flex;"><span>persist-tun
+</span></span><span style="display:flex;"><span>verb 3
 </span></span></code></pre></div></li>
 <li>
 <p>运行OpenVPN Client</p>
