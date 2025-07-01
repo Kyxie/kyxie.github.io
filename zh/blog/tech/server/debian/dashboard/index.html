@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Debian使用Docker部署管理页面 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Dashboard, Docker, Debian">
+<meta name="description" content="Header 现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/debian/dashboard/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/debian/dashboard/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Debian使用Docker部署管理页面" />
+<meta property="og:description" content="Header 现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/debian/dashboard/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2025-06-15T00:41:59-04:00" />
+<meta property="article:modified_time" content="2025-06-15T00:41:59-04:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Debian使用Docker部署管理页面"/>
+<meta name="twitter:description" content="Header 现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "博客 📒",
+      "item": "https://kyxie.me/zh/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "技术 🔧",
+      "item": "https://kyxie.me/zh/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "服务器 🐧",
+      "item": "https://kyxie.me/zh/blog/tech/server/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Debian 🌀",
+      "item": "https://kyxie.me/zh/blog/tech/server/debian/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  5 ,
+      "name": "Debian使用Docker部署管理页面",
+      "item": "https://kyxie.me/zh/blog/tech/server/debian/dashboard/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Debian使用Docker部署管理页面",
+  "name": "Debian使用Docker部署管理页面",
+  "description": "Header 现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳",
+  "keywords": [
+    "Dashboard", "Docker", "Debian"
+  ],
+  "articleBody": "Header 现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳转入口，显示Docker容器的运行状态，监视各种硬件信息（运行在Docker容器内这个似乎难以实现，干脆命令行top吧，我对这个也不太在乎），最好还能提供文件服务（完全可以被Samba代替）。\n这种Dashboard类的服务可以挂载在80端口，这样浏览器直接输入IP就能访问Dashboard页面了，我尝试了下面几个。\nHomer 我试过Homer，但是它有点过于轻量级了，它本身只是一个静态的面板，不会直接管理服务状态、容器、文件等内容，只是跳转和展示链接用的。下面是部署流程：\n本地创建一个文件夹homer，进入文件夹\n创建docker-compose.yml\nservices: homer: image: b4bz/homer:latest container_name: homer volumes: - ./assets:/www/assets ports: - 80:8080 restart: unless-stopped 创建一个文件夹assets，在文件夹内创建config.yml，用于管理所有的服务\n--- # Homepage configuration title: \"Kyxie Web Services\" subtitle: \"Dashboard\" logo: \"logo.png\" icon: \"fas fa-skull-crossbones\" header: true footer: false columns: \"4\" # Optional theme customization theme: default colors: light: highlight-primary: \"#3367d6\" highlight-secondary: \"#4285f4\" highlight-hover: \"#5a95f5\" background: \"#f5f5f5\" card-background: \"#ffffff\" text: \"#363636\" text-header: \"#ffffff\" text-title: \"#303030\" text-subtitle: \"#424242\" card-shadow: rgba(0, 0, 0, 0.1) link-hover: \"#363636\" dark: highlight-primary: \"#3367d6\" highlight-secondary: \"#4285f4\" highlight-hover: \"#5a95f5\" background: \"#131313\" card-background: \"#2b2b2b\" text: \"#eaeaea\" text-header: \"#ffffff\" text-title: \"#fafafa\" text-subtitle: \"#f5f5f5\" card-shadow: rgba(0, 0, 0, 0.4) link-hover: \"#ffdd57\" # Optional navbar links: - name: \"Github\" icon: \"fab fa-github\" url: \"https://github.com/Kyxie\" target: \"_blank\" - name: \"Blog\" icon: \"fas fa-file-alt\" url: \"https://kyxie.me\" # Services services: - name: \"Services\" icon: \"fas fa-server\" items: - name: \"aria2\" icon: \"fas fa-download\" subtitle: \"aria2 RPC Web UI\" url: \"http://192.168.2.218:6880\" target: \"_blank\" - name: \"OpenWRT\" icon: \"fas fa-wifi\" subtitle: \"OpenWRT Router\" url: \"http://192.168.2.66\" target: \"_blank\" - name: \"File Browser\" icon: \"fas fa-folder-open\" subtitle: \"File Browser\" url: \"https://file.kyxie.me\" target: \"_blank\" - name: \"Vaultwarden\" icon: \"fas fa-key\" subtitle: \"Vaultwarden Password Manager\" url: \"https://vault.kyxie.me\" target: \"_blank\" - name: \"Home Assistant\" icon: \"fas fa-home\" subtitle: \"Home Automation\" url: \"http://192.168.2.218:8123\" target: \"_blank\" 启动容器，默认用户名密码为admin和admin\ndocker compose up -d Portainer Portainer是个专门用于管理Docker容器状态的管理面板，有点类似于网页版的Docker Desktop，我平时还是更多用命令行操作Docker，总之可以不用但是不能没有吧，下面是部署方式\ndocker-compose.yml：\nservices: portainer: image: portainer/portainer-ce:latest container_name: portainer restart: unless-stopped ports: - \"9000:9000\" volumes: - /var/run/docker.sock:/var/run/docker.sock - data:/data volumes: data: 我试过换了个端口但是导致失败，还是使用默认的9000端口吧\nDashy Dashy和Homer很像（而且GitHub上作者头像的背景也很像不知道为什么），也是一个提供各个服务跳转的页面，而且提供了非常多小组件，且都很好看，作为一个Dashboard我觉得非常不错。\ndocker-compose.yml：\nservices: dashy: image: lissy93/dashy container_name: dashy ports: - \"80:8080\" volumes: - ./dashy-data:/app/user-data environment: - UID=1000 - GID=1000 restart: unless-stopped healthcheck: test: ['CMD', 'node', '/app/services/healthcheck'] interval: 1m30s timeout: 10s retries: 3 start_period: 40s 在启动之前要先创建一个文件夹dashy-data，然后在文件夹内创建一个conf.yml，原作者提供了很多例子详见：Example Config Files for Dashy · GitHub。\n启动容器\ndocker compose up -d 可以在conf.yml中加入custom css来隐藏footer\nappConfig: customCss: | .clock p.time { font-size: 3rem !important; } footer { display: none !important; } 如果要使用Dashy来监控系统信息，需要安装Glances，Glances在61280端口启动服务，然后Dashy读取信息，这样我们就同样可以使用Docker Compose来安装了，详情参考：Widgets | Dashy\nservices: glances: image: nicolargo/glances:latest container_name: glances restart: unless-stopped ports: - \"61208:61208\" volumes: - /var/run/docker.sock:/var/run/docker.sock:ro pid: host privileged: true environment: GLANCES_OPT: -w PUID: 1000 PGID: 1000 TZ: America/Toronto Dashy最后配置出来还是非常好看的\n",
+  "wordCount" : "1203",
+  "inLanguage": "zh",
+  "datePublished": "2025-06-15T00:41:59-04:00",
+  "dateModified": "2025-06-15T00:41:59-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/zh/blog/tech/server/debian/dashboard/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://data.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/zh/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/en/" title="English🇨🇦"
+                            aria-label="English🇨🇦">English🇨🇦</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kyxie.me/zh/comment/comments" title="留言板📋">
+                    <span>留言板📋</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/debian/">Debian 🌀</a></div>
+    <h1 class="post-title">
+      Debian使用Docker部署管理页面
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2025-06-15 00:41:59 -0400 EDT'>2025-06-15</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1203 字&nbsp;·&nbsp;Kyxie
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">目录</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#header" aria-label="Header">Header</a></li>
+                        <li>
+                            <a href="#homer" aria-label="Homer">Homer</a></li>
+                        <li>
+                            <a href="#portainer" aria-label="Portainer">Portainer</a></li>
+                        <li>
+                            <a href="#dashy" aria-label="Dashy">Dashy</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
+<p>现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳转入口，显示Docker容器的运行状态，监视各种硬件信息（运行在Docker容器内这个似乎难以实现，干脆命令行top吧，我对这个也不太在乎），最好还能提供文件服务（完全可以被<a href="/zh/blog/tech/server/debian/samba">Samba</a>代替）。</p>
+<p>这种Dashboard类的服务可以挂载在80端口，这样浏览器直接输入IP就能访问Dashboard页面了，我尝试了下面几个。</p>
+<h3 id="homer">Homer<a hidden class="anchor" aria-hidden="true" href="#homer">#</a></h3>
+<p>我试过<a href="https://github.com/bastienwirtz/homer">Homer</a>，但是它有点过于轻量级了，它本身只是一个静态的面板，不会直接管理服务状态、容器、文件等内容，只是跳转和展示链接用的。下面是部署流程：</p>
+<ul>
+<li>
+<p>本地创建一个文件夹<code>homer</code>，进入文件夹</p>
+</li>
+<li>
+<p>创建<code>docker-compose.yml</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">homer</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">b4bz/homer:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">homer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./assets:/www/assets</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">80</span>:<span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div></li>
+<li>
+<p>创建一个文件夹<code>assets</code>，在文件夹内创建<code>config.yml</code>，用于管理所有的服务</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Homepage configuration</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Kyxie Web Services&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">subtitle</span>: <span style="color:#e6db74">&#34;Dashboard&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">logo</span>: <span style="color:#e6db74">&#34;logo.png&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">icon</span>: <span style="color:#e6db74">&#34;fas fa-skull-crossbones&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">header</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">footer</span>: <span style="color:#66d9ef">false</span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">columns</span>: <span style="color:#e6db74">&#34;4&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional theme customization</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">theme</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">colors</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">light</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">highlight-primary</span>: <span style="color:#e6db74">&#34;#3367d6&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">highlight-secondary</span>: <span style="color:#e6db74">&#34;#4285f4&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">highlight-hover</span>: <span style="color:#e6db74">&#34;#5a95f5&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">background</span>: <span style="color:#e6db74">&#34;#f5f5f5&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">card-background</span>: <span style="color:#e6db74">&#34;#ffffff&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">text</span>: <span style="color:#e6db74">&#34;#363636&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">text-header</span>: <span style="color:#e6db74">&#34;#ffffff&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">text-title</span>: <span style="color:#e6db74">&#34;#303030&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">text-subtitle</span>: <span style="color:#e6db74">&#34;#424242&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">card-shadow</span>: <span style="color:#ae81ff">rgba(0, 0, 0, 0.1)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">link-hover</span>: <span style="color:#e6db74">&#34;#363636&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dark</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">highlight-primary</span>: <span style="color:#e6db74">&#34;#3367d6&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">highlight-secondary</span>: <span style="color:#e6db74">&#34;#4285f4&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">highlight-hover</span>: <span style="color:#e6db74">&#34;#5a95f5&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">background</span>: <span style="color:#e6db74">&#34;#131313&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">card-background</span>: <span style="color:#e6db74">&#34;#2b2b2b&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">text</span>: <span style="color:#e6db74">&#34;#eaeaea&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">text-header</span>: <span style="color:#e6db74">&#34;#ffffff&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">text-title</span>: <span style="color:#e6db74">&#34;#fafafa&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">text-subtitle</span>: <span style="color:#e6db74">&#34;#f5f5f5&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">card-shadow</span>: <span style="color:#ae81ff">rgba(0, 0, 0, 0.4)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">link-hover</span>: <span style="color:#e6db74">&#34;#ffdd57&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional navbar</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">links</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Github&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">icon</span>: <span style="color:#e6db74">&#34;fab fa-github&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;https://github.com/Kyxie&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">target</span>: <span style="color:#e6db74">&#34;_blank&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Blog&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">icon</span>: <span style="color:#e6db74">&#34;fas fa-file-alt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;https://kyxie.me&#34;</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Services</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Services&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">icon</span>: <span style="color:#e6db74">&#34;fas fa-server&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">items</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;aria2&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">icon</span>: <span style="color:#e6db74">&#34;fas fa-download&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">subtitle</span>: <span style="color:#e6db74">&#34;aria2 RPC Web UI&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;http://192.168.2.218:6880&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">target</span>: <span style="color:#e6db74">&#34;_blank&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;OpenWRT&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">icon</span>: <span style="color:#e6db74">&#34;fas fa-wifi&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">subtitle</span>: <span style="color:#e6db74">&#34;OpenWRT Router&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;http://192.168.2.66&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">target</span>: <span style="color:#e6db74">&#34;_blank&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;File Browser&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">icon</span>: <span style="color:#e6db74">&#34;fas fa-folder-open&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">subtitle</span>: <span style="color:#e6db74">&#34;File Browser&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;https://file.kyxie.me&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">target</span>: <span style="color:#e6db74">&#34;_blank&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Vaultwarden&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">icon</span>: <span style="color:#e6db74">&#34;fas fa-key&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">subtitle</span>: <span style="color:#e6db74">&#34;Vaultwarden Password Manager&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;https://vault.kyxie.me&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">target</span>: <span style="color:#e6db74">&#34;_blank&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Home Assistant&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">icon</span>: <span style="color:#e6db74">&#34;fas fa-home&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">subtitle</span>: <span style="color:#e6db74">&#34;Home Automation&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;http://192.168.2.218:8123&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">target</span>: <span style="color:#e6db74">&#34;_blank&#34;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>启动容器，默认用户名密码为<code>admin</code>和<code>admin</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="portainer">Portainer<a hidden class="anchor" aria-hidden="true" href="#portainer">#</a></h3>
+<p><a href="https://www.portainer.io/">Portainer</a>是个专门用于管理Docker容器状态的管理面板，有点类似于网页版的Docker Desktop，我平时还是更多用命令行操作Docker，总之可以不用但是不能没有吧，下面是部署方式</p>
+<ul>
+<li>
+<p><code>docker-compose.yml</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">portainer</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">portainer/portainer-ce:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">portainer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;9000:9000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">data:/data</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">data</span>:
+</span></span></code></pre></div><p>我试过换了个端口但是导致失败，还是使用默认的9000端口吧</p>
+</li>
+</ul>
+<h3 id="dashy">Dashy<a hidden class="anchor" aria-hidden="true" href="#dashy">#</a></h3>
+<p><a href="https://dashy.to/">Dashy</a>和Homer很像（而且GitHub上作者头像的背景也很像不知道为什么），也是一个提供各个服务跳转的页面，而且提供了非常多<a href="https://dashy.to/docs/widgets/">小组件</a>，且都很好看，作为一个Dashboard我觉得非常不错。</p>
+<ul>
+<li>
+<p><code>docker-compose.yml</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dashy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">lissy93/dashy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">dashy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;80:8080&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./dashy-data:/app/user-data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">UID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">GID=1000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">healthcheck</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">test</span>: [<span style="color:#e6db74">&#39;CMD&#39;</span>, <span style="color:#e6db74">&#39;node&#39;</span>, <span style="color:#e6db74">&#39;/app/services/healthcheck&#39;</span>]
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">1m30s</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">10s</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">start_period</span>: <span style="color:#ae81ff">40s</span>
+</span></span></code></pre></div></li>
+<li>
+<p>在启动之前要先创建一个文件夹<code>dashy-data</code>，然后在文件夹内创建一个<code>conf.yml</code>，原作者提供了很多例子详见：<a href="https://gist.github.com/Lissy93/000f712a5ce98f212817d20bc16bab10">Example Config Files for Dashy · GitHub</a>。</p>
+</li>
+<li>
+<p>启动容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div></li>
+<li>
+<p>可以在<code>conf.yml</code>中加入custom css来隐藏footer</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">appConfig</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">customCss</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    .clock p.time {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      font-size: 3rem !important;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    footer {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      display: none !important;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }</span>    
+</span></span></code></pre></div></li>
+<li>
+<p>如果要使用Dashy来监控系统信息，需要安装Glances，Glances在61280端口启动服务，然后Dashy读取信息，这样我们就同样可以使用Docker Compose来安装了，详情参考：<a href="https://dashy.to/docs/widgets/#glances">Widgets | Dashy</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">glances</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nicolargo/glances:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">glances</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;61208:61208&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock:ro</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">pid</span>: <span style="color:#ae81ff">host</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">privileged</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">GLANCES_OPT</span>: -<span style="color:#ae81ff">w</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">PUID</span>: <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">PGID</span>: <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">TZ</span>: <span style="color:#ae81ff">America/Toronto</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Dashy最后配置出来还是非常好看的</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/d32da0e9a34a7e36c94db76122faeb20.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Dashy"  />
+</p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/server/debian/filebrowser/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Debian使用Docker部署File Browser</span>
+  </a>
+  <a class="next" href="https://kyxie.me/zh/blog/tech/server/debian/samba/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>Debian使用Docker部署Samba</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a></span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        Visitors: <span id="busuanzi_value_site_uv"></span>
+        Views: <span id="busuanzi_value_site_pv"></span>
+    </span>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const uvElement = document.getElementById('busuanzi_value_site_uv');
+            const pvElement = document.getElementById('busuanzi_value_site_pv');
+            const initialUv = 29000;
+            const initialPv = 70000;
+            if (!uvElement || !pvElement) {
+                console.error("Busuanzi elements not found.");
+                return;
+            }
+            const uvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        uvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialUv;
+                        break;
+                    }
+                }
+            });
+            const pvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        pvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialPv;
+                        break;
+                    }
+                }
+            });
+            uvObs.observe(uvElement, { childList: true });
+            pvObs.observe(pvElement, { childList: true });
+        });
+    </script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

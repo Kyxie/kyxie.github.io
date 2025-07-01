@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>其他 🛠️ on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.me/zh/blog/tech/others/</link>
+    <description>Recent content in 其他 🛠️ on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/blog/tech/others/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何找回Homebrew下载的MySQL的密码</title>
+      <link>https://kyxie.me/zh/blog/tech/others/recover-mysql/</link>
+      <pubDate>Wed, 05 Feb 2025 00:16:46 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/recover-mysql/</guid>
+      <description>我这几天把本机装的MySQL密码给忘记了，于是想办法恢复 打开并编辑配置文件my.cnf sudo vim /opt/homebrew/etc/my.cnf 在配置文件添加skip-grant-tables</description>
+    </item>
+    
+    <item>
+      <title>USB多个分区格式化</title>
+      <link>https://kyxie.me/zh/blog/tech/others/format-usb/</link>
+      <pubDate>Sun, 15 Dec 2024 23:45:35 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/format-usb/</guid>
+      <description>Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B+安装</description>
+    </item>
+    
+    <item>
+      <title>使用Homebrew在M芯片的MacBook安装Python和Git</title>
+      <link>https://kyxie.me/zh/blog/tech/others/python-and-git-for-macos/</link>
+      <pubDate>Mon, 11 Nov 2024 11:11:11 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/python-and-git-for-macos/</guid>
+      <description>Mac用户非常推荐使用Homebrew来安装一些软件，就Python来说如果在官网直接下载会在Launch Pad出现IDLE和Python L</description>
+    </item>
+    
+    <item>
+      <title>AWS Server安装GUI</title>
+      <link>https://kyxie.me/zh/blog/tech/others/aws-server-gui/</link>
+      <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/aws-server-gui/</guid>
+      <description>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都</description>
+    </item>
+    
+    <item>
+      <title>OpenVPN的简单配置</title>
+      <link>https://kyxie.me/zh/blog/tech/others/openvpn/</link>
+      <pubDate>Fri, 26 Apr 2024 20:38:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/openvpn/</guid>
+      <description>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli</description>
+    </item>
+    
+    <item>
+      <title>LDAP Server的简单配置</title>
+      <link>https://kyxie.me/zh/blog/tech/others/ldap/</link>
+      <pubDate>Tue, 27 Feb 2024 00:18:35 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/ldap/</guid>
+      <description>Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username</description>
+    </item>
+    
+    <item>
+      <title>Windows 11 打造个性化终端</title>
+      <link>https://kyxie.me/zh/blog/tech/others/bash/</link>
+      <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/bash/</guid>
+      <description>前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo</description>
+    </item>
+    
+  </channel>
+</rss>

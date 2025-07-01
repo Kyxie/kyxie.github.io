@@ -4,16 +4,6 @@
   <url>
     <loc>https://kyxie.me/en/blog/tech/router/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/tech/router/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/tech/router/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/web/</loc>
     <lastmod>2025-02-22T00:44:43-05:00</lastmod>
@@ -30,29 +20,9 @@
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/router/raspberrypi-openwrt/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/tech/router/raspberrypi-openwrt/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/tech/router/raspberrypi-openwrt/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/utils/python-and-git-for-macos/</loc>
     <lastmod>2025-02-22T00:44:43-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/tech/utils/python-and-git-for-macos/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/tech/utils/python-and-git-for-macos/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/life/bike/</loc>
     <lastmod>2024-11-03T18:57:44-05:00</lastmod>
@@ -85,80 +55,30 @@
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/utils/aws-server-gui/</loc>
     <lastmod>2025-02-22T00:44:43-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/tech/utils/aws-server-gui/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/tech/utils/aws-server-gui/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/life/banff/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/router/wireguard/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/tech/router/wireguard/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/tech/router/wireguard/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/life/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/router/alist/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/tech/router/alist/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/tech/router/alist/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/life/algonquin/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/utils/bash/</loc>
     <lastmod>2025-02-22T00:44:43-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/tech/utils/bash/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/tech/utils/bash/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/life/pr/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/router/samba/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/tech/router/samba/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/tech/router/samba/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/router/openvpn/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
@@ -169,18 +89,8 @@
     <loc>https://kyxie.me/en/blog/tech/router/ldap/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>
   </url><url>
-    <loc>https://kyxie.me/en/blog/tech/others/</loc>
+    <loc>https://kyxie.me/en/blog/tech/utils/</loc>
     <lastmod>2025-02-22T00:44:43-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://kyxie.me/zh/blog/tech/utils/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://kyxie.me/en/blog/tech/others/"
-                />
   </url><url>
     <loc>https://kyxie.me/en/blog/tech/router/keys/</loc>
     <lastmod>2024-12-10T00:05:01-05:00</lastmod>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>OpenWrt配置DDNS | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="OpenWrt, DDNS">
+<meta name="description" content="OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/openwrt/ddns/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/openwrt/ddns/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="OpenWrt配置DDNS" />
+<meta property="og:description" content="OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/openwrt/ddns/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-12-22T21:37:58-05:00" />
+<meta property="article:modified_time" content="2024-12-22T21:37:58-05:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OpenWrt配置DDNS"/>
+<meta name="twitter:description" content="OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "博客 📒",
+      "item": "https://kyxie.me/zh/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "技术 🔧",
+      "item": "https://kyxie.me/zh/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "服务器 🐧",
+      "item": "https://kyxie.me/zh/blog/tech/server/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "OpenWrt 🛜",
+      "item": "https://kyxie.me/zh/blog/tech/server/openwrt/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  5 ,
+      "name": "OpenWrt配置DDNS",
+      "item": "https://kyxie.me/zh/blog/tech/server/openwrt/ddns/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "OpenWrt配置DDNS",
+  "name": "OpenWrt配置DDNS",
+  "description": "OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v",
+  "keywords": [
+    "OpenWrt", "DDNS"
+  ],
+  "articleBody": "OpenWrt配置DDNS 前提条件 需要一个域名\n需要公网IP\n一些包\nddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如vpn.kyxie.me，IP地址可以随便填，反正将来还会被DDNS覆盖，Proxy status选择关闭，只进行DNS不进行代理\n在这里点击Create Token，创建一个专用的API token\n选择Edit Zone DNS，点击Use Template\n按照下图配置\n生成API Token后注意保存好，只会显示一次\n然后回到OpenWrt → Service → Dynamic DNS → Services，添加一个ddns_ipv4，下面是详细配置，注意必须要安装了ddns-scripts-cloudflare之后才能在DDNS Service provider找到cloudflare.com-v4\nddns: \"Enabled\": true \"Lookup Hostname\": \"vpn.kyxie.me\" \"IP address version\": \"IPV4-Address\" \"DDNS Service provider\": \"cloudflare.com-v4\" \"Domain\": \"vpn@kyxie.me\" \"Username\": \"Bearer\" \"Password\": \"Your API Token\" \"Use HTTP Secure\": true \"Path to CA-Certificate\": \"/etc/ssl/certs\" 如果OpenWrt为主路由，这样应该可以完成DDNS解析了，但是如果OpenWrt为旁路由，由于路由器的wan口并不知道公网IP，需要使用借助网站来得知自己的公网IP，我们在Service → Dynamic DNS → Services → ddns_ipv4 → Edit → Advanced Settings → IP address source选择URL，URL to detect可以选择默认ipv4的urlhttp://checkip.dyndns.com\n这样DDNS的配置就完成了，以后如果运营商给你换了公网IP也不会影响域名的配对了\n配置完后可以去Cloudflare看看IP地址有没有刷新\n",
+  "wordCount" : "591",
+  "inLanguage": "zh",
+  "datePublished": "2024-12-22T21:37:58-05:00",
+  "dateModified": "2024-12-22T21:37:58-05:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/zh/blog/tech/server/openwrt/ddns/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://data.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/zh/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/en/" title="English🇨🇦"
+                            aria-label="English🇨🇦">English🇨🇦</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kyxie.me/zh/comment/comments" title="留言板📋">
+                    <span>留言板📋</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/openwrt/">OpenWrt 🛜</a></div>
+    <h1 class="post-title">
+      OpenWrt配置DDNS
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2024-12-22 21:37:58 -0500 EST'>2024-12-22</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;591 字&nbsp;·&nbsp;Kyxie
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">目录</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#openwrt%e9%85%8d%e7%bd%aeddns" aria-label="OpenWrt配置DDNS">OpenWrt配置DDNS</a><ul>
+                                    
+                        <li>
+                            <a href="#%e5%89%8d%e6%8f%90%e6%9d%a1%e4%bb%b6" aria-label="前提条件">前提条件</a></li>
+                        <li>
+                            <a href="#%e9%85%8d%e7%bd%ae%e6%ad%a5%e9%aa%a4" aria-label="配置步骤">配置步骤</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h3 id="openwrt配置ddns">OpenWrt配置DDNS<a hidden class="anchor" aria-hidden="true" href="#openwrt配置ddns">#</a></h3>
+<h4 id="前提条件">前提条件<a hidden class="anchor" aria-hidden="true" href="#前提条件">#</a></h4>
+<ul>
+<li>
+<p>需要一个域名</p>
+</li>
+<li>
+<p>需要公网IP</p>
+</li>
+<li>
+<p>一些包</p>
+<ul>
+<li>ddns-scripts-cloudflare</li>
+<li>luci-app-ddns</li>
+<li>drill</li>
+</ul>
+</li>
+</ul>
+<h4 id="配置步骤">配置步骤<a hidden class="anchor" aria-hidden="true" href="#配置步骤">#</a></h4>
+<ul>
+<li>
+<p>首先需要Cloudflare创建一条A记录，选一个域名，例如<code>vpn.kyxie.me</code>，IP地址可以随便填，反正将来还会被DDNS覆盖，Proxy status选择关闭，只进行DNS不进行代理</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/6d6241f91da45972fadac9ccfbd81491.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="创建A记录"  />
+</p>
+</li>
+<li>
+<p>在<a href="https://dash.cloudflare.com/profile/api-tokens">这里</a>点击Create Token，创建一个专用的API token</p>
+</li>
+<li>
+<p>选择Edit Zone DNS，点击Use Template</p>
+</li>
+<li>
+<p>按照下图配置</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/768d2c9afe64cb04966fce41297b7b0f.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="API Token"  />
+</p>
+</li>
+<li>
+<p>生成API Token后注意保存好，只会显示一次</p>
+</li>
+<li>
+<p>然后回到OpenWrt → Service → Dynamic DNS → Services，添加一个ddns_ipv4，下面是详细配置，注意必须要安装了ddns-scripts-cloudflare之后才能在DDNS Service provider找到cloudflare.com-v4</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">ddns</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Enabled&#34;: </span><span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Lookup Hostname&#34;: </span><span style="color:#e6db74">&#34;vpn.kyxie.me&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;IP address version&#34;: </span><span style="color:#e6db74">&#34;IPV4-Address&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;DDNS Service provider&#34;: </span><span style="color:#e6db74">&#34;cloudflare.com-v4&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Domain&#34;: </span><span style="color:#e6db74">&#34;vpn@kyxie.me&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Username&#34;: </span><span style="color:#e6db74">&#34;Bearer&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Password&#34;: </span><span style="color:#e6db74">&#34;Your API Token&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Use HTTP Secure&#34;: </span><span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Path to CA-Certificate&#34;: </span><span style="color:#e6db74">&#34;/etc/ssl/certs&#34;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>如果OpenWrt为主路由，这样应该可以完成DDNS解析了，但是如果OpenWrt为旁路由，由于路由器的wan口并不知道公网IP，需要使用借助网站来得知自己的公网IP，我们在Service → Dynamic DNS → Services → ddns_ipv4 → Edit → Advanced Settings → IP address source选择URL，URL to detect可以选择默认ipv4的url<code>http://checkip.dyndns.com</code></p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/8f810d968199910348832165251b6bba.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="URL Detect"  />
+</p>
+</li>
+<li>
+<p>这样DDNS的配置就完成了，以后如果运营商给你换了公网IP也不会影响域名的配对了</p>
+</li>
+<li>
+<p>配置完后可以去Cloudflare看看IP地址有没有刷新</p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/server/debian/cloudflared/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>Debian使用Docker部署Cloudflared</span>
+  </a>
+  <a class="next" href="https://kyxie.me/zh/blog/wool/stock-brokers/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>加拿大券商对比</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a></span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        Visitors: <span id="busuanzi_value_site_uv"></span>
+        Views: <span id="busuanzi_value_site_pv"></span>
+    </span>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const uvElement = document.getElementById('busuanzi_value_site_uv');
+            const pvElement = document.getElementById('busuanzi_value_site_pv');
+            const initialUv = 29000;
+            const initialPv = 70000;
+            if (!uvElement || !pvElement) {
+                console.error("Busuanzi elements not found.");
+                return;
+            }
+            const uvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        uvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialUv;
+                        break;
+                    }
+                }
+            });
+            const pvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        pvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialPv;
+                        break;
+                    }
+                }
+            });
+            uvObs.observe(uvElement, { childList: true });
+            pvObs.observe(pvElement, { childList: true });
+        });
+    </script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

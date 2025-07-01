@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>使用U盘安装Linux Server | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="UEFI, Ubuntu, Debian, IP Address">
+<meta name="description" content="需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/others/linux-server/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/others/linux-server/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用U盘安装Linux Server" />
+<meta property="og:description" content="需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/others/linux-server/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-12-14T12:36:01-05:00" />
+<meta property="article:modified_time" content="2024-12-14T12:36:01-05:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用U盘安装Linux Server"/>
+<meta name="twitter:description" content="需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "博客 📒",
+      "item": "https://kyxie.me/zh/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "技术 🔧",
+      "item": "https://kyxie.me/zh/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "服务器 🐧",
+      "item": "https://kyxie.me/zh/blog/tech/server/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "其他 🛠️",
+      "item": "https://kyxie.me/zh/blog/tech/server/others/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  5 ,
+      "name": "使用U盘安装Linux Server",
+      "item": "https://kyxie.me/zh/blog/tech/server/others/linux-server/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "使用U盘安装Linux Server",
+  "name": "使用U盘安装Linux Server",
+  "description": "需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch",
+  "keywords": [
+    "UEFI", "Ubuntu", "Debian", "IP Address"
+  ],
+  "articleBody": "需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etcher，按照流程将Ubuntu镜像烧写到U盘中 将U盘插入PC，启动，然后不断点击F7键，不同的主板按键不同，然后进入Bios 我需要将整个磁盘都分配给Ubuntu，后续也不折腾的话可以不选择LVM Group，这样只会产生两个分区，/和/boot/efi 后面的无脑填就可以了，等到进入系统 Ubuntu 24.04 我打算将一个网口连接在路由器上，因此需要修改默认的IP地址\n首先ip addr查看当前的地址信息\n我们打算把enp0s1的IP地址修改为192.168.2.66，然后默认网关为主路由器192.168.2.1。我们需要编辑文件01-netcfg.yaml，没有的话就新建\nnetwork: version: 2 renderer: networkd ethernets: enp1s0: dhcp4: no addresses: - 192.168.2.66/24 routes: - to: default via: 192.168.2.1 nameservers: addresses: - 8.8.8.8 - 8.8.4.4 如果提示Permission too open，则修改权限\nsudo chmod 600 /etc/netplan/01-netcfg.yaml 应用Netplan配置\nsudo netplan apply 重启网络服务（可选）\nsudo systemctl restart systemd-networkd 插入网线，验证配置\nip addr Debian 12 首先查看网卡名称\nip addr 我的是ens18\n编辑文件/etc/network/interfaces\n# This file describes the network interfaces available on your system # and how to activate them. For more information, see interfaces(5). source /etc/network/interfaces.d/* # The loopback network interface auto lo iface lo inet loopback # The primary network interface auto ens18 iface ens18 inet static address 192.168.2.111/24 # 本机的IP地址 network 192.168.2.0 broadcast 192.168.2.255 gateway 192.168.2.1 dns-nameservers 8.8.8.8 如果你的Linux是Wi-Fi连接，一样的\n# This file describes the network interfaces available on your system # and how to activate them. For more information, see interfaces(5). source /etc/network/interfaces.d/* # The loopback network interface auto lo iface lo inet loopback # The primary network interface auto wlp2s0 allow-hotplug wlp2s0 iface wlp2s0 inet static address 192.168.2.111 # 本机的IP地址 netmask 255.255.255.0\t# Mask gateway 192.168.2.1\t# 网关 dns-nameservers 192.168.2.1\t# DNS wpa-ssid YourWiFiSSID wpa-psk YourWiFiPassword 重启网络服务\nsudo systemctl restart networking.service 其他配置 剩下的就是一些基本的其他配置了\n安装sudo\nsu root apt install sudo # 将用户添加到sudo组 sudo usermod -aG sudo username # 免密码 sudo visudo # 修改文件内容 %sudo ALL=(ALL:ALL) NOPASSWD: ALL 安装vim\nsudo apt install vim 更换时区\nsudo timedatectl set-timezone America/Toronto 安装Openssh\nsudo apt update sudo apt install openssh-server 安装Docker，详见：将OpenWrt制作为Docker镜像 | Kunyang’s Blog\n切换zsh\n下载\nsudo apt update sudo apt install zsh git curl -y sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" # 自动建议插件 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions # 语法高亮插件 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting 配置\ncat \u003e ~/.zshrc \u003c\u003c 'EOF' export ZSH=\"$HOME/.oh-my-zsh\" # ZSH_THEME=\"robbyrussell\" ZSH_THEME=\"philips\" plugins=( git docker docker-compose zsh-autosuggestions zsh-syntax-highlighting ) source $ZSH/oh-my-zsh.sh # 插件手动加载（路径确保和上面 clone 的一致） source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # 常用 alias alias ll='ls -alF' alias la='ls -A' alias l='ls -CF' alias grep='grep --color=auto' EOF 刷新\nsource ~/.zshrc ",
+  "wordCount" : "894",
+  "inLanguage": "zh",
+  "datePublished": "2024-12-14T12:36:01-05:00",
+  "dateModified": "2024-12-14T12:36:01-05:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/zh/blog/tech/server/others/linux-server/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://data.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/zh/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/en/" title="English🇨🇦"
+                            aria-label="English🇨🇦">English🇨🇦</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kyxie.me/zh/comment/comments" title="留言板📋">
+                    <span>留言板📋</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/others/">其他 🛠️</a></div>
+    <h1 class="post-title">
+      使用U盘安装Linux Server
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2024-12-14 12:36:01 -0500 EST'>2024-12-14</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;894 字&nbsp;·&nbsp;Kyxie
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">目录</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#%e9%9c%80%e8%a6%81%e5%87%86%e5%a4%87" aria-label="需要准备">需要准备</a></li>
+                        <li>
+                            <a href="#%e8%a3%85%e7%b3%bb%e7%bb%9f" aria-label="装系统">装系统</a><ul>
+                                    
+                        <li>
+                            <a href="#ubuntu-2404" aria-label="Ubuntu 24.04">Ubuntu 24.04</a></li>
+                        <li>
+                            <a href="#debian-12" aria-label="Debian 12">Debian 12</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#%e5%85%b6%e4%bb%96%e9%85%8d%e7%bd%ae" aria-label="其他配置">其他配置</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h3 id="需要准备">需要准备<a hidden class="anchor" aria-hidden="true" href="#需要准备">#</a></h3>
+<ul>
+<li>显示器</li>
+<li>HDMI线连接显示器</li>
+<li>键盘</li>
+<li>至少8GB的U盘</li>
+<li>网线</li>
+</ul>
+<h3 id="装系统">装系统<a hidden class="anchor" aria-hidden="true" href="#装系统">#</a></h3>
+<ul>
+<li><a href="https://ubuntu.com/download/server">Ubuntu</a>或<a href="https://www.debian.org/">Debian</a>官网下载镜像</li>
+<li>准备一个至少8GB的U盘，安装<a href="https://etcher.balena.io/">Etcher</a>，按照流程将Ubuntu镜像烧写到U盘中</li>
+<li>将U盘插入PC，启动，然后不断点击<code>F7</code>键，不同的主板按键不同，然后进入Bios</li>
+<li>我需要将整个磁盘都分配给Ubuntu，后续也不折腾的话可以不选择LVM Group，这样只会产生两个分区，<code>/</code>和<code>/boot/efi</code></li>
+<li>后面的无脑填就可以了，等到进入系统</li>
+</ul>
+<h4 id="ubuntu-2404">Ubuntu 24.04<a hidden class="anchor" aria-hidden="true" href="#ubuntu-2404">#</a></h4>
+<ul>
+<li>
+<p>我打算将一个网口连接在路由器上，因此需要修改默认的IP地址</p>
+</li>
+<li>
+<p>首先<code>ip addr</code>查看当前的地址信息</p>
+</li>
+<li>
+<p>我们打算把<code>enp0s1</code>的IP地址修改为<code>192.168.2.66</code>，然后默认网关为主路由器<code>192.168.2.1</code>。我们需要编辑文件<code>01-netcfg.yaml</code>，没有的话就新建</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">network</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">version</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">renderer</span>: <span style="color:#ae81ff">networkd</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ethernets</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enp1s0</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">dhcp4</span>: <span style="color:#66d9ef">no</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">addresses</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">192.168.2.66</span><span style="color:#ae81ff">/24</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">routes</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">to</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">via</span>: <span style="color:#ae81ff">192.168.2.1</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">nameservers</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">addresses</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">8.8.8.8</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">8.8.4.4</span>
+</span></span></code></pre></div></li>
+<li>
+<p>如果提示Permission too open，则修改权限</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chmod <span style="color:#ae81ff">600</span> /etc/netplan/01-netcfg.yaml
+</span></span></code></pre></div></li>
+<li>
+<p>应用Netplan配置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo netplan apply
+</span></span></code></pre></div></li>
+<li>
+<p>重启网络服务（可选）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart systemd-networkd
+</span></span></code></pre></div></li>
+<li>
+<p>插入网线，验证配置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ip addr
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="debian-12">Debian 12<a hidden class="anchor" aria-hidden="true" href="#debian-12">#</a></h4>
+<ul>
+<li>
+<p>首先查看网卡名称</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ip addr
+</span></span></code></pre></div><p>我的是<code>ens18</code></p>
+</li>
+<li>
+<p>编辑文件<code>/etc/network/interfaces</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># This file describes the network interfaces available on your system</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># and how to activate them. For more information, see interfaces(5).</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>source /etc/network/interfaces.d/*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The loopback network interface</span>
+</span></span><span style="display:flex;"><span>auto lo
+</span></span><span style="display:flex;"><span>iface lo inet loopback
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The primary network interface</span>
+</span></span><span style="display:flex;"><span>auto ens18
+</span></span><span style="display:flex;"><span>iface ens18 inet static
+</span></span><span style="display:flex;"><span>        address 192.168.2.111/24   <span style="color:#75715e"># 本机的IP地址</span>
+</span></span><span style="display:flex;"><span>        network 192.168.2.0
+</span></span><span style="display:flex;"><span>        broadcast 192.168.2.255
+</span></span><span style="display:flex;"><span>        gateway 192.168.2.1
+</span></span><span style="display:flex;"><span>        dns-nameservers 8.8.8.8
+</span></span></code></pre></div></li>
+<li>
+<p>如果你的Linux是Wi-Fi连接，一样的</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># This file describes the network interfaces available on your system</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># and how to activate them. For more information, see interfaces(5).</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>source /etc/network/interfaces.d/*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The loopback network interface</span>
+</span></span><span style="display:flex;"><span>auto lo
+</span></span><span style="display:flex;"><span>iface lo inet loopback
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The primary network interface</span>
+</span></span><span style="display:flex;"><span>auto wlp2s0
+</span></span><span style="display:flex;"><span>allow-hotplug wlp2s0
+</span></span><span style="display:flex;"><span>iface wlp2s0 inet static
+</span></span><span style="display:flex;"><span>        address 192.168.2.111    		<span style="color:#75715e"># 本机的IP地址</span>
+</span></span><span style="display:flex;"><span>        netmask 255.255.255.0			<span style="color:#75715e"># Mask</span>
+</span></span><span style="display:flex;"><span>        gateway 192.168.2.1		 		<span style="color:#75715e"># 网关</span>
+</span></span><span style="display:flex;"><span>        dns-nameservers 192.168.2.1		<span style="color:#75715e"># DNS</span>
+</span></span><span style="display:flex;"><span>        wpa-ssid YourWiFiSSID
+</span></span><span style="display:flex;"><span>        wpa-psk  YourWiFiPassword
+</span></span></code></pre></div></li>
+<li>
+<p>重启网络服务</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart networking.service
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="其他配置">其他配置<a hidden class="anchor" aria-hidden="true" href="#其他配置">#</a></h3>
+<p>剩下的就是一些基本的其他配置了</p>
+<ul>
+<li>
+<p>安装sudo</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>su root
+</span></span><span style="display:flex;"><span>apt install sudo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 将用户添加到sudo组</span>
+</span></span><span style="display:flex;"><span>sudo usermod -aG sudo username
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 免密码</span>
+</span></span><span style="display:flex;"><span>sudo visudo
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 修改文件内容</span>
+</span></span><span style="display:flex;"><span>%sudo ALL<span style="color:#f92672">=(</span>ALL:ALL<span style="color:#f92672">)</span> NOPASSWD: ALL
+</span></span></code></pre></div></li>
+<li>
+<p>安装vim</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install vim
+</span></span></code></pre></div></li>
+<li>
+<p>更换时区</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo timedatectl set-timezone America/Toronto
+</span></span></code></pre></div></li>
+<li>
+<p>安装Openssh</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install openssh-server
+</span></span></code></pre></div></li>
+<li>
+<p>安装Docker，详见：<a href="/zh/blog/tech/router/docker-openwrt/">将OpenWrt制作为Docker镜像 | Kunyang&rsquo;s Blog</a></p>
+</li>
+<li>
+<p>切换<code>zsh</code></p>
+<ul>
+<li>
+<p>下载</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install zsh git curl -y
+</span></span><span style="display:flex;"><span>sh -c <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 自动建议插件</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 语法高亮插件</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
+</span></span></code></pre></div></li>
+<li>
+<p>配置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cat &gt; ~/.zshrc <span style="color:#e6db74">&lt;&lt; &#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">export ZSH=&#34;$HOME/.oh-my-zsh&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># ZSH_THEME=&#34;robbyrussell&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">ZSH_THEME=&#34;philips&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">plugins=(
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  git
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  docker
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  docker-compose
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  zsh-autosuggestions
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  zsh-syntax-highlighting
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">source $ZSH/oh-my-zsh.sh
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 插件手动加载（路径确保和上面 clone 的一致）
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 常用 alias
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">alias ll=&#39;ls -alF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">alias la=&#39;ls -A&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">alias l=&#39;ls -CF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">alias grep=&#39;grep --color=auto&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div></li>
+<li>
+<p>刷新</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.zshrc
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/server/others/pve/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>x86 Mini PC安装PVE</span>
+  </a>
+  <a class="next" href="https://kyxie.me/zh/blog/tech/server/others/docker-openwrt/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>将OpenWrt制作为Docker镜像</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a></span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        Visitors: <span id="busuanzi_value_site_uv"></span>
+        Views: <span id="busuanzi_value_site_pv"></span>
+    </span>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const uvElement = document.getElementById('busuanzi_value_site_uv');
+            const pvElement = document.getElementById('busuanzi_value_site_pv');
+            const initialUv = 29000;
+            const initialPv = 70000;
+            if (!uvElement || !pvElement) {
+                console.error("Busuanzi elements not found.");
+                return;
+            }
+            const uvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        uvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialUv;
+                        break;
+                    }
+                }
+            });
+            const pvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        pvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialPv;
+                        break;
+                    }
+                }
+            });
+            uvObs.observe(uvElement, { childList: true });
+            pvObs.observe(pvElement, { childList: true });
+        });
+    </script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

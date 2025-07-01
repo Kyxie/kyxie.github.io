@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Debian 🌀 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Debian 🌀 - Kunyang&#39;s Blog">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/debian/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://kyxie.me/zh/blog/tech/server/debian/index.xml">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/debian/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Debian 🌀" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/debian/" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Debian 🌀"/>
+<meta name="twitter:description" content=""/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "博客 📒",
+      "item": "https://kyxie.me/zh/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "技术 🔧",
+      "item": "https://kyxie.me/zh/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "服务器 🐧",
+      "item": "https://kyxie.me/zh/blog/tech/server/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Debian 🌀",
+      "item": "https://kyxie.me/zh/blog/tech/server/debian/"
+    }
+  ]
+}
+</script>
+
+<script defer src="https://data.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class="list dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/zh/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/en/" title="English🇨🇦"
+                            aria-label="English🇨🇦">English🇨🇦</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kyxie.me/zh/comment/comments" title="留言板📋">
+                    <span>留言板📋</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a></div>
+  <h1>Debian 🌀</h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署Minecraft服务器
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p></p>
+  </section>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署Minecraft服务器" href="https://kyxie.me/zh/blog/tech/server/debian/minecraft/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署Nginx
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Header 我们在浏览器地址栏输入localhost &#43; 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-06-08 23:26:42 -0400 EDT'>2025-06-08</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;860 字&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署Nginx" href="https://kyxie.me/zh/blog/tech/server/debian/nginx/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署Cloudflared
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Header 这篇文章讲了使用Docker &#43; Nginx的方式来部署服务，但是我的服务是部署在家里的miniPC的，Cloudflared更适合我。 本质上...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-06-08 23:29:42 -0400 EDT'>2025-06-08</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;753 字&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署Cloudflared" href="https://kyxie.me/zh/blog/tech/server/debian/cloudflared/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署Vaultwarden
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Header Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-01-21 11:51:00 -0500 EST'>2025-01-21</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1474 字&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署Vaultwarden" href="https://kyxie.me/zh/blog/tech/server/debian/vaultwarden/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署Aria2
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Header Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用P3TERX的aria2-pro镜像在De...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-06-09 18:27:22 -0400 EDT'>2025-06-09</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;253 字&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署Aria2" href="https://kyxie.me/zh/blog/tech/server/debian/aria2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署File Browser
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Header File Browser是一个文件浏览器，适合图形化地管理MiniPC的文件。如果挂载的SD卡或者U盘，再结合cloudflared将服务映射到公...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-06-14 21:30:13 -0400 EDT'>2025-06-14</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;761 字&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署File Browser" href="https://kyxie.me/zh/blog/tech/server/debian/filebrowser/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署管理页面
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Header 现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-06-15 00:41:59 -0400 EDT'>2025-06-15</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1203 字&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署管理页面" href="https://kyxie.me/zh/blog/tech/server/debian/dashboard/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署Samba
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Header 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2023-12-17 17:19:19 -0400 -0400'>2023-12-17</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;571 字&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署Samba" href="https://kyxie.me/zh/blog/tech/server/debian/samba/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署BaiduPCS Go
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Header 由于 miniPC 可以 24 小时运行，既省电又几乎没有噪音，自然而然就想到用它来部署百度网盘客户端，方便在夜间空闲时间自动上传或下载文件。虽然百度网盘经常...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-06-18 20:03:42 -0400 EDT'>2025-06-18</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;727 字&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署BaiduPCS Go" href="https://kyxie.me/zh/blog/tech/server/debian/baidupcs-go/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署Umami
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p></p>
+  </section>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署Umami" href="https://kyxie.me/zh/blog/tech/server/debian/umami/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署Strava数据分析面板
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p></p>
+  </section>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署Strava数据分析面板" href="https://kyxie.me/zh/blog/tech/server/debian/strava/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Debian使用Docker部署AList
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Header 2025年6月，AList已经被原作者卖掉了，据说卖给了一个贵州黑产公司，因此不建议再使用AList了。 代替品可以使用OpenList。 A...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2024-12-01 12:58:22 -0500 EST'>2024-12-01</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;401 字&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Debian使用Docker部署AList" href="https://kyxie.me/zh/blog/tech/server/debian/alist/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a></span>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        Visitors: <span id="busuanzi_value_site_uv"></span>
+        Views: <span id="busuanzi_value_site_pv"></span>
+    </span>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const uvElement = document.getElementById('busuanzi_value_site_uv');
+            const pvElement = document.getElementById('busuanzi_value_site_pv');
+            const initialUv = 29000;
+            const initialPv = 70000;
+            if (!uvElement || !pvElement) {
+                console.error("Busuanzi elements not found.");
+                return;
+            }
+            const uvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        uvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialUv;
+                        break;
+                    }
+                }
+            });
+            const pvObs = new MutationObserver((mutationsList) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        pvObs.disconnect();
+                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialPv;
+                        break;
+                    }
+                }
+            });
+            uvObs.observe(uvElement, { childList: true });
+            pvObs.observe(pvElement, { childList: true });
+        });
+    </script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
