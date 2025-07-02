@@ -43,7 +43,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/web/umami/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2025-06-26T22:20:50-04:00" />
-<meta property="article:modified_time" content="2025-06-28T00:15:26-04:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="article:modified_time" content="2025-07-01T00:09:29-04:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Debian使用Docker部署Umami"/>
@@ -92,11 +92,11 @@
   "keywords": [
     "Cloudflared", "Docker", "Debian", "Umami"
   ],
-  "articleBody": "Header Umami是个个人网站站点数据分析的工具，支持自己部署，使用他们的服务器好像最多可以跟踪三个站点。我还试过使用Plausible，但是对我而言有一点重，使用之后System Load增加了许多。\n部署 创建docker-compose.yml，根据自己的情况修改，这里我接入了cloudflared的网络，就可以实现公网访问了。\nservices: umami: container_name: umami image: ghcr.io/umami-software/umami:postgresql-latest # ports: # - \"3000:3000\" environment: DATABASE_URL: postgresql://umami:umami@db:5432/umami DATABASE_TYPE: postgresql APP_SECRET: your_secret depends_on: db: condition: service_healthy init: true restart: unless-stopped healthcheck: test: [\"CMD-SHELL\", \"curl http://localhost:3000/api/heartbeat\"] interval: 5s timeout: 5s retries: 5 networks: - cloudflared db: container_name: umami-db image: postgres:15-alpine environment: POSTGRES_DB: umami POSTGRES_USER: umami POSTGRES_PASSWORD: umami volumes: - data:/var/lib/postgresql/data restart: unless-stopped healthcheck: test: [\"CMD-SHELL\", \"pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}\"] interval: 5s timeout: 5s retries: 5 networks: - cloudflared volumes: data: networks: cloudflared: external: true 可以使用OpenSSL生成secret\nopenssl rand -base64 32 启动容器\ndocker compose up -d 在反向代理添加域名，umami自动监听3000端口\nSubdomain: data Domain: your_domain Type: HTTP URL: umami:3000 默认用户名为admin，默认密码为umami，可以直接用Web页面修改用户名密码\n添加网站后，在Setting → Tracking Code可以得到跟踪代码，我使用的个人网站主题为Hugo，将跟踪代码粘贴到layouts/partials/head.html\n最终效果还是很好看的，只是可惜之前的数据就没有记录了\n",
-  "wordCount" : "451",
+  "articleBody": "Header Umami是个个人网站站点数据分析的工具，支持自己部署，使用他们的服务器好像最多可以跟踪三个站点。我还试过使用Plausible，但是对我而言有一点重，使用之后System Load增加了许多。\n部署 创建docker-compose.yml，根据自己的情况修改，这里我接入了cloudflared的网络，就可以实现公网访问了。\nservices: umami: container_name: umami image: ghcr.io/umami-software/umami:postgresql-latest # ports: # - \"3000:3000\" environment: DATABASE_URL: postgresql://umami:umami@db:5432/umami DATABASE_TYPE: postgresql APP_SECRET: your_secret depends_on: db: condition: service_healthy init: true restart: unless-stopped healthcheck: test: [\"CMD-SHELL\", \"curl http://localhost:3000/api/heartbeat\"] interval: 5s timeout: 5s retries: 5 networks: - cloudflared db: container_name: umami-db image: postgres:15-alpine environment: POSTGRES_DB: umami POSTGRES_USER: umami POSTGRES_PASSWORD: umami volumes: - data:/var/lib/postgresql/data restart: unless-stopped healthcheck: test: [\"CMD-SHELL\", \"pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}\"] interval: 5s timeout: 5s retries: 5 networks: - cloudflared volumes: data: networks: cloudflared: external: true 可以使用OpenSSL生成secret\nopenssl rand -base64 32 启动容器\ndocker compose up -d 在反向代理添加域名，umami自动监听3000端口\nSubdomain: data Domain: your_domain Type: HTTP URL: umami:3000 默认用户名为admin，默认密码为umami，可以直接用Web页面修改用户名密码\n添加网站后，在Setting → Tracking Code可以得到跟踪代码，我使用的个人网站主题为Hugo，将跟踪代码粘贴到layouts/partials/head.html\n最终效果还是很好看的，只是可惜之前的数据就没有记录了，可以在这里预览：Umami\n",
+  "wordCount" : "465",
   "inLanguage": "zh",
   "datePublished": "2025-06-26T22:20:50-04:00",
-  "dateModified": "2025-06-28T00:15:26-04:00",
+  "dateModified": "2025-07-01T00:09:29-04:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
@@ -180,7 +180,7 @@
     <div class="post-meta">
 
 
-<span title='2025-06-26 22:20:50 -0400 EDT'>2025-06-26</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;451 字&nbsp;·&nbsp;Kyxie
+<span title='2025-06-26 22:20:50 -0400 EDT'>2025-06-26</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;465 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -336,7 +336,7 @@
 <p>添加网站后，在Setting → Tracking Code可以得到跟踪代码，我使用的个人网站主题为Hugo，将跟踪代码粘贴到<code>layouts/partials/head.html</code></p>
 </li>
 </ul>
-<p>最终效果还是很好看的，只是可惜之前的数据就没有记录了</p>
+<p>最终效果还是很好看的，只是可惜之前的数据就没有记录了，可以在这里预览：<a href="https://data.kyxie.me/share/teqalaRWsMUKJf9D/kyxie.me">Umami</a></p>
 <p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/7578bc6136b104bf697e4be7b63628d3.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Umami"  />
 </p>
 
@@ -383,44 +383,6 @@
     
 <footer class="footer">
     <span>&copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a></span>
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span id="busuanzi_container">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        Visitors: <span id="busuanzi_value_site_uv"></span>
-        Views: <span id="busuanzi_value_site_pv"></span>
-    </span>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const uvElement = document.getElementById('busuanzi_value_site_uv');
-            const pvElement = document.getElementById('busuanzi_value_site_pv');
-            const initialUv = 29000;
-            const initialPv = 70000;
-            if (!uvElement || !pvElement) {
-                console.error("Busuanzi elements not found.");
-                return;
-            }
-            const uvObs = new MutationObserver((mutationsList) => {
-                for (let mutation of mutationsList) {
-                    if (mutation.type === 'childList') {
-                        uvObs.disconnect();
-                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialUv;
-                        break;
-                    }
-                }
-            });
-            const pvObs = new MutationObserver((mutationsList) => {
-                for (let mutation of mutationsList) {
-                    if (mutation.type === 'childList') {
-                        pvObs.disconnect();
-                        mutation.target.innerHTML = parseInt(mutation.target.innerHTML || 0) + initialPv;
-                        break;
-                    }
-                }
-            });
-            uvObs.observe(uvElement, { childList: true });
-            pvObs.observe(pvElement, { childList: true });
-        });
-    </script>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
