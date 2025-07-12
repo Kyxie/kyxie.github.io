@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 30 Jun 2025 22:54:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Jul 2025 11:04:22 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Minecraft安装客户端</title>
       <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-client/</link>
@@ -170,12 +170,12 @@
     </item>
     
     <item>
-      <title>Debian使用Docker部署Aria2</title>
-      <link>https://kyxie.me/zh/blog/tech/server/debian/aria2/</link>
-      <pubDate>Mon, 09 Jun 2025 18:27:22 -0400</pubDate>
+      <title>Debian使用Docker部署家庭影院</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/cinema/</link>
+      <pubDate>Sat, 12 Jul 2025 11:04:22 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/server/debian/aria2/</guid>
-      <description>Header Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用P3TERX的aria2-pro镜像在De</description>
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/cinema/</guid>
+      <description>Header miniPC由于24h开机，可以在人不在家，或者晚上睡觉的时候下载一些高清电影，这篇文章就介绍使用Docker Compose来打造一个个人</description>
     </item>
     
     <item>
@@ -230,6 +230,15 @@
       
       <guid>https://kyxie.me/zh/blog/tech/server/debian/strava/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署下载器</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/downloader/</link>
+      <pubDate>Mon, 09 Jun 2025 18:27:22 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/downloader/</guid>
+      <description>Header 由于服务器是24h开机，非常适合半夜执行下载任务，一觉睡起来就下载好了，也不用担心占用网络下载带宽。我最开始使用的是P3TERX的aria</description>
     </item>
     
     <item>
@@ -373,7 +382,7 @@
       <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/others/keys/</guid>
-      <description>通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一</description>
+      <description>Header 通过使用ssh keys我们可以免密登录Linux（且推荐这么使用），这样以后ssh到Linux的时候就不需要每次填写密码了。 生成密钥对 可以</description>
     </item>
     
     <item>

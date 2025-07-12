@@ -44,12 +44,12 @@
     </item>
     
     <item>
-      <title>Debian使用Docker部署Aria2</title>
-      <link>https://kyxie.me/zh/blog/tech/server/debian/aria2/</link>
-      <pubDate>Mon, 09 Jun 2025 18:27:22 -0400</pubDate>
+      <title>Debian使用Docker部署家庭影院</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/cinema/</link>
+      <pubDate>Sat, 12 Jul 2025 11:04:22 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/server/debian/aria2/</guid>
-      <description>Header Aria2是一个下载工具，由于服务器是24h开机，非常适合半夜下载高清电影等大文件，这里我们使用P3TERX的aria2-pro镜像在De</description>
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/cinema/</guid>
+      <description>Header miniPC由于24h开机，可以在人不在家，或者晚上睡觉的时候下载一些高清电影，这篇文章就介绍使用Docker Compose来打造一个个人</description>
     </item>
     
     <item>
@@ -104,6 +104,15 @@
       
       <guid>https://kyxie.me/zh/blog/tech/server/debian/strava/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Debian使用Docker部署下载器</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/downloader/</link>
+      <pubDate>Mon, 09 Jun 2025 18:27:22 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/downloader/</guid>
+      <description>Header 由于服务器是24h开机，非常适合半夜执行下载任务，一觉睡起来就下载好了，也不用担心占用网络下载带宽。我最开始使用的是P3TERX的aria</description>
     </item>
     
     <item>

@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>使用Keys免密ssh到Linux | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="SSH, Keys">
-<meta name="description" content="通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一">
+<meta name="description" content="Header 通过使用ssh keys我们可以免密登录Linux（且推荐这么使用），这样以后ssh到Linux的时候就不需要每次填写密码了。 生成密钥对 可以">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/others/keys/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
@@ -39,7 +39,7 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用Keys免密ssh到Linux" />
-<meta property="og:description" content="通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一" />
+<meta property="og:description" content="Header 通过使用ssh keys我们可以免密登录Linux（且推荐这么使用），这样以后ssh到Linux的时候就不需要每次填写密码了。 生成密钥对 可以" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/others/keys/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-04-25T20:47:19-04:00" />
@@ -47,7 +47,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用Keys免密ssh到Linux"/>
-<meta name="twitter:description" content="通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一"/>
+<meta name="twitter:description" content="Header 通过使用ssh keys我们可以免密登录Linux（且推荐这么使用），这样以后ssh到Linux的时候就不需要每次填写密码了。 生成密钥对 可以"/>
 
 
 <script type="application/ld+json">
@@ -94,12 +94,12 @@
   "@type": "BlogPosting",
   "headline": "使用Keys免密ssh到Linux",
   "name": "使用Keys免密ssh到Linux",
-  "description": "通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一",
+  "description": "Header 通过使用ssh keys我们可以免密登录Linux（且推荐这么使用），这样以后ssh到Linux的时候就不需要每次填写密码了。 生成密钥对 可以",
   "keywords": [
     "SSH", "Keys"
   ],
-  "articleBody": "通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。\n首先在windows上生成一个密钥对，一般会生成在C:\\Users\\Username\\.ssh\\，而且都是成对生成的，会有一个公钥id_rsa.pub或者id_ed25519.pub和一个私钥。\nssh-keygen 在Linux中查看是否有.ssh目录，如果没有则新建\ncd ~ mkdir -p ~/.ssh chmod 700 ~/.ssh 将公钥上传到Linux\ncd C:\\Users\\Username\\.ssh\\ scp .\\id_rsa.pub username@address:~/.ssh scp .\\id_ed25519.pub username@address:~/.ssh 在Linux中查看是否有authorized_keys文件，如果没有则新建\ncd ~/.ssh touch authorized_keys chmod 600 ./authorized_keys cat id_rsa.pub \u003e\u003e ./authorized_keys cat id_ed25519.pub \u003e\u003e ./authorized_keys 添加完之后就可以将公钥删除了\ncd ~/.ssh rm id_rsa.pub rm id_ed25519.pub 这样以后就不再需要输密码了。\n",
-  "wordCount" : "293",
+  "articleBody": "Header 通过使用ssh keys我们可以免密登录Linux（且推荐这么使用），这样以后ssh到Linux的时候就不需要每次填写密码了。\n生成密钥对 可以在任何地方生成，客户端，服务器，第三方，甚至在Vaultwarden方便管理，只要保证不要随意泄露即可，Windows / Mac / Linux可以输入命令\nssh-keygen 一般会生成在C:\\Users\\Username\\.ssh\\，而且都是成对生成的，会有一个公钥id_rsa.pub或者id_ed25519.pub和一个私钥\nServer Server端需要保留公钥，Client端保留私钥（不能泄露）\n在Linux中查看是否有.ssh目录，如果没有则新建\ncd ~ mkdir -p ~/.ssh chmod 700 ~/.ssh 将公钥上传到Linux，也可以直接复制粘贴\ncd C:\\Users\\Username\\.ssh\\ scp .\\id_rsa.pub username@address:~/.ssh scp .\\id_ed25519.pub username@address:~/.ssh 在Linux中查看是否有authorized_keys文件，如果没有则新建\ncd ~/.ssh touch authorized_keys chmod 600 ./authorized_keys cat id_rsa.pub \u003e\u003e ./authorized_keys cat id_ed25519.pub \u003e\u003e ./authorized_keys 添加完之后就可以将公钥删除了\ncd ~/.ssh rm id_rsa.pub rm id_ed25519.pub Client Client端可以在config文件指定密钥对，Windows在C:\\Users\\Username\\.ssh\\config\nHost host1\t# Server主机名 HostName hostname1 # Server的IP地址或者URL User admin\t# USer IdentityFile \"C:\\Users\\Username\\.ssh\\id_ed25519\"\t# 本机私钥地址 Host host2 HostName hostname2 User admin IdentityFile \"C:\\Users\\Username\\.ssh\\id_pem\" 如果没指定，默认使用id_ed25519的私钥，且一个id_ed25519文件只能存一个私钥\n配置完成后就可以免密码登录Linux了。\n",
+  "wordCount" : "568",
   "inLanguage": "zh",
   "datePublished": "2024-04-25T20:47:19-04:00",
   "dateModified": "2025-07-01T00:09:29-04:00",
@@ -186,16 +186,107 @@
     <div class="post-meta">
 
 
-<span title='2024-04-25 20:47:19 -0400 EDT'>2024-04-25</span>&nbsp;·&nbsp;1 分钟&nbsp;·&nbsp;293 字&nbsp;·&nbsp;Kyxie
+<span title='2024-04-25 20:47:19 -0400 EDT'>2024-04-25</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;568 字&nbsp;·&nbsp;Kyxie
 
 </div>
-  </header> 
-  <div class="post-content"><p>通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。</p>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">目录</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#header" aria-label="Header">Header</a></li>
+                        <li>
+                            <a href="#%e7%94%9f%e6%88%90%e5%af%86%e9%92%a5%e5%af%b9" aria-label="生成密钥对">生成密钥对</a></li>
+                        <li>
+                            <a href="#server" aria-label="Server">Server</a></li>
+                        <li>
+                            <a href="#client" aria-label="Client">Client</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
+<p>通过使用ssh keys我们可以免密登录Linux（且推荐这么使用），这样以后ssh到Linux的时候就不需要每次填写密码了。</p>
+<h3 id="生成密钥对">生成密钥对<a hidden class="anchor" aria-hidden="true" href="#生成密钥对">#</a></h3>
 <ul>
 <li>
-<p>首先在windows上生成一个密钥对，一般会生成在<code>C:\Users\Username\.ssh\</code>，而且都是成对生成的，会有一个公钥<code>id_rsa.pub</code>或者<code>id_ed25519.pub</code>和一个私钥。</p>
+<p>可以在任何地方生成，客户端，服务器，第三方，甚至在Vaultwarden方便管理，只要保证不要随意泄露即可，Windows / Mac / Linux可以输入命令</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh-keygen
 </span></span></code></pre></div></li>
+<li>
+<p>一般会生成在<code>C:\Users\Username\.ssh\</code>，而且都是成对生成的，会有一个公钥<code>id_rsa.pub</code>或者<code>id_ed25519.pub</code>和一个私钥</p>
+</li>
+</ul>
+<h3 id="server">Server<a hidden class="anchor" aria-hidden="true" href="#server">#</a></h3>
+<ul>
+<li>
+<p>Server端需要保留公钥，Client端保留私钥（不能泄露）</p>
+</li>
 <li>
 <p>在Linux中查看是否有<code>.ssh</code>目录，如果没有则新建</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~
@@ -203,7 +294,7 @@
 </span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">700</span> ~/.ssh
 </span></span></code></pre></div></li>
 <li>
-<p>将公钥上传到Linux</p>
+<p>将公钥上传到Linux，也可以直接复制粘贴</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\U</span>sername<span style="color:#ae81ff">\.</span>ssh<span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>scp .<span style="color:#ae81ff">\i</span>d_rsa.pub username@address:~/.ssh
 </span></span><span style="display:flex;"><span>scp .<span style="color:#ae81ff">\i</span>d_ed25519.pub username@address:~/.ssh
@@ -223,7 +314,24 @@
 </span></span><span style="display:flex;"><span>rm id_ed25519.pub
 </span></span></code></pre></div></li>
 </ul>
-<p>这样以后就不再需要输密码了。</p>
+<h3 id="client">Client<a hidden class="anchor" aria-hidden="true" href="#client">#</a></h3>
+<ul>
+<li>
+<p>Client端可以在<code>config</code>文件指定密钥对，Windows在<code>C:\Users\Username\.ssh\config</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Host host1												<span style="color:#75715e"># Server主机名</span>
+</span></span><span style="display:flex;"><span>  HostName hostname1 									<span style="color:#75715e"># Server的IP地址或者URL</span>
+</span></span><span style="display:flex;"><span>  User admin											<span style="color:#75715e"># USer</span>
+</span></span><span style="display:flex;"><span>  IdentityFile <span style="color:#e6db74">&#34;C:\Users\Username\.ssh\id_ed25519&#34;</span>		<span style="color:#75715e"># 本机私钥地址</span>
+</span></span><span style="display:flex;"><span>Host host2
+</span></span><span style="display:flex;"><span>  HostName hostname2
+</span></span><span style="display:flex;"><span>  User admin
+</span></span><span style="display:flex;"><span>  IdentityFile <span style="color:#e6db74">&#34;C:\Users\Username\.ssh\id_pem&#34;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>如果没指定，默认使用<code>id_ed25519</code>的私钥，且一个<code>id_ed25519</code>文件只能存一个私钥</p>
+</li>
+</ul>
+<p>配置完成后就可以免密码登录Linux了。</p>
 
 
   </div>
@@ -271,7 +379,6 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   
-</footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />

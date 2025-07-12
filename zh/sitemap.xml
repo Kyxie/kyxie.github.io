@@ -113,8 +113,8 @@
     <loc>https://kyxie.me/zh/blog/tech/server/debian/vaultwarden/</loc>
     <lastmod>2025-07-01T00:09:29-04:00</lastmod>
   </url><url>
-    <loc>https://kyxie.me/zh/blog/tech/server/debian/aria2/</loc>
-    <lastmod>2025-07-01T00:09:29-04:00</lastmod>
+    <loc>https://kyxie.me/zh/blog/tech/server/debian/cinema/</loc>
+    <lastmod>2025-07-12T11:04:22-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/wool/</loc>
     <lastmod>2025-07-01T00:09:29-04:00</lastmod>
@@ -137,6 +137,9 @@
     <loc>https://kyxie.me/zh/blog/tech/server/debian/strava/</loc>
     <lastmod>2025-07-01T00:09:29-04:00</lastmod>
   </url><url>
+    <loc>https://kyxie.me/zh/blog/tech/server/debian/downloader/</loc>
+    <lastmod>2025-06-09T18:27:22-04:00</lastmod>
+  </url><url>
     <loc>https://kyxie.me/zh/blog/others/</loc>
     <lastmod>2025-07-01T00:09:29-04:00</lastmod>
   </url><url>
@@ -147,7 +150,7 @@
     <lastmod>2025-07-01T00:09:29-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/</loc>
-    <lastmod>2025-07-02T18:40:48-04:00</lastmod>
+    <lastmod>2025-07-12T11:04:22-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
