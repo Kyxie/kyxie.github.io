@@ -98,8 +98,8 @@
   "keywords": [
     "Dashboard", "Docker", "Debian"
   ],
-  "articleBody": "Header 现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳转入口，显示Docker容器的运行状态，监视各种硬件信息（运行在Docker容器内这个似乎难以实现，干脆命令行top吧，我对这个也不太在乎），最好还能提供文件服务（完全可以被Samba代替）。\n这种Dashboard类的服务可以挂载在80端口，这样浏览器直接输入IP就能访问Dashboard页面了，我尝试了下面几个。\nHomer 我试过Homer，但是它有点过于轻量级了，它本身只是一个静态的面板，不会直接管理服务状态、容器、文件等内容，只是跳转和展示链接用的。下面是部署流程：\n本地创建一个文件夹homer，进入文件夹\n创建docker-compose.yml\nservices: homer: image: b4bz/homer:latest container_name: homer volumes: - ./assets:/www/assets ports: - 80:8080 restart: unless-stopped 创建一个文件夹assets，在文件夹内创建config.yml，用于管理所有的服务\n--- # Homepage configuration title: \"Kyxie Web Services\" subtitle: \"Dashboard\" logo: \"logo.png\" icon: \"fas fa-skull-crossbones\" header: true footer: false columns: \"4\" # Optional theme customization theme: default colors: light: highlight-primary: \"#3367d6\" highlight-secondary: \"#4285f4\" highlight-hover: \"#5a95f5\" background: \"#f5f5f5\" card-background: \"#ffffff\" text: \"#363636\" text-header: \"#ffffff\" text-title: \"#303030\" text-subtitle: \"#424242\" card-shadow: rgba(0, 0, 0, 0.1) link-hover: \"#363636\" dark: highlight-primary: \"#3367d6\" highlight-secondary: \"#4285f4\" highlight-hover: \"#5a95f5\" background: \"#131313\" card-background: \"#2b2b2b\" text: \"#eaeaea\" text-header: \"#ffffff\" text-title: \"#fafafa\" text-subtitle: \"#f5f5f5\" card-shadow: rgba(0, 0, 0, 0.4) link-hover: \"#ffdd57\" # Optional navbar links: - name: \"Github\" icon: \"fab fa-github\" url: \"https://github.com/Kyxie\" target: \"_blank\" - name: \"Blog\" icon: \"fas fa-file-alt\" url: \"https://kyxie.me\" # Services services: - name: \"Services\" icon: \"fas fa-server\" items: - name: \"aria2\" icon: \"fas fa-download\" subtitle: \"aria2 RPC Web UI\" url: \"http://192.168.2.218:6880\" target: \"_blank\" - name: \"OpenWRT\" icon: \"fas fa-wifi\" subtitle: \"OpenWRT Router\" url: \"http://192.168.2.66\" target: \"_blank\" - name: \"File Browser\" icon: \"fas fa-folder-open\" subtitle: \"File Browser\" url: \"https://file.kyxie.me\" target: \"_blank\" - name: \"Vaultwarden\" icon: \"fas fa-key\" subtitle: \"Vaultwarden Password Manager\" url: \"https://vault.kyxie.me\" target: \"_blank\" - name: \"Home Assistant\" icon: \"fas fa-home\" subtitle: \"Home Automation\" url: \"http://192.168.2.218:8123\" target: \"_blank\" 启动容器，默认用户名密码为admin和admin\ndocker compose up -d Portainer Portainer是个专门用于管理Docker容器状态的管理面板，有点类似于网页版的Docker Desktop，我平时还是更多用命令行操作Docker，总之可以不用但是不能没有吧，下面是部署方式\ndocker-compose.yml：\nservices: portainer: image: portainer/portainer-ce:latest container_name: portainer restart: unless-stopped ports: - \"9000:9000\" volumes: - /var/run/docker.sock:/var/run/docker.sock - data:/data volumes: data: 我试过换了个端口但是导致失败，还是使用默认的9000端口吧\nDashy Dashy和Homer很像（而且GitHub上作者头像的背景也很像不知道为什么），也是一个提供各个服务跳转的页面，而且提供了非常多小组件，且都很好看，作为一个Dashboard我觉得非常不错。\ndocker-compose.yml：\nservices: dashy: image: lissy93/dashy container_name: dashy ports: - \"80:8080\" volumes: - ./dashy-data:/app/user-data environment: - UID=1000 - GID=1000 restart: unless-stopped healthcheck: test: ['CMD', 'node', '/app/services/healthcheck'] interval: 1m30s timeout: 10s retries: 3 start_period: 40s 在启动之前要先创建一个文件夹dashy-data，然后在文件夹内创建一个conf.yml，原作者提供了很多例子详见：Example Config Files for Dashy · GitHub。\n启动容器\ndocker compose up -d 可以在conf.yml中加入custom css来隐藏footer\nappConfig: customCss: | .clock p.time { font-size: 3rem !important; } footer { display: none !important; } 如果要使用Dashy来监控系统信息，需要安装Glances，Glances在61280端口启动服务，然后Dashy读取信息，这样我们就同样可以使用Docker Compose来安装了，详情参考：Widgets | Dashy\nservices: glances: image: nicolargo/glances:latest container_name: glances restart: unless-stopped ports: - \"61208:61208\" volumes: - /var/run/docker.sock:/var/run/docker.sock:ro pid: host privileged: true environment: GLANCES_OPT: -w PUID: 1000 PGID: 1000 TZ: America/Toronto Dashy最后配置出来还是非常好看的\n",
-  "wordCount" : "1203",
+  "articleBody": "Header 现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳转入口，显示Docker容器的运行状态，监视各种硬件信息（运行在Docker容器内这个似乎难以实现，干脆命令行top吧，我对这个也不太在乎），最好还能提供文件服务（完全可以被Samba代替）。\n这种Dashboard类的服务可以挂载在80端口，这样浏览器直接输入IP就能访问Dashboard页面了，我尝试了下面几个。\nHomer 我试过Homer，但是它有点过于轻量级了，它本身只是一个静态的面板，不会直接管理服务状态、容器、文件等内容，只是跳转和展示链接用的。下面是部署流程：\n本地创建一个文件夹homer，进入文件夹\n创建docker-compose.yml\nservices: homer: image: b4bz/homer:latest container_name: homer volumes: - ./assets:/www/assets ports: - 80:8080 restart: unless-stopped 创建一个文件夹assets，在文件夹内创建config.yml，用于管理所有的服务\n--- # Homepage configuration title: \"Kyxie Web Services\" subtitle: \"Dashboard\" logo: \"logo.png\" icon: \"fas fa-skull-crossbones\" header: true footer: false columns: \"4\" # Optional theme customization theme: default colors: light: highlight-primary: \"#3367d6\" highlight-secondary: \"#4285f4\" highlight-hover: \"#5a95f5\" background: \"#f5f5f5\" card-background: \"#ffffff\" text: \"#363636\" text-header: \"#ffffff\" text-title: \"#303030\" text-subtitle: \"#424242\" card-shadow: rgba(0, 0, 0, 0.1) link-hover: \"#363636\" dark: highlight-primary: \"#3367d6\" highlight-secondary: \"#4285f4\" highlight-hover: \"#5a95f5\" background: \"#131313\" card-background: \"#2b2b2b\" text: \"#eaeaea\" text-header: \"#ffffff\" text-title: \"#fafafa\" text-subtitle: \"#f5f5f5\" card-shadow: rgba(0, 0, 0, 0.4) link-hover: \"#ffdd57\" # Optional navbar links: - name: \"Github\" icon: \"fab fa-github\" url: \"https://github.com/Kyxie\" target: \"_blank\" - name: \"Blog\" icon: \"fas fa-file-alt\" url: \"https://kyxie.me\" # Services services: - name: \"Services\" icon: \"fas fa-server\" items: - name: \"aria2\" icon: \"fas fa-download\" subtitle: \"aria2 RPC Web UI\" url: \"http://192.168.2.218:6880\" target: \"_blank\" - name: \"OpenWRT\" icon: \"fas fa-wifi\" subtitle: \"OpenWRT Router\" url: \"http://192.168.2.66\" target: \"_blank\" - name: \"File Browser\" icon: \"fas fa-folder-open\" subtitle: \"File Browser\" url: \"https://file.kyxie.me\" target: \"_blank\" - name: \"Vaultwarden\" icon: \"fas fa-key\" subtitle: \"Vaultwarden Password Manager\" url: \"https://vault.kyxie.me\" target: \"_blank\" - name: \"Home Assistant\" icon: \"fas fa-home\" subtitle: \"Home Automation\" url: \"http://192.168.2.218:8123\" target: \"_blank\" 启动容器，默认用户名密码为admin和admin\ndocker compose up -d Portainer Portainer是个专门用于管理Docker容器状态的管理面板，有点类似于网页版的Docker Desktop，我平时还是更多用命令行操作Docker，总之可以不用但是不能没有吧，下面是部署方式\ndocker-compose.yml：\nservices: portainer: image: portainer/portainer-ce:latest container_name: portainer restart: unless-stopped ports: - \"9000:9000\" volumes: - /var/run/docker.sock:/var/run/docker.sock - data:/data volumes: data: 我试过换了个端口但是导致失败，还是使用默认的9000端口吧\nDashy Dashy和Homer很像（而且GitHub上作者头像的背景也很像不知道为什么），也是一个提供各个服务跳转的页面，而且提供了非常多小组件，且都很好看，作为一个Dashboard我觉得非常不错。\n创建docker网络dashy\ndocker network create dashy docker-compose.yml：\nservices: dashy: image: lissy93/dashy container_name: dashy ports: - \"80:8080\" volumes: - ./dashy-data:/app/user-data environment: - UID=1000 - GID=1000 restart: unless-stopped networks: - dashy healthcheck: test: ['CMD', 'node', '/app/services/healthcheck'] interval: 1m30s timeout: 10s retries: 3 start_period: 40s networks: dashy: external: true 在启动之前要先创建一个文件夹dashy-data，然后在文件夹内创建一个conf.yml，原作者提供了很多例子详见：Example Config Files for Dashy · GitHub。\n启动容器\ndocker compose up -d 可以在conf.yml中加入custom css来隐藏footer\nappConfig: customCss: | .clock p.time { font-size: 3rem !important; } footer { display: none !important; } 如果要使用Dashy来监控系统信息，需要安装Glances，Glances在61280端口启动服务，然后Dashy读取信息，这里我把Glances加入了Dashy的Docker网络，详情参考：Widgets | Dashy\nglances: image: nicolargo/glances:latest container_name: glances restart: unless-stopped ports: - \"61208:61208\" volumes: - /var/run/docker.sock:/var/run/docker.sock:ro pid: host privileged: true environment: GLANCES_OPT: -w PUID: 1000 PGID: 1000 TZ: America/Toronto networks: - dashy Dashy最后配置出来还是非常好看的\n",
+  "wordCount" : "1231",
   "inLanguage": "zh",
   "datePublished": "2025-06-15T00:41:59-04:00",
   "dateModified": "2025-07-01T00:09:29-04:00",
@@ -186,7 +186,7 @@
     <div class="post-meta">
 
 
-<span title='2025-06-15 00:41:59 -0400 EDT'>2025-06-15</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1203 字&nbsp;·&nbsp;Kyxie
+<span title='2025-06-15 00:41:59 -0400 EDT'>2025-06-15</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1231 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -404,6 +404,10 @@
 <p><a href="https://dashy.to/">Dashy</a>和Homer很像（而且GitHub上作者头像的背景也很像不知道为什么），也是一个提供各个服务跳转的页面，而且提供了非常多<a href="https://dashy.to/docs/widgets/">小组件</a>，且都很好看，作为一个Dashboard我觉得非常不错。</p>
 <ul>
 <li>
+<p>创建docker网络<code>dashy</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker network create dashy
+</span></span></code></pre></div></li>
+<li>
 <p><code>docker-compose.yml</code>：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">dashy</span>:
@@ -417,12 +421,18 @@
 </span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">UID=1000</span>
 </span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">GID=1000</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">dashy</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">healthcheck</span>:
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">test</span>: [<span style="color:#e6db74">&#39;CMD&#39;</span>, <span style="color:#e6db74">&#39;node&#39;</span>, <span style="color:#e6db74">&#39;/app/services/healthcheck&#39;</span>]
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">1m30s</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">10s</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">3</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">start_period</span>: <span style="color:#ae81ff">40s</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dashy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div></li>
 <li>
 <p>在启动之前要先创建一个文件夹<code>dashy-data</code>，然后在文件夹内创建一个<code>conf.yml</code>，原作者提供了很多例子详见：<a href="https://gist.github.com/Lissy93/000f712a5ce98f212817d20bc16bab10">Example Config Files for Dashy · GitHub</a>。</p>
@@ -443,23 +453,24 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }</span>    
 </span></span></code></pre></div></li>
 <li>
-<p>如果要使用Dashy来监控系统信息，需要安装Glances，Glances在61280端口启动服务，然后Dashy读取信息，这样我们就同样可以使用Docker Compose来安装了，详情参考：<a href="https://dashy.to/docs/widgets/#glances">Widgets | Dashy</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">glances</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nicolargo/glances:latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">glances</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;61208:61208&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock:ro</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">pid</span>: <span style="color:#ae81ff">host</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">privileged</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">GLANCES_OPT</span>: -<span style="color:#ae81ff">w</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">PUID</span>: <span style="color:#ae81ff">1000</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">PGID</span>: <span style="color:#ae81ff">1000</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">TZ</span>: <span style="color:#ae81ff">America/Toronto</span>
+<p>如果要使用Dashy来监控系统信息，需要安装Glances，Glances在61280端口启动服务，然后Dashy读取信息，这里我把Glances加入了Dashy的Docker网络，详情参考：<a href="https://dashy.to/docs/widgets/#glances">Widgets | Dashy</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">glances</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nicolargo/glances:latest</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">glances</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;61208:61208&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock:ro</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">pid</span>: <span style="color:#ae81ff">host</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">privileged</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">GLANCES_OPT</span>: -<span style="color:#ae81ff">w</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">PUID</span>: <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">PGID</span>: <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">TZ</span>: <span style="color:#ae81ff">America/Toronto</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">dashy</span>
 </span></span></code></pre></div></li>
 <li>
 <p>Dashy最后配置出来还是非常好看的</p>
