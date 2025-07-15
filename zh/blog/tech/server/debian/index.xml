@@ -49,7 +49,7 @@
       <pubDate>Sat, 12 Jul 2025 11:04:22 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/debian/cinema/</guid>
-      <description>Header miniPC由于24h开机，可以在人不在家，或者晚上睡觉的时候下载一些高清电影，这篇文章就介绍使用Docker Compose来打造一个个人</description>
+      <description>Header 这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本原理是这样的： 本体就是Sonarr和Radarr，Sonarr是</description>
     </item>
     
     <item>
