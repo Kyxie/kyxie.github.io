@@ -13,7 +13,7 @@
       <pubDate>Fri, 13 Dec 2024 00:55:12 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/game/minecraft/minecraft-client/</guid>
-      <description>Header 我本人也算是Minecraft的老粉丝了，初中就开始在手机上玩，还记得高一的时候每天晚上10点上完晚自习回家之后都得盖个楼修个桥的。后来换</description>
+      <description>我本人也算是Minecraft的老粉丝了，初中就开始在手机上玩，还记得高一的时候每天晚上10点上完晚自习回家之后都得盖个楼修个桥的。后来换手</description>
     </item>
     
     <item>
@@ -40,7 +40,7 @@
       <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/bike/8170/</guid>
-      <description>Header 好久没折腾自行车了，最近刚换了roval的破风把，准备打算在车把也内走线，这样车把握起来就爽快多了。我自己拆车试了一下，结果被Shiman</description>
+      <description>好久没折腾自行车了，最近刚换了roval的破风把，准备打算在车把也内走线，这样车把握起来就爽快多了。我自己拆车试了一下，结果被Shimano</description>
     </item>
     
     <item>
@@ -67,7 +67,7 @@
       <pubDate>Thu, 26 Jun 2025 22:51:50 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/bike/strava/</guid>
-      <description>Header 翻GitHub找到了statistics-for-strava这个仓库，看着更新还挺频繁的，文档也非常完善，于是打算自己部署一下。 部署 首先</description>
+      <description>翻GitHub找到了statistics-for-strava这个仓库，看着更新还挺频繁的，文档也非常完善，于是打算自己部署一下。 部署 首先要</description>
     </item>
     
     <item>
@@ -76,16 +76,16 @@
       <pubDate>Thu, 26 Jun 2025 22:20:50 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/web/umami/</guid>
-      <description>Header Umami是个个人网站站点数据分析的工具，支持自己部署，使用他们的服务器好像最多可以跟踪三个站点。我还试过使用Plausible，但是对我</description>
+      <description>Umami是个个人网站站点数据分析的工具，支持自己部署，使用他们的服务器好像最多可以跟踪三个站点。我还试过使用Plausible，但是对我而</description>
     </item>
     
     <item>
       <title>将自己的服务暴露公网</title>
-      <link>https://kyxie.me/zh/blog/tech/server/debian/nginx/</link>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/public/</link>
       <pubDate>Sun, 08 Jun 2025 23:26:42 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/server/debian/nginx/</guid>
-      <description>Header 我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更</description>
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/public/</guid>
+      <description>我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多</description>
     </item>
     
     <item>
@@ -94,7 +94,7 @@
       <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/</guid>
-      <description>Header 上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种</description>
+      <description>上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种方</description>
     </item>
     
     <item>
@@ -103,7 +103,7 @@
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/openwrt/wireguard/</guid>
-      <description>Header Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先</description>
+      <description>Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连</description>
     </item>
     
     <item>
@@ -121,7 +121,7 @@
       <pubDate>Tue, 21 Jan 2025 11:51:00 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/debian/vaultwarden/</guid>
-      <description>Header Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置</description>
+      <description>Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置为</description>
     </item>
     
     <item>
@@ -148,7 +148,7 @@
       <pubDate>Sat, 12 Jul 2025 11:04:22 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/debian/cinema/</guid>
-      <description>Header 这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本原理是这样的： 本体就是Sonarr和Radarr，Sonarr是</description>
+      <description>这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本的Workflow是这样的： 本体就是Sonarr和Radarr，S</description>
     </item>
     
     <item>
@@ -157,7 +157,7 @@
       <pubDate>Wed, 25 Jun 2025 10:44:22 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/openwrt/adguardhome/</guid>
-      <description>Header AdguardHome是一个去广告应用，但是它不仅仅能去广告，还能做一个局域网的DNS服务器。 安装 这个应用因为算是网络管理相关，我就安装在</description>
+      <description>AdguardHome是一个去广告应用，但是它不仅仅能去广告，还能做一个局域网的DNS服务器。 安装 这个应用因为算是网络管理相关，我就安装在了</description>
     </item>
     
     <item>
@@ -166,7 +166,7 @@
       <pubDate>Sat, 14 Jun 2025 00:41:59 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/debian/cloud/</guid>
-      <description>Header 得益于MiniPC 24小时不间断加班，太适合在上面部署一些自动化下载上传以及文件管理功能了，这篇文章主要讲使用Docker来部署这些服务：</description>
+      <description>得益于MiniPC 24小时不间断加班，太适合在上面部署一些自动化下载上传以及文件管理功能了，这篇文章主要讲使用Docker来部署这些服务： S</description>
     </item>
     
     <item>
@@ -175,7 +175,7 @@
       <pubDate>Sun, 15 Jun 2025 00:41:59 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/debian/dashboard/</guid>
-      <description>Header 现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳</description>
+      <description>现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳转</description>
     </item>
     
     <item>
@@ -202,7 +202,7 @@
       <pubDate>Sat, 14 Jun 2025 17:36:33 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/others/automount/</guid>
-      <description>Header 这是现在基本上所有电脑都能实现的功能了，无非就是后台自动搜索设备，然后自动挂载。可能这个场景在没有GUI版的Linux用处不大，因此每次插</description>
+      <description>这是现在基本上所有电脑都能实现的功能了，无非就是后台自动搜索设备，然后自动挂载。可能这个场景在没有GUI版的Linux用处不大，因此每次插入</description>
     </item>
     
     <item>
@@ -238,7 +238,7 @@
       <pubDate>Tue, 21 Jan 2025 11:57:55 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tour/cancun/</guid>
-      <description>Header 圣诞节之前去了趟坎昆四天三晚，写一写在坎昆踩的坑和旅游攻略。 酒店我们选的是Haven Riviera All Inclusive，我个人感觉已经非常不错了，餐厅</description>
+      <description>圣诞节之前去了趟坎昆四天三晚，写一写在坎昆踩的坑和旅游攻略。 酒店我们选的是Haven Riviera All Inclusive，我个人感觉已经非常不错了，餐厅我</description>
     </item>
     
     <item>
@@ -247,7 +247,7 @@
       <pubDate>Sun, 15 Dec 2024 23:45:35 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/others/format-usb/</guid>
-      <description>Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B+安装</description>
+      <description>使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化。 MacOs 详见：使用树莓派4B+安装</description>
     </item>
     
     <item>
@@ -310,7 +310,7 @@
       <pubDate>Wed, 11 Sep 2024 12:35:55 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tour/banff/</guid>
-      <description>Header 最近妈妈来了加拿大，打算带她去Calgary和Banff旅行，发现Banff旅游真的好多坑啊，正好写一篇游记博客，顺便记录一下Banff旅</description>
+      <description>最近我妈来了加拿大，打算带她去Calgary和Banff旅行，发现Banff旅游真的好多坑啊，正好写一篇游记博客，顺便记录一下Banff旅游</description>
     </item>
     
     <item>
@@ -328,7 +328,7 @@
       <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/others/keys/</guid>
-      <description>Header 通过使用ssh keys我们可以免密登录Linux（且推荐这么使用），这样以后ssh到Linux的时候就不需要每次填写密码了。 生成密钥对 可以</description>
+      <description>通过使用ssh keys我们可以免密登录Linux（且推荐这么使用），这样以后ssh到Linux的时候就不需要每次填写密码了。 生成密钥对 可以在</description>
     </item>
     
     <item>
@@ -350,12 +350,12 @@
     </item>
     
     <item>
-      <title>Windows 11 打造个性化终端</title>
-      <link>https://kyxie.me/zh/blog/tech/others/bash/</link>
+      <title>个性化终端</title>
+      <link>https://kyxie.me/zh/blog/tech/others/terminal/</link>
       <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/others/bash/</guid>
-      <description>前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo</description>
+      <guid>https://kyxie.me/zh/blog/tech/others/terminal/</guid>
+      <description>自己平时喜欢乱搞一些花里胡哨的东西，嫌Windows自带的终端实在是太丑了，打算使用Oh My Posh美化一下，这篇教程基于Windows 11自</description>
     </item>
     
     <item>

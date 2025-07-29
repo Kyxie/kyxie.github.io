@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>使用Docker部署家庭影院 | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Cloudflared, Docker, Debian, qBittorrent, prowlarr, radarr, sonarr, bazarr">
-<meta name="description" content="Header 这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本原理是这样的： 本体就是Sonarr和Radarr，Sonarr是">
+<meta name="description" content="这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本的Workflow是这样的： 本体就是Sonarr和Radarr，S">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/debian/cinema/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
@@ -39,15 +39,15 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用Docker部署家庭影院" />
-<meta property="og:description" content="Header 这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本原理是这样的： 本体就是Sonarr和Radarr，Sonarr是" />
+<meta property="og:description" content="这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本的Workflow是这样的： 本体就是Sonarr和Radarr，S" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/debian/cinema/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2025-07-12T11:04:22-04:00" />
-<meta property="article:modified_time" content="2025-07-24T12:59:47-04:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="article:modified_time" content="2025-07-29T00:17:50-04:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用Docker部署家庭影院"/>
-<meta name="twitter:description" content="Header 这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本原理是这样的： 本体就是Sonarr和Radarr，Sonarr是"/>
+<meta name="twitter:description" content="这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本的Workflow是这样的： 本体就是Sonarr和Radarr，S"/>
 
 
 <script type="application/ld+json">
@@ -64,7 +64,7 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "技术 🔧",
+      "name": "折腾 🔧",
       "item": "https://kyxie.me/zh/blog/tech/"
     }, 
     {
@@ -94,15 +94,15 @@
   "@type": "BlogPosting",
   "headline": "使用Docker部署家庭影院",
   "name": "使用Docker部署家庭影院",
-  "description": "Header 这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本原理是这样的： 本体就是Sonarr和Radarr，Sonarr是",
+  "description": "这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本的Workflow是这样的： 本体就是Sonarr和Radarr，S",
   "keywords": [
     "Cloudflared", "Docker", "Debian", "qBittorrent", "prowlarr", "radarr", "sonarr", "bazarr"
   ],
-  "articleBody": "Header 这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。\n基本原理是这样的：\n本体就是Sonarr和Radarr，Sonarr是找剧的，Radarr是找电影的 他们俩从哪找片呢，从indexers，这个indexer就可以理解为片源，但是indexer多了就需要东西管理，这时引入了Prowlarr，它可以连接Sonarr和Radarr，以后只需要在Prowlarr添加indexers，然后就可以自动同步到Sonarr和Radarr了 找到了片源需要下载器，默认用qBittorrent，我看了下也可以使用Aria2和Transmission 最后一个Bazarr是用来管理字幕的 服务端配置好之后，再使用客户端就可以看电影了。\n部署 创建以下文件夹结构\n/media ├── config │ ├── bazarr │ ├── prowlarr │ ├── qbittorrent │ ├── radarr │ └── sonarr ├── docker-compose.yml ├── downloads └── library ├── movies └── tv 创建docker网络media\ndocker network create media 编辑docker-compose.yml\nservices: sonarr: image: lscr.io/linuxserver/sonarr:latest container_name: sonarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/sonarr:/config - ./downloads:/downloads - ./library/tv:/tv ports: - \"8989:8989\" networks: - media restart: unless-stopped radarr: image: lscr.io/linuxserver/radarr:latest container_name: radarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/radarr:/config - ./downloads:/downloads - ./library/movies:/movies ports: - \"7878:7878\" networks: - media restart: unless-stopped prowlarr: image: lscr.io/linuxserver/prowlarr:latest container_name: prowlarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/prowlarr:/config ports: - \"9696:9696\" networks: - media restart: unless-stopped bazarr: image: lscr.io/linuxserver/bazarr:latest container_name: bazarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/bazarr:/config - ./downloads:/downloads - ./library/movies:/movies - ./library/tv:/tv ports: - \"6767:6767\" networks: - media restart: unless-stopped flaresolverr: image: ghcr.io/flaresolverr/flaresolverr:latest container_name: flaresolverr environment: - PUID=1000 - PGID=1000 - LOG_LEVEL=info - TZ=America/Toronto networks: - media restart: unless-stopped qbittorrent: image: lscr.io/linuxserver/qbittorrent:latest container_name: qbittorrent environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto - WEBUI_PORT=8080 volumes: - ./config/qbittorrent:/config - ./downloads:/downloads ports: - \"9090:8080\" - \"6881:6881\" - \"6881:6881/udp\" networks: - media restart: unless-stopped networks: media: external: true 配置 qBittorrent 打开qBittorrent，如果显示Unauthorized：\n由于我的服务是部署在Debian小主机上的，只有命令行，我从Windows上访问qBittorrent的话会收到限制，可能默认设置了不允许外部访问，需要修改配置文件\n首先关掉容器\ndocker compose down 打开/config/qbittorrent/qBittorrent/qBittorrent.conf\n[Preferences] WebUI\\Address=0.0.0.0 WebUI\\CSRFProtection=false WebUI\\HostHeaderValidation=false WebUI\\ServerDomains=* WebUI\\Username=admin 把WebUI\\Address改为0.0.0.0\n重启容器\ndocker compose up -d 查看logs，可以得到一个初始密码\ndocker logs qbittorrent --tail 50 然后在浏览器中输入admin和初始密码即可登录\n登陆后在齿轮⚙ → WebUI → Authentication可以修改用户名和密码，然后就不用管配置文件了\nProwlarr 左侧栏第一个Indexers，添加Indexer，可以先添加几个免费的试试，比如EZTV和YTS\n添加1337x的时候会显示blocked by CloudFlare Protection，这时候就需要FlareSolverr\nSettings → Indexers添加Index，使用FlareSolverr，由于在同一个Docker网络下，Host可以填http://flaresolverr:8191/ tag填写1337x 再回去添加Indexer，最下面的tag也填写1337x，这样再测试连接就成功了 我们先登录Sonarr和Radarr，设置用户名和密码（就会得到用户的API Key），然后在Prowlarr的Settings → Apps添加Sonarr和Radarr\nName: Sonarr Sync Level: Full Sync Prowlarr Server: http://prowlarr:9696 Sonarr Server: http://sonarr:8989 API Key: xxx Name: Radarr Sync Level: Full Sync Prowlarr Server: http://prowlarr:9696 Radarr Server: http://radarr:7878 API Key: xxx 在Settings → Download Clients添加qBittorrent下载器\nName: qBittorrent Enable: true Host: qbittorrent Port: 8080 Username: xxx Password: xxx Sonarr / Radarr 和Prowlarr相同，分别进入Settings → Download Clients，添加刚才的qBittorrent下载器 Bazarr Bazarr好像都不需要身份认证，在Settings可以绑定Sonnar和Radarr，同样地，Address写容器名即可 在Settings → Languages → Language Filter添加简体中文 Embedded Tracks Language开启 创建一个简体中文的Profile 默认Profile都设置为简体中文 在Settings → Providers中添加字幕源，可以使用zimuku和OpenSubtitles.com（这个需要注册用户） 找电影 全部配置好之后剩下的事情就很简单了，基本步骤就是：\n如果想找电影，就去Radarr直接搜电影名称，同理电视剧就去Sonarr找 加入愿望单 加入后就会自动连接qBittorrent帮我们下载 下载完后视频文件就在挂载的文件夹了 看电影 Infuse 我目前使用Infuse来看电影，通过SMB来访问服务器上挂载的文件夹，然后本地观看 优点是本地硬件解码，降低了我的miniPC的硬件压力 缺点是刮削没有Jellyfin强，没有账号管理功能，因此没有观看进度记忆功能 好像只能应用在苹果设备，iPhone，iPad，MacBook或者Apple TV Jellyfin Jellyfin的好处就是刮削能力比较强，能够显示完整的电影封面，演员信息，还支持多账号，管理每个人不同的观影记录等等\n如果服务器有独立显卡，可以直接考虑使用Jellyfin作为播放器，这样用户就可以直接在网页端观看了（我没有，我选择Infuse）\nInfuse也支持连接Jellyfin，但是要开Infuse会员，这样Infuse就完全当一个播放器用，刮削，多账户共享，观看记录功能交给Jellyfin 如果需要添加Jellyfin，可以在config文件夹下先创建jellyfin，然后修改docker-compose.yml，加入\njellyfin: image: jellyfin/jellyfin container_name: jellyfin user: \"1000:1000\" environment: - TZ=America/Toronto volumes: - ./config/jellyfin:/config - ./library:/media ports: - \"8096:8096\" networks: - media restart: unless-stopped 之后在Sonarr / Radarr的Settings → Connections可以添加Jellyfin，主要作用是下载完成后可以通知Jellyfin刷新一遍\n",
-  "wordCount" : "2148",
+  "articleBody": "这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。\n基本的Workflow是这样的：\n本体就是Sonarr和Radarr，Sonarr是找剧的，Radarr是找电影的 他们俩从哪找片呢，从indexers，这个indexer就可以理解为片源，但是indexer多了就需要东西管理，这时引入了Prowlarr，它可以连接Sonarr和Radarr，以后只需要在Prowlarr添加indexers，然后就可以自动同步到Sonarr和Radarr了 找到了片源需要下载器，默认用qBittorrent，我看了下也可以使用Aria2和Transmission 最后一个Bazarr是用来管理字幕的 服务端配置好之后，再使用客户端就可以看电影了。\n部署 创建以下文件夹结构\n/media ├── config │ ├── bazarr │ ├── prowlarr │ ├── qbittorrent │ ├── radarr │ └── sonarr ├── docker-compose.yml ├── downloads └── library ├── movies └── tv 创建docker网络media\ndocker network create media 编辑docker-compose.yml\nservices: sonarr: image: lscr.io/linuxserver/sonarr:latest container_name: sonarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/sonarr:/config - ./downloads:/downloads - ./library/tv:/tv ports: - \"8989:8989\" networks: - media restart: unless-stopped radarr: image: lscr.io/linuxserver/radarr:latest container_name: radarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/radarr:/config - ./downloads:/downloads - ./library/movies:/movies ports: - \"7878:7878\" networks: - media restart: unless-stopped prowlarr: image: lscr.io/linuxserver/prowlarr:latest container_name: prowlarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/prowlarr:/config ports: - \"9696:9696\" networks: - media restart: unless-stopped bazarr: image: lscr.io/linuxserver/bazarr:latest container_name: bazarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/bazarr:/config - ./downloads:/downloads - ./library/movies:/movies - ./library/tv:/tv ports: - \"6767:6767\" networks: - media restart: unless-stopped flaresolverr: image: ghcr.io/flaresolverr/flaresolverr:latest container_name: flaresolverr environment: - PUID=1000 - PGID=1000 - LOG_LEVEL=info - TZ=America/Toronto networks: - media restart: unless-stopped qbittorrent: image: lscr.io/linuxserver/qbittorrent:latest container_name: qbittorrent environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto - WEBUI_PORT=8080 volumes: - ./config/qbittorrent:/config - ./downloads:/downloads ports: - \"9090:8080\" - \"6881:6881\" - \"6881:6881/udp\" networks: - media restart: unless-stopped networks: media: external: true 配置 qBittorrent 打开qBittorrent，如果显示Unauthorized：\n由于我的服务是部署在Debian小主机上的，只有命令行，我从Windows上访问qBittorrent的话会收到限制，可能默认设置了不允许外部访问，需要修改配置文件\n首先关掉容器\ndocker compose down 打开/config/qbittorrent/qBittorrent/qBittorrent.conf\n[Preferences] WebUI\\Address=0.0.0.0 WebUI\\CSRFProtection=false WebUI\\HostHeaderValidation=false WebUI\\ServerDomains=* WebUI\\Username=admin 把WebUI\\Address改为0.0.0.0\n重启容器\ndocker compose up -d 查看logs，可以得到一个初始密码\ndocker logs qbittorrent --tail 50 然后在浏览器中输入admin和初始密码即可登录\n登陆后在齿轮⚙ → WebUI → Authentication可以修改用户名和密码，然后就不用管配置文件了\nProwlarr 左侧栏第一个Indexers，添加Indexer，可以先添加几个免费的试试，比如EZTV和YTS\n添加1337x的时候会显示blocked by CloudFlare Protection，这时候就需要FlareSolverr\nSettings → Indexers添加Index，使用FlareSolverr，由于在同一个Docker网络下，Host可以填http://flaresolverr:8191/ tag填写1337x 再回去添加Indexer，最下面的tag也填写1337x，这样再测试连接就成功了 我们先登录Sonarr和Radarr，设置用户名和密码（就会得到用户的API Key），然后在Prowlarr的Settings → Apps添加Sonarr和Radarr\nName: Sonarr Sync Level: Full Sync Prowlarr Server: http://prowlarr:9696 Sonarr Server: http://sonarr:8989 API Key: xxx Name: Radarr Sync Level: Full Sync Prowlarr Server: http://prowlarr:9696 Radarr Server: http://radarr:7878 API Key: xxx 在Settings → Download Clients添加qBittorrent下载器\nName: qBittorrent Enable: true Host: qbittorrent Port: 8080 Username: xxx Password: xxx Sonarr / Radarr 和Prowlarr相同，分别进入Settings → Download Clients，添加刚才的qBittorrent下载器 Bazarr Bazarr好像都不需要身份认证，在Settings可以绑定Sonnar和Radarr，同样地，Address写容器名即可 在Settings → Languages → Language Filter添加简体中文 Embedded Tracks Language开启 创建一个简体中文的Profile 默认Profile都设置为简体中文 在Settings → Providers中添加字幕源，可以使用zimuku和OpenSubtitles.com（这个需要注册用户） 找电影 全部配置好之后剩下的事情就很简单了，基本步骤就是：\n如果想找电影，就去Radarr直接搜电影名称，同理电视剧就去Sonarr找 加入愿望单 加入后就会自动连接qBittorrent帮我们下载 下载完后视频文件就在挂载的文件夹了 看电影 Infuse 我目前使用Infuse来看电影，通过SMB来访问服务器上挂载的文件夹，然后本地观看 优点是本地硬件解码，降低了我的miniPC的硬件压力 缺点是刮削没有Jellyfin强，没有账号管理功能，因此没有观看进度记忆功能 好像只能应用在苹果设备，iPhone，iPad，MacBook或者Apple TV Jellyfin Jellyfin的好处就是刮削能力比较强，能够显示完整的电影封面，演员信息，还支持多账号，管理每个人不同的观影记录等等\n如果服务器有独立显卡，可以直接考虑使用Jellyfin作为播放器，这样用户就可以直接在网页端观看了（我没有，我选择Infuse）\nInfuse也支持连接Jellyfin，但是要开Infuse会员，这样Infuse就完全当一个播放器用，刮削，多账户共享，观看记录功能交给Jellyfin 如果需要添加Jellyfin，可以在config文件夹下先创建jellyfin，然后修改docker-compose.yml，加入\njellyfin: image: jellyfin/jellyfin container_name: jellyfin user: \"1000:1000\" environment: - TZ=America/Toronto volumes: - ./config/jellyfin:/config - ./library:/media ports: - \"8096:8096\" networks: - media restart: unless-stopped 之后在Sonarr / Radarr的Settings → Connections可以添加Jellyfin，主要作用是下载完成后可以通知Jellyfin刷新一遍\n",
+  "wordCount" : "2154",
   "inLanguage": "zh",
   "datePublished": "2025-07-12T11:04:22-04:00",
-  "dateModified": "2025-07-24T12:59:47-04:00",
+  "dateModified": "2025-07-29T00:17:50-04:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
@@ -179,14 +179,14 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/debian/">Debian 🌀</a></div>
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">折腾 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/debian/">Debian 🌀</a></div>
     <h1 class="post-title">
       使用Docker部署家庭影院
     </h1>
     <div class="post-meta">
 
 
-<span title='2025-07-12 11:04:22 -0400 EDT'>2025-07-12</span>&nbsp;·&nbsp;5 分钟&nbsp;·&nbsp;2148 字&nbsp;·&nbsp;Kyxie
+<span title='2025-07-12 11:04:22 -0400 EDT'>2025-07-12</span>&nbsp;·&nbsp;5 分钟&nbsp;·&nbsp;2154 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -197,8 +197,6 @@
                 </summary>
 
                 <div class="inner"><ul>
-                        <li>
-                            <a href="#header" aria-label="Header">Header</a></li>
                         <li>
                             <a href="#%e9%83%a8%e7%bd%b2" aria-label="部署">部署</a></li>
                         <li>
@@ -289,9 +287,8 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
-<p>这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。</p>
-<p>基本原理是这样的：</p>
+  <div class="post-content"><p>这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。</p>
+<p>基本的Workflow是这样的：</p>
 <ul>
 <li>本体就是Sonarr和Radarr，Sonarr是找剧的，Radarr是找电影的</li>
 <li>他们俩从哪找片呢，从indexers，这个indexer就可以理解为片源，但是indexer多了就需要东西管理，这时引入了Prowlarr，它可以连接Sonarr和Radarr，以后只需要在Prowlarr添加indexers，然后就可以自动同步到Sonarr和Radarr了</li>
@@ -613,7 +610,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    | Visitors: <span id="uv-count"></span> |
+    Visitors: <span id="uv-count"></span> |
     Views: <span id="pv-count"></span>
   </span>
   <script

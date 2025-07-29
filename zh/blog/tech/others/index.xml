@@ -22,7 +22,7 @@
       <pubDate>Sun, 15 Dec 2024 23:45:35 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/others/format-usb/</guid>
-      <description>Header 使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化 MacOs 详见：使用树莓派4B+安装</description>
+      <description>使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化。 MacOs 详见：使用树莓派4B+安装</description>
     </item>
     
     <item>
@@ -62,12 +62,12 @@
     </item>
     
     <item>
-      <title>Windows 11 打造个性化终端</title>
-      <link>https://kyxie.me/zh/blog/tech/others/bash/</link>
+      <title>个性化终端</title>
+      <link>https://kyxie.me/zh/blog/tech/others/terminal/</link>
       <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/tech/others/bash/</guid>
-      <description>前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo</description>
+      <guid>https://kyxie.me/zh/blog/tech/others/terminal/</guid>
+      <description>自己平时喜欢乱搞一些花里胡哨的东西，嫌Windows自带的终端实在是太丑了，打算使用Oh My Posh美化一下，这篇教程基于Windows 11自</description>
     </item>
     
   </channel>

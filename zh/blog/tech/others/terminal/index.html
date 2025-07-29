@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Windows 11 打造个性化终端 | Kunyang&#39;s Blog</title>
-<meta name="keywords" content="Windows, OhMyPosh, Bash">
-<meta name="description" content="前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo">
+<title>个性化终端 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Windows, OhMyPosh, oh-my-zsh, Bash, Zsh">
+<meta name="description" content="自己平时喜欢乱搞一些花里胡哨的东西，嫌Windows自带的终端实在是太丑了，打算使用Oh My Posh美化一下，这篇教程基于Windows 11自">
 <meta name="author" content="Kyxie">
-<link rel="canonical" href="https://kyxie.me/zh/blog/tech/others/bash/">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/others/terminal/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://kyxie.me/Favicon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/others/bash/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/others/terminal/">
 <noscript>
     <style>
         #theme-toggle,
@@ -38,16 +38,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Windows 11 打造个性化终端" />
-<meta property="og:description" content="前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="个性化终端" />
+<meta property="og:description" content="自己平时喜欢乱搞一些花里胡哨的东西，嫌Windows自带的终端实在是太丑了，打算使用Oh My Posh美化一下，这篇教程基于Windows 11自" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyxie.me/zh/blog/tech/others/bash/" /><meta property="article:section" content="blog" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/others/terminal/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2023-04-01T00:07:17-04:00" />
-<meta property="article:modified_time" content="2025-07-01T00:09:29-04:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="article:modified_time" content="2025-07-29T00:17:50-04:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Windows 11 打造个性化终端"/>
-<meta name="twitter:description" content="前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo"/>
+<meta name="twitter:title" content="个性化终端"/>
+<meta name="twitter:description" content="自己平时喜欢乱搞一些花里胡哨的东西，嫌Windows自带的终端实在是太丑了，打算使用Oh My Posh美化一下，这篇教程基于Windows 11自"/>
 
 
 <script type="application/ld+json">
@@ -64,7 +64,7 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "技术 🔧",
+      "name": "折腾 🔧",
       "item": "https://kyxie.me/zh/blog/tech/"
     }, 
     {
@@ -76,8 +76,8 @@
     {
       "@type": "ListItem",
       "position":  4 ,
-      "name": "Windows 11 打造个性化终端",
-      "item": "https://kyxie.me/zh/blog/tech/others/bash/"
+      "name": "个性化终端",
+      "item": "https://kyxie.me/zh/blog/tech/others/terminal/"
     }
   ]
 }
@@ -86,24 +86,24 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Windows 11 打造个性化终端",
-  "name": "Windows 11 打造个性化终端",
-  "description": "前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo",
+  "headline": "个性化终端",
+  "name": "个性化终端",
+  "description": "自己平时喜欢乱搞一些花里胡哨的东西，嫌Windows自带的终端实在是太丑了，打算使用Oh My Posh美化一下，这篇教程基于Windows 11自",
   "keywords": [
-    "Windows", "OhMyPosh", "Bash"
+    "Windows", "OhMyPosh", "oh-my-zsh", "Bash", "Zsh"
   ],
-  "articleBody": "前言 我就喜欢搞一些简洁而又花里胡哨的东西。\n教程基于Windows 11自带的Terminal。\n字体 我使用的字体是CodeNewRoman Nerd Font，这个字体同样是我博客的字体，可以从这里下载，下载后安装即可，也可以在VS Code上使用这个字体。\n下载 oh-my-posh winget install JanDeDobbeleer.OhMyPosh 终端设置 我这里直接修改了Windows PowerShell的配置，如果不想破坏默认的配置也可以新建一个配置文件。\n在配色方案的选项下，我选择的Campbell，但是我打开设置的json file里面把第一个主题的background改成了#0C0C0C，避免了纯黑的背景。\n在Windows PowerShell的常规选项下，取消勾选使用父进程目录，在外观选项下选取下载的字体CodeNowRoman Nerd Font。\n文件配置 在终端输入\necho $profile 找到这个文件，如果找不到自己新建一个。\n从这里选择一个自己喜欢的主题，点击主题名字进入相应的github并且下载.json源码，保存在本地，粘贴下面语句到这个文件中，修改路径为你保存的路径。\noh-my-posh init pwsh --config 'C:/Users/Posh/jandedobbeleer.omp.json' | Invoke-Expression 保存后运行：\n. $profile FAQ 如果运行失败，可能需要更新PSReadLine。\n如果识别不了icon，大概率字体的问题，查看是否在PowerShell的页面下设置字体为Nerd字体。\n效果展示 ",
-  "wordCount" : "529",
+  "articleBody": "自己平时喜欢乱搞一些花里胡哨的东西，嫌Windows自带的终端实在是太丑了，打算使用Oh My Posh美化一下，这篇教程基于Windows 11自带的Terminal。\n字体 我使用的字体是CodeNewRoman Nerd Font，这个字体同样是我博客的字体，可以从这里下载，下载后安装即可，也可以在VS Code上使用这个字体。\n下载 oh-my-posh winget install JanDeDobbeleer.OhMyPosh 终端设置 我这里直接修改了Windows PowerShell的配置，如果不想破坏默认的配置也可以新建一个配置文件。\n在配色方案的选项下，我选择的Campbell，但是我打开设置的json file里面把第一个主题的background改成了#0C0C0C，避免了纯黑的背景。\n在Windows PowerShell的常规选项下，取消勾选使用父进程目录，在外观选项下选取下载的字体CodeNowRoman Nerd Font。\n文件配置 在终端输入\necho $profile 找到这个文件，如果找不到自己新建一个。\n从这里选择一个自己喜欢的主题，点击主题名字进入相应的github并且下载.json源码，保存在本地，粘贴下面语句到这个文件中，修改路径为你保存的路径。\noh-my-posh init pwsh --config 'C:/Users/Posh/jandedobbeleer.omp.json' | Invoke-Expression 保存后运行：\n. $profile FAQ 如果运行失败，可能需要更新PSReadLine。\n如果识别不了icon，大概率字体的问题，查看是否在PowerShell的页面下设置字体为Nerd字体。\n效果展示 MacOS \u0026 Linux 对于MacOS和Linux来说也非常推荐使用zsh，尤其是Linux，因为MacOS应该已经把zsh作为默认终端了，zsh的好处就是可以自动补全，而且比bash好看多了。\n安装了zsh之后可以继续安装oh-my-zsh，用来管理主题和其他插件。\n",
+  "wordCount" : "688",
   "inLanguage": "zh",
   "datePublished": "2023-04-01T00:07:17-04:00",
-  "dateModified": "2025-07-01T00:09:29-04:00",
+  "dateModified": "2025-07-29T00:17:50-04:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyxie.me/zh/blog/tech/others/bash/"
+    "@id": "https://kyxie.me/zh/blog/tech/others/terminal/"
   },
   "publisher": {
     "@type": "Organization",
@@ -173,14 +173,14 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/others/">其他 🛠️</a></div>
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">折腾 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/others/">其他 🛠️</a></div>
     <h1 class="post-title">
-      Windows 11 打造个性化终端
+      个性化终端
     </h1>
     <div class="post-meta">
 
 
-<span title='2023-04-01 00:07:17 -0400 EDT'>2023-04-01</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;529 字&nbsp;·&nbsp;Kyxie
+<span title='2023-04-01 00:07:17 -0400 EDT'>2023-04-01</span>&nbsp;·&nbsp;2 分钟&nbsp;·&nbsp;688 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -192,8 +192,6 @@
 
                 <div class="inner"><ul>
                         <li>
-                            <a href="#%e5%89%8d%e8%a8%80" aria-label="前言">前言</a></li>
-                        <li>
                             <a href="#%e5%ad%97%e4%bd%93" aria-label="字体">字体</a></li>
                         <li>
                             <a href="#%e4%b8%8b%e8%bd%bd-oh-my-posh" aria-label="下载 oh-my-posh">下载 oh-my-posh</a></li>
@@ -204,7 +202,9 @@
                         <li>
                             <a href="#faq" aria-label="FAQ">FAQ</a></li>
                         <li>
-                            <a href="#%e6%95%88%e6%9e%9c%e5%b1%95%e7%a4%ba" aria-label="效果展示">效果展示</a>
+                            <a href="#%e6%95%88%e6%9e%9c%e5%b1%95%e7%a4%ba" aria-label="效果展示">效果展示</a></li>
+                        <li>
+                            <a href="#macos--linux" aria-label="MacOS &amp;amp; Linux">MacOS &amp; Linux</a>
                         </li>
                     </ul>
                 </div>
@@ -270,15 +270,7 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h3>
-<ul>
-<li>
-<p>我就喜欢搞一些简洁而又花里胡哨的东西。</p>
-</li>
-<li>
-<p>教程基于Windows 11自带的Terminal。</p>
-</li>
-</ul>
+  <div class="post-content"><p>自己平时喜欢乱搞一些花里胡哨的东西，嫌Windows自带的终端实在是太丑了，打算使用Oh My Posh美化一下，这篇教程基于Windows 11自带的Terminal。</p>
 <h3 id="字体">字体<a hidden class="anchor" aria-hidden="true" href="#字体">#</a></h3>
 <p>我使用的字体是<code>CodeNewRoman Nerd Font</code>，这个字体同样是我博客的字体，可以从<a href="https://www.nerdfonts.com/font-downloads">这里</a>下载，下载后安装即可，也可以在VS Code上使用这个字体。</p>
 <h3 id="下载-oh-my-posh">下载 oh-my-posh<a hidden class="anchor" aria-hidden="true" href="#下载-oh-my-posh">#</a></h3>
@@ -301,6 +293,9 @@
 <h3 id="效果展示">效果展示<a hidden class="anchor" aria-hidden="true" href="#效果展示">#</a></h3>
 <p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/5e626f87ed4b70ef936a9bfbd235be8d.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Bash"  />
 </p>
+<h3 id="macos--linux">MacOS &amp; Linux<a hidden class="anchor" aria-hidden="true" href="#macos--linux">#</a></h3>
+<p>对于MacOS和Linux来说也非常推荐使用<code>zsh</code>，尤其是Linux，因为MacOS应该已经把zsh作为默认终端了，zsh的好处就是可以自动补全，而且比<code>bash</code>好看多了。</p>
+<p>安装了zsh之后可以继续安装<a href="https://ohmyz.sh/#install">oh-my-zsh</a>，用来管理主题和其他插件。</p>
 
 
   </div>
@@ -343,7 +338,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    | Visitors: <span id="uv-count"></span> |
+    Visitors: <span id="uv-count"></span> |
     Views: <span id="pv-count"></span>
   </span>
   <script

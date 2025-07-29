@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>使用Docker部署Minecraft服务器 | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Ubuntu, Linux, Debian, Docker, Minecraft">
-<meta name="description" content="Header 上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种">
+<meta name="description" content="上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种方">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
@@ -39,15 +39,15 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用Docker部署Minecraft服务器" />
-<meta property="og:description" content="Header 上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种" />
+<meta property="og:description" content="上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种方" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2024-12-13T00:50:58-05:00" />
-<meta property="article:modified_time" content="2025-07-24T12:59:47-04:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="article:modified_time" content="2025-07-29T00:17:50-04:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用Docker部署Minecraft服务器"/>
-<meta name="twitter:description" content="Header 上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种"/>
+<meta name="twitter:description" content="上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种方"/>
 
 
 <script type="application/ld+json">
@@ -88,15 +88,15 @@
   "@type": "BlogPosting",
   "headline": "使用Docker部署Minecraft服务器",
   "name": "使用Docker部署Minecraft服务器",
-  "description": "Header 上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种",
+  "description": "上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种方",
   "keywords": [
     "Ubuntu", "Linux", "Debian", "Docker", "Minecraft"
   ],
-  "articleBody": "Header 上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种方法\n局域网：类似的场景就是高中微机课大家一起联机打cs，所有设备连接同一个Wi-Fi就是在同一个局域网之下，小伙伴的电脑开了个Minecraft房间，就是在路由器内广播，这样假如我的电脑连了同一台路由器，就可以搜索到小伙伴的广播加入游戏。这样的缺点也是很明显的，必须要在同一个子网内，我和小伙伴必须要住在一起\nVPN：既然不住在一起，让小伙伴加入我的子网就可以了，假设我在我家Wireguard开一个VPN，让小伙伴连入我家的VPN，同样就是加入了子网可以联机玩了\n使用别人的服务器：上述做法有一个缺点就是小伙伴如果想加入我的房间，我必须要在线，不然他搜索不到我的房间。使用服务器就可以解决这个问题，因为服务器是24h不间断运行的。我之前好像使用过游侠的服务器，但是现在买了MiniPC之后可以自己搭建服务器了\n这篇文章讲一下在个人服务器中搭建Minecraft服务器，我们可以直接在服务器中安装环境，但是我是比较倾向于使用Docker安装所有程序的，便于程序之间的隔离以及管理。\n需要准备 一台miniPC，或者旧电脑，搭载Debian操作系统，可以24h运行 安装教程 准备阶段 安装Docker，我的Debian没安装GUI，只有一个命令行，因此只需要Docker Engine即可，详见Docker官网。\n创建目录，进入你的MiniPC，在想要存放服务器的地方创建一个文件夹，假设我的位置就在~/minecraft\ncd ~ mkdir minecraft cd minecraft 为了方便管理不同的游戏版本，我们再创建版本文件夹，假设我mc运行的版本是1.18.2，就再创建一个mc-1182\nmkdir mc-1182 cd mc-1182 Docker 准备Docker Compose配置文件docker-compose.yml\nversion: \"3.8\" services: mc: image: itzg/minecraft-server # 镜像名 tty: true # 支持容器交互 stdin_open: true # 允许命令行输入 ports: - \"25565:25565\" # 端口映射：宿主机25565 映射到容器25565 environment: EULA: \"TRUE\" # 必填，表示同意 Minecraft 的 EULA 协议 TYPE: \"FORGE\" # 服务端核心类型：可选 PAPER / SPIGOT / VANILLA / FORGE / FABRIC VERSION: \"1.18.2\" # Minecraft 游戏版本 INIT_MEMORY: 1G # JVM 初始内存分配 MAX_MEMORY: 2G # JVM 最大内存分配 ONLINE_MODE: \"FALSE\" # 是否启用正版验证（FALSE 表示允许离线启动） LEVEL: \"world\"\t# 世界名称 LEVEL_SEED: \"Kyxie\"\t# 世界种子（可为字符串或纯数字） # 可添加更多环境变量，格式为 KEY: VALUE，注意冒号后需空格 volumes: - ./server:/data # 将当前目录下 server 文件夹挂载到容器的 /data，用于保存世界、配置等数据 restart: unless-stopped # 自动重启策略：除非手动停止，否则容器异常时自动重启 关于选择游戏版本，如果你希望玩匠魂工业等大型模组，1.18.2是个比较好的选择，但是服务器核心要选择FORGE，如果只想轻量化的打打生存，那么可以选择1.20.1，游戏核心选择PAPER\n运行docker compose\ndocker compose up -d 这时候服务器就开始运行了，我们打开HMCL，点击Launch Game，等待进入游戏，点击Multiple Player，然后点击Add a server，Server的地址就填服务器的IP地址\n配置管理员 我们需要修改一些服务器的数据，把你的角色成为管理员（OP）\n首先找到容器的ID\ndocker ps 第一个CONTAINER ID就是要找的内容\n输入以下命令，监控容器的主进程\ndocker attach 这时我们进入了一个terminal，输入\nop 我的用户名就是Kyxie注意这里区分大小写\n退出的时候不能直接CTRL C，应该使用CTRL P再CTRL Q离开窗口\n常见命令 在服务器Linux的terminal中启动或者重启容器：docker compose up -d（和一开始相同） 把一个角色升级为管理员之后，角色游戏内点击/打开的terminal，就和docker attach的terminal效果一致了 切换模式：/gamemode creative切换为创造模式，有自动补全帮助可以切换其他模式 结束服务：/stop 详细的文档见：Minecraft Server on Docker (Java Edition)\n远程访问 完成了上述步骤就已经成功搭建好了一个Vanilla Minecraft服务器了，剩下的内容就是要将服务暴露到公网，有几种选择\n如果你没有公网IP，可以使用内网穿透，比如花生壳，向日葵，ZeroTire，Cloudflare ZeroTrust 如果你有公网IP，可以使用路由器端口转发，上述Docker Compose File提到的25565就是路由器要转发的端口，外网到25565端口的请求到达路由器，路由器将流量全部转发到miniPC的25565端口 端口转发 由于我有公网IP，我就只介绍这种方法了，国内还是没有公网IP的多，因此内网穿透的教程应该也很多。\n打开路由器的Web Manager，我们家的就是192.168.2.1，不同路由器的内网IP不一定一样，常见的还有192.168.1.1等等\n配置入站出站规则\nRule Name Protocol Internal Port External Port Local IP Address Minecraft TCP 25565 25565 Server的IP Address 进入后台（docker attach或者游戏内的terminal），输入命令\nwhitelist on 然后添加朋友的用户名到whitelist，（OP总是可以加入游戏，不管在不在白名单内）\nwhitelist add Kyxie whitelist add friend_username whitelist reload 然后再让朋友搜索你家的公网IP就可以直接进入游戏了\n有些运营商会经常变动IP地址，如果你有自己的域名，可以通过DDNS来把IP地址配置为域名，详见：OpenWrt配置DDNS | Kunyang’s Blog\n",
-  "wordCount" : "2137",
+  "articleBody": "上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种方法\n局域网：类似的场景就是高中微机课大家一起联机打cs，所有设备连接同一个Wi-Fi就是在同一个局域网之下，小伙伴的电脑开了个Minecraft房间，就是在路由器内广播，这样假如我的电脑连了同一台路由器，就可以搜索到小伙伴的广播加入游戏。这样的缺点也是很明显的，必须要在同一个子网内，我和小伙伴必须要住在一起\nVPN：既然不住在一起，让小伙伴加入我的子网就可以了，假设我在我家Wireguard开一个VPN，让小伙伴连入我家的VPN，同样就是加入了子网可以联机玩了\n使用别人的服务器：上述做法有一个缺点就是小伙伴如果想加入我的房间，我必须要在线，不然他搜索不到我的房间。使用服务器就可以解决这个问题，因为服务器是24h不间断运行的。我之前好像使用过游侠的服务器，但是现在买了MiniPC之后可以自己搭建服务器了\n这篇文章讲一下在个人服务器中搭建Minecraft服务器，我们可以直接在服务器中安装环境，但是我是比较倾向于使用Docker安装所有程序的，便于程序之间的隔离以及管理。\n需要准备 一台miniPC，或者旧电脑，搭载Debian操作系统，可以24h运行 安装教程 准备阶段 安装Docker，我的Debian没安装GUI，只有一个命令行，因此只需要Docker Engine即可，详见Docker官网。\n创建目录，进入你的MiniPC，在想要存放服务器的地方创建一个文件夹，假设我的位置就在~/minecraft\ncd ~ mkdir minecraft cd minecraft 为了方便管理不同的游戏版本，我们再创建版本文件夹，假设我mc运行的版本是1.18.2，就再创建一个mc-1182\nmkdir mc-1182 cd mc-1182 Docker 准备Docker Compose配置文件docker-compose.yml\nversion: \"3.8\" services: mc: image: itzg/minecraft-server # 镜像名 tty: true # 支持容器交互 stdin_open: true # 允许命令行输入 ports: - \"25565:25565\" # 端口映射：宿主机25565 映射到容器25565 environment: EULA: \"TRUE\" # 必填，表示同意 Minecraft 的 EULA 协议 TYPE: \"FORGE\" # 服务端核心类型：可选 PAPER / SPIGOT / VANILLA / FORGE / FABRIC VERSION: \"1.18.2\" # Minecraft 游戏版本 INIT_MEMORY: 1G # JVM 初始内存分配 MAX_MEMORY: 2G # JVM 最大内存分配 ONLINE_MODE: \"FALSE\" # 是否启用正版验证（FALSE 表示允许离线启动） LEVEL: \"world\"\t# 世界名称 LEVEL_SEED: \"Kyxie\"\t# 世界种子（可为字符串或纯数字） # 可添加更多环境变量，格式为 KEY: VALUE，注意冒号后需空格 volumes: - ./server:/data # 将当前目录下 server 文件夹挂载到容器的 /data，用于保存世界、配置等数据 restart: unless-stopped # 自动重启策略：除非手动停止，否则容器异常时自动重启 关于选择游戏版本，如果你希望玩匠魂工业等大型模组，1.18.2是个比较好的选择，但是服务器核心要选择FORGE，如果只想轻量化的打打生存，那么可以选择1.20.1，游戏核心选择PAPER\n运行docker compose\ndocker compose up -d 这时候服务器就开始运行了，我们打开HMCL，点击Launch Game，等待进入游戏，点击Multiple Player，然后点击Add a server，Server的地址就填服务器的IP地址\n配置管理员 我们需要修改一些服务器的数据，把你的角色成为管理员（OP）\n首先找到容器的ID\ndocker ps 第一个CONTAINER ID就是要找的内容\n输入以下命令，监控容器的主进程\ndocker attach 这时我们进入了一个terminal，输入\nop 我的用户名就是Kyxie注意这里区分大小写\n退出的时候不能直接CTRL C，应该使用CTRL P再CTRL Q离开窗口\n常见命令 在服务器Linux的terminal中启动或者重启容器：docker compose up -d（和一开始相同） 把一个角色升级为管理员之后，角色游戏内点击/打开的terminal，就和docker attach的terminal效果一致了 切换模式：/gamemode creative切换为创造模式，有自动补全帮助可以切换其他模式 结束服务：/stop 详细的文档见：Minecraft Server on Docker (Java Edition)\n远程访问 完成了上述步骤就已经成功搭建好了一个Vanilla Minecraft服务器了，剩下的内容就是要将服务暴露到公网，有几种选择\n如果你没有公网IP，可以使用内网穿透，比如花生壳，向日葵，ZeroTire，Cloudflare ZeroTrust 如果你有公网IP，可以使用路由器端口转发，上述Docker Compose File提到的25565就是路由器要转发的端口，外网到25565端口的请求到达路由器，路由器将流量全部转发到miniPC的25565端口 端口转发 由于我有公网IP，我就只介绍这种方法了，国内还是没有公网IP的多，因此内网穿透的教程应该也很多。\n打开路由器的Web Manager，我们家的就是192.168.2.1，不同路由器的内网IP不一定一样，常见的还有192.168.1.1等等\n配置入站出站规则\nRule Name Protocol Internal Port External Port Local IP Address Minecraft TCP 25565 25565 Server的IP Address 进入后台（docker attach或者游戏内的terminal），输入命令\nwhitelist on 然后添加朋友的用户名到whitelist，（OP总是可以加入游戏，不管在不在白名单内）\nwhitelist add Kyxie whitelist add friend_username whitelist reload 然后再让朋友搜索你家的公网IP就可以直接进入游戏了\n有些运营商会经常变动IP地址，如果你有自己的域名，可以通过DDNS来把IP地址配置为域名，详见：OpenWrt配置DDNS | Kunyang’s Blog\n",
+  "wordCount" : "2136",
   "inLanguage": "zh",
   "datePublished": "2024-12-13T00:50:58-05:00",
-  "dateModified": "2025-07-24T12:59:47-04:00",
+  "dateModified": "2025-07-29T00:17:50-04:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
@@ -180,7 +180,7 @@
     <div class="post-meta">
 
 
-<span title='2024-12-13 00:50:58 -0500 EST'>2024-12-13</span>&nbsp;·&nbsp;5 分钟&nbsp;·&nbsp;2137 字&nbsp;·&nbsp;Kyxie
+<span title='2024-12-13 00:50:58 -0500 EST'>2024-12-13</span>&nbsp;·&nbsp;5 分钟&nbsp;·&nbsp;2136 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -191,8 +191,6 @@
                 </summary>
 
                 <div class="inner"><ul>
-                        <li>
-                            <a href="#header" aria-label="Header">Header</a></li>
                         <li>
                             <a href="#%e9%9c%80%e8%a6%81%e5%87%86%e5%a4%87" aria-label="需要准备">需要准备</a></li>
                         <li>
@@ -279,8 +277,7 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
-<p><a href="/zh/blog/game/minecraft/minecraft-client">上一篇文章</a>讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种方法</p>
+  <div class="post-content"><p><a href="/zh/blog/game/minecraft/minecraft-client">上一篇文章</a>讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种方法</p>
 <ul>
 <li>
 <p>局域网：类似的场景就是高中微机课大家一起联机打cs，所有设备连接同一个Wi-Fi就是在同一个局域网之下，小伙伴的电脑开了个Minecraft房间，就是在路由器内广播，这样假如我的电脑连了同一台路由器，就可以搜索到小伙伴的广播加入游戏。这样的缺点也是很明显的，必须要在同一个子网内，我和小伙伴必须要住在一起</p>
@@ -451,7 +448,7 @@
 
   <footer class="post-footer">
 <nav class="paginav">
-  <a class="prev" href="https://kyxie.me/zh/blog/tech/server/debian/nginx/">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/server/debian/public/">
     <span class="title">« 上一页</span>
     <br>
     <span>将自己的服务暴露公网</span>
@@ -492,7 +489,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    | Visitors: <span id="uv-count"></span> |
+    Visitors: <span id="uv-count"></span> |
     Views: <span id="pv-count"></span>
   </span>
   <script

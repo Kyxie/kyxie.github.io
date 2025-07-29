@@ -22,7 +22,7 @@
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/openwrt/wireguard/</guid>
-      <description>Header Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先</description>
+      <description>Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连</description>
     </item>
     
     <item>
@@ -40,7 +40,7 @@
       <pubDate>Wed, 25 Jun 2025 10:44:22 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/openwrt/adguardhome/</guid>
-      <description>Header AdguardHome是一个去广告应用，但是它不仅仅能去广告，还能做一个局域网的DNS服务器。 安装 这个应用因为算是网络管理相关，我就安装在</description>
+      <description>AdguardHome是一个去广告应用，但是它不仅仅能去广告，还能做一个局域网的DNS服务器。 安装 这个应用因为算是网络管理相关，我就安装在了</description>
     </item>
     
   </channel>

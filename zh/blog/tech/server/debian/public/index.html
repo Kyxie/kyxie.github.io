@@ -7,9 +7,9 @@
 <meta name="robots" content="index, follow">
 <title>将自己的服务暴露公网 | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="Nginx, Network, Cloudflared, Docker, Debian">
-<meta name="description" content="Header 我们在浏览器地址栏输入localhost &#43; 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更">
+<meta name="description" content="我们在浏览器地址栏输入localhost &#43; 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多">
 <meta name="author" content="Kyxie">
-<link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/debian/nginx/">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/debian/public/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -20,7 +20,7 @@
 <link rel="mask-icon" href="https://kyxie.me/Favicon.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/debian/nginx/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/debian/public/">
 <noscript>
     <style>
         #theme-toggle,
@@ -39,15 +39,15 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="将自己的服务暴露公网" />
-<meta property="og:description" content="Header 我们在浏览器地址栏输入localhost &#43; 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更" />
+<meta property="og:description" content="我们在浏览器地址栏输入localhost &#43; 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/debian/nginx/" /><meta property="article:section" content="blog" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/debian/public/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2025-06-08T23:26:42-04:00" />
-<meta property="article:modified_time" content="2025-07-24T12:59:47-04:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="article:modified_time" content="2025-07-29T00:17:50-04:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="将自己的服务暴露公网"/>
-<meta name="twitter:description" content="Header 我们在浏览器地址栏输入localhost &#43; 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更"/>
+<meta name="twitter:description" content="我们在浏览器地址栏输入localhost &#43; 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多"/>
 
 
 <script type="application/ld+json">
@@ -64,7 +64,7 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "技术 🔧",
+      "name": "折腾 🔧",
       "item": "https://kyxie.me/zh/blog/tech/"
     }, 
     {
@@ -83,7 +83,7 @@
       "@type": "ListItem",
       "position":  5 ,
       "name": "将自己的服务暴露公网",
-      "item": "https://kyxie.me/zh/blog/tech/server/debian/nginx/"
+      "item": "https://kyxie.me/zh/blog/tech/server/debian/public/"
     }
   ]
 }
@@ -94,22 +94,22 @@
   "@type": "BlogPosting",
   "headline": "将自己的服务暴露公网",
   "name": "将自己的服务暴露公网",
-  "description": "Header 我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更",
+  "description": "我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多",
   "keywords": [
     "Nginx", "Network", "Cloudflared", "Docker", "Debian"
   ],
-  "articleBody": "Header 我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多的配置。常见的方法有两个，Nginx和使用内网穿透。\n先说一下结论，Nginx比较适合部署在云服务器，而在自己家里的小服务器部署的服务更适合用内网穿透。一般云服务器都有公网IP且443端口是开放的，配置好之后我们就可以直接输入域名访问了。假设你的服务在家里，家里网络的HTTP 80和HTTPS 443端口一般是被运营商屏蔽了的，目的基本上除了安全就是防止用户因为商业用途私自搭建网站。\n解决的办法就是不用443端口了，使用一个别的端口然后Nginx再转发到443端口，那么访问服务的时候就得加上新的端口，比如yourdomain.com:4433，但是我个人感觉不是很优雅。第二个办法就是使用内网穿透，常见的解决方案有Cloudflared。\nNginx 使用80/443端口 首先创建一个新的文件夹，假设就放在~下，那么目录结构为\n~ ├── nginx │ └── docker-compose.yml └── service1 │ ├── docker-compose.yml │ └── volume └── service2 ├── docker-compose.yml └── volume 编辑Nginx的docker-compose.yml，这里我们使用了Let's Encrypt去自动签发HTTPS证书。\nservices: nginx-proxy: image: jwilder/nginx-proxy container_name: nginx-proxy restart: unless-stopped ports: - \"80:80\" - \"443:443\" volumes: - /var/run/docker.sock:/tmp/docker.sock:ro - ./certs:/etc/nginx/certs:ro - ./vhost.d:/etc/nginx/vhost.d - ./html:/usr/share/nginx/html - ./conf.d:/etc/nginx/conf.d networks: - nginx letsencrypt: image: jrcs/letsencrypt-nginx-proxy-companion container_name: nginx-letsencrypt restart: unless-stopped environment: - NGINX_PROXY_CONTAINER=nginx-proxy volumes: - /var/run/docker.sock:/var/run/docker.sock:ro - ./certs:/etc/nginx/certs - ./vhost.d:/etc/nginx/vhost.d - ./html:/usr/share/nginx/html depends_on: - nginx-proxy networks: - nginx networks: nginx: external: true 创建一个docker网络，名叫nginx\ndocker network create nginx 启动容器\ndocker compose up -d 这样Nginx和Let’s Encrypt就启动好了，后面当我们暴露服务（这篇文章讲述了我使用这个Nginx来配置Vaultwarden服务）的时候，就可以直接使用Nginx做反向代理了。\n使用其他端口 只需要将ports改成其他的端口，比如\nports: - \"8080:80\" - \"8443:443\" 注意事项：Let’s Encrypt仍然需要80端口用于更新证书，而且这个是无法修改的，所以如果这两个端口被封掉，可以进行访问，但是只能手动更新证书了。\nCloudflared Cloudflared是Cloudflared推出的内网穿透客户端，基本原理就是本地安装一个客户端，能和Cloudflare的服务器通信，这样就形成了一条隧道，当用户访问我们站点的时候，Cloudflare先接收，然后再把请求转发给miniPC，从而实现公网访问。\n使用这种方法我们甚至不需要公网IP，也不用开端口，Cloudflare能帮你做一些基本的防护。但是缺点是访问会受到Cloudflare的限制，国内访问可能会比较慢，以及需要一个域名。\nCloudflare配置 我们要去Cloudflare官网获取凭证，在Cloudflare开启Zero Trust，选择免费版即可\nNetwork → Tunnels → Add a tunnel\nTunnel Type选择Cloudflared\n跟着配置一步一步走，在Install一栏我们选择Docker，可以看到后面的Token，需要保管好这个token\n然后是添加Public Hostname，这个hostname就是你要暴露服务的hostname，假设我在miniPC上启动一个AList服务，AList使用的端口为5244，你希望访问alist.example.com就访问到这个服务，就应该这么填写\nSubdomain: alist Domain: example.com Type: HTTP URL: localhost:5244 但是如果你是Docker部署的（建议），那么可以要这么配置，意思是去访问Docker容器的端口（假设容器名叫alist）\nSubdomain: alist Domain: example.com Type: HTTP URL: alist:5244 这样云端就算是完成了，我们来配置miniPC端\nMiniPC 创建一个新的文件夹，就叫cloudflared，可以和其他的服务并列\n~ ├── cloudflared │ └── docker-compose.yml └── service1 │ ├── docker-compose.yml │ └── volume └── service2 ├── docker-compose.yml └── volume 创建docker-compose.yml，token就填写刚才的token，这样我们甚至不用挂载本地卷\nservices: cloudflared: image: cloudflare/cloudflared:latest container_name: cloudflared restart: unless-stopped command: tunnel --no-autoupdate run --token [YOUR TOKEN] networks: - cloudflared networks: cloudflared: external: true 创建docker网络就叫cloudflared\ndocker network create cloudflared 这样就算是配置完了，我们后面如果需要添加服务就新建一个域名到cloudflared即可\n其他方法 还有些协议就就不一一尝试了，原理基本上都和上面两个相同：\nCaddy：方向代理 Traefik：反向代理 FRP：内网穿透，分为FRPC和FRPS，在VPS上部署FRPS，miniPC或者软路由部署FRPC ZeroTire：内网穿透 Wireguard：非常轻量的VPN，可以先使用VPN连接自己家的内网，然后再访问 Tailscale：基于Wireguard的VPN ",
-  "wordCount" : "1809",
+  "articleBody": "我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多的配置。常见的方法有两个，Nginx和使用内网穿透。\n先说一下结论，Nginx比较适合部署在云服务器，而在自己家里的小服务器部署的服务更适合用内网穿透。一般云服务器都有公网IP且443端口是开放的，配置好之后我们就可以直接输入域名访问了。假设你的服务在家里，家里网络的HTTP 80和HTTPS 443端口一般是被运营商屏蔽了的，目的基本上除了安全就是防止用户因为商业用途私自搭建网站。\n解决的办法就是不用443端口了，使用一个别的端口然后Nginx再转发到443端口，那么访问服务的时候就得加上新的端口，比如yourdomain.com:4433，但是我个人感觉不是很优雅。第二个办法就是使用内网穿透，常见的解决方案有Cloudflared。\nNginx 使用80/443端口 首先创建一个新的文件夹，假设就放在~下，那么目录结构为\n~ ├── nginx │ └── docker-compose.yml └── service1 │ ├── docker-compose.yml │ └── volume └── service2 ├── docker-compose.yml └── volume 编辑Nginx的docker-compose.yml，这里我们使用了Let's Encrypt去自动签发HTTPS证书。\nservices: nginx-proxy: image: jwilder/nginx-proxy container_name: nginx-proxy restart: unless-stopped ports: - \"80:80\" - \"443:443\" volumes: - /var/run/docker.sock:/tmp/docker.sock:ro - ./certs:/etc/nginx/certs:ro - ./vhost.d:/etc/nginx/vhost.d - ./html:/usr/share/nginx/html - ./conf.d:/etc/nginx/conf.d networks: - nginx letsencrypt: image: jrcs/letsencrypt-nginx-proxy-companion container_name: nginx-letsencrypt restart: unless-stopped environment: - NGINX_PROXY_CONTAINER=nginx-proxy volumes: - /var/run/docker.sock:/var/run/docker.sock:ro - ./certs:/etc/nginx/certs - ./vhost.d:/etc/nginx/vhost.d - ./html:/usr/share/nginx/html depends_on: - nginx-proxy networks: - nginx networks: nginx: external: true 创建一个docker网络，名叫nginx\ndocker network create nginx 启动容器\ndocker compose up -d 这样Nginx和Let’s Encrypt就启动好了，后面当我们暴露服务（这篇文章讲述了我使用这个Nginx来配置Vaultwarden服务）的时候，就可以直接使用Nginx做反向代理了。\n使用其他端口 只需要将ports改成其他的端口，比如\nports: - \"8080:80\" - \"8443:443\" 注意事项：Let’s Encrypt仍然需要80端口用于更新证书，而且这个是无法修改的，所以如果这两个端口被封掉，可以进行访问，但是只能手动更新证书了。\nCloudflared Cloudflared是Cloudflared推出的内网穿透客户端，基本原理就是本地安装一个客户端，能和Cloudflare的服务器通信，这样就形成了一条隧道，当用户访问我们站点的时候，Cloudflare先接收，然后再把请求转发给miniPC，从而实现公网访问。\n使用这种方法我们甚至不需要公网IP，也不用开端口，Cloudflare能帮你做一些基本的防护。但是缺点是访问会受到Cloudflare的限制，国内访问可能会比较慢，以及需要一个域名。\nCloudflare配置 我们要去Cloudflare官网获取凭证，在Cloudflare开启Zero Trust，选择免费版即可\nNetwork → Tunnels → Add a tunnel\nTunnel Type选择Cloudflared\n跟着配置一步一步走，在Install一栏我们选择Docker，可以看到后面的Token，需要保管好这个token\n然后是添加Public Hostname，这个hostname就是你要暴露服务的hostname，假设我在miniPC上启动一个AList服务，AList使用的端口为5244，你希望访问alist.example.com就访问到这个服务，就应该这么填写\nSubdomain: alist Domain: example.com Type: HTTP URL: localhost:5244 但是如果你是Docker部署的（建议），那么可以要这么配置，意思是去访问Docker容器的端口（假设容器名叫alist）\nSubdomain: alist Domain: example.com Type: HTTP URL: alist:5244 这样云端就算是完成了，我们来配置miniPC端\nMiniPC 创建一个新的文件夹，就叫cloudflared，可以和其他的服务并列\n~ ├── cloudflared │ └── docker-compose.yml └── service1 │ ├── docker-compose.yml │ └── volume └── service2 ├── docker-compose.yml └── volume 创建docker-compose.yml，token就填写刚才的token，这样我们甚至不用挂载本地卷\nservices: cloudflared: image: cloudflare/cloudflared:latest container_name: cloudflared restart: unless-stopped command: tunnel --no-autoupdate run --token [YOUR TOKEN] networks: - cloudflared networks: cloudflared: external: true 创建docker网络就叫cloudflared\ndocker network create cloudflared 这样就算是配置完了，我们后面如果需要添加服务就新建一个域名到cloudflared即可\n其他方法 还有些协议就就不一一尝试了，原理基本上都和上面两个相同：\nCaddy：方向代理 Traefik：反向代理 FRP：内网穿透，分为FRPC和FRPS，在VPS上部署FRPS，miniPC或者软路由部署FRPC ZeroTire：内网穿透 Wireguard：非常轻量的VPN，可以先使用VPN连接自己家的内网，然后再访问 Tailscale：基于Wireguard的VPN ",
+  "wordCount" : "1808",
   "inLanguage": "zh",
   "datePublished": "2025-06-08T23:26:42-04:00",
-  "dateModified": "2025-07-24T12:59:47-04:00",
+  "dateModified": "2025-07-29T00:17:50-04:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://kyxie.me/zh/blog/tech/server/debian/nginx/"
+    "@id": "https://kyxie.me/zh/blog/tech/server/debian/public/"
   },
   "publisher": {
     "@type": "Organization",
@@ -179,14 +179,14 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/debian/">Debian 🌀</a></div>
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">折腾 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/debian/">Debian 🌀</a></div>
     <h1 class="post-title">
       将自己的服务暴露公网
     </h1>
     <div class="post-meta">
 
 
-<span title='2025-06-08 23:26:42 -0400 EDT'>2025-06-08</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;1809 字&nbsp;·&nbsp;Kyxie
+<span title='2025-06-08 23:26:42 -0400 EDT'>2025-06-08</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;1808 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -197,8 +197,6 @@
                 </summary>
 
                 <div class="inner"><ul>
-                        <li>
-                            <a href="#header" aria-label="Header">Header</a></li>
                         <li>
                             <a href="#nginx" aria-label="Nginx">Nginx</a><ul>
                                     
@@ -282,8 +280,7 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
-<p>我们在浏览器地址栏输入<code>localhost + 端口</code> 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多的配置。常见的方法有两个，Nginx和使用内网穿透。</p>
+  <div class="post-content"><p>我们在浏览器地址栏输入<code>localhost + 端口</code> 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多的配置。常见的方法有两个，Nginx和使用内网穿透。</p>
 <p>先说一下结论，Nginx比较适合部署在云服务器，而在自己家里的小服务器部署的服务更适合用内网穿透。一般云服务器都有公网IP且443端口是开放的，配置好之后我们就可以直接输入域名访问了。假设你的服务在家里，家里网络的HTTP 80和HTTPS 443端口一般是被运营商屏蔽了的，目的基本上除了安全就是防止用户因为商业用途私自搭建网站。</p>
 <p>解决的办法就是不用443端口了，使用一个别的端口然后Nginx再转发到443端口，那么访问服务的时候就得加上新的端口，比如<code>yourdomain.com:4433</code>，但是我个人感觉不是很优雅。第二个办法就是使用内网穿透，常见的解决方案有Cloudflared。</p>
 <h3 id="nginx">Nginx<a hidden class="anchor" aria-hidden="true" href="#nginx">#</a></h3>
@@ -487,7 +484,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    | Visitors: <span id="uv-count"></span> |
+    Visitors: <span id="uv-count"></span> |
     Views: <span id="pv-count"></span>
   </span>
   <script

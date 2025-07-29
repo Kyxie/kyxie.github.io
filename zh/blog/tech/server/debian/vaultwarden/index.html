@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>使用Docker部署密码管理器 | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="BitWarden, Vaultwarden, Debian, Docker">
-<meta name="description" content="Header Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置">
+<meta name="description" content="Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置为">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/debian/vaultwarden/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
@@ -39,15 +39,15 @@
 
 
 <link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用Docker部署密码管理器" />
-<meta property="og:description" content="Header Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置" />
+<meta property="og:description" content="Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置为" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/debian/vaultwarden/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2025-01-21T11:51:00-05:00" />
-<meta property="article:modified_time" content="2025-07-24T12:59:47-04:00" /><meta property="og:site_name" content="Kyxie" />
+<meta property="article:modified_time" content="2025-07-29T00:17:50-04:00" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="使用Docker部署密码管理器"/>
-<meta name="twitter:description" content="Header Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置"/>
+<meta name="twitter:description" content="Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置为"/>
 
 
 <script type="application/ld+json">
@@ -64,7 +64,7 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "技术 🔧",
+      "name": "折腾 🔧",
       "item": "https://kyxie.me/zh/blog/tech/"
     }, 
     {
@@ -94,15 +94,15 @@
   "@type": "BlogPosting",
   "headline": "使用Docker部署密码管理器",
   "name": "使用Docker部署密码管理器",
-  "description": "Header Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置",
+  "description": "Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置为",
   "keywords": [
     "BitWarden", "Vaultwarden", "Debian", "Docker"
   ],
-  "articleBody": "Header Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置为使用Vaultwarden进行Auto Fill，我之前一直是IOS自带的的，手机又一直在用Safari，所以在电脑上注册了账号手机还得重新保存一遍，因为害怕忘记所以所有的密码都只能设置成一样，这样的风险实在是太大了。\n密码管理器这种最好是部署在自己的服务器上，使用官方的话那就和IOS/Chrome差别不大了，这篇文章记录一下如何将它用Docker部署在我的miniPC上，使用Docker Compose和Cloudflared。\n还是要提醒一句，自己管理密码还是很烦心的，虽然安全性提高了太多，但是精力也是同步增长，后期导出导入密码，数据备份都会是一个不小的问题。\n部署 这里我试过两种部署方法，Nginx和Cloudflared，两种各有优劣。这篇文章主要将如何将服务加入他们的网络，前置配置请看之前的文章：\nNginx：Debian使用Docker部署Nginx | Kunyang’s Blog Cloudflared：Debian使用Docker部署Cloudflared | Kunyang’s Blog Nginx 首先我们需要配置好Nginx\n创建一个文件夹用于存放配置和Docker关联的数据，文件目录大致为\n~ ├── nginx └── vaultwarden ├── docker-compose.yml └── server 进入vaultwarden，创建一个docker-compose.yml\nservices: vaultwarden: image: vaultwarden/server:latest container_name: vaultwarden restart: unless-stopped expose: - \"80\" environment: DOMAIN: \"https://your.domain.com\" VIRTUAL_HOST: \"your.domain.com\" LETSENCRYPT_HOST: \"your.domain.com\" LETSENCRYPT_EMAIL: \"you@example.com\" ICON_SERVICE: \"bitwarden\" DISABLE_ICON_DOWNLOAD: \"true\" ADMIN_TOKEN: 'your_admin_token' IP_HEADER: \"X-Forwarded-For\" SIGNUPS_ALLOWED: \"false\"\t# 默认禁止其他人新注册，防止别人白嫖你的服务 volumes: - ./data:/data networks: - nginx networks: nginx: external: true 其中这个ADMIN_TOKEN是你自定义的token，可以取任意字符串，建议越长越好，以抵抗别人的暴力破解。建议自己先想一个明文密码，然后使用argon2，将这个明文密码再转换成一个哈希值，把这个哈希值作为ADMIN_TOKEN。下面命令是让docker pull一个alpine，在alpine里下载argon2工具，然后生成一个token，再把token的$替换成$$，最后再删除容器。\ndocker run --rm alpine sh -c 'apk add --no-cache argon2 openssl \u003e/dev/null \u0026\u0026 echo -n \"YOUR SECRET\" | argon2 $(openssl rand -base64 32) -e -id -k 19456 -t 2 -p 1 | sed \"s/\\\\$/\\$\\$/g\"' 注意：\n不要忘记这个明文密码 使用双$$之后，在docker-compose.yml中要使用单引号 启动容器\ndocker compose up -d 之后注册好域名，开放路由器的443端口，就可以公网访问了。\nCloudflared 首先我们需要配置好Cloudflared\n创建一个文件夹用于存放配置和Docker关联的数据，文件目录大致为\n~ ├── cloudflared └── vaultwarden ├── docker-compose.yml └── server 进入vaultwarden，创建一个docker-compose.yml，其余的和上述都一致，把网络换成cloudflared即可（之前需要创建过cloudflared这个docker network，且cloudflared容器已经加入了这个网络）\nservices: vaultwarden: image: vaultwarden/server:latest container_name: vaultwarden restart: unless-stopped expose: - \"80\" environment: DOMAIN: \"https://your.domain.com\" VIRTUAL_HOST: \"your.domain.com\" LETSENCRYPT_HOST: \"your.domain.com\" LETSENCRYPT_EMAIL: \"you@example.com\" ICON_SERVICE: \"bitwarden\" DISABLE_ICON_DOWNLOAD: \"true\" ADMIN_TOKEN: 'your_admin_token' IP_HEADER: \"X-Forwarded-For\" SIGNUPS_ALLOWED: \"false\"\t# 默认禁止其他人新注册，防止别人白嫖你的服务 volumes: - ./data:/data networks: - cloudflared networks: cloudflared: external: true 注意cloudflared官网的配置应该和你本地的docker容器用一样的端口\n启动容器后可以登录到admin页面，url是your_hostname/admin，输入刚才的明文密码就可以进入了\n但是建议使用docker-compose.yml做配置，因为它的优先级高，这样可以避免冲突，admin页面仅用于读取\n添加SMTP，配置邮件，我用的是Gmail\nenvironment: SMTP_HOST: \"smtp.gmail.com\" SMTP_FROM: \"YOUR EMAIL\" SMTP_FROM_NAME: \"Vaultwarden\" SMTP_SECURITY: \"starttls“ SMTP_PORT: \"587\" SMTP_USERNAME: \"YOUR EMAIL\" SMTP_PASSWORD: \"YOUR PASSWORD\" SMTP_AUTH_MECHANISM: \"Plain\" SMTP_TIMEOUT: \"15\" 填写完之后可以重启一个容器\n之后就可以去Users页面邀请新用户了，包括自己\n",
-  "wordCount" : "1474",
+  "articleBody": "Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置为使用Vaultwarden进行Auto Fill，我之前一直是IOS自带的的，手机又一直在用Safari，所以在电脑上注册了账号手机还得重新保存一遍，因为害怕忘记所以所有的密码都只能设置成一样，这样的风险实在是太大了。\n密码管理器这种最好是部署在自己的服务器上，使用官方的话那就和IOS/Chrome差别不大了，这篇文章记录一下如何将它用Docker部署在我的miniPC上，使用Docker Compose和Cloudflared。\n还是要提醒一句，自己管理密码还是很烦心的，虽然安全性提高了太多，但是精力也是同步增长，后期导出导入密码，数据备份都会是一个不小的问题。\n部署 这里我试过两种部署方法，Nginx和Cloudflared，两种各有优劣。这篇文章主要将如何将服务加入他们的网络，前置配置请看之前的文章：\nNginx：将自己的服务暴露公网 | Kunyang’s Blog Cloudflared：将自己的服务暴露公网 | Kunyang’s Blog Nginx 首先我们需要配置好Nginx\n创建一个文件夹用于存放配置和Docker关联的数据，文件目录大致为\n~ ├── nginx └── vaultwarden ├── docker-compose.yml └── server 进入vaultwarden，创建一个docker-compose.yml\nservices: vaultwarden: image: vaultwarden/server:latest container_name: vaultwarden restart: unless-stopped expose: - \"80\" environment: DOMAIN: \"https://your.domain.com\" VIRTUAL_HOST: \"your.domain.com\" LETSENCRYPT_HOST: \"your.domain.com\" LETSENCRYPT_EMAIL: \"you@example.com\" ICON_SERVICE: \"bitwarden\" DISABLE_ICON_DOWNLOAD: \"true\" ADMIN_TOKEN: 'your_admin_token' IP_HEADER: \"X-Forwarded-For\" SIGNUPS_ALLOWED: \"false\"\t# 默认禁止其他人新注册，防止别人白嫖你的服务 volumes: - ./data:/data networks: - nginx networks: nginx: external: true 其中这个ADMIN_TOKEN是你自定义的token，可以取任意字符串，建议越长越好，以抵抗别人的暴力破解。建议自己先想一个明文密码，然后使用argon2，将这个明文密码再转换成一个哈希值，把这个哈希值作为ADMIN_TOKEN。下面命令是让docker pull一个alpine，在alpine里下载argon2工具，然后生成一个token，再把token的$替换成$$，最后再删除容器。\ndocker run --rm alpine sh -c 'apk add --no-cache argon2 openssl \u003e/dev/null \u0026\u0026 echo -n \"YOUR SECRET\" | argon2 $(openssl rand -base64 32) -e -id -k 19456 -t 2 -p 1 | sed \"s/\\\\$/\\$\\$/g\"' 注意：\n不要忘记这个明文密码 使用双$$之后，在docker-compose.yml中要使用单引号 启动容器\ndocker compose up -d 之后注册好域名，开放路由器的443端口，就可以公网访问了。\nCloudflared 首先我们需要配置好Cloudflared\n创建一个文件夹用于存放配置和Docker关联的数据，文件目录大致为\n~ ├── cloudflared └── vaultwarden ├── docker-compose.yml └── server 进入vaultwarden，创建一个docker-compose.yml，其余的和上述都一致，把网络换成cloudflared即可（之前需要创建过cloudflared这个docker network，且cloudflared容器已经加入了这个网络）\nservices: vaultwarden: image: vaultwarden/server:latest container_name: vaultwarden restart: unless-stopped expose: - \"80\" environment: DOMAIN: \"https://your.domain.com\" VIRTUAL_HOST: \"your.domain.com\" LETSENCRYPT_HOST: \"your.domain.com\" LETSENCRYPT_EMAIL: \"you@example.com\" ICON_SERVICE: \"bitwarden\" DISABLE_ICON_DOWNLOAD: \"true\" ADMIN_TOKEN: 'your_admin_token' IP_HEADER: \"X-Forwarded-For\" SIGNUPS_ALLOWED: \"false\"\t# 默认禁止其他人新注册，防止别人白嫖你的服务 volumes: - ./data:/data networks: - cloudflared networks: cloudflared: external: true 注意cloudflared官网的配置应该和你本地的docker容器用一样的端口\n启动容器后可以登录到admin页面，url是your_hostname/admin，输入刚才的明文密码就可以进入了\n但是建议使用docker-compose.yml做配置，因为它的优先级高，这样可以避免冲突，admin页面仅用于读取\n添加SMTP，配置邮件，我用的是Gmail\nenvironment: SMTP_HOST: \"smtp.gmail.com\" SMTP_FROM: \"YOUR EMAIL\" SMTP_FROM_NAME: \"Vaultwarden\" SMTP_SECURITY: \"starttls“ SMTP_PORT: \"587\" SMTP_USERNAME: \"YOUR EMAIL\" SMTP_PASSWORD: \"YOUR PASSWORD\" SMTP_AUTH_MECHANISM: \"Plain\" SMTP_TIMEOUT: \"15\" 填写完之后可以重启一个容器\n之后就可以去Users页面邀请新用户了，包括自己\n",
+  "wordCount" : "1445",
   "inLanguage": "zh",
   "datePublished": "2025-01-21T11:51:00-05:00",
-  "dateModified": "2025-07-24T12:59:47-04:00",
+  "dateModified": "2025-07-29T00:17:50-04:00",
   "author":{
     "@type": "Person",
     "name": "Kyxie"
@@ -179,14 +179,14 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">技术 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/debian/">Debian 🌀</a></div>
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">折腾 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/debian/">Debian 🌀</a></div>
     <h1 class="post-title">
       使用Docker部署密码管理器
     </h1>
     <div class="post-meta">
 
 
-<span title='2025-01-21 11:51:00 -0500 EST'>2025-01-21</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1474 字&nbsp;·&nbsp;Kyxie
+<span title='2025-01-21 11:51:00 -0500 EST'>2025-01-21</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1445 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -197,8 +197,6 @@
                 </summary>
 
                 <div class="inner"><ul>
-                        <li>
-                            <a href="#header" aria-label="Header">Header</a></li>
                         <li>
                             <a href="#%e9%83%a8%e7%bd%b2" aria-label="部署">部署</a><ul>
                                     
@@ -273,15 +271,14 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="header">Header<a hidden class="anchor" aria-hidden="true" href="#header">#</a></h3>
-<p>Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置为使用Vaultwarden进行Auto Fill，我之前一直是IOS自带的的，手机又一直在用Safari，所以在电脑上注册了账号手机还得重新保存一遍，因为害怕忘记所以所有的密码都只能设置成一样，这样的风险实在是太大了。</p>
+  <div class="post-content"><p>Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置为使用Vaultwarden进行Auto Fill，我之前一直是IOS自带的的，手机又一直在用Safari，所以在电脑上注册了账号手机还得重新保存一遍，因为害怕忘记所以所有的密码都只能设置成一样，这样的风险实在是太大了。</p>
 <p>密码管理器这种最好是部署在自己的服务器上，使用官方的话那就和IOS/Chrome差别不大了，这篇文章记录一下如何将它用Docker部署在我的miniPC上，使用Docker Compose和Cloudflared。</p>
 <p>还是要提醒一句，自己管理密码还是很烦心的，虽然安全性提高了太多，但是精力也是同步增长，后期导出导入密码，数据备份都会是一个不小的问题。</p>
 <h3 id="部署">部署<a hidden class="anchor" aria-hidden="true" href="#部署">#</a></h3>
 <p>这里我试过两种部署方法，Nginx和Cloudflared，两种各有优劣。这篇文章主要将如何将服务加入他们的网络，前置配置请看之前的文章：</p>
 <ul>
-<li>Nginx：<a href="/zh/blog/tech/server/debian/nginx/">Debian使用Docker部署Nginx | Kunyang&rsquo;s Blog</a></li>
-<li>Cloudflared：<a href="/zh/blog/tech/server/debian/cloudflared/">Debian使用Docker部署Cloudflared | Kunyang&rsquo;s Blog</a></li>
+<li>Nginx：<a href="/zh/blog/tech/server/debian/public/#nginx">将自己的服务暴露公网 | Kunyang&rsquo;s Blog</a></li>
+<li>Cloudflared：<a href="/zh/blog/tech/server/debian/public/#cloudflared">将自己的服务暴露公网 | Kunyang&rsquo;s Blog</a></li>
 </ul>
 <h4 id="nginx">Nginx<a hidden class="anchor" aria-hidden="true" href="#nginx">#</a></h4>
 <ul>
@@ -464,7 +461,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    | Visitors: <span id="uv-count"></span> |
+    Visitors: <span id="uv-count"></span> |
     Views: <span id="pv-count"></span>
   </span>
   <script
