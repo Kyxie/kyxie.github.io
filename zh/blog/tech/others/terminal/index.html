@@ -271,15 +271,15 @@
         }
     </script>
   <div class="post-content"><p>自己平时喜欢乱搞一些花里胡哨的东西，嫌Windows自带的终端实在是太丑了，打算使用Oh My Posh美化一下，这篇教程基于Windows 11自带的Terminal。</p>
-<h3 id="字体">字体<a hidden class="anchor" aria-hidden="true" href="#字体">#</a></h3>
+<h2 id="字体">字体<a hidden class="anchor" aria-hidden="true" href="#字体">#</a></h2>
 <p>我使用的字体是<code>CodeNewRoman Nerd Font</code>，这个字体同样是我博客的字体，可以从<a href="https://www.nerdfonts.com/font-downloads">这里</a>下载，下载后安装即可，也可以在VS Code上使用这个字体。</p>
-<h3 id="下载-oh-my-posh">下载 oh-my-posh<a hidden class="anchor" aria-hidden="true" href="#下载-oh-my-posh">#</a></h3>
+<h2 id="下载-oh-my-posh">下载 oh-my-posh<a hidden class="anchor" aria-hidden="true" href="#下载-oh-my-posh">#</a></h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>winget install JanDeDobbeleer.OhMyPosh
-</span></span></code></pre></div><h3 id="终端设置">终端设置<a hidden class="anchor" aria-hidden="true" href="#终端设置">#</a></h3>
+</span></span></code></pre></div><h2 id="终端设置">终端设置<a hidden class="anchor" aria-hidden="true" href="#终端设置">#</a></h2>
 <p>我这里直接修改了<code>Windows PowerShell</code>的配置，如果不想破坏默认的配置也可以新建一个配置文件。</p>
 <p>在<code>配色方案</code>的选项下，我选择的<code>Campbell</code>，但是我打开设置的json file里面把第一个主题的<code>background</code>改成了<code>#0C0C0C</code>，避免了纯黑的背景。</p>
 <p>在<code>Windows PowerShell</code>的<code>常规</code>选项下，取消勾选使用父进程目录，在<code>外观</code>选项下选取下载的字体<code>CodeNowRoman Nerd Font</code>。</p>
-<h3 id="文件配置">文件配置<a hidden class="anchor" aria-hidden="true" href="#文件配置">#</a></h3>
+<h2 id="文件配置">文件配置<a hidden class="anchor" aria-hidden="true" href="#文件配置">#</a></h2>
 <p>在终端输入</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo $profile
 </span></span></code></pre></div><p>找到这个文件，如果找不到自己新建一个。</p>
@@ -287,13 +287,13 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>oh-my-posh init pwsh --config <span style="color:#e6db74">&#39;C:/Users/Posh/jandedobbeleer.omp.json&#39;</span> | Invoke-Expression
 </span></span></code></pre></div><p>保存后运行：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>. $profile
-</span></span></code></pre></div><h3 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h3>
+</span></span></code></pre></div><h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
 <p>如果运行失败，可能需要更新<a href="https://github.com/PowerShell/PSReadLine#installation">PSReadLine</a>。</p>
 <p>如果识别不了icon，大概率字体的问题，查看是否在PowerShell的页面下设置字体为Nerd字体。</p>
-<h3 id="效果展示">效果展示<a hidden class="anchor" aria-hidden="true" href="#效果展示">#</a></h3>
+<h2 id="效果展示">效果展示<a hidden class="anchor" aria-hidden="true" href="#效果展示">#</a></h2>
 <p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/5e626f87ed4b70ef936a9bfbd235be8d.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Bash"  />
 </p>
-<h3 id="macos--linux">MacOS &amp; Linux<a hidden class="anchor" aria-hidden="true" href="#macos--linux">#</a></h3>
+<h2 id="macos--linux">MacOS &amp; Linux<a hidden class="anchor" aria-hidden="true" href="#macos--linux">#</a></h2>
 <p>对于MacOS和Linux来说也非常推荐使用<code>zsh</code>，尤其是Linux，因为MacOS应该已经把zsh作为默认终端了，zsh的好处就是可以自动补全，而且比<code>bash</code>好看多了。</p>
 <p>安装了zsh之后可以继续安装<a href="https://ohmyz.sh/#install">oh-my-zsh</a>，用来管理主题和其他插件。</p>
 
@@ -338,7 +338,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    Visitors: <span id="uv-count"></span> |
+    | Visitors: <span id="uv-count"></span>
     Views: <span id="pv-count"></span>
   </span>
   <script

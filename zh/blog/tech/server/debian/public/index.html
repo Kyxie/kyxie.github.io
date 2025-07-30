@@ -283,8 +283,8 @@
   <div class="post-content"><p>我们在浏览器地址栏输入<code>localhost + 端口</code> 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多的配置。常见的方法有两个，Nginx和使用内网穿透。</p>
 <p>先说一下结论，Nginx比较适合部署在云服务器，而在自己家里的小服务器部署的服务更适合用内网穿透。一般云服务器都有公网IP且443端口是开放的，配置好之后我们就可以直接输入域名访问了。假设你的服务在家里，家里网络的HTTP 80和HTTPS 443端口一般是被运营商屏蔽了的，目的基本上除了安全就是防止用户因为商业用途私自搭建网站。</p>
 <p>解决的办法就是不用443端口了，使用一个别的端口然后Nginx再转发到443端口，那么访问服务的时候就得加上新的端口，比如<code>yourdomain.com:4433</code>，但是我个人感觉不是很优雅。第二个办法就是使用内网穿透，常见的解决方案有Cloudflared。</p>
-<h3 id="nginx">Nginx<a hidden class="anchor" aria-hidden="true" href="#nginx">#</a></h3>
-<h4 id="使用80443端口">使用80/443端口<a hidden class="anchor" aria-hidden="true" href="#使用80443端口">#</a></h4>
+<h2 id="nginx">Nginx<a hidden class="anchor" aria-hidden="true" href="#nginx">#</a></h2>
+<h3 id="使用80443端口">使用80/443端口<a hidden class="anchor" aria-hidden="true" href="#使用80443端口">#</a></h3>
 <ul>
 <li>
 <p>首先创建一个新的文件夹，假设就放在<code>~</code>下，那么目录结构为</p>
@@ -347,16 +347,16 @@
 </span></span></code></pre></div><p>这样Nginx和Let&rsquo;s Encrypt就启动好了，后面当我们暴露服务（<a href="/zh/blog/tech/server/debian/vaultwarden/#nginx">这篇文章</a>讲述了我使用这个Nginx来配置Vaultwarden服务）的时候，就可以直接使用Nginx做反向代理了。</p>
 </li>
 </ul>
-<h4 id="使用其他端口">使用其他端口<a hidden class="anchor" aria-hidden="true" href="#使用其他端口">#</a></h4>
+<h3 id="使用其他端口">使用其他端口<a hidden class="anchor" aria-hidden="true" href="#使用其他端口">#</a></h3>
 <p>只需要将ports改成其他的端口，比如</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ports:
 </span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;8080:80&#34;</span>
 </span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;8443:443&#34;</span>
 </span></span></code></pre></div><p>注意事项：Let&rsquo;s Encrypt仍然需要80端口用于更新证书，而且这个是无法修改的，所以如果这两个端口被封掉，可以进行访问，但是只能手动更新证书了。</p>
-<h3 id="cloudflared">Cloudflared<a hidden class="anchor" aria-hidden="true" href="#cloudflared">#</a></h3>
+<h2 id="cloudflared">Cloudflared<a hidden class="anchor" aria-hidden="true" href="#cloudflared">#</a></h2>
 <p>Cloudflared是Cloudflared推出的内网穿透客户端，基本原理就是本地安装一个客户端，能和Cloudflare的服务器通信，这样就形成了一条隧道，当用户访问我们站点的时候，Cloudflare先接收，然后再把请求转发给miniPC，从而实现公网访问。</p>
 <p>使用这种方法我们甚至不需要公网IP，也不用开端口，Cloudflare能帮你做一些基本的防护。但是缺点是访问会受到Cloudflare的限制，国内访问可能会比较慢，以及需要一个域名。</p>
-<h4 id="cloudflare配置">Cloudflare配置<a hidden class="anchor" aria-hidden="true" href="#cloudflare配置">#</a></h4>
+<h3 id="cloudflare配置">Cloudflare配置<a hidden class="anchor" aria-hidden="true" href="#cloudflare配置">#</a></h3>
 <ul>
 <li>
 <p>我们要去Cloudflare官网获取凭证，在Cloudflare开启Zero Trust，选择免费版即可</p>
@@ -390,7 +390,7 @@
 <p>这样云端就算是完成了，我们来配置miniPC端</p>
 </li>
 </ul>
-<h4 id="minipc">MiniPC<a hidden class="anchor" aria-hidden="true" href="#minipc">#</a></h4>
+<h3 id="minipc">MiniPC<a hidden class="anchor" aria-hidden="true" href="#minipc">#</a></h3>
 <ul>
 <li>
 <p>创建一个新的文件夹，就叫<code>cloudflared</code>，可以和其他的服务并列</p>
@@ -427,7 +427,7 @@
 <p>这样就算是配置完了，我们后面如果需要添加服务就新建一个域名到cloudflared即可</p>
 </li>
 </ul>
-<h3 id="其他方法">其他方法<a hidden class="anchor" aria-hidden="true" href="#其他方法">#</a></h3>
+<h2 id="其他方法">其他方法<a hidden class="anchor" aria-hidden="true" href="#其他方法">#</a></h2>
 <p>还有些协议就就不一一尝试了，原理基本上都和上面两个相同：</p>
 <ul>
 <li><a href="https://caddyserver.com/">Caddy</a>：方向代理</li>
@@ -484,7 +484,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    Visitors: <span id="uv-count"></span> |
+    | Visitors: <span id="uv-count"></span>
     Views: <span id="pv-count"></span>
   </span>
   <script

@@ -270,7 +270,7 @@
     </script>
   <div class="post-content"><p>现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳转入口，显示Docker容器的运行状态，监视各种硬件信息（运行在Docker容器内这个似乎难以实现，干脆命令行top吧，我对这个也不太在乎），最好还能提供文件服务（完全可以被<a href="/zh/blog/tech/server/debian/samba">Samba</a>代替）。</p>
 <p>这种Dashboard类的服务可以挂载在80端口，这样浏览器直接输入IP就能访问Dashboard页面了，我尝试了下面几个。</p>
-<h3 id="homer">Homer<a hidden class="anchor" aria-hidden="true" href="#homer">#</a></h3>
+<h2 id="homer">Homer<a hidden class="anchor" aria-hidden="true" href="#homer">#</a></h2>
 <p>我试过<a href="https://github.com/bastienwirtz/homer">Homer</a>，但是它有点过于轻量级了，它本身只是一个静态的面板，不会直接管理服务状态、容器、文件等内容，只是跳转和展示链接用的。下面是部署流程：</p>
 <ul>
 <li>
@@ -376,7 +376,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
 </span></span></code></pre></div></li>
 </ul>
-<h3 id="portainer">Portainer<a hidden class="anchor" aria-hidden="true" href="#portainer">#</a></h3>
+<h2 id="portainer">Portainer<a hidden class="anchor" aria-hidden="true" href="#portainer">#</a></h2>
 <p><a href="https://www.portainer.io/">Portainer</a>是个专门用于管理Docker容器状态的管理面板，有点类似于网页版的Docker Desktop，我平时还是更多用命令行操作Docker，总之可以不用但是不能没有吧，下面是部署方式</p>
 <ul>
 <li>
@@ -393,7 +393,7 @@
 </span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./data:/data</span>
 </span></span></code></pre></div></li>
 </ul>
-<h3 id="dashy">Dashy<a hidden class="anchor" aria-hidden="true" href="#dashy">#</a></h3>
+<h2 id="dashy">Dashy<a hidden class="anchor" aria-hidden="true" href="#dashy">#</a></h2>
 <p><a href="https://dashy.to/">Dashy</a>和Homer很像（而且GitHub上作者头像的背景也很像不知道为什么），也是一个提供各个服务跳转的页面，而且提供了非常多<a href="https://dashy.to/docs/widgets/">小组件</a>，且都很好看，作为一个Dashboard我觉得非常不错。</p>
 <ul>
 <li>
@@ -518,7 +518,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    Visitors: <span id="uv-count"></span> |
+    | Visitors: <span id="uv-count"></span>
     Views: <span id="pv-count"></span>
   </span>
   <script

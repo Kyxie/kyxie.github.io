@@ -274,13 +274,13 @@
   <div class="post-content"><p>Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置为使用Vaultwarden进行Auto Fill，我之前一直是IOS自带的的，手机又一直在用Safari，所以在电脑上注册了账号手机还得重新保存一遍，因为害怕忘记所以所有的密码都只能设置成一样，这样的风险实在是太大了。</p>
 <p>密码管理器这种最好是部署在自己的服务器上，使用官方的话那就和IOS/Chrome差别不大了，这篇文章记录一下如何将它用Docker部署在我的miniPC上，使用Docker Compose和Cloudflared。</p>
 <p>还是要提醒一句，自己管理密码还是很烦心的，虽然安全性提高了太多，但是精力也是同步增长，后期导出导入密码，数据备份都会是一个不小的问题。</p>
-<h3 id="部署">部署<a hidden class="anchor" aria-hidden="true" href="#部署">#</a></h3>
+<h2 id="部署">部署<a hidden class="anchor" aria-hidden="true" href="#部署">#</a></h2>
 <p>这里我试过两种部署方法，Nginx和Cloudflared，两种各有优劣。这篇文章主要将如何将服务加入他们的网络，前置配置请看之前的文章：</p>
 <ul>
 <li>Nginx：<a href="/zh/blog/tech/server/debian/public/#nginx">将自己的服务暴露公网 | Kunyang&rsquo;s Blog</a></li>
 <li>Cloudflared：<a href="/zh/blog/tech/server/debian/public/#cloudflared">将自己的服务暴露公网 | Kunyang&rsquo;s Blog</a></li>
 </ul>
-<h4 id="nginx">Nginx<a hidden class="anchor" aria-hidden="true" href="#nginx">#</a></h4>
+<h3 id="nginx">Nginx<a hidden class="anchor" aria-hidden="true" href="#nginx">#</a></h3>
 <ul>
 <li>
 <p>首先我们需要配置好Nginx</p>
@@ -340,7 +340,7 @@
 <p>之后注册好域名，开放路由器的443端口，就可以公网访问了。</p>
 </li>
 </ul>
-<h4 id="cloudflared">Cloudflared<a hidden class="anchor" aria-hidden="true" href="#cloudflared">#</a></h4>
+<h3 id="cloudflared">Cloudflared<a hidden class="anchor" aria-hidden="true" href="#cloudflared">#</a></h3>
 <ul>
 <li>
 <p>首先我们需要配置好Cloudflared</p>
@@ -461,7 +461,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    Visitors: <span id="uv-count"></span> |
+    | Visitors: <span id="uv-count"></span>
     Views: <span id="pv-count"></span>
   </span>
   <script

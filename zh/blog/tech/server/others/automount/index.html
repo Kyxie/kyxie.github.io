@@ -277,7 +277,7 @@
     </script>
   <div class="post-content"><p>这是现在基本上所有电脑都能实现的功能了，无非就是后台自动搜索设备，然后自动挂载。可能这个场景在没有GUI版的Linux用处不大，因此每次插入U盘都得手动挂载一遍，于是决定写个脚本实现自动挂载。</p>
 <p>我们要实现的效果就是，插入U盘，系统自动把U盘挂载在<code>/path-to-mount/label</code>路径下，label是U盘的名称（注意不要插入两张Label名字相同的SD卡）。</p>
-<h3 id="自动挂载">自动挂载<a hidden class="anchor" aria-hidden="true" href="#自动挂载">#</a></h3>
+<h2 id="自动挂载">自动挂载<a hidden class="anchor" aria-hidden="true" href="#自动挂载">#</a></h2>
 <ul>
 <li>
 <p>查看SD卡在miniPC的挂载路径</p>
@@ -363,13 +363,13 @@
 </span></span></code></pre></div></li>
 </ul>
 <p>这样当你在Linux中新插入U盘后，就会在特定的位置新创建一个文件夹，然后访问你U盘的文件了</p>
-<h3 id="卸载u盘">卸载U盘<a hidden class="anchor" aria-hidden="true" href="#卸载u盘">#</a></h3>
+<h2 id="卸载u盘">卸载U盘<a hidden class="anchor" aria-hidden="true" href="#卸载u盘">#</a></h2>
 <p>当希望拔出U盘时，一定要先卸载U盘，否则有可能造成文件损坏，我们这里还是先使用手动的卸载方法，输入命令</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo umount /path_to_disk
 </span></span></code></pre></div><p>如果什么也不返回，就可以安全地插拔U盘了，如果挂载点被占用，可以查看被谁占用（注意如果终端在U盘路径内也会卸载不成功）：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo lsof +D /path_to_disk
 </span></span></code></pre></div><p>卸载之后在本地的文件夹不会删除，变成了普通的文件夹，如果需要可以手动删除。</p>
-<h3 id="raw文件">Raw文件<a hidden class="anchor" aria-hidden="true" href="#raw文件">#</a></h3>
+<h2 id="raw文件">Raw文件<a hidden class="anchor" aria-hidden="true" href="#raw文件">#</a></h2>
 <p>挂载U盘 / SD卡很大原因是为了配合File Browser自建文件浏览器，方便传送文件给朋友，比如我把相机插到miniPC上，朋友就可以访问和下载相机SD卡的照片。我的相机是Nikon Zfc，它可以配置拍一次照片导出一张RAW文件（<code>.NEF</code>）用于精修，一张<code>.jpg</code>用于预览。但是File Browser是无法在线预览RAW文件的。所以我们可以在<code>/usr/local/bin/auto-mount-usb.sh</code>脚本里添加一步，比如插入名为<code>nikon-x</code>的SD卡后自动把RAW文件挪到一个新建的子文件夹中，然后在File Browser里就可以分类显示<code>.jpg</code>和<code>.NEF</code>了。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># ---------------- Nikon 文件分类逻辑 ----------------</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$LABEL<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> nikon-* <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
@@ -393,7 +393,7 @@
 </span></span><span style="display:flex;"><span>        logger <span style="color:#e6db74">&#34;Target directory </span>$TARGET_DIR<span style="color:#e6db74"> not found. Skipping file classification.&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
-</span></span></code></pre></div><h3 id="lrf文件">LRF文件<a hidden class="anchor" aria-hidden="true" href="#lrf文件">#</a></h3>
+</span></span></code></pre></div><h2 id="lrf文件">LRF文件<a hidden class="anchor" aria-hidden="true" href="#lrf文件">#</a></h2>
 <p>同样大疆在拍摄视频之后会出现一个LRF文件和一个MP4文件，我们可以加入这条命令让其自动区分</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># ---------------- DJI 文件分类逻辑 ----------------</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$LABEL<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span>~ ^dji-<span style="color:#f92672">[</span>0-9<span style="color:#f92672">]</span>+$ <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
@@ -417,7 +417,7 @@
 </span></span><span style="display:flex;"><span>        logger <span style="color:#e6db74">&#34;Target directory </span>$TARGET_DIR<span style="color:#e6db74"> not found. Skipping file classification.&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
-</span></span></code></pre></div><h4 id="注意事项">注意事项<a hidden class="anchor" aria-hidden="true" href="#注意事项">#</a></h4>
+</span></span></code></pre></div><h3 id="注意事项">注意事项<a hidden class="anchor" aria-hidden="true" href="#注意事项">#</a></h3>
 <ul>
 <li>配合File Browser的Docker容器使用时，需要先挂载USB，然后再运行Docker容器，否则会找不到文件，如果容器已经运行，可以down再up重启一遍</li>
 <li>这样脚本在插入USB后就会马上对文件进行分类，建议先做备份，然后再插入miniPC，以免造成文件丢失</li>
@@ -471,7 +471,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    Visitors: <span id="uv-count"></span> |
+    | Visitors: <span id="uv-count"></span>
     Views: <span id="pv-count"></span>
   </span>
   <script

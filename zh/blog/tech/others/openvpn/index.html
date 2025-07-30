@@ -276,9 +276,9 @@
   <div class="post-content"><blockquote>
 <p>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client</p>
 </blockquote>
-<h3 id="tls模式">TLS模式<a hidden class="anchor" aria-hidden="true" href="#tls模式">#</a></h3>
+<h2 id="tls模式">TLS模式<a hidden class="anchor" aria-hidden="true" href="#tls模式">#</a></h2>
 <p>假设我们使用A来充当server，B来充当client</p>
-<h4 id="tls-server">TLS Server<a hidden class="anchor" aria-hidden="true" href="#tls-server">#</a></h4>
+<h3 id="tls-server">TLS Server<a hidden class="anchor" aria-hidden="true" href="#tls-server">#</a></h3>
 <ul>
 <li>
 <p>在A中下载OpenVPN</p>
@@ -331,7 +331,7 @@
 <p>这时如果查看IP地址可以看到<code>tun0</code>接口，地址是<code>10.8.0.1</code></p>
 </li>
 </ul>
-<h4 id="tls-client">TLS Client<a hidden class="anchor" aria-hidden="true" href="#tls-client">#</a></h4>
+<h3 id="tls-client">TLS Client<a hidden class="anchor" aria-hidden="true" href="#tls-client">#</a></h3>
 <ul>
 <li>
 <p>在B中下载OpenVPN</p>
@@ -381,9 +381,9 @@
 </span></span></code></pre></div><p>成功，说明OpenVPN成功建立</p>
 </li>
 </ul>
-<h3 id="psk模式">PSK模式<a hidden class="anchor" aria-hidden="true" href="#psk模式">#</a></h3>
+<h2 id="psk模式">PSK模式<a hidden class="anchor" aria-hidden="true" href="#psk模式">#</a></h2>
 <p>PSK模式不需要配置复杂的keys，比较简单，但是安全性也会随之降低，这里我们同样让A充当Server，B充当Client</p>
-<h4 id="psk-server">PSK Server<a hidden class="anchor" aria-hidden="true" href="#psk-server">#</a></h4>
+<h3 id="psk-server">PSK Server<a hidden class="anchor" aria-hidden="true" href="#psk-server">#</a></h3>
 <ul>
 <li>
 <p>在A中生成<code>psk.key</code>，并且复制一份给B</p>
@@ -412,7 +412,7 @@
 </span></span><span style="display:flex;"><span>sudo openvpn --config server.conf
 </span></span></code></pre></div></li>
 </ul>
-<h4 id="psk-client">PSK Client<a hidden class="anchor" aria-hidden="true" href="#psk-client">#</a></h4>
+<h3 id="psk-client">PSK Client<a hidden class="anchor" aria-hidden="true" href="#psk-client">#</a></h3>
 <ul>
 <li>
 <p>编写<code>client.conf</code></p>
@@ -484,7 +484,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    Visitors: <span id="uv-count"></span> |
+    | Visitors: <span id="uv-count"></span>
     Views: <span id="pv-count"></span>
   </span>
   <script

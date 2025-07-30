@@ -269,7 +269,7 @@
         }
     </script>
   <div class="post-content"><p>通过使用ssh keys我们可以免密登录Linux（且推荐这么使用），这样以后ssh到Linux的时候就不需要每次填写密码了。</p>
-<h3 id="生成密钥对">生成密钥对<a hidden class="anchor" aria-hidden="true" href="#生成密钥对">#</a></h3>
+<h2 id="生成密钥对">生成密钥对<a hidden class="anchor" aria-hidden="true" href="#生成密钥对">#</a></h2>
 <ul>
 <li>
 <p>可以在任何地方生成，客户端，服务器，第三方，甚至在Vaultwarden方便管理，只要保证不要随意泄露即可，Windows / Mac / Linux可以输入命令</p>
@@ -279,7 +279,7 @@
 <p>一般会生成在<code>C:\Users\Username\.ssh\</code>，而且都是成对生成的，会有一个公钥<code>id_rsa.pub</code>或者<code>id_ed25519.pub</code>和一个私钥</p>
 </li>
 </ul>
-<h3 id="server">Server<a hidden class="anchor" aria-hidden="true" href="#server">#</a></h3>
+<h2 id="server">Server<a hidden class="anchor" aria-hidden="true" href="#server">#</a></h2>
 <ul>
 <li>
 <p>Server端需要保留公钥，Client端保留私钥（不能泄露）</p>
@@ -311,7 +311,7 @@
 </span></span><span style="display:flex;"><span>rm id_ed25519.pub
 </span></span></code></pre></div></li>
 </ul>
-<h3 id="client">Client<a hidden class="anchor" aria-hidden="true" href="#client">#</a></h3>
+<h2 id="client">Client<a hidden class="anchor" aria-hidden="true" href="#client">#</a></h2>
 <ul>
 <li>
 <p>Client端可以在<code>config</code>文件指定密钥对，Windows在<code>C:\Users\Username\.ssh\config</code></p>
@@ -376,7 +376,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    Visitors: <span id="uv-count"></span> |
+    | Visitors: <span id="uv-count"></span>
     Views: <span id="pv-count"></span>
   </span>
   <script

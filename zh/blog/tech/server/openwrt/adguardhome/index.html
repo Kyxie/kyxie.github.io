@@ -273,10 +273,10 @@
         }
     </script>
   <div class="post-content"><p>AdguardHome是一个去广告应用，但是它不仅仅能去广告，还能做一个局域网的DNS服务器。</p>
-<h3 id="安装">安装<a hidden class="anchor" aria-hidden="true" href="#安装">#</a></h3>
+<h2 id="安装">安装<a hidden class="anchor" aria-hidden="true" href="#安装">#</a></h2>
 <p>这个应用因为算是网络管理相关，我就安装在了OpenWrt上，在编译时只需要勾选luci-app-adguardhome即可。</p>
 <p>然后在OpenWrt的管理页面然后下载核心（可能需要科学上网）。</p>
-<h3 id="去广告">去广告<a hidden class="anchor" aria-hidden="true" href="#去广告">#</a></h3>
+<h2 id="去广告">去广告<a hidden class="anchor" aria-hidden="true" href="#去广告">#</a></h2>
 <ul>
 <li>
 <p>Web管理页面默认在3000端口</p>
@@ -297,7 +297,7 @@
 <p>之后把设备的DNS服务器改为OpenWrt即可</p>
 </li>
 </ul>
-<h3 id="默认dns服务器">默认DNS服务器<a hidden class="anchor" aria-hidden="true" href="#默认dns服务器">#</a></h3>
+<h2 id="默认dns服务器">默认DNS服务器<a hidden class="anchor" aria-hidden="true" href="#默认dns服务器">#</a></h2>
 <ul>
 <li>
 <p>OpenWrt默认的DNS服务器为<code>dnsmasq</code>，它在监听53端口，既然我们已经安装了AdguardHome，完全可以把它作为DNS服务器，在OpenWrt输入命令</p>
@@ -322,7 +322,7 @@
 <p>这样AdguardHome就变成默认DNS服务器了，默认服务器的好处就是你可以用它来监控哪个设备请求了哪些服务，否则各个设备的请求得先被<code>dnsmasq</code>接收，然后再转到Adguard Home，这样在Adguard Home看到的所有的请求都来自于<code>localhost</code></p>
 </li>
 </ul>
-<h3 id="给设备命名">给设备命名<a hidden class="anchor" aria-hidden="true" href="#给设备命名">#</a></h3>
+<h2 id="给设备命名">给设备命名<a hidden class="anchor" aria-hidden="true" href="#给设备命名">#</a></h2>
 <ul>
 <li>
 <p>把Adguard Home设置为默认DNS服务器还有个好处就是可以单独命名各个设备，之前访问debian服务器还得记住它的IP地址，现在只要记住设备的域名就可以了</p>
@@ -336,7 +336,7 @@
 <p>然后浏览器访问<code>http://openwrt.home</code>就能直接访问到OpenWrt的Web Manager了</p>
 </li>
 </ul>
-<h3 id="修改用户名密码">修改用户名密码<a hidden class="anchor" aria-hidden="true" href="#修改用户名密码">#</a></h3>
+<h2 id="修改用户名密码">修改用户名密码<a hidden class="anchor" aria-hidden="true" href="#修改用户名密码">#</a></h2>
 <ul>
 <li>
 <p>其实这个用户名密码没有很重要，因为Adguard Home肯定只在内网运行（我没有把OpenWrt部署到公网），但是为了以防万一还是修改一下用户名密码，<code>admin</code>/<code>admin</code>实在是太危险了</p>
@@ -396,7 +396,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    Visitors: <span id="uv-count"></span> |
+    | Visitors: <span id="uv-count"></span>
     Views: <span id="pv-count"></span>
   </span>
   <script

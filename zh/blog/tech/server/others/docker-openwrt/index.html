@@ -270,7 +270,7 @@
             return rect.top + win.pageYOffset;
         }
     </script>
-  <div class="post-content"><h3 id="安装docker">安装Docker<a hidden class="anchor" aria-hidden="true" href="#安装docker">#</a></h3>
+  <div class="post-content"><h2 id="安装docker">安装Docker<a hidden class="anchor" aria-hidden="true" href="#安装docker">#</a></h2>
 <ul>
 <li>
 <p>按照<a href="https://docs.docker.com/engine/install/ubuntu/">Docker官网</a>的教程，我们首先卸载所有冲突的包，<code>apt-get</code>可能会提示没有安装这些包</p>
@@ -315,9 +315,9 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 </span></span></code></pre></div></li>
 </ul>
-<h3 id="编译">编译<a hidden class="anchor" aria-hidden="true" href="#编译">#</a></h3>
+<h2 id="编译">编译<a hidden class="anchor" aria-hidden="true" href="#编译">#</a></h2>
 <p>编译就不多说了，使用<a href="https://github.com/Kyxie/Actions-Openwrt">GitHub</a>云编译，编译完成后在Release中能找到<code> openwrt-x86-64-generic-rootfs.tar.gz</code>文件，我们把它下载下来制作成Docker镜像。</p>
-<h3 id="制作为docker镜像">制作为Docker镜像<a hidden class="anchor" aria-hidden="true" href="#制作为docker镜像">#</a></h3>
+<h2 id="制作为docker镜像">制作为Docker镜像<a hidden class="anchor" aria-hidden="true" href="#制作为docker镜像">#</a></h2>
 <p>这一步其实也完全并入GitHub Actions中，我暂时先手动制作，等有时间了再更新GitHub Actions。</p>
 <ul>
 <li>
@@ -332,7 +332,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build -t openwrt:latest .
 </span></span></code></pre></div></li>
 </ul>
-<h3 id="在linux上部署">在Linux上部署<a hidden class="anchor" aria-hidden="true" href="#在linux上部署">#</a></h3>
+<h2 id="在linux上部署">在Linux上部署<a hidden class="anchor" aria-hidden="true" href="#在linux上部署">#</a></h2>
 <p>由于macvlan限制了宿主机和Docker容器之间的通信，我执行完这些命令之后还是无法ping通OpenWrt的IP地址，以下内容仅作为个人记录。</p>
 <ul>
 <li>
@@ -423,7 +423,7 @@
     &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
   </span>
   <span id="umami-stats">
-    Visitors: <span id="uv-count"></span> |
+    | Visitors: <span id="uv-count"></span>
     Views: <span id="pv-count"></span>
   </span>
   <script
