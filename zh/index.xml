@@ -6,7 +6,16 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 12 Jul 2025 11:04:22 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Sep 2025 22:04:53 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>地平线5车辆调教指南</title>
+      <link>https://kyxie.me/zh/blog/game/forza-horizon-5/car-turning/</link>
+      <pubDate>Sat, 20 Sep 2025 22:04:53 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/forza-horizon-5/car-turning/</guid>
+      <description>B站Up主@奶爸爱赛车的视频笔记 &lt;!DOCTYPE HTML&gt; 基本概念 PI，Performance Index，车辆的性能等级，地平线5共有七个分组 100 – 500 → D级车 501 – 600</description>
+    </item>
+    
     <item>
       <title>Minecraft安装客户端</title>
       <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-client/</link>
@@ -197,6 +206,15 @@
     </item>
     
     <item>
+      <title>加拿大移民被安调经历</title>
+      <link>https://kyxie.me/zh/blog/pr/mandamus/</link>
+      <pubDate>Mon, 04 Aug 2025 13:54:00 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/pr/mandamus/</guid>
+      <description>背景 我移民加拿大走的是安省硕博通道，我申请加拿大移民的详细时间线详见：OINP移民加拿大🇨🇦时间线 | Kunyang&amp;rsquo;s Blog。可以看到安调已经很久了，期间</description>
+    </item>
+    
+    <item>
       <title>使用udev自动挂载U盘</title>
       <link>https://kyxie.me/zh/blog/tech/server/others/automount/</link>
       <pubDate>Sat, 14 Jun 2025 17:36:33 -0400</pubDate>
@@ -342,11 +360,11 @@
     
     <item>
       <title>OINP移民加拿大🇨🇦时间线</title>
-      <link>https://kyxie.me/zh/blog/others/pr/</link>
+      <link>https://kyxie.me/zh/blog/pr/timeline/</link>
       <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/zh/blog/others/pr/</guid>
-      <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
+      <guid>https://kyxie.me/zh/blog/pr/timeline/</guid>
+      <description>Dec 30, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
     </item>
     
     <item>
