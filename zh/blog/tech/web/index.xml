@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>个人网站 🌐 on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.me/zh/blog/tech/web/</link>
+    <description>Recent content in 个人网站 🌐 on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/blog/tech/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo &#43; PaperMod搭建技术博客</title>
+      <link>https://kyxie.me/zh/blog/tech/web/papermod/</link>
+      <pubDate>Fri, 15 Apr 2022 00:28:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/web/papermod/</guid>
+      <description>安装过程 首先需要安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo可以直接用Winget来安装，打开终端输入 winget</description>
+    </item>
+    
+    <item>
+      <title>使用Docker部署Umami</title>
+      <link>https://kyxie.me/zh/blog/tech/web/umami/</link>
+      <pubDate>Thu, 26 Jun 2025 22:20:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/web/umami/</guid>
+      <description>Umami是个个人网站站点数据分析的工具，支持自己部署，使用他们的服务器好像最多可以跟踪三个站点。我还试过使用Plausible，但是对我而</description>
+    </item>
+    
+  </channel>
+</rss>

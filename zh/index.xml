@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Kunyang&#39;s Blog</title>
+    <link>https://kyxie.me/zh/</link>
+    <description>Recent content on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 20 Sep 2025 22:04:53 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>地平线5车辆调教指南</title>
+      <link>https://kyxie.me/zh/blog/game/forza-horizon-5/car-turning/</link>
+      <pubDate>Sat, 20 Sep 2025 22:04:53 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/forza-horizon-5/car-turning/</guid>
+      <description>B站Up主@奶爸爱赛车的视频笔记 &lt;!DOCTYPE HTML&gt; 基本概念 PI，Performance Index，车辆的性能等级，地平线5共有七个分组 100 – 500 → D级车 501 – 600</description>
+    </item>
+    
+    <item>
+      <title>Minecraft安装客户端</title>
+      <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-client/</link>
+      <pubDate>Fri, 13 Dec 2024 00:55:12 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/minecraft/minecraft-client/</guid>
+      <description>我本人也算是Minecraft的老粉丝了，初中就开始在手机上玩，还记得高一的时候每天晚上10点上完晚自习回家之后都得盖个楼修个桥的。后来换手</description>
+    </item>
+    
+    <item>
+      <title>使用Docker部署Minecraft服务器</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/minecraft/</link>
+      <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/minecraft/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>树莓派4B&#43;安装OpenWrt用作旁路由</title>
+      <link>https://kyxie.me/zh/blog/tech/server/openwrt/raspberrypi-openwrt/</link>
+      <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/openwrt/raspberrypi-openwrt/</guid>
+      <description>我的折腾历史 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界服务</description>
+    </item>
+    
+    <item>
+      <title>Specialized Tarmac SL6装车</title>
+      <link>https://kyxie.me/zh/blog/bike/8170/</link>
+      <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/bike/8170/</guid>
+      <description>好久没折腾自行车了，最近刚换了roval的破风把，准备打算在车把也内走线，这样车把握起来就爽快多了。我自己拆车试了一下，结果被Shimano</description>
+    </item>
+    
+    <item>
+      <title>加拿大🇨🇦信用卡薅羊毛心得</title>
+      <link>https://kyxie.me/zh/blog/wool/credit-cards/</link>
+      <pubDate>Thu, 04 Jan 2024 23:58:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/wool/credit-cards/</guid>
+      <description>Aug 2021, Bank of China 我的第一张信用卡是出国前和我爹一起去中国银行办的卓隽，我用我爹的副卡，不太清楚额度是多少。我只是刚到加拿大的前几天用这张卡，出了隔</description>
+    </item>
+    
+    <item>
+      <title>Hugo &#43; PaperMod搭建技术博客</title>
+      <link>https://kyxie.me/zh/blog/tech/web/papermod/</link>
+      <pubDate>Fri, 15 Apr 2022 00:28:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/web/papermod/</guid>
+      <description>安装过程 首先需要安装Hugo，安装Hugo需要利用一个包管理工具，对于Windows系统Hugo可以直接用Winget来安装，打开终端输入 winget</description>
+    </item>
+    
+    <item>
+      <title>使用Docker部署Strava数据分析面板</title>
+      <link>https://kyxie.me/zh/blog/bike/strava/</link>
+      <pubDate>Thu, 26 Jun 2025 22:51:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/bike/strava/</guid>
+      <description>翻GitHub找到了statistics-for-strava这个仓库，看着更新还挺频繁的，文档也非常完善，于是打算自己部署一下。 部署 首先要</description>
+    </item>
+    
+    <item>
+      <title>使用Docker部署Umami</title>
+      <link>https://kyxie.me/zh/blog/tech/web/umami/</link>
+      <pubDate>Thu, 26 Jun 2025 22:20:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/web/umami/</guid>
+      <description>Umami是个个人网站站点数据分析的工具，支持自己部署，使用他们的服务器好像最多可以跟踪三个站点。我还试过使用Plausible，但是对我而</description>
+    </item>
+    
+    <item>
+      <title>将自己的服务暴露公网</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/public/</link>
+      <pubDate>Sun, 08 Jun 2025 23:26:42 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/public/</guid>
+      <description>我们在浏览器地址栏输入localhost + 端口 就可以在本机测试自己做的网站，但是如果想把服务暴露在公网，让别人访问url就能访问，则需要更多</description>
+    </item>
+    
+    <item>
+      <title>使用Docker部署Minecraft服务器</title>
+      <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/</link>
+      <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/</guid>
+      <description>上一篇文章讲述了Windows下载安装Minecraft终端，这样我们就可以在自己的电脑上玩我的世界了，但是如何和朋友一起玩呢，主要有三种方</description>
+    </item>
+    
+    <item>
+      <title>OpenWrt配置Wireguard</title>
+      <link>https://kyxie.me/zh/blog/tech/server/openwrt/wireguard/</link>
+      <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/openwrt/wireguard/</guid>
+      <description>Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连</description>
+    </item>
+    
+    <item>
+      <title>我使用过的加拿大🇨🇦支票账户</title>
+      <link>https://kyxie.me/zh/blog/wool/checking-accounts/</link>
+      <pubDate>Sat, 18 May 2024 10:51:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/wool/checking-accounts/</guid>
+      <description>Sep 2021, Scotiabank 之前办学签来加拿大走SDS用的是Scotiabank，因此我第一张checking account是Scotiabank的。学生账户的话</description>
+    </item>
+    
+    <item>
+      <title>使用Docker部署密码管理器</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/vaultwarden/</link>
+      <pubDate>Tue, 21 Jan 2025 11:51:00 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/vaultwarden/</guid>
+      <description>Vaultwarden是一个密码管理器，它有个好处就是可以跨平台使用，网页端可以添加Chrome插件，IOS端可以在password中设置为</description>
+    </item>
+    
+    <item>
+      <title>OpenWrt配置DDNS</title>
+      <link>https://kyxie.me/zh/blog/tech/server/openwrt/ddns/</link>
+      <pubDate>Sun, 22 Dec 2024 21:37:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/openwrt/ddns/</guid>
+      <description>OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v</description>
+    </item>
+    
+    <item>
+      <title>加拿大券商对比</title>
+      <link>https://kyxie.me/zh/blog/wool/stock-brokers/</link>
+      <pubDate>Sun, 02 Jun 2024 22:48:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/wool/stock-brokers/</guid>
+      <description>Wealthsimple 使用链接(https://wealthsimple.com/invite/VXU-UQ)或推荐码VXU-UQ开设账号，在开户后的30天内存</description>
+    </item>
+    
+    <item>
+      <title>使用Docker部署家庭影院</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/cinema/</link>
+      <pubDate>Sat, 12 Jul 2025 11:04:22 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/cinema/</guid>
+      <description>这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。 基本的Workflow是这样的： 本体就是Sonarr和Radarr，S</description>
+    </item>
+    
+    <item>
+      <title>OpenWrt部署AdGuardHome</title>
+      <link>https://kyxie.me/zh/blog/tech/server/openwrt/adguardhome/</link>
+      <pubDate>Wed, 25 Jun 2025 10:44:22 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/openwrt/adguardhome/</guid>
+      <description>AdguardHome是一个去广告应用，但是它不仅仅能去广告，还能做一个局域网的DNS服务器。 安装 这个应用因为算是网络管理相关，我就安装在了</description>
+    </item>
+    
+    <item>
+      <title>使用Docker部署私有云和文件管理</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/cloud/</link>
+      <pubDate>Sat, 14 Jun 2025 00:41:59 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/cloud/</guid>
+      <description>得益于MiniPC 24小时不间断加班，太适合在上面部署一些自动化下载上传以及文件管理功能了，这篇文章主要讲使用Docker来部署这些服务： S</description>
+    </item>
+    
+    <item>
+      <title>使用Docker部署管理页面</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/dashboard/</link>
+      <pubDate>Sun, 15 Jun 2025 00:41:59 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/dashboard/</guid>
+      <description>现在服务器部署了这么多服务，忘记端口挺难找到对应的服务，因此有一个合适的管理页面也是挺不错的。最好有个Dashboard展示了所有服务的跳转</description>
+    </item>
+    
+    <item>
+      <title>使用Docker部署Umami</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/umami/</link>
+      <pubDate>Thu, 26 Jun 2025 22:20:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/umami/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>使用Docker部署Strava数据分析面板</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/strava/</link>
+      <pubDate>Thu, 26 Jun 2025 22:51:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/strava/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>加拿大移民被安调经历</title>
+      <link>https://kyxie.me/zh/blog/pr/mandamus/</link>
+      <pubDate>Mon, 04 Aug 2025 13:54:00 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/pr/mandamus/</guid>
+      <description>背景 我移民加拿大走的是安省硕博通道，我申请加拿大移民的详细时间线详见：OINP移民加拿大🇨🇦时间线 | Kunyang&amp;rsquo;s Blog。可以看到安调已经很久了，期间</description>
+    </item>
+    
+    <item>
+      <title>使用udev自动挂载U盘</title>
+      <link>https://kyxie.me/zh/blog/tech/server/others/automount/</link>
+      <pubDate>Sat, 14 Jun 2025 17:36:33 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/others/automount/</guid>
+      <description>这是现在基本上所有电脑都能实现的功能了，无非就是后台自动搜索设备，然后自动挂载。可能这个场景在没有GUI版的Linux用处不大，因此每次插入</description>
+    </item>
+    
+    <item>
+      <title>Cities Skylines II 画面设置</title>
+      <link>https://kyxie.me/zh/blog/game/cities-skylines-ii/config/</link>
+      <pubDate>Sat, 31 May 2025 21:07:12 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/cities-skylines-ii/config/</guid>
+      <description>设置 选项 → 画面设置： 分辨率：显示器的分辨率 垂直同步：关 景深模式：关 Nvidia DLSS超级分辨率：极致性能 全局画面质量：高 雾气质量设置：关闭 环境光遮蔽</description>
+    </item>
+    
+    <item>
+      <title>Cities Skylines II 模组推荐</title>
+      <link>https://kyxie.me/zh/blog/game/cities-skylines-ii/mods/</link>
+      <pubDate>Sat, 31 May 2025 15:26:12 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/game/cities-skylines-ii/mods/</guid>
+      <description>管理模组 Skyve 一个管理其他模组的模组 官方Mod平台下载后重启游戏，会有Install Skyve选项，可以安装Skyve 之后再开始游戏前先打开Sk</description>
+    </item>
+    
+    <item>
+      <title>如何找回Homebrew下载的MySQL的密码</title>
+      <link>https://kyxie.me/zh/blog/tech/others/recover-mysql/</link>
+      <pubDate>Wed, 05 Feb 2025 00:16:46 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/recover-mysql/</guid>
+      <description>我这几天把本机装的MySQL密码给忘记了，于是想办法恢复 打开并编辑配置文件my.cnf sudo vim /opt/homebrew/etc/my.cnf 在配置文件添加skip-grant-tables</description>
+    </item>
+    
+    <item>
+      <title>Cancun旅行游记</title>
+      <link>https://kyxie.me/zh/blog/tour/cancun/</link>
+      <pubDate>Tue, 21 Jan 2025 11:57:55 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tour/cancun/</guid>
+      <description>圣诞节之前去了趟坎昆四天三晚，写一写在坎昆踩的坑和旅游攻略。 酒店我们选的是Haven Riviera All Inclusive，我个人感觉已经非常不错了，餐厅我</description>
+    </item>
+    
+    <item>
+      <title>USB多个分区格式化</title>
+      <link>https://kyxie.me/zh/blog/tech/others/format-usb/</link>
+      <pubDate>Sun, 15 Dec 2024 23:45:35 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/format-usb/</guid>
+      <description>使用U盘安装系统之后U盘经常会被划分为多个分区，下面使用MacOs和Windows分别合并为一个分区并且格式化。 MacOs 详见：使用树莓派4B+安装</description>
+    </item>
+    
+    <item>
+      <title>x86 Mini PC安装PVE</title>
+      <link>https://kyxie.me/zh/blog/tech/server/others/pve/</link>
+      <pubDate>Sun, 15 Dec 2024 23:20:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/others/pve/</guid>
+      <description>PVE安装步骤 官网下载PVE 使用Etcher烧写镜像到U盘 HDMI线连接到显示器，键盘鼠标连到mini PC，插入U盘，启动主机 按F7进入Bi</description>
+    </item>
+    
+    <item>
+      <title>使用U盘安装Linux Server</title>
+      <link>https://kyxie.me/zh/blog/tech/server/others/linux-server/</link>
+      <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/others/linux-server/</guid>
+      <description>需要准备 显示器 HDMI线连接显示器 键盘 至少8GB的U盘 网线 装系统 Ubuntu或Debian官网下载镜像 准备一个至少8GB的U盘，安装Etch</description>
+    </item>
+    
+    <item>
+      <title>将OpenWrt制作为Docker镜像</title>
+      <link>https://kyxie.me/zh/blog/tech/server/others/docker-openwrt/</link>
+      <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/others/docker-openwrt/</guid>
+      <description>安装Docker 按照Docker官网的教程，我们首先卸载所有冲突的包，apt-get可能会提示没有安装这些包 Ubuntu for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg;</description>
+    </item>
+    
+    <item>
+      <title>使用Homebrew在M芯片的MacBook安装Python和Git</title>
+      <link>https://kyxie.me/zh/blog/tech/others/python-and-git-for-macos/</link>
+      <pubDate>Mon, 11 Nov 2024 11:11:11 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/python-and-git-for-macos/</guid>
+      <description>Mac用户非常推荐使用Homebrew来安装一些软件，就Python来说如果在官网直接下载会在Launch Pad出现IDLE和Python L</description>
+    </item>
+    
+    <item>
+      <title>AWS Server安装GUI</title>
+      <link>https://kyxie.me/zh/blog/tech/others/aws-server-gui/</link>
+      <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/aws-server-gui/</guid>
+      <description>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都</description>
+    </item>
+    
+    <item>
+      <title>Algonquin旅行游记</title>
+      <link>https://kyxie.me/zh/blog/tour/algonquin/</link>
+      <pubDate>Mon, 30 Sep 2024 14:03:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tour/algonquin/</guid>
+      <description>常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:</description>
+    </item>
+    
+    <item>
+      <title>Banff旅行游记</title>
+      <link>https://kyxie.me/zh/blog/tour/banff/</link>
+      <pubDate>Wed, 11 Sep 2024 12:35:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tour/banff/</guid>
+      <description>最近我妈来了加拿大，打算带她去Calgary和Banff旅行，发现Banff旅游真的好多坑啊，正好写一篇游记博客，顺便记录一下Banff旅游</description>
+    </item>
+    
+    <item>
+      <title>OpenVPN的简单配置</title>
+      <link>https://kyxie.me/zh/blog/tech/others/openvpn/</link>
+      <pubDate>Fri, 26 Apr 2024 20:38:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/openvpn/</guid>
+      <description>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli</description>
+    </item>
+    
+    <item>
+      <title>使用Keys免密ssh到Linux</title>
+      <link>https://kyxie.me/zh/blog/tech/server/others/keys/</link>
+      <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/others/keys/</guid>
+      <description>通过使用ssh keys我们可以免密登录Linux（且推荐这么使用），这样以后ssh到Linux的时候就不需要每次填写密码了。 生成密钥对 可以在</description>
+    </item>
+    
+    <item>
+      <title>LDAP Server的简单配置</title>
+      <link>https://kyxie.me/zh/blog/tech/others/ldap/</link>
+      <pubDate>Tue, 27 Feb 2024 00:18:35 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/ldap/</guid>
+      <description>Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username</description>
+    </item>
+    
+    <item>
+      <title>OINP移民加拿大🇨🇦时间线</title>
+      <link>https://kyxie.me/zh/blog/pr/timeline/</link>
+      <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/pr/timeline/</guid>
+      <description>Dec 30, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
+    </item>
+    
+    <item>
+      <title>个性化终端</title>
+      <link>https://kyxie.me/zh/blog/tech/others/terminal/</link>
+      <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/others/terminal/</guid>
+      <description>自己平时喜欢乱搞一些花里胡哨的东西，嫌Windows自带的终端实在是太丑了，打算使用Oh My Posh美化一下，这篇教程基于Windows 11自</description>
+    </item>
+    
+    <item>
+      <title>留言板 📋</title>
+      <link>https://kyxie.me/zh/comment/comments/</link>
+      <pubDate>Thu, 12 May 2022 21:33:11 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/comment/comments/</guid>
+      <description>👉️填写QQ邮箱可以自动获取QQ头像哦</description>
+    </item>
+    
+    
+    <item>
+      <title>关于我 👋</title>
+      <link>https://kyxie.me/zh/about/</link>
+      <pubDate>Wed, 13 Apr 2022 14:39:46 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/about/</guid>
+      <description>class Me: def __init__(self): self.name = &amp;#34;Kunyang Xie&amp;#34; self.born_year = 1999 self.MBTI = &amp;#34;ISTJ&amp;#34; self.hometown = &amp;#34;Weifang, Shandong, CN&amp;#34; self.location = &amp;#34;Toronto, ON, CA&amp;#34; self.school = &amp;#34;UESTC, uWaterloo&amp;#34;</description>
+    </item>
+    
+  </channel>
+</rss>

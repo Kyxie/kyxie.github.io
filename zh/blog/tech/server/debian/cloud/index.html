@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>使用Docker部署私有云和文件管理 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="FileBrowser, OpenList, BaiduPCS, Docker, Debian">
+<meta name="description" content="得益于MiniPC 24小时不间断加班，太适合在上面部署一些自动化下载上传以及文件管理功能了，这篇文章主要讲使用Docker来部署这些服务： S">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/debian/cloud/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/debian/cloud/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用Docker部署私有云和文件管理" />
+<meta property="og:description" content="得益于MiniPC 24小时不间断加班，太适合在上面部署一些自动化下载上传以及文件管理功能了，这篇文章主要讲使用Docker来部署这些服务： S" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/debian/cloud/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2025-06-14T00:41:59-04:00" />
+<meta property="article:modified_time" content="2025-07-30T00:47:12-04:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用Docker部署私有云和文件管理"/>
+<meta name="twitter:description" content="得益于MiniPC 24小时不间断加班，太适合在上面部署一些自动化下载上传以及文件管理功能了，这篇文章主要讲使用Docker来部署这些服务： S"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "博客 📒",
+      "item": "https://kyxie.me/zh/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "折腾 🔧",
+      "item": "https://kyxie.me/zh/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "服务器 🐧",
+      "item": "https://kyxie.me/zh/blog/tech/server/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Debian 🌀",
+      "item": "https://kyxie.me/zh/blog/tech/server/debian/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  5 ,
+      "name": "使用Docker部署私有云和文件管理",
+      "item": "https://kyxie.me/zh/blog/tech/server/debian/cloud/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "使用Docker部署私有云和文件管理",
+  "name": "使用Docker部署私有云和文件管理",
+  "description": "得益于MiniPC 24小时不间断加班，太适合在上面部署一些自动化下载上传以及文件管理功能了，这篇文章主要讲使用Docker来部署这些服务： S",
+  "keywords": [
+    "FileBrowser", "OpenList", "BaiduPCS", "Docker", "Debian"
+  ],
+  "articleBody": "得益于MiniPC 24小时不间断加班，太适合在上面部署一些自动化下载上传以及文件管理功能了，这篇文章主要讲使用Docker来部署这些服务：\nSamba：Linux上运行它，可以把Linux映射成一个Windows磁盘，访问MiniPC文件只需要打开Windows的资源管理器 FileBrowser：图形化文件管理器，可以部署网页管理界面到公网，相当于自建云盘 BaiduPCS Go：命令行控制上传和下载文件到百度云 OpenList：AList的开源版，可以挂载一系列云盘，也可以挂载本地 Samba 使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我们使用命令行来管理Linux文件。\n之前部署Samba是直接安装在Linux上的，后来试了试用Docker也完全可以。\nLinux直接安装 安装Samba\nsudo apt update sudo apt install samba 编辑Samba配置文件\nsudo nano /etc/samba/smb.conf 首先建议把[homes]下的所有内容注释掉，否则会自动把所有用户的~目录也一起共享出，我们可以在文本末尾添加内容来手动控制需要共享的目录\n[Name] path = /home/user1 browsable = yes read only = no guest ok = yes [Name]是共享文件夹的名称，会显示在Windows磁盘上\n设置Samba账户密码\nsudo smbpasswd -a user1 sudo smbpasswd -e user1 重启Samba服务\nsudo systemctl restart smbd Docker 使用Docker Compose安装Samba\nservices: samba: image: dperson/samba container_name: samba restart: unless-stopped ports: - \"137:137/udp\" - \"138:138/udp\" - \"139:139/tcp\" - \"445:445/tcp\" volumes: - [host_path]:/mount/home # 替换成宿主机要共享的目录路径 environment: - USERID=[your_uid] # 替换成宿主机对应用户的UID，运行`id -u`获取 - GROUPID=[your_gid] # 替换成宿主机对应用户的GID，运行`id -g`获取 command: \u003e -u \"[username];[password]\" -s \"[Name];/mount/home;yes;no;no;[username]\" 替换[username]，[password]，[Name]为自己想要的值\nDocker容器运行后会产生一些匿名卷，是正常现象\nWindows 打开文件资源管理器 右键点击“此电脑”，选择“映射网络驱动器” 选择一个驱动器字母（例如Z:） 在文件夹栏中输入：\\\\Linux IP Address\\[Name] FileBrowser File Browser是一个文件浏览器，可以用于图形化地管理MiniPC上的文件。但是我比较习惯用Samba，平时还是习惯用Window的文件管理器直接打开MiniPC上的文件。\n然而FileBrowser相较于Samba有一个Web管理器，因此可以将服务暴露到公网，这样我们就相当于自建了一个网盘了。假设和朋友出去玩拍了好多照片，分享的时候嫌微信无法传大文件，就可以用这个了。这样我们每次拍完照把U盘在MiniPC上一插即可。\n由于是部署在公网，我们可以只把SD卡的内容挂载进去，就算被黑了MiniPC本身的文件也不会被涉及。\n部署 本地创建一个文件夹，然后新建一个文件database.db，修改权限\ntouch ./database.db chown 1000:1000 ./database.db chmod 664 ./database.db 创建docker-compose.yml，我打算由cloudflared托管，因此接入它的网络\nservices: filebrowser: image: filebrowser/filebrowser container_name: filebrowser restart: unless-stopped volumes: - ./data:/srv - ./database.db:/database.db expose: - \"80\" environment: - PUID=1000 - PGID=1000 - UMASK=022 - TZ=America/Toronto user: \"1000:1000\" networks: - cloudflared networks: cloudflared: external: true 启动容器，默认用户名密码为admin和admin\ndocker compose up -d 修改密码 先停掉容器\ndocker compose down 重置密码\ndocker run --rm \\ -v $(pwd)/database.db:/database.db \\ filebrowser/filebrowser \\ users update User --password 12345678 --database /database.db 挂载U盘 / SD卡 先停止容器docker compose down\n首先需要把U盘挂载到miniPC，如果希望手动挂载，请继续往下看，但是这里建议自动挂载（详见：使用udev自动挂载U盘 | Kunyang’s Blog），U盘插入后直接挂载到对应的文件夹。下面是手动挂载的流程：\n假设U盘名称（Label）为Nikon-1，我们先手动挂载在~/filebrowser/Nikon-1下，这样我们访问~/filebrowser/Nikon-1这个文件夹就是在访问我们的U盘\n得到设备名\nlsblk 一般就叫/dev/sdb1\n创建挂载点目录\nsudo mkdir -p ~/filebrowser/nikon-1 挂载设备\nsudo mount /dev/sdb1 ~/filebrowser/nikon-1 假设我的尼康相机有两个SD卡，大疆有一个SD卡，SD卡都分别被我命名为了nikon-1，nikon-2和dji-1。本地的miniPC挂载完成后，修改File Browser的docker-compose.yml，把逻辑卷加入\nvolumes: - ./data:/srv - ./database.db:/database.db # 挂载SD卡 - ./nikon-1/DCIM/102NZ_FC:/srv/nikon/SD1 - ./nikon-2/DCIM/102NZ_FC:/srv/nikon/SD2 - ./dji-1/DCIM/DJI_001:/srv/dji/SD1 # 挂载服务器，不建议，如果用户名密码被破解很危险，建议使用VPN访问 - /home/username/:/srv/debian 重启容器\ndocker compose up -d BaiduPCS Go 虽然百度网盘经常被吐槽限速，但是我一直没有放弃使用百度云，因为我是比较早期的用户，一直有 2T 的存储空间，所以它非常适合用来备份一些“电子鸡肋”（比如现在相机拍一张RAW格式照片动辄就是30MB，拍的大疆视频好几个G，剪视频能有的片段很少），正好可以利用这个空间长期存放。2T的空间我现在才用了不到300G，且这种正常的视频百度云一般不会和谐。\n但是百度云盘无法直接运行在Linux上，况且我的服务器连GUI都没有，因此需要一个Docker + 命令行版本的百度网盘，查了一下还真有，可以使用BaiduPCS Go。我把这个做成了Docker镜像：kyxie/baidupcs-go - Docker Image | Docker Hub\n部署 直接运行\ndocker run -d -it --name baidupcs-go \\ -v $(pwd)/data:/data \\ -v $(pwd)/upload:/upload \\ -v $(pwd)/config:/root/.config/BaiduPCS-Go \\ -w /upload \\ kyxie/baidupcs-go:latest 使用Docker Compose部署（推荐）\nservices: baidupcs-go: image: kyxie/baidupcs-go:latest container_name: baidupcs-go stdin_open: true tty: true volumes: - ./data:/data - ./upload:/upload - ./config:/root/.config/BaiduPCS-Go # 挂载其他目录，比如U盘的目录 - /mnt/usb:/u working_dir: /upload 常见命令 查看容器内部文件\ndocker exec -it baidupcs-go /bin/sh 进入容器，登录后显示网盘的文件\ndocker exec -it baidupcs-go BaiduPCS-Go 登录\n使用浏览器登录百度网盘\n键盘F12 → Application → Cookies → https://pan.baidu.com → 找到BDUSS字段，复制\n输入命令\nlogin -bduss= 上传，建议使用screen，因为关闭终端有可能会暂停上传\nscreen -S pcs-upload docker exec baidupcs-go \\ BaiduPCS-Go upload \u003c本地路径\u003e \u003c云盘路径\u003e # 举例 docker exec baidupcs-go \\ BaiduPCS-Go upload /nikon-1 \"/照片和视频/来自：Nikon Zfc/2025 花瓶岛\" docker exec baidupcs-go \\ BaiduPCS-Go upload /dji-1/MP4 \"/照片和视频/来自：DJI/2025 花瓶岛\" 可以登录到云盘之后pwd显示云盘的路径，如果带有中文可以添加双引号。Ctrl + a，然后按d，暂时退出，不影响上传任务\n其余详见：GitHub - qjfoidnh/BaiduPCS-Go: iikira/BaiduPCS-Go原版基础上集成了分享链接/秒传链接转存功能\nMacOS文件分类命令 Nikon：在Mac上自动把混在一起的.NEF文件和.JPG文件归类成两个文件夹/NEF和/JPG\nmkdir -p RAW JPG \u0026\u0026 mv *.NEF RAW/ \u0026\u0026 mv *.JPG JPG/ DJI：在Mac上自动把混在一起的.LRF文件和.MP4文件归类成两个文件夹/LRF和/MP4\nmkdir -p LRF MP4 \u0026\u0026 mv *.LRF LRF/ \u0026\u0026 mv *.MP4 MP4/ OpenList 因为之前也没怎么用过AList，它被卖了之后打算试一下OpenList，使用它可以挂载不同的云盘，方便我们在一个地方管理不同云盘的内容，还可以自动下载和上传云盘的内容。相当于结合了BaiduPCS和FileBrowser吧。\n部署 在之前Cloudflare ZeroTrust创建的Tunnel再创建一个新的public hostname，一个Example：\nSubdomain: cloud Domain: example.com Type: HTTP URL: openlist:5244 OpenList官网有很详细的文档：Use Docker - OpenList Docs\n同样的本地创建一个文件夹，然后创建docker-compose.yml\nservices: openlist: image: 'openlistteam/openlist:latest-aio' container_name: openlist volumes: - './data:/opt/openlist/data' - './storage:/opt/openlist/storage' environment: - PUID=1000 - PGID=1000 - UMASK=022 - TZ=America/Toronto restart: unless-stopped networks: - cloudflared networks: cloudflared: external: true lastest-aio镜像打包了一个Aria2在里面，作为默认的下载器，在OpenList里也可以配置本机自带的其他的下载器。我并没有集中用一个下载器，影音部分用的是qbit，这里用的Aria2，一方面下载电影确实适合P2P，挂在网盘则不是。另一方面qBit挂载的目录Sonarr和Radarr也得有权限访问，一旦OpenList使用qBit挂载目录配置错了会影响Sonarr的访问，因此干脆直接用两个\n根据这篇文章：使用udev自动挂载U盘 | Kunyang’s Blog，我们可以修改/usr/local/bin/auto-mount-usb.sh脚本，把mount_base改为~/openlist/storage\n启动容器\ndocker compose up -d 产生一个临时的随机密码，使用这个密码就可以登录了，登录之后再在网页端修改密码，建议开启2FA\ndocker exec -it openlist ./openlist admin random 挂载本地 我们插入SD卡或者U盘后就会自动挂载到storage目录下 在网页端 → Storage → 添加 → 本地储存 挂载路径就是网页内要展示的路径，比如/SD，还可以使用多级目录，比如/SD/Nikon-2 WebDAV策略默认本地代理 根文件夹目录就是容器内的目录，我设置为/opt/openlist/storage，这样就把U盘映射出去了 如果没找到，则重启容器，需要在启动容器前挂载SD卡 挂载云盘 挂载百度网盘：Baidu Netdisk - OpenList Docs\n在百度云盘点击上传打开的还是Windows的管理器，如果想直接从SD卡上传到百度云可以使用复制，从一个储存复制到另外一个，网盘见互传也可以这样，这样的话可以退役BaiduPCS Go了 挂载Google Drive：Google Drive - OpenList Docs\n目前我只使用了这两个，文档里也有很详细的挂载其他网盘的教程。\n",
+  "wordCount" : "3476",
+  "inLanguage": "zh",
+  "datePublished": "2025-06-14T00:41:59-04:00",
+  "dateModified": "2025-07-30T00:47:12-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/zh/blog/tech/server/debian/cloud/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://data.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/zh/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/en/" title="English🇨🇦"
+                            aria-label="English🇨🇦">English🇨🇦</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kyxie.me/zh/comment/comments" title="留言板📋">
+                    <span>留言板📋</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">折腾 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/debian/">Debian 🌀</a></div>
+    <h1 class="post-title">
+      使用Docker部署私有云和文件管理
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2025-06-14 00:41:59 -0400 EDT'>2025-06-14</span>&nbsp;·&nbsp;7 分钟&nbsp;·&nbsp;3476 字&nbsp;·&nbsp;Kyxie
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">目录</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#samba" aria-label="Samba">Samba</a><ul>
+                                    
+                        <li>
+                            <a href="#linux%e7%9b%b4%e6%8e%a5%e5%ae%89%e8%a3%85" aria-label="Linux直接安装">Linux直接安装</a></li>
+                        <li>
+                            <a href="#docker" aria-label="Docker">Docker</a></li>
+                        <li>
+                            <a href="#windows" aria-label="Windows">Windows</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#filebrowser" aria-label="FileBrowser">FileBrowser</a><ul>
+                                    
+                        <li>
+                            <a href="#%e9%83%a8%e7%bd%b2" aria-label="部署">部署</a></li>
+                        <li>
+                            <a href="#%e4%bf%ae%e6%94%b9%e5%af%86%e7%a0%81" aria-label="修改密码">修改密码</a></li>
+                        <li>
+                            <a href="#%e6%8c%82%e8%bd%bdu%e7%9b%98--sd%e5%8d%a1" aria-label="挂载U盘 / SD卡">挂载U盘 / SD卡</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#baidupcs-go" aria-label="BaiduPCS Go">BaiduPCS Go</a><ul>
+                                    
+                        <li>
+                            <a href="#%e9%83%a8%e7%bd%b2-1" aria-label="部署">部署</a></li>
+                        <li>
+                            <a href="#%e5%b8%b8%e8%a7%81%e5%91%bd%e4%bb%a4" aria-label="常见命令">常见命令</a></li>
+                        <li>
+                            <a href="#macos%e6%96%87%e4%bb%b6%e5%88%86%e7%b1%bb%e5%91%bd%e4%bb%a4" aria-label="MacOS文件分类命令">MacOS文件分类命令</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#openlist" aria-label="OpenList">OpenList</a><ul>
+                                    
+                        <li>
+                            <a href="#%e9%83%a8%e7%bd%b2-2" aria-label="部署">部署</a></li>
+                        <li>
+                            <a href="#%e6%8c%82%e8%bd%bd%e6%9c%ac%e5%9c%b0" aria-label="挂载本地">挂载本地</a></li>
+                        <li>
+                            <a href="#%e6%8c%82%e8%bd%bd%e4%ba%91%e7%9b%98" aria-label="挂载云盘">挂载云盘</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><p>得益于MiniPC 24小时不间断加班，太适合在上面部署一些自动化下载上传以及文件管理功能了，这篇文章主要讲使用Docker来部署这些服务：</p>
+<ul>
+<li>Samba：Linux上运行它，可以把Linux映射成一个Windows磁盘，访问MiniPC文件只需要打开Windows的资源管理器</li>
+<li>FileBrowser：图形化文件管理器，可以部署网页管理界面到公网，相当于自建云盘</li>
+<li>BaiduPCS Go：命令行控制上传和下载文件到百度云</li>
+<li>OpenList：AList的开源版，可以挂载一系列云盘，也可以挂载本地</li>
+</ul>
+<h2 id="samba">Samba<a hidden class="anchor" aria-hidden="true" href="#samba">#</a></h2>
+<p>使用Samba可以将Linux映射为Windows的一个本地磁盘，这样Windows的软件就可以直接打开Linux的文件夹了，大大方便了我们使用命令行来管理Linux文件。</p>
+<p>之前部署Samba是直接安装在Linux上的，后来试了试用Docker也完全可以。</p>
+<h3 id="linux直接安装">Linux直接安装<a hidden class="anchor" aria-hidden="true" href="#linux直接安装">#</a></h3>
+<ul>
+<li>
+<p>安装Samba</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install samba
+</span></span></code></pre></div></li>
+<li>
+<p>编辑Samba配置文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/samba/smb.conf
+</span></span></code></pre></div><p>首先建议把<code>[homes]</code>下的所有内容注释掉，否则会自动把所有用户的<code>~</code>目录也一起共享出，我们可以在文本末尾添加内容来手动控制需要共享的目录</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[Name]
+</span></span><span style="display:flex;"><span>path = /home/user1
+</span></span><span style="display:flex;"><span>browsable = yes
+</span></span><span style="display:flex;"><span>read only = no
+</span></span><span style="display:flex;"><span>guest ok = yes
+</span></span></code></pre></div><p><code>[Name]</code>是共享文件夹的名称，会显示在Windows磁盘上</p>
+</li>
+<li>
+<p>设置Samba账户密码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo smbpasswd -a user1
+</span></span><span style="display:flex;"><span>sudo smbpasswd -e user1
+</span></span></code></pre></div></li>
+<li>
+<p>重启Samba服务</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart smbd
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="docker">Docker<a hidden class="anchor" aria-hidden="true" href="#docker">#</a></h3>
+<ul>
+<li>
+<p>使用Docker Compose安装Samba</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">samba</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">dperson/samba</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">samba</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;137:137/udp&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;138:138/udp&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;139:139/tcp&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;445:445/tcp&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - [<span style="color:#ae81ff">host_path]:/mount/home    </span> <span style="color:#75715e"># 替换成宿主机要共享的目录路径</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">USERID=[your_uid]          </span> <span style="color:#75715e"># 替换成宿主机对应用户的UID，运行`id -u`获取</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">GROUPID=[your_gid]         </span> <span style="color:#75715e"># 替换成宿主机对应用户的GID，运行`id -g`获取</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      -u &#34;[username];[password]&#34; -s &#34;[Name];/mount/home;yes;no;no;[username]&#34;</span>      
+</span></span></code></pre></div><p>替换<code>[username]</code>，<code>[password]</code>，<code>[Name]</code>为自己想要的值</p>
+</li>
+<li>
+<p>Docker容器运行后会产生一些匿名卷，是正常现象</p>
+</li>
+</ul>
+<h3 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h3>
+<ul>
+<li>打开文件资源管理器</li>
+<li>右键点击“此电脑”，选择“映射网络驱动器”</li>
+<li>选择一个驱动器字母（例如Z:）</li>
+<li>在文件夹栏中输入：<code>\\Linux IP Address\[Name]</code></li>
+</ul>
+<h2 id="filebrowser">FileBrowser<a hidden class="anchor" aria-hidden="true" href="#filebrowser">#</a></h2>
+<p>File Browser是一个文件浏览器，可以用于图形化地管理MiniPC上的文件。但是我比较习惯用Samba，平时还是习惯用Window的文件管理器直接打开MiniPC上的文件。</p>
+<p>然而FileBrowser相较于Samba有一个Web管理器，因此可以将服务暴露到公网，这样我们就相当于自建了一个网盘了。假设和朋友出去玩拍了好多照片，分享的时候嫌微信无法传大文件，就可以用这个了。这样我们每次拍完照把U盘在MiniPC上一插即可。</p>
+<p>由于是部署在公网，我们可以只把SD卡的内容挂载进去，就算被黑了MiniPC本身的文件也不会被涉及。</p>
+<h3 id="部署">部署<a hidden class="anchor" aria-hidden="true" href="#部署">#</a></h3>
+<ul>
+<li>
+<p>本地创建一个文件夹，然后新建一个文件<code>database.db</code>，修改权限</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>touch ./database.db
+</span></span><span style="display:flex;"><span>chown 1000:1000 ./database.db
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">664</span> ./database.db
+</span></span></code></pre></div></li>
+<li>
+<p>创建<code>docker-compose.yml</code>，我打算由cloudflared托管，因此接入它的网络</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">filebrowser</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">filebrowser/filebrowser</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">filebrowser</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./data:/srv</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./database.db:/database.db</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expose</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;80&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">UMASK=022</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=America/Toronto</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">user</span>: <span style="color:#e6db74">&#34;1000:1000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">cloudflared</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">cloudflared</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div></li>
+<li>
+<p>启动容器，默认用户名密码为<code>admin</code>和<code>admin</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="修改密码">修改密码<a hidden class="anchor" aria-hidden="true" href="#修改密码">#</a></h3>
+<ul>
+<li>
+<p>先停掉容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose down
+</span></span></code></pre></div></li>
+<li>
+<p>重置密码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --rm <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/database.db:/database.db <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  filebrowser/filebrowser <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  users update User --password <span style="color:#ae81ff">12345678</span> --database /database.db
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="挂载u盘--sd卡">挂载U盘 / SD卡<a hidden class="anchor" aria-hidden="true" href="#挂载u盘--sd卡">#</a></h3>
+<ul>
+<li>
+<p>先停止容器<code>docker compose down</code></p>
+</li>
+<li>
+<p>首先需要把U盘挂载到miniPC，如果希望手动挂载，请继续往下看，但是这里建议自动挂载（详见：<a href="/zh/blog/tech/server/others/automount/">使用udev自动挂载U盘 | Kunyang&rsquo;s Blog</a>），U盘插入后直接挂载到对应的文件夹。下面是手动挂载的流程：</p>
+<ul>
+<li>
+<p>假设U盘名称（Label）为<code>Nikon-1</code>，我们先手动挂载在<code>~/filebrowser/Nikon-1</code>下，这样我们访问<code>~/filebrowser/Nikon-1</code>这个文件夹就是在访问我们的U盘</p>
+</li>
+<li>
+<p>得到设备名</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>lsblk
+</span></span></code></pre></div><p>一般就叫<code>/dev/sdb1</code></p>
+</li>
+<li>
+<p>创建挂载点目录</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkdir -p ~/filebrowser/nikon-1
+</span></span></code></pre></div></li>
+<li>
+<p>挂载设备</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mount /dev/sdb1 ~/filebrowser/nikon-1
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>假设我的尼康相机有两个SD卡，大疆有一个SD卡，SD卡都分别被我命名为了<code>nikon-1</code>，<code>nikon-2</code>和<code>dji-1</code>。本地的miniPC挂载完成后，修改File Browser的<code>docker-compose.yml</code>，把逻辑卷加入</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">./data:/srv</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">./database.db:/database.db</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 挂载SD卡</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">./nikon-1/DCIM/102NZ_FC:/srv/nikon/SD1</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">./nikon-2/DCIM/102NZ_FC:/srv/nikon/SD2</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">./dji-1/DCIM/DJI_001:/srv/dji/SD1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 挂载服务器，不建议，如果用户名密码被破解很危险，建议使用VPN访问</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">/home/username/:/srv/debian</span>
+</span></span></code></pre></div></li>
+<li>
+<p>重启容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="baidupcs-go">BaiduPCS Go<a hidden class="anchor" aria-hidden="true" href="#baidupcs-go">#</a></h2>
+<p>虽然百度网盘经常被吐槽限速，但是我一直没有放弃使用百度云，因为我是比较早期的用户，一直有 2T 的存储空间，所以它非常适合用来备份一些“电子鸡肋”（比如现在相机拍一张RAW格式照片动辄就是30MB，拍的大疆视频好几个G，剪视频能有的片段很少），正好可以利用这个空间长期存放。2T的空间我现在才用了不到300G，且这种正常的视频百度云一般不会和谐。</p>
+<p>但是百度云盘无法直接运行在Linux上，况且我的服务器连GUI都没有，因此需要一个Docker + 命令行版本的百度网盘，查了一下还真有，可以使用<a href="https://github.com/qjfoidnh/BaiduPCS-Go">BaiduPCS Go</a>。我把这个做成了Docker镜像：<a href="https://hub.docker.com/r/kyxie/baidupcs-go">kyxie/baidupcs-go - Docker Image | Docker Hub</a></p>
+<h3 id="部署-1">部署<a hidden class="anchor" aria-hidden="true" href="#部署-1">#</a></h3>
+<ul>
+<li>
+<p>直接运行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -it --name baidupcs-go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/data:/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/upload:/upload <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/config:/root/.config/BaiduPCS-Go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -w /upload <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  kyxie/baidupcs-go:latest
+</span></span></code></pre></div></li>
+<li>
+<p>使用Docker Compose部署（推荐）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">baidupcs-go</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">kyxie/baidupcs-go:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">baidupcs-go</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">stdin_open</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">tty</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./data:/data</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./upload:/upload</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./config:/root/.config/BaiduPCS-Go</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># 挂载其他目录，比如U盘的目录</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/mnt/usb:/u</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">working_dir</span>: <span style="color:#ae81ff">/upload</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="常见命令">常见命令<a hidden class="anchor" aria-hidden="true" href="#常见命令">#</a></h3>
+<ul>
+<li>
+<p>查看容器内部文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it baidupcs-go /bin/sh
+</span></span></code></pre></div></li>
+<li>
+<p>进入容器，登录后显示网盘的文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it baidupcs-go BaiduPCS-Go
+</span></span></code></pre></div></li>
+<li>
+<p>登录</p>
+<ul>
+<li>
+<p>使用浏览器登录百度网盘</p>
+</li>
+<li>
+<p>键盘<code>F12</code> → Application → Cookies → <code>https://pan.baidu.com</code> → 找到<code>BDUSS</code>字段，复制</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/c7ac44e0689881a8125b89effc57fb7c.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="BDUSS"  />
+</p>
+</li>
+<li>
+<p>输入命令</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>login -bduss<span style="color:#f92672">=</span>&lt;BDUSS&gt;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>上传，建议使用<code>screen</code>，因为关闭终端有可能会暂停上传</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>screen -S pcs-upload
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker exec baidupcs-go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  BaiduPCS-Go upload &lt;本地路径&gt; &lt;云盘路径&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 举例</span>
+</span></span><span style="display:flex;"><span>docker exec baidupcs-go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  BaiduPCS-Go upload /nikon-1 <span style="color:#e6db74">&#34;/照片和视频/来自：Nikon Zfc/2025 花瓶岛&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker exec baidupcs-go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  BaiduPCS-Go upload /dji-1/MP4 <span style="color:#e6db74">&#34;/照片和视频/来自：DJI/2025 花瓶岛&#34;</span>
+</span></span></code></pre></div><p>可以登录到云盘之后<code>pwd</code>显示云盘的路径，如果带有中文可以添加双引号。<code>Ctrl + a</code>，然后按<code>d</code>，暂时退出，不影响上传任务</p>
+</li>
+<li>
+<p>其余详见：<a href="https://github.com/qjfoidnh/BaiduPCS-Go?tab=readme-ov-file#%E5%91%BD%E4%BB%A4%E5%88%97%E8%A1%A8%E5%8F%8A%E8%AF%B4%E6%98%8E">GitHub - qjfoidnh/BaiduPCS-Go: iikira/BaiduPCS-Go原版基础上集成了分享链接/秒传链接转存功能</a></p>
+</li>
+</ul>
+<h3 id="macos文件分类命令">MacOS文件分类命令<a hidden class="anchor" aria-hidden="true" href="#macos文件分类命令">#</a></h3>
+<ul>
+<li>
+<p>Nikon：在Mac上自动把混在一起的<code>.NEF</code>文件和<code>.JPG</code>文件归类成两个文件夹<code>/NEF</code>和<code>/JPG</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p RAW JPG <span style="color:#f92672">&amp;&amp;</span> mv *.NEF RAW/ <span style="color:#f92672">&amp;&amp;</span> mv *.JPG JPG/
+</span></span></code></pre></div></li>
+<li>
+<p>DJI：在Mac上自动把混在一起的<code>.LRF</code>文件和<code>.MP4</code>文件归类成两个文件夹<code>/LRF</code>和<code>/MP4</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p LRF MP4 <span style="color:#f92672">&amp;&amp;</span> mv *.LRF LRF/ <span style="color:#f92672">&amp;&amp;</span> mv *.MP4 MP4/
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="openlist">OpenList<a hidden class="anchor" aria-hidden="true" href="#openlist">#</a></h2>
+<p>因为之前也没怎么用过AList，它被卖了之后打算试一下OpenList，使用它可以挂载不同的云盘，方便我们在一个地方管理不同云盘的内容，还可以自动下载和上传云盘的内容。相当于结合了BaiduPCS和FileBrowser吧。</p>
+<h3 id="部署-2">部署<a hidden class="anchor" aria-hidden="true" href="#部署-2">#</a></h3>
+<ul>
+<li>
+<p>在之前Cloudflare ZeroTrust创建的Tunnel再创建一个新的public hostname，一个Example：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">Subdomain</span>: <span style="color:#ae81ff">cloud</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Domain</span>: <span style="color:#ae81ff">example.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Type</span>: <span style="color:#ae81ff">HTTP</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">URL</span>: <span style="color:#ae81ff">openlist:5244</span>
+</span></span></code></pre></div></li>
+<li>
+<p>OpenList官网有很详细的文档：<a href="https://doc.oplist.org/guide/installation/docker">Use Docker - OpenList Docs</a></p>
+</li>
+<li>
+<p>同样的本地创建一个文件夹，然后创建<code>docker-compose.yml</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">openlist</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#e6db74">&#39;openlistteam/openlist:latest-aio&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">openlist</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#39;./data:/opt/openlist/data&#39;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#39;./storage:/opt/openlist/storage&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">UMASK=022</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=America/Toronto</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">cloudflared</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">cloudflared</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p><code>lastest-aio</code>镜像打包了一个Aria2在里面，作为默认的下载器，在OpenList里也可以配置本机自带的其他的下载器。我并没有集中用一个下载器，影音部分用的是qbit，这里用的Aria2，一方面下载电影确实适合P2P，挂在网盘则不是。另一方面qBit挂载的目录Sonarr和Radarr也得有权限访问，一旦OpenList使用qBit挂载目录配置错了会影响Sonarr的访问，因此干脆直接用两个</p>
+</li>
+<li>
+<p>根据这篇文章：<a href="/zh/blog/tech/server/others/automount/">使用udev自动挂载U盘 | Kunyang&rsquo;s Blog</a>，我们可以修改<code>/usr/local/bin/auto-mount-usb.sh</code>脚本，把<code>mount_base</code>改为<code>~/openlist/storage</code></p>
+</li>
+<li>
+<p>启动容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div></li>
+<li>
+<p>产生一个临时的随机密码，使用这个密码就可以登录了，登录之后再在网页端修改密码，建议开启2FA</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it openlist ./openlist admin random
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="挂载本地">挂载本地<a hidden class="anchor" aria-hidden="true" href="#挂载本地">#</a></h3>
+<ul>
+<li>我们插入SD卡或者U盘后就会自动挂载到<code>storage</code>目录下</li>
+<li>在网页端 → Storage → 添加 → 本地储存
+<ul>
+<li>挂载路径就是网页内要展示的路径，比如<code>/SD</code>，还可以使用多级目录，比如<code>/SD/Nikon-2</code></li>
+<li>WebDAV策略默认本地代理</li>
+<li>根文件夹目录就是容器内的目录，我设置为<code>/opt/openlist/storage</code>，这样就把U盘映射出去了</li>
+<li>如果没找到，则重启容器，需要在启动容器前挂载SD卡</li>
+</ul>
+</li>
+</ul>
+<h3 id="挂载云盘">挂载云盘<a hidden class="anchor" aria-hidden="true" href="#挂载云盘">#</a></h3>
+<ul>
+<li>
+<p>挂载百度网盘：<a href="https://doc.oplist.org/guide/drivers/baidu">Baidu Netdisk - OpenList Docs</a></p>
+<ul>
+<li>在百度云盘点击上传打开的还是Windows的管理器，如果想直接从SD卡上传到百度云可以使用复制，从一个储存复制到另外一个，网盘见互传也可以这样，这样的话可以退役BaiduPCS Go了</li>
+</ul>
+</li>
+<li>
+<p>挂载Google Drive：<a href="https://doc.oplist.org/guide/drivers/google_drive">Google Drive - OpenList Docs</a></p>
+</li>
+</ul>
+<p>目前我只使用了这两个，文档里也有很详细的挂载其他网盘的教程。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/server/openwrt/adguardhome/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>OpenWrt部署AdGuardHome</span>
+  </a>
+  <a class="next" href="https://kyxie.me/zh/blog/tech/server/debian/dashboard/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>使用Docker部署管理页面</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>
+    &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
+  </span>
+  <span id="umami-stats">
+    | Visitors: <span id="uv-count"></span>
+    Views: <span id="pv-count"></span>
+  </span>
+  <script
+    src="https://umami-api.kyxie.me/script.js"
+    defer
+    init-visitors="38233"
+    init-views="91643"
+    ></script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>OpenWrt配置Wireguard | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Linux, Wireguard">
+<meta name="description" content="Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/openwrt/wireguard/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/openwrt/wireguard/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="OpenWrt配置Wireguard" />
+<meta property="og:description" content="Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/openwrt/wireguard/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-05-25T00:19:19-04:00" />
+<meta property="article:modified_time" content="2025-07-30T00:47:12-04:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OpenWrt配置Wireguard"/>
+<meta name="twitter:description" content="Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "博客 📒",
+      "item": "https://kyxie.me/zh/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "折腾 🔧",
+      "item": "https://kyxie.me/zh/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "服务器 🐧",
+      "item": "https://kyxie.me/zh/blog/tech/server/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "OpenWrt 🛜",
+      "item": "https://kyxie.me/zh/blog/tech/server/openwrt/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  5 ,
+      "name": "OpenWrt配置Wireguard",
+      "item": "https://kyxie.me/zh/blog/tech/server/openwrt/wireguard/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "OpenWrt配置Wireguard",
+  "name": "OpenWrt配置Wireguard",
+  "description": "Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连",
+  "keywords": [
+    "Linux", "Wireguard"
+  ],
+  "articleBody": "Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连接到家里的VPN，然后再访问内网了。\n下图是我家的网络拓扑（详见：树莓派4B+安装OpenWrt用作旁路由 | Kunyang’s Blog）是把OpenWrt作为旁路由使用，其他设备的默认网关和DNS指向OpenWrt。\nOpenWrt 安装 所需插件：\nkmod-wireguard luci-proto-wireguard wireguard-tools 配置 Network → Interface → Add new interface，创建一个wireguard，名字就叫wg0\n点击Generate new key pair，会自动生成一个公钥一个私钥，IP地址可以随便写一个私有地址的网段，我填写192.168.100.1/24，这就是这个VPN的子网，然后设置默认端口，可以随便写，这里我设置55555\n然后来到Network → Firewall → General Setting，可以选择为wireguard单独创建一个zone，Input, Output和Forward全部开启，Masq关闭\n配置完之后在Interface → wg0 → Firewall Settings就能看到wg0被单独分配到了自己的zone\n如果OpenWrt是主路由，则需要在Firewall → Traffic Rules中开放端口\n像我家的情况OpenWrt是旁路由，则需要在主路由上做端口转发\n在Network → Interface → wg0点击Edit，然后转到Peers，点击Add peer\n添加Description，比如我的Windows台式机 我们可以点击创建新的密钥对 建议创建Preshared Key Allow IPs就是这个节点在这个VPN网络的IP地址，我输入192.168.100.2/32，注意掩码一定是32，一个设备应该只含有一个IP地址 如果该设备在家里，比如我的台式机，Endpoint填OpenWrt的地址，如果设备在外网，比如我的MacBook，则填家里的公网IP Keep Alive可以设置为25 Reload一下wg0接口\nWindows或Mac Os 安装 从这里下载Wireguard App\n配置 在OpenWrt → Network → Interface → wg0 → Edit Peer中可以很方便地为每个终端导出配置文件，复制粘贴在Windows客户端的wireguard中就可以了\n这是Windows的配置例子\n[Interface] PrivateKey = [Windows_PRIVATE_KEY] ListenPort = Port Address = 192.168.100.2/32\t# 这个IP是Windows在wireguard子网的IP DNS = [OpenWrt IP]\t# 可以设置为Wireguard Server（即OpenWrt）的真实IP地址 [Peer] PublicKey = [OpenWrt_PUBLIC_KEY] PresharedKey = [Windows_PSK] AllowedIPs = 192.168.100.0/24\t# 我的Windows和主路由在同一个子网，因此可以设置只有192.168.100.0/24的流量经过VPN Endpoint = [OpenWrt IP]:Port PersistentKeepalive = 25 MacBook 我的MacBook一般是带出家门使用的，因此不常常在我家的内网，除了AllowedIPs设置为所有流量经过VPN以外其他与上面相同\n[Interface] PrivateKey = [MacBook_PRIVATE_KEY] Address = 192.168.100.3/32 ListenPort = PORT DNS = [OpenWrt IP] [Peer] PublicKey = [OpenWrt_PUBLIC_KEY] PresharedKey = [MacBook_PSK] AllowedIPs = 0.0.0.0/0, ::/0\t# All traffic Endpoint = [Home Public IP]:Port\t# Public IP PersistentKeepAlive = 25 Linux 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对，也可以使用OpenWrt的Web manager来生成密钥对（使用OpenWrt集中的管理密钥对更方便，但是不安全）\nsudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey \u003e publickey 编辑配置文件wg0.conf\n[Interface] PrivateKey = [LINUX_PRIVATE_KEY] Address = 192.168.100.4/32 ListenPort = Port DNS = [OpenWrt IP] [Peer] PublicKey = [OpenWrt_PUBLIC_KEY] PresharedKey = [LINUX_PSK] AllowedIPs = 192.168.100.0/24\t# 我的Linux作为服务器也一直在家里 Endpoint = [OpenWrt IP]:Port PersistentKeepAlive = 25 启动Wireguard\nsudo wg-quick up wg0 如果需要reloead\nsudo wg-quick down wg0 sudo wg-quick up wg0 问题分析 如果报错\nroot@debian:/etc/wireguard# sudo wg-quick up wg0 [#] ip link add wg0 type wireguard [#] wg setconf wg0 /dev/fd/63 [#] ip -4 address add 192.168.100.4/32 dev wg0 [#] ip link set mtu 1420 up dev wg0 [#] resolvconf -a wg0 -m 0 -x /usr/bin/wg-quick: line 32: resolvconf: command not found [#] ip link delete dev wg0 没有安装resolvconf，需要下载\nsudo apt install resolvconf ",
+  "wordCount" : "1439",
+  "inLanguage": "zh",
+  "datePublished": "2024-05-25T00:19:19-04:00",
+  "dateModified": "2025-07-30T00:47:12-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/zh/blog/tech/server/openwrt/wireguard/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://data.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/zh/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/en/" title="English🇨🇦"
+                            aria-label="English🇨🇦">English🇨🇦</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kyxie.me/zh/comment/comments" title="留言板📋">
+                    <span>留言板📋</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">折腾 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/openwrt/">OpenWrt 🛜</a></div>
+    <h1 class="post-title">
+      OpenWrt配置Wireguard
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2024-05-25 00:19:19 -0400 EDT'>2024-05-25</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1439 字&nbsp;·&nbsp;Kyxie
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">目录</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#openwrt" aria-label="OpenWrt">OpenWrt</a><ul>
+                                    
+                        <li>
+                            <a href="#%e5%ae%89%e8%a3%85" aria-label="安装">安装</a></li>
+                        <li>
+                            <a href="#%e9%85%8d%e7%bd%ae" aria-label="配置">配置</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#windows%e6%88%96mac-os" aria-label="Windows或Mac Os">Windows或Mac Os</a><ul>
+                                    
+                        <li>
+                            <a href="#%e5%ae%89%e8%a3%85-1" aria-label="安装">安装</a></li>
+                        <li>
+                            <a href="#%e9%85%8d%e7%bd%ae-1" aria-label="配置">配置</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#macbook" aria-label="MacBook">MacBook</a></li>
+                        <li>
+                            <a href="#linux" aria-label="Linux">Linux</a><ul>
+                                    
+                        <li>
+                            <a href="#%e5%ae%89%e8%a3%85-2" aria-label="安装">安装</a></li>
+                        <li>
+                            <a href="#%e9%85%8d%e7%bd%ae-2" aria-label="配置">配置</a></li>
+                        <li>
+                            <a href="#%e9%97%ae%e9%a2%98%e5%88%86%e6%9e%90" aria-label="问题分析">问题分析</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><p>Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连接到家里的VPN，然后再访问内网了。</p>
+<p>下图是我家的网络拓扑（详见：<a href="/zh/blog/tech/server/openwrt/raspberrypi-openwrt/#%E8%BF%9E%E6%8E%A5%E8%B7%AF%E7%94%B1%E5%99%A8">树莓派4B+安装OpenWrt用作旁路由 | Kunyang&rsquo;s Blog</a>）是把OpenWrt作为旁路由使用，其他设备的默认网关和DNS指向OpenWrt。</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/ffb05d6f2521453a9935857ac990244e.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Network Topologic"  />
+</p>
+<h2 id="openwrt">OpenWrt<a hidden class="anchor" aria-hidden="true" href="#openwrt">#</a></h2>
+<h3 id="安装">安装<a hidden class="anchor" aria-hidden="true" href="#安装">#</a></h3>
+<p>所需插件：</p>
+<ul>
+<li>kmod-wireguard</li>
+<li>luci-proto-wireguard</li>
+<li>wireguard-tools</li>
+</ul>
+<h3 id="配置">配置<a hidden class="anchor" aria-hidden="true" href="#配置">#</a></h3>
+<ul>
+<li>
+<p>Network → Interface → Add new interface，创建一个wireguard，名字就叫<code>wg0</code></p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/4900a8d8482509dce6696a83868099cb.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="创建Interface"  />
+</p>
+</li>
+<li>
+<p>点击Generate new key pair，会自动生成一个公钥一个私钥，IP地址可以随便写一个私有地址的网段，我填写<code>192.168.100.1/24</code>，这就是这个VPN的子网，然后设置默认端口，可以随便写，这里我设置<code>55555</code></p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/7822b571fb68c9923fec1db8febb2767.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="配置Wireguard"  />
+</p>
+</li>
+<li>
+<p>然后来到Network → Firewall → General Setting，可以选择为wireguard单独创建一个zone，Input, Output和Forward全部开启，Masq关闭</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/4dab10eb116bf47cd12a657897698e40.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Firewall"  />
+</p>
+<p>配置完之后在Interface → wg0 → Firewall Settings就能看到<code>wg0</code>被单独分配到了自己的zone</p>
+</li>
+<li>
+<p>如果OpenWrt是主路由，则需要在Firewall → Traffic Rules中开放端口</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/4e2829f0745fe7dfadc79cf6e591c9ea.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="开放Wireguard端口"  />
+</p>
+</li>
+<li>
+<p>像我家的情况OpenWrt是旁路由，则需要在主路由上做端口转发</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/c4926488d62a1761b6ff74755b06d2c9.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="端口转发"  />
+</p>
+</li>
+<li>
+<p>在Network → Interface → wg0点击Edit，然后转到Peers，点击Add peer</p>
+<ul>
+<li>添加Description，比如我的Windows台式机</li>
+<li>我们可以点击创建新的密钥对</li>
+<li>建议创建Preshared Key</li>
+<li>Allow IPs就是这个节点在这个VPN网络的IP地址，我输入<code>192.168.100.2/32</code>，注意掩码一定是32，一个设备应该只含有一个IP地址</li>
+<li>如果该设备在家里，比如我的台式机，Endpoint填OpenWrt的地址，如果设备在外网，比如我的MacBook，则填家里的公网IP</li>
+<li>Keep Alive可以设置为25</li>
+</ul>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/28948dbc057666f173dcd23c0dc3112e.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Peer设置"  />
+</p>
+</li>
+<li>
+<p>Reload一下<code>wg0</code>接口</p>
+</li>
+</ul>
+<h2 id="windows或mac-os">Windows或Mac Os<a hidden class="anchor" aria-hidden="true" href="#windows或mac-os">#</a></h2>
+<h3 id="安装-1">安装<a hidden class="anchor" aria-hidden="true" href="#安装-1">#</a></h3>
+<p>从<a href="https://www.wireguard.com/install/">这里</a>下载Wireguard App</p>
+<h3 id="配置-1">配置<a hidden class="anchor" aria-hidden="true" href="#配置-1">#</a></h3>
+<ul>
+<li>
+<p>在OpenWrt → Network → Interface → wg0 → Edit Peer中可以很方便地为每个终端导出配置文件，复制粘贴在Windows客户端的wireguard中就可以了</p>
+</li>
+<li>
+<p>这是Windows的配置例子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>Interface<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>PrivateKey <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>Windows_PRIVATE_KEY<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>ListenPort <span style="color:#f92672">=</span> Port
+</span></span><span style="display:flex;"><span>Address <span style="color:#f92672">=</span> 192.168.100.2/32			<span style="color:#75715e"># 这个IP是Windows在wireguard子网的IP</span>
+</span></span><span style="display:flex;"><span>DNS <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>OpenWrt IP<span style="color:#f92672">]</span>					<span style="color:#75715e"># 可以设置为Wireguard Server（即OpenWrt）的真实IP地址</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Peer<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>PublicKey <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>OpenWrt_PUBLIC_KEY<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>PresharedKey <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>Windows_PSK<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>AllowedIPs <span style="color:#f92672">=</span> 192.168.100.0/24		<span style="color:#75715e"># 我的Windows和主路由在同一个子网，因此可以设置只有192.168.100.0/24的流量经过VPN</span>
+</span></span><span style="display:flex;"><span>Endpoint <span style="color:#f92672">=</span> <span style="color:#f92672">[</span>OpenWrt IP<span style="color:#f92672">]</span>:Port
+</span></span><span style="display:flex;"><span>PersistentKeepalive <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="macbook">MacBook<a hidden class="anchor" aria-hidden="true" href="#macbook">#</a></h2>
+<p>我的MacBook一般是带出家门使用的，因此不常常在我家的内网，除了<code>AllowedIPs</code>设置为所有流量经过VPN以外其他与上面相同</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[<span style="color:#ae81ff">Interface]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">PrivateKey = [MacBook_PRIVATE_KEY]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Address = 192.168.100.3/32</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ListenPort = PORT</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">DNS = [OpenWrt IP]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">Peer]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">PublicKey = [OpenWrt_PUBLIC_KEY]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">PresharedKey = [MacBook_PSK]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">AllowedIPs = 0.0.0.0/0, ::/0		# All traffic</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Endpoint = [Home Public IP]:Port	# Public IP</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">PersistentKeepAlive = 25</span>
+</span></span></code></pre></div><h2 id="linux">Linux<a hidden class="anchor" aria-hidden="true" href="#linux">#</a></h2>
+<h3 id="安装-2">安装<a hidden class="anchor" aria-hidden="true" href="#安装-2">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt upgrade
+</span></span><span style="display:flex;"><span>sudo apt install wireguard
+</span></span></code></pre></div><h3 id="配置-2">配置<a hidden class="anchor" aria-hidden="true" href="#配置-2">#</a></h3>
+<ul>
+<li>
+<p>进入<code>/etc/wireguard</code>，并生成密钥对，也可以使用OpenWrt的Web manager来生成密钥对（使用OpenWrt集中的管理密钥对更方便，但是不安全）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -i
+</span></span><span style="display:flex;"><span>cd /etc/wireguard
+</span></span><span style="display:flex;"><span>umask <span style="color:#ae81ff">077</span>
+</span></span><span style="display:flex;"><span>wg genkey | tee privatekey | wg pubkey &gt; publickey
+</span></span></code></pre></div></li>
+<li>
+<p>编辑配置文件<code>wg0.conf</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[<span style="color:#ae81ff">Interface]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">PrivateKey = [LINUX_PRIVATE_KEY]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Address = 192.168.100.4/32</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ListenPort = Port</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">DNS = [OpenWrt IP]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ae81ff">Peer]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">PublicKey = [OpenWrt_PUBLIC_KEY]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">PresharedKey = [LINUX_PSK]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">AllowedIPs = 192.168.100.0/24	# 我的Linux作为服务器也一直在家里</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Endpoint = [OpenWrt IP]:Port</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">PersistentKeepAlive = 25</span>
+</span></span></code></pre></div></li>
+<li>
+<p>启动Wireguard</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo wg-quick up wg0
+</span></span></code></pre></div></li>
+<li>
+<p>如果需要reloead</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo wg-quick down wg0
+</span></span><span style="display:flex;"><span>sudo wg-quick up wg0
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="问题分析">问题分析<a hidden class="anchor" aria-hidden="true" href="#问题分析">#</a></h3>
+<ul>
+<li>
+<p>如果报错</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>root@debian:/etc/wireguard# sudo wg-quick up wg0
+</span></span><span style="display:flex;"><span>[#] ip link add wg0 type wireguard
+</span></span><span style="display:flex;"><span>[#] wg setconf wg0 /dev/fd/63
+</span></span><span style="display:flex;"><span>[#] ip -4 address add 192.168.100.4/32 dev wg0
+</span></span><span style="display:flex;"><span>[#] ip link set mtu 1420 up dev wg0
+</span></span><span style="display:flex;"><span>[#] resolvconf -a wg0 -m 0 -x
+</span></span><span style="display:flex;"><span>/usr/bin/wg-quick: line 32: resolvconf: command not found
+</span></span><span style="display:flex;"><span>[#] ip link delete dev wg0
+</span></span></code></pre></div><p>没有安装<code>resolvconf</code>，需要下载</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install resolvconf
+</span></span></code></pre></div></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>使用Docker部署Minecraft服务器</span>
+  </a>
+  <a class="next" href="https://kyxie.me/zh/blog/wool/checking-accounts/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>我使用过的加拿大🇨🇦支票账户</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>
+    &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
+  </span>
+  <span id="umami-stats">
+    | Visitors: <span id="uv-count"></span>
+    Views: <span id="pv-count"></span>
+  </span>
+  <script
+    src="https://umami-api.kyxie.me/script.js"
+    defer
+    init-visitors="38233"
+    init-views="91643"
+    ></script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

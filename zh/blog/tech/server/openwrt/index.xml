@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>OpenWrt 🛜 on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.me/zh/blog/tech/server/openwrt/</link>
+    <description>Recent content in OpenWrt 🛜 on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 30 Jun 2025 22:49:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/blog/tech/server/openwrt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>树莓派4B&#43;安装OpenWrt用作旁路由</title>
+      <link>https://kyxie.me/zh/blog/tech/server/openwrt/raspberrypi-openwrt/</link>
+      <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/openwrt/raspberrypi-openwrt/</guid>
+      <description>我的折腾历史 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界服务</description>
+    </item>
+    
+    <item>
+      <title>OpenWrt配置Wireguard</title>
+      <link>https://kyxie.me/zh/blog/tech/server/openwrt/wireguard/</link>
+      <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/openwrt/wireguard/</guid>
+      <description>Wireguard是一个非常轻量化的VPN，相比臃肿的OpenVPN配置要简单很多。非常适合组建自己家的VPN，这样比较敏感的服务就可以先连</description>
+    </item>
+    
+    <item>
+      <title>OpenWrt配置DDNS</title>
+      <link>https://kyxie.me/zh/blog/tech/server/openwrt/ddns/</link>
+      <pubDate>Sun, 22 Dec 2024 21:37:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/openwrt/ddns/</guid>
+      <description>OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v</description>
+    </item>
+    
+    <item>
+      <title>OpenWrt部署AdGuardHome</title>
+      <link>https://kyxie.me/zh/blog/tech/server/openwrt/adguardhome/</link>
+      <pubDate>Wed, 25 Jun 2025 10:44:22 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/openwrt/adguardhome/</guid>
+      <description>AdguardHome是一个去广告应用，但是它不仅仅能去广告，还能做一个局域网的DNS服务器。 安装 这个应用因为算是网络管理相关，我就安装在了</description>
+    </item>
+    
+  </channel>
+</rss>
