@@ -13,7 +13,7 @@
       <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/openwrt/raspberrypi-openwrt/</guid>
-      <description>我的折腾历史 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界服务</description>
+      <description>我的折腾历史 使用树莓派安装OpenWrt做主系统，但是又想做一个Minecraft服务器，树莓派性能不太够需要换设备 买了Mini PC准备做M</description>
     </item>
     
     <item>
@@ -31,7 +31,7 @@
       <pubDate>Sun, 22 Dec 2024 21:37:58 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/openwrt/ddns/</guid>
-      <description>OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v</description>
+      <description>OpenWrt配置DDNS 因为北美的IPv4资源非常充足，在加拿大购买家庭网络计划会直接带着公网IP，然而运营商经常容易换IP，DDNS的作</description>
     </item>
     
     <item>

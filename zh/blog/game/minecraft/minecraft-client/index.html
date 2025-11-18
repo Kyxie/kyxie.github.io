@@ -92,8 +92,8 @@
   "keywords": [
     "Windows", "Minecraft", "Forge", "HMCL"
   ],
-  "articleBody": "我本人也算是Minecraft的老粉丝了，初中就开始在手机上玩，还记得高一的时候每天晚上10点上完晚自习回家之后都得盖个楼修个桥的。后来换手机存档丢了 + Minecraft被网易代理 + 高考边忙之后就慢慢的玩的少了。\n这篇文章详细讲解一下在Windows下载安装畅玩Java版Minecraft教程。\nJava Java版我的世界首先需要安装Java，可以去Oracle官网下载JDK，这里建议下载Java 17。搞后端的小伙伴用IntelliJ下载JDK更省事儿。\nHMCL HMCL是Minecraft的启动器，可以从这里下载\n建议去LittleSkin皮肤站注册个账号，顺便找一些自己喜欢的皮肤\n直接在HMCL中绑定LittleSkin的账号\n之后点击Games，下载一个游戏实体，这里我选择的版本是1.18.2，Forge版本选择40.2.0\n下载完成后就可以启动游戏了\nMac 我尝试了一下MacBook也可以玩，毕竟所有的代码都是Java写的，而Java又是跨平台的。还是从HMCL下载，按照提示下载下来的是.jar包。我们在命令行运行\njava -jar HMCL-3.6.12.jar 即可运行HMCL了。\n联机 如果想和朋友联机，基本的步骤是：\n我和我的小伙伴都安装MC客户端，版本号一致 我或者小伙伴一个人搭建服务器，假设我搭建了服务器 我开放端口转发，允许小伙伴接入，给小伙伴开放白名单（或者是用内网穿透） 小伙伴同样设置一个离线账户，一个LittleSkin账户 小伙伴的MC选择Multiple Player，地址填我的公网IP（或域名，或内网穿透地址） 可以参考这篇文章：Debian使用Docker搭建Minecraft服务器 | Kunyang’s Blog\n客户端模组 可以从CurseForge下载模组，下面是几个必备模组：\nJEI：合成配方查看器\n非必要前置模组：Configured JER：显示怪物掉落、矿物分布图等，基于 JEI\nAppleSkin：显示饱食度、饥饿恢复速度等，辅助 HUD 信息显示\nMouse Tweaks：\n增强鼠标拖拽物品体验，快捷整理物品、批量移动等 双击左键可以归类 按住Shift拖动鼠标，就能把物品放到箱子里 滚动滚轮也可以转移物品到背包 JourneyMap：小地图 + 实时大地图，可浏览网页界面\nJade：物品提示，鼠标指向提示信息\nCustom Skin Loader：皮肤模组\nForgematica\nLitematica的Forge版本，在创造模式中设计建筑，然后生存模式中投影建筑\n需要前置模组：MaFgLib\n使用CTRL + 滚轮切换模式\n模式1可以选中方格，选择立方体的对角线，用于制作原理图\n按M打开Forgematica的主菜单，点击选区编辑器，可以保存原理图\n保存后原理图存放在了.minecraft/schematics，也可以从论坛中找别人的原理图\n之后可以切换到模式5，点击鼠标右键，就能在想要的地方插入原理图了，按住ALT滑动鼠标滚轮还能位置微调\n如果需要旋转，则需要按M → 原理图编辑 → 配置，右下角就有旋转了\n按M → 配置菜单 → 渲染层可以选择单层渲染，然后定位到玩家层\nPlanet Minecraft可以找到别人创作的原理图，且Forgematica和Litematica的原理图是通用的\nTweakerge\nTweakeroo的Forge版本 快捷键X + C 游戏增强，比如改善Gamma值，让矿洞变亮 EasierVillagerTrading reForged\nEasierVillagerTrading的Forge版本 村民快速交易 支持版本较少，支持1.18.2 皮肤 我遇见了一下三个问题，以及对应的解决方案：\n线下模式能看见自己皮肤，线上看不见\n成功进入服务器后，我发现我的皮肤并没有加载出来，然后进入Single Player Mode一试发现此时的皮肤可以加载出来，我以为是服务端没有向LittleSkin发送API导致还需要下载什么mod或者插件，找了半天原因也没找到，后来发现了一篇HMCL的文章：离线模式下更换皮肤 - Hello Minecraft! Launcher解决了问题\n本地要再创建一个离线账户，和LittleSkin使用同样的用户名，然后在衣架按钮上选择LittleSkin\n最后以离线账户Launch Game，加入服务器就可以显示皮肤了。\n线上模式自己能看见自己的皮肤，朋友看不见你的皮肤\n没有装Custom Skin Loader 皮肤变了，不是自己在LittleSkin配置的皮肤\n详见：CustomSkinLoader | LittleSkin 用户使用手册 ",
-  "wordCount" : "1720",
+  "articleBody": "我本人也算是Minecraft的老粉丝了，初中就开始在手机上玩，还记得高一的时候每天晚上10点上完晚自习回家之后都得盖个楼修个桥的。后来换手机存档丢了 + Minecraft被网易代理 + 高考边忙之后就慢慢的玩的少了。\n这篇文章详细讲解一下在Windows下载安装畅玩Java版Minecraft教程。\nJava Java版我的世界首先需要安装Java，可以去Oracle官网下载JDK，这里建议下载Java 17。搞后端的小伙伴用IntelliJ下载JDK更省事儿。\nHMCL HMCL是Minecraft的启动器，可以从这里下载\n建议去LittleSkin皮肤站注册个账号，顺便找一些自己喜欢的皮肤\n直接在HMCL中绑定LittleSkin的账号\n之后点击Games，下载一个游戏实体，这里我选择的版本是1.18.2，Forge版本选择40.2.0\n下载完成后就可以启动游戏了\nMac 我尝试了一下MacBook也可以玩，毕竟所有的代码都是Java写的，而Java又是跨平台的。还是从HMCL下载，按照提示下载下来的是.jar包。我们双击这个.jar包，或者在命令行运行\njava -jar HMCL-3.6.12.jar 即可运行HMCL了。\n联机 如果想和朋友联机，基本的步骤是：\n我和我的小伙伴都安装MC客户端，版本号一致 我或者小伙伴一个人搭建服务器，假设我搭建了服务器 我开放端口转发，允许小伙伴接入，给小伙伴开放白名单（或者是用内网穿透） 小伙伴同样设置一个离线账户，一个LittleSkin账户 小伙伴的MC选择Multiple Player，地址填我的公网IP（或域名，或内网穿透地址） 可以参考这篇文章：Debian使用Docker搭建Minecraft服务器 | Kunyang’s Blog\n客户端模组 可以从CurseForge下载模组，下面是几个必备模组：\nJEI：合成配方查看器\n非必要前置模组：Configured JER：显示怪物掉落、矿物分布图等，基于 JEI\nAppleSkin：显示饱食度、饥饿恢复速度等，辅助 HUD 信息显示\nMouse Tweaks：\n增强鼠标拖拽物品体验，快捷整理物品、批量移动等 双击左键可以归类 按住Shift拖动鼠标，就能把物品放到箱子里 滚动滚轮也可以转移物品到背包 JourneyMap：小地图 + 实时大地图，可浏览网页界面\nJade：物品提示，鼠标指向提示信息\nCustom Skin Loader：皮肤模组\nForgematica\nLitematica的Forge版本，在创造模式中设计建筑，然后生存模式中投影建筑\n需要前置模组：MaFgLib\n使用CTRL + 滚轮切换模式\n模式1可以选中方格，选择立方体的对角线，用于制作原理图\n按M打开Forgematica的主菜单，点击选区编辑器，可以保存原理图\n保存后原理图存放在了.minecraft/schematics，也可以从论坛中找别人的原理图\n之后可以切换到模式5，点击鼠标右键，就能在想要的地方插入原理图了，按住ALT滑动鼠标滚轮还能位置微调\n如果需要旋转，则需要按M → 原理图编辑 → 配置，右下角就有旋转了\n按M → 配置菜单 → 渲染层可以选择单层渲染，然后定位到玩家层\nPlanet Minecraft可以找到别人创作的原理图，且Forgematica和Litematica的原理图是通用的\nTweakerge\nTweakeroo的Forge版本 快捷键X + C 游戏增强，比如改善Gamma值，让矿洞变亮 EasierVillagerTrading reForged\nEasierVillagerTrading的Forge版本 村民快速交易 支持版本较少，支持1.18.2 皮肤 我遇见了一下三个问题，以及对应的解决方案：\n线下模式能看见自己皮肤，线上看不见\n成功进入服务器后，我发现我的皮肤并没有加载出来，然后进入Single Player Mode一试发现此时的皮肤可以加载出来，我以为是服务端没有向LittleSkin发送API导致还需要下载什么mod或者插件，找了半天原因也没找到，后来发现了一篇HMCL的文章：离线模式下更换皮肤 - Hello Minecraft! Launcher解决了问题\n本地要再创建一个离线账户，和LittleSkin使用同样的用户名，然后在衣架按钮上选择LittleSkin\n最后以离线账户Launch Game，加入服务器就可以显示皮肤了。\n线上模式自己能看见自己的皮肤，朋友看不见你的皮肤\n没有装Custom Skin Loader 皮肤变了，不是自己在LittleSkin配置的皮肤\n详见：CustomSkinLoader | LittleSkin 用户使用手册 ",
+  "wordCount" : "1732",
   "inLanguage": "zh",
   "datePublished": "2024-12-13T00:55:12-05:00",
   "dateModified": "2025-07-30T00:47:12-04:00",
@@ -180,7 +180,7 @@
     <div class="post-meta">
 
 
-<span title='2024-12-13 00:55:12 -0500 EST'>2024-12-13</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;1720 字&nbsp;·&nbsp;Kyxie
+<span title='2024-12-13 00:55:12 -0500 EST'>2024-12-13</span>&nbsp;·&nbsp;4 分钟&nbsp;·&nbsp;1732 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -297,7 +297,7 @@
 </li>
 </ul>
 <h2 id="mac">Mac<a hidden class="anchor" aria-hidden="true" href="#mac">#</a></h2>
-<p>我尝试了一下MacBook也可以玩，毕竟所有的代码都是Java写的，而Java又是跨平台的。还是从HMCL下载，按照提示下载下来的是<code>.jar</code>包。我们在命令行运行</p>
+<p>我尝试了一下MacBook也可以玩，毕竟所有的代码都是Java写的，而Java又是跨平台的。还是从HMCL下载，按照提示下载下来的是<code>.jar</code>包。我们双击这个<code>.jar</code>包，或者在命令行运行</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>java -jar HMCL-3.6.12.jar
 </span></span></code></pre></div><p>即可运行HMCL了。</p>
 <h2 id="联机">联机<a hidden class="anchor" aria-hidden="true" href="#联机">#</a></h2>
@@ -477,7 +477,7 @@
     
 <footer class="footer">
   <span>
-    &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
+    &copy; 2025 <a href="https://kyxie.me/zh/">Kyxie's Blog</a>
   </span>
   <span id="umami-stats">
     | Visitors: <span id="uv-count"></span>

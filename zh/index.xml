@@ -6,7 +6,7 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 20 Sep 2025 22:04:53 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Oct 2025 22:40:50 -0400</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>地平线5车辆调教指南</title>
       <link>https://kyxie.me/zh/blog/game/forza-horizon-5/car-turning/</link>
@@ -40,7 +40,7 @@
       <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/openwrt/raspberrypi-openwrt/</guid>
-      <description>我的折腾历史 使用树莓派安装OpenWrt做主系统，但是又想做一个我的世界服务器，树莓派性能不太够需要换设备 买了Mini PC准备做我的世界服务</description>
+      <description>我的折腾历史 使用树莓派安装OpenWrt做主系统，但是又想做一个Minecraft服务器，树莓派性能不太够需要换设备 买了Mini PC准备做M</description>
     </item>
     
     <item>
@@ -139,7 +139,7 @@
       <pubDate>Sun, 22 Dec 2024 21:37:58 -0500</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/openwrt/ddns/</guid>
-      <description>OpenWrt配置DDNS 前提条件 需要一个域名 需要公网IP 一些包 ddns-scripts-cloudflare luci-app-ddns drill 配置步骤 首先需要Cloudflare创建一条A记录，选一个域名，例如v</description>
+      <description>OpenWrt配置DDNS 因为北美的IPv4资源非常充足，在加拿大购买家庭网络计划会直接带着公网IP，然而运营商经常容易换IP，DDNS的作</description>
     </item>
     
     <item>
@@ -206,6 +206,42 @@
     </item>
     
     <item>
+      <title>远程控制</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/remote/</link>
+      <pubDate>Thu, 16 Oct 2025 23:53:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/remote/</guid>
+      <description>其实最根本的远程控制无非也就是三种，VPN，直接开端口和内网穿透。 Cloudflared SSH 之前用Cloudflared代理了好多服务，这些服务都是基础的前后端服</description>
+    </item>
+    
+    <item>
+      <title>Docker镜像自动更新</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/watchtower/</link>
+      <pubDate>Tue, 28 Oct 2025 22:38:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/watchtower/</guid>
+      <description>Docker Compose可以很方便地下载和管理容器，但是无法自动化地更新镜像，这么多镜像我们总不能一个个地手动更新新的镜像，好在早就有人找到了解决办</description>
+    </item>
+    
+    <item>
+      <title>为部署的服务添加用户登录</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/auth/</link>
+      <pubDate>Tue, 28 Oct 2025 22:40:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/auth/</guid>
+      <description>把自己的服务暴露在公网之后安全是首要考虑的问题，大部分的应用都有User/Auth Service用来供User注册登录，这篇文章简要介绍一下</description>
+    </item>
+    
+    <item>
+      <title>如何在加拿大兑换美元和其他货币</title>
+      <link>https://kyxie.me/zh/blog/wool/us-dollar/</link>
+      <pubDate>Tue, 27 May 2025 11:49:55 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/wool/us-dollar/</guid>
+      <description>我自己试过几种方法，以及在各种场合我会怎么使用美元，文章内容仅供参考，由于我暂时还没有美卡，如果有了美国信用卡有些情况可能有更优解。 购买美国</description>
+    </item>
+    
+    <item>
       <title>加拿大移民被安调经历</title>
       <link>https://kyxie.me/zh/blog/pr/mandamus/</link>
       <pubDate>Mon, 04 Aug 2025 13:54:00 -0400</pubDate>
@@ -220,7 +256,7 @@
       <pubDate>Sat, 14 Jun 2025 17:36:33 -0400</pubDate>
       
       <guid>https://kyxie.me/zh/blog/tech/server/others/automount/</guid>
-      <description>这是现在基本上所有电脑都能实现的功能了，无非就是后台自动搜索设备，然后自动挂载。可能这个场景在没有GUI版的Linux用处不大，因此每次插入</description>
+      <description>这是现在基本上所有电脑都能实现的功能了，无非就是后台自动搜索设备，然后自动挂载。可能这个场景在没有GUI版的Linux用处不大，导致每次插入</description>
     </item>
     
     <item>

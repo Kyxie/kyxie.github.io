@@ -79,5 +79,32 @@
       <description></description>
     </item>
     
+    <item>
+      <title>远程控制</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/remote/</link>
+      <pubDate>Thu, 16 Oct 2025 23:53:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/remote/</guid>
+      <description>其实最根本的远程控制无非也就是三种，VPN，直接开端口和内网穿透。 Cloudflared SSH 之前用Cloudflared代理了好多服务，这些服务都是基础的前后端服</description>
+    </item>
+    
+    <item>
+      <title>Docker镜像自动更新</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/watchtower/</link>
+      <pubDate>Tue, 28 Oct 2025 22:38:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/watchtower/</guid>
+      <description>Docker Compose可以很方便地下载和管理容器，但是无法自动化地更新镜像，这么多镜像我们总不能一个个地手动更新新的镜像，好在早就有人找到了解决办</description>
+    </item>
+    
+    <item>
+      <title>为部署的服务添加用户登录</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/auth/</link>
+      <pubDate>Tue, 28 Oct 2025 22:40:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/auth/</guid>
+      <description>把自己的服务暴露在公网之后安全是首要考虑的问题，大部分的应用都有User/Auth Service用来供User注册登录，这篇文章简要介绍一下</description>
+    </item>
+    
   </channel>
 </rss>

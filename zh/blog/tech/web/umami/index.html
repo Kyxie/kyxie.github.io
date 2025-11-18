@@ -92,8 +92,8 @@
   "keywords": [
     "Cloudflared", "Docker", "Debian", "Umami"
   ],
-  "articleBody": "Umami是个个人网站站点数据分析的工具，支持自己部署，使用他们的服务器好像最多可以跟踪三个站点。我还试过使用Plausible，但是对我而言有一点重，使用之后System Load增加了许多。\n部署 创建docker-compose.yml，根据自己的情况修改，这里我接入了cloudflared的网络，就可以实现公网访问了。\nservices: umami: container_name: umami image: ghcr.io/umami-software/umami:postgresql-latest # ports: # - \"3000:3000\" environment: DATABASE_URL: postgresql://umami:umami@db:5432/umami DATABASE_TYPE: postgresql APP_SECRET: your_secret depends_on: db: condition: service_healthy init: true restart: unless-stopped healthcheck: test: [\"CMD-SHELL\", \"curl http://localhost:3000/api/heartbeat\"] interval: 5s timeout: 5s retries: 5 networks: - cloudflared db: container_name: umami-db image: postgres:15-alpine environment: POSTGRES_DB: umami POSTGRES_USER: umami POSTGRES_PASSWORD: umami volumes: - ./data:/var/lib/postgresql/data restart: unless-stopped healthcheck: test: [\"CMD-SHELL\", \"pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}\"] interval: 5s timeout: 5s retries: 5 networks: - cloudflared networks: cloudflared: external: true 可以使用OpenSSL生成secret\nopenssl rand -base64 32 启动容器\ndocker compose up -d 在反向代理添加域名，umami自动监听3000端口\nSubdomain: data Domain: your_domain Type: HTTP URL: umami:3000 默认用户名为admin，默认密码为umami，可以直接用Web页面修改用户名密码\n添加网站后，在Setting → Tracking Code可以得到跟踪代码，我使用的个人网站主题为Hugo，将跟踪代码粘贴到layouts/partials/head.html\n最终效果还是很好看的，只是可惜之前的数据就没有记录了，可以在这里预览：Umami\n嵌入到博客前端 实现这个需要使用一个三段式的Proxy，前端脚本嵌入代码script.js，代码访问umami-api的接口，接口服务使用umami的token调用umami，得到数据后返回前端，前端可以根据初始值然后显示出来。我自己写了个小服务：GitHub - Kyxie/umami-api。\n在Umami中创建一个Team，将博客转移到Team中\n创建一个权限比较低的新用户，比如view only，把这个新用户加入到新创建的Team，我们最好不要直接使用高权限用户，因为万一token泄露很危险\n使用PostWoman或curl发送请求，username使用新用户的用户名和密码\ncurl -X POST https://umami_url/api/auth/login \\ -H \"Content-Type: application/json\" \\ -d '{\"username\":\"username\", \"password\":\"password\"}' 响应体中我们能得到一个token\n在Cloudflared中新建一个hostname，我们需要让umami-api支持公网访问\nSubdomain: umami-api domain: your_domain type: HTTP URL: umami-api:3001 创建一个.env\nUMAMI_URL=[your_umami_url] UMAMI_TOKEN=[your_token] UMAMI_WEBSITE_ID=[your_website_id] CORS_ALLOW_ORIGIN=[your_blog_url] UMAMI_URL是Umami的URL，由于API和Umami在一个容器网络，可以填容器名称（http://umami:3000） UMAMI_TOKEN是刚才生成的token UMAMI_WEBSITE_ID是Umami中网站的id CORS_ALLOW_ORIGIN是允许访问服务的url（比如要嵌入的博客），可以不止一个，中间用逗号隔开 创建docker-compose.yml\numami-api: image: kyxie/umami-api:latest container_name: umami-api # ports: # - \"3001:3001\" env_file: .env restart: unless-stopped networks: - cloudflared 直接把这一段放到umami的stack中，加入cloudflared容器网络\n启动容器\ndocker compose up -d ",
-  "wordCount" : "1094",
+  "articleBody": "Umami是个个人网站站点数据分析的工具，支持自己部署，使用他们的服务器好像最多可以跟踪三个站点。我还试过使用Plausible，但是对我而言有一点重，使用之后System Load增加了许多。\n部署 创建docker-compose.yml，根据自己的情况修改，这里我接入了cloudflared的网络，就可以实现公网访问了。\nservices: umami: container_name: umami image: ghcr.io/umami-software/umami:postgresql-latest environment: DATABASE_URL: postgresql://:@umami-db:5432/umami DATABASE_TYPE: postgresql APP_SECRET: depends_on: umami-db: condition: service_healthy init: true restart: unless-stopped networks: - umami - cloudflared umami-db: container_name: umami-db image: postgres:15-alpine environment: POSTGRES_DB: umami POSTGRES_USER: POSTGRES_PASSWORD: volumes: - ./data:/var/lib/postgresql/data restart: unless-stopped healthcheck: test: [\"CMD-SHELL\", \"pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}\"] interval: 5s timeout: 5s retries: 5 networks: - umami networks: cloudflared: external: true umami: name: umami driver: bridge 可以使用OpenSSL生成secret\nopenssl rand -base64 32 启动容器\ndocker compose up -d 在反向代理添加域名，umami自动监听3000端口\nSubdomain: data Domain: your_domain Type: HTTP URL: umami:3000 默认用户名为admin，默认密码为umami，可以直接用Web页面修改用户名密码\n添加网站后，在Setting → Tracking Code可以得到跟踪代码，我使用的个人网站主题为Hugo，将跟踪代码粘贴到layouts/partials/head.html\n最终效果还是很好看的，只是可惜之前的数据就没有记录了，可以在这里预览：Umami\n嵌入到博客前端 实现这个需要使用一个三段式的Proxy，前端脚本嵌入代码script.js，代码访问umami-api的接口，接口服务使用umami的token调用umami，得到数据后返回前端，前端可以根据初始值然后显示出来。我自己写了个小服务：GitHub - Kyxie/umami-api。\n在Umami中创建一个Team，将博客转移到Team中\n创建一个权限比较低的新用户，比如view only，把这个新用户加入到新创建的Team，我们最好不要直接使用高权限用户，因为万一token泄露很危险\n使用PostWoman或curl发送请求，username使用新用户的用户名和密码\ncurl -X POST https://umami_url/api/auth/login \\ -H \"Content-Type: application/json\" \\ -d '{\"username\":\"username\", \"password\":\"password\"}' 响应体中我们能得到一个token\n在Cloudflared中新建一个hostname，我们需要让umami-api支持公网访问\nSubdomain: umami-api domain: your_domain type: HTTP URL: umami-api:3001 创建一个.env\nUMAMI_URL=[your_umami_url] UMAMI_TOKEN=[your_token] UMAMI_WEBSITE_ID=[your_website_id] CORS_ALLOW_ORIGIN=[your_blog_url] UMAMI_URL是Umami的URL，由于API和Umami在一个容器网络，可以填容器名称（http://umami:3000） UMAMI_TOKEN是刚才生成的token UMAMI_WEBSITE_ID是Umami中网站的id CORS_ALLOW_ORIGIN是允许访问服务的url（比如要嵌入的博客），可以不止一个，中间用逗号隔开 创建docker-compose.yml\numami-api: image: kyxie/umami-api:latest container_name: umami-api env_file: .env restart: unless-stopped networks: - umami - cloudflared 直接把这一段放到umami的stack中，加入cloudflared容器网络\n启动容器\ndocker compose up -d ",
+  "wordCount" : "1079",
   "inLanguage": "zh",
   "datePublished": "2025-06-26T22:20:50-04:00",
   "dateModified": "2025-07-30T00:47:12-04:00",
@@ -180,7 +180,7 @@
     <div class="post-meta">
 
 
-<span title='2025-06-26 22:20:50 -0400 EDT'>2025-06-26</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1094 字&nbsp;·&nbsp;Kyxie
+<span title='2025-06-26 22:20:50 -0400 EDT'>2025-06-26</span>&nbsp;·&nbsp;3 分钟&nbsp;·&nbsp;1079 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -269,32 +269,26 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">umami</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">umami</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ghcr.io/umami-software/umami:postgresql-latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ports:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   - &#34;3000:3000&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">DATABASE_URL</span>: <span style="color:#ae81ff">postgresql://umami:umami@db:5432/umami</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">DATABASE_URL</span>: <span style="color:#ae81ff">postgresql://&lt;db_username&gt;:&lt;db_password&gt;@umami-db:5432/umami</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">DATABASE_TYPE</span>: <span style="color:#ae81ff">postgresql</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">APP_SECRET</span>: <span style="color:#ae81ff">your_secret</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">APP_SECRET</span>: 
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">db</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">umami-db</span>:
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">service_healthy</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">init</span>: <span style="color:#66d9ef">true</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">healthcheck</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">test</span>: [<span style="color:#e6db74">&#34;CMD-SHELL&#34;</span>, <span style="color:#e6db74">&#34;curl http://localhost:3000/api/heartbeat&#34;</span>]
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">5s</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">5s</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">5</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">umami</span>
 </span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">cloudflared</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">db</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">umami-db</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">umami-db</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:15-alpine</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_DB</span>: <span style="color:#ae81ff">umami</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_USER</span>: <span style="color:#ae81ff">umami</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">umami</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_USER</span>: 
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: 
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
 </span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./data:/var/lib/postgresql/data</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
@@ -304,11 +298,14 @@
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">5s</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">5</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">cloudflared</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">umami</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">cloudflared</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">umami</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">umami</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">bridge</span>
 </span></span></code></pre></div></li>
 <li>
 <p>可以使用OpenSSL生成secret</p>
@@ -375,14 +372,13 @@
 </li>
 <li>
 <p>创建<code>docker-compose.yml</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">umami-api</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span> <span style="color:#f92672">umami-api</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">kyxie/umami-api:latest</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">umami-api</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ports:</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#   - &#34;3001:3001&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">env_file</span>: <span style="color:#ae81ff">.env</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">umami</span>
 </span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">cloudflared</span>
 </span></span></code></pre></div><p>直接把这一段放到umami的stack中，加入cloudflared容器网络</p>
 </li>
@@ -435,7 +431,7 @@
     
 <footer class="footer">
   <span>
-    &copy; 2025 <a href="https://kyxie.me/zh/">Kunyang&#39;s Blog</a>
+    &copy; 2025 <a href="https://kyxie.me/zh/">Kyxie's Blog</a>
   </span>
   <span id="umami-stats">
     | Visitors: <span id="uv-count"></span>
