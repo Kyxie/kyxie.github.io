@@ -98,8 +98,8 @@
   "keywords": [
     "Cloudflared", "Docker", "Debian", "qBittorrent", "prowlarr", "radarr", "sonarr", "bazarr"
   ],
-  "articleBody": "这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。\n基本的Workflow是这样的：\n本体就是Sonarr和Radarr，Sonarr是找剧的，Radarr是找电影的 他们俩从哪找片呢，从indexers，这个indexer就可以理解为片源，但是indexer多了就需要东西管理，这时引入了Prowlarr，它可以连接Sonarr和Radarr，以后只需要在Prowlarr添加indexers，然后就可以自动同步到Sonarr和Radarr了 找到了片源需要下载器，默认用qBittorrent，我看了下也可以使用Aria2和Transmission 最后一个Bazarr是用来管理字幕的 服务端配置好之后，再使用客户端就可以看电影了。\n部署 创建以下文件夹结构\n/media ├── config │ ├── bazarr │ ├── prowlarr │ ├── qbittorrent │ ├── radarr │ └── sonarr ├── docker-compose.yml ├── downloads └── library ├── movies └── tv 创建docker网络media\ndocker network create media 编辑docker-compose.yml\nservices: sonarr: image: lscr.io/linuxserver/sonarr:latest container_name: sonarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/sonarr:/config - ./downloads:/downloads - ./library/tv:/tv ports: - \"8989:8989\" networks: - media restart: unless-stopped radarr: image: lscr.io/linuxserver/radarr:latest container_name: radarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/radarr:/config - ./downloads:/downloads - ./library/movies:/movies ports: - \"7878:7878\" networks: - media restart: unless-stopped prowlarr: image: lscr.io/linuxserver/prowlarr:latest container_name: prowlarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/prowlarr:/config ports: - \"9696:9696\" networks: - media restart: unless-stopped bazarr: image: lscr.io/linuxserver/bazarr:latest container_name: bazarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/bazarr:/config - ./downloads:/downloads - ./library/movies:/movies - ./library/tv:/tv ports: - \"6767:6767\" networks: - media restart: unless-stopped flaresolverr: image: ghcr.io/flaresolverr/flaresolverr:latest container_name: flaresolverr environment: - PUID=1000 - PGID=1000 - LOG_LEVEL=info - TZ=America/Toronto networks: - media restart: unless-stopped qbittorrent: image: lscr.io/linuxserver/qbittorrent:latest container_name: qbittorrent environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto - WEBUI_PORT=8080 volumes: - ./config/qbittorrent:/config - ./downloads:/downloads ports: - \"9090:8080\" - \"6881:6881\" - \"6881:6881/udp\" networks: - media restart: unless-stopped networks: media: external: true 配置 qBittorrent 打开qBittorrent，如果显示Unauthorized：\n由于我的服务是部署在Debian小主机上的，只有命令行，我从Windows上访问qBittorrent的话会收到限制，可能默认设置了不允许外部访问，需要修改配置文件\n首先关掉容器\ndocker compose down 打开/config/qbittorrent/qBittorrent/qBittorrent.conf\n[Preferences] WebUI\\Address=0.0.0.0 WebUI\\CSRFProtection=false WebUI\\HostHeaderValidation=false WebUI\\ServerDomains=* WebUI\\Username=admin 把WebUI\\Address改为0.0.0.0\n重启容器\ndocker compose up -d 查看logs，可以得到一个初始密码\ndocker logs qbittorrent --tail 50 然后在浏览器中输入admin和初始密码即可登录\n登陆后在齿轮⚙ → WebUI → Authentication可以修改用户名和密码，然后就不用管配置文件了\nProwlarr 左侧栏第一个Indexers，添加Indexer，可以先添加几个免费的试试，比如EZTV和YTS\n添加1337x的时候会显示blocked by CloudFlare Protection，这时候就需要FlareSolverr\nSettings → Indexers添加Index，使用FlareSolverr，由于在同一个Docker网络下，Host可以填http://flaresolverr:8191/ tag填写1337x 再回去添加Indexer，最下面的tag也填写1337x，这样再测试连接就成功了 我们先登录Sonarr和Radarr，设置用户名和密码（就会得到用户的API Key），然后在Prowlarr的Settings → Apps添加Sonarr和Radarr\nName: Sonarr Sync Level: Full Sync Prowlarr Server: http://prowlarr:9696 Sonarr Server: http://sonarr:8989 API Key: xxx Name: Radarr Sync Level: Full Sync Prowlarr Server: http://prowlarr:9696 Radarr Server: http://radarr:7878 API Key: xxx 在Settings → Download Clients添加qBittorrent下载器\nName: qBittorrent Enable: true Host: qbittorrent Port: 8080 Username: xxx Password: xxx Sonarr / Radarr 和Prowlarr相同，分别进入Settings → Download Clients，添加刚才的qBittorrent下载器 Bazarr Bazarr好像都不需要身份认证，在Settings可以绑定Sonnar和Radarr，同样地，Address写容器名即可 在Settings → Languages → Language Filter添加简体中文 Embedded Tracks Language开启 创建一个简体中文的Profile 默认Profile都设置为简体中文 在Settings → Providers中添加字幕源，可以使用zimuku和OpenSubtitles.com（这个需要注册用户） 找电影 全部配置好之后剩下的事情就很简单了，基本步骤就是：\n如果想找电影，就去Radarr直接搜电影名称，同理电视剧就去Sonarr找 加入愿望单 加入后就会自动连接qBittorrent帮我们下载 下载完后视频文件就在挂载的文件夹了 看电影 Infuse 我目前使用Infuse来看电影，通过SMB来访问服务器上挂载的文件夹，然后本地观看 优点是本地硬件解码，降低了我的miniPC的硬件压力 缺点是刮削没有Jellyfin强，没有账号管理功能，因此没有观看进度记忆功能 好像只能应用在苹果设备，iPhone，iPad，MacBook或者Apple TV Jellyfin Jellyfin的好处就是刮削能力比较强，能够显示完整的电影封面，演员信息，还支持多账号，管理每个人不同的观影记录等等\n如果服务器有独立显卡，可以直接考虑使用Jellyfin作为播放器，这样用户就可以直接在网页端观看了（我没有，我选择Infuse）\nInfuse也支持连接Jellyfin，但是要开Infuse会员，这样Infuse就完全当一个播放器用，刮削，多账户共享，观看记录功能交给Jellyfin 如果需要添加Jellyfin，可以在config文件夹下先创建jellyfin，然后修改docker-compose.yml，加入\njellyfin: image: jellyfin/jellyfin container_name: jellyfin user: \"1000:1000\" environment: - TZ=America/Toronto volumes: - ./config/jellyfin:/config - ./library:/media ports: - \"8096:8096\" networks: - media restart: unless-stopped 之后在Sonarr / Radarr的Settings → Connections可以添加Jellyfin，主要作用是下载完成后可以通知Jellyfin刷新一遍\n",
-  "wordCount" : "2154",
+  "articleBody": "这篇文章就介绍使用Docker Compose来打造一个个人的家庭影院。\n基本的Workflow是这样的：\n本体就是Sonarr和Radarr，Sonarr是找剧的，Radarr是找电影的 他们俩从哪找片呢，从indexers，这个indexer就可以理解为片源，但是indexer多了就需要东西管理，这时引入了Prowlarr，它可以连接Sonarr和Radarr，以后只需要在Prowlarr添加indexers，然后就可以自动同步到Sonarr和Radarr了 找到了片源需要下载器，默认用qBittorrent，我看了下也可以使用Aria2和Transmission 最后一个Bazarr是用来管理字幕的 服务端配置好之后，再使用客户端就可以看电影了。\n部署 创建以下文件夹结构\n/media ├── config │ ├── bazarr │ ├── prowlarr │ ├── qbittorrent │ ├── radarr │ └── sonarr ├── docker-compose.yml ├── downloads └── library ├── movies └── tv 创建docker网络media\ndocker network create media 编辑docker-compose.yml\nservices: sonarr: image: lscr.io/linuxserver/sonarr:latest container_name: sonarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/sonarr:/config - ./downloads:/downloads - ./library/tv:/tv ports: - \"8989:8989\" networks: - media restart: unless-stopped radarr: image: lscr.io/linuxserver/radarr:latest container_name: radarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/radarr:/config - ./downloads:/downloads - ./library/movies:/movies ports: - \"7878:7878\" networks: - media restart: unless-stopped prowlarr: image: lscr.io/linuxserver/prowlarr:latest container_name: prowlarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/prowlarr:/config ports: - \"9696:9696\" networks: - media restart: unless-stopped bazarr: image: lscr.io/linuxserver/bazarr:latest container_name: bazarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/bazarr:/config - ./downloads:/downloads - ./library/movies:/movies - ./library/tv:/tv ports: - \"6767:6767\" networks: - media restart: unless-stopped flaresolverr: image: ghcr.io/flaresolverr/flaresolverr:latest container_name: flaresolverr environment: - PUID=1000 - PGID=1000 - LOG_LEVEL=info - TZ=America/Toronto networks: - media restart: unless-stopped qbittorrent: image: lscr.io/linuxserver/qbittorrent:latest container_name: qbittorrent environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto - WEBUI_PORT=8080 volumes: - ./config/qbittorrent:/config - ./downloads:/downloads ports: - \"9090:8080\" - \"6881:6881\" - \"6881:6881/udp\" networks: - media restart: unless-stopped networks: media: external: true 配置 qBittorrent 打开qBittorrent，如果显示Unauthorized：\n由于我的服务是部署在Debian小主机上的，只有命令行，我从Windows上访问qBittorrent的话会收到限制，可能默认设置了不允许外部访问，需要修改配置文件\n首先关掉容器\ndocker compose down 打开/config/qbittorrent/qBittorrent/qBittorrent.conf\n[Preferences] WebUI\\Address=0.0.0.0 WebUI\\CSRFProtection=false WebUI\\HostHeaderValidation=false WebUI\\ServerDomains=* WebUI\\Username=admin 把WebUI\\Address改为0.0.0.0\n重启容器\ndocker compose up -d 查看logs，可以得到一个初始密码\ndocker logs qbittorrent --tail 50 然后在浏览器中输入admin和初始密码即可登录\n登陆后在齿轮⚙ → WebUI → Authentication可以修改用户名和密码，然后就不用管配置文件了\nProwlarr 左侧栏第一个Indexers，添加Indexer，可以先添加几个免费的试试，比如EZTV和YTS\n添加1337x的时候会显示blocked by CloudFlare Protection，这时候就需要FlareSolverr\nSettings → Indexers添加Index，使用FlareSolverr，由于在同一个Docker网络下，Host可以填http://flaresolverr:8191/ tag填写1337x 再回去添加Indexer，最下面的tag也填写1337x，这样再测试连接就成功了 我们先登录Sonarr和Radarr，设置用户名和密码（就会得到用户的API Key），然后在Prowlarr的Settings → Apps添加Sonarr和Radarr\nName: Sonarr Sync Level: Full Sync Prowlarr Server: http://prowlarr:9696 Sonarr Server: http://sonarr:8989 API Key: xxx Name: Radarr Sync Level: Full Sync Prowlarr Server: http://prowlarr:9696 Radarr Server: http://radarr:7878 API Key: xxx 在Settings → Download Clients添加qBittorrent下载器\nName: qBittorrent Enable: true Host: qbittorrent Port: 8080 Username: xxx Password: xxx Sonarr / Radarr 和Prowlarr相同，分别进入Settings → Download Clients，添加刚才的qBittorrent下载器 Bazarr Bazarr好像都不需要身份认证，在Settings可以绑定Sonnar和Radarr，同样地，Address写容器名即可 在Settings → Languages → Language Filter添加简体中文 Embedded Tracks Language开启 创建一个简体中文的Profile 默认Profile都设置为简体中文 在Settings → Providers中添加字幕源，可以使用zimuku和OpenSubtitles.com（这个需要注册用户） 找电影 全部配置好之后剩下的事情就很简单了，基本步骤就是：\n如果想找电影，就去Radarr直接搜电影名称，同理电视剧就去Sonarr找 加入愿望单 加入后就会自动连接qBittorrent帮我们下载 下载完后视频文件就在挂载的文件夹了 看电影 Infuse 我目前使用已经不使用了，Infuse来看电影，通过SMB来访问服务器上挂载的文件夹，然后本地观看 优点是本地硬件解码，降低了我的miniPC的硬件压力 缺点是刮削没有Jellyfin强，没有账号管理功能，因此没有观看进度记忆功能 好像只能应用在苹果设备，iPhone，iPad，MacBook或者Apple TV Jellyfin Jellyfin的好处就是刮削能力比较强，能够显示完整的电影封面，演员信息，还支持多账号，管理每个人不同的观影记录等等\n我第一次用Jellyfin的时候看电影非常卡，我以为是至少要需要独立显卡才能撑得起来，后来发现我N100 miniPC带的核显已经完全足够了，可以使用nyanmisaka/jellyfin:latest这个镜像\n如果需要添加Jellyfin，可以在config文件夹下先创建jellyfin，然后修改docker-compose.yml，加入\njellyfin: image: nyanmisaka/jellyfin:latest container_name: jellyfin user: \"1000:1000\" environment: - TZ=America/Toronto volumes: - ./config/jellyfin:/config - ./library:/media ports: - \"8096:8096\" networks: - media restart: unless-stopped 之后在Sonarr / Radarr的Settings → Connections可以添加Jellyfin，主要作用是下载完成后可以通知Jellyfin刷新一遍\n配置完成后，整个流程就打通了，在Radarr中搜索电影 → 点击 → qb在后台下载电影本体，Bazarr在后台下载字幕 → 下载完毕后通知Jellyfin，我们直接打开Jellyfin就可以观看了。有时候觉得这一套流程还是很繁琐，要在这干点事儿再去另外的地方干点事儿，有什么办法能把Sonarr和Radarr整合呢？就是JellySeerr\nJellyseerr 我觉得Jellyseerr的前端界面非常精美，他主要作用就是整合了剧和电影，用户点击之后它调用Radarr和Sonarr来下载，Radarr和Sonarr是Jellyseerr的后端\n这时候我已经换成k3s部署了，这是Jellyseerr的部署文件\napiVersion: v1 kind: Service metadata: name: jellyseerr namespace: media spec: ports: - name: http port: 5055 targetPort: 5055 protocol: TCP selector: app: jellyseerr --- apiVersion: apps/v1 kind: Deployment metadata: name: jellyseerr namespace: media spec: replicas: 1 selector: matchLabels: app: jellyseerr strategy: type: Recreate template: metadata: labels: app: jellyseerr spec: containers: - name: jellyseerr image: fallenbagel/jellyseerr:latest env: - name: LOG_LEVEL value: \"info\" - name: TZ value: \"America/Toronto\" - name: PUID value: \"1000\" - name: PGID value: \"1000\" ports: - containerPort: 5055 livenessProbe: httpGet: path: /status port: 5055 initialDelaySeconds: 10 periodSeconds: 30 readinessProbe: httpGet: path: /status port: 5055 initialDelaySeconds: 10 periodSeconds: 30 resources: limits: memory: \"1Gi\" requests: memory: \"256Mi\" volumeMounts: - name: config mountPath: /app/config volumes: - name: config hostPath: path: /home/kyxie/k3s/apps/media/config/jellyseerr type: DirectoryOrCreate Jellyfin Media Player 当然浏览器的解码能力还是比不上电脑自身的，我们可以在电脑上安装jellyfin-media-player，这会使用电脑本地解码，效果比浏览器解码更好\nMacBook可以使用HomeBrew下载\nbrew install --cask jellyfin-media-player 注意不是App Store自带的Jellyfin Mobile\n",
+  "wordCount" : "2661",
   "inLanguage": "zh",
   "datePublished": "2025-07-12T11:04:22-04:00",
   "dateModified": "2025-07-30T00:47:12-04:00",
@@ -186,7 +186,7 @@
     <div class="post-meta">
 
 
-<span title='2025-07-12 11:04:22 -0400 EDT'>2025-07-12</span>&nbsp;·&nbsp;5 分钟&nbsp;·&nbsp;2154 字&nbsp;·&nbsp;Kyxie
+<span title='2025-07-12 11:04:22 -0400 EDT'>2025-07-12</span>&nbsp;·&nbsp;6 分钟&nbsp;·&nbsp;2661 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -219,7 +219,11 @@
                         <li>
                             <a href="#infuse" aria-label="Infuse">Infuse</a></li>
                         <li>
-                            <a href="#jellyfin" aria-label="Jellyfin">Jellyfin</a>
+                            <a href="#jellyfin" aria-label="Jellyfin">Jellyfin</a></li>
+                        <li>
+                            <a href="#jellyseerr" aria-label="Jellyseerr">Jellyseerr</a></li>
+                        <li>
+                            <a href="#jellyfin-media-player" aria-label="Jellyfin Media Player">Jellyfin Media Player</a>
                         </li>
                     </ul>
                     </li>
@@ -526,7 +530,7 @@
 <h2 id="看电影">看电影<a hidden class="anchor" aria-hidden="true" href="#看电影">#</a></h2>
 <h3 id="infuse">Infuse<a hidden class="anchor" aria-hidden="true" href="#infuse">#</a></h3>
 <ul>
-<li>我目前使用Infuse来看电影，通过SMB来访问服务器上挂载的文件夹，然后本地观看</li>
+<li>我<del>目前使用</del>已经不使用了，Infuse来看电影，通过SMB来访问服务器上挂载的文件夹，然后本地观看</li>
 <li>优点是本地硬件解码，降低了我的miniPC的硬件压力</li>
 <li>缺点是刮削没有Jellyfin强，没有账号管理功能，因此没有观看进度记忆功能</li>
 <li>好像只能应用在苹果设备，iPhone，iPad，MacBook或者Apple TV</li>
@@ -537,15 +541,12 @@
 <p>Jellyfin的好处就是刮削能力比较强，能够显示完整的电影封面，演员信息，还支持多账号，管理每个人不同的观影记录等等</p>
 </li>
 <li>
-<p>如果服务器有独立显卡，可以直接考虑使用Jellyfin作为播放器，这样用户就可以直接在网页端观看了（我没有，我选择Infuse）</p>
-<ul>
-<li>Infuse也支持连接Jellyfin，但是要开Infuse会员，这样Infuse就完全当一个播放器用，刮削，多账户共享，观看记录功能交给Jellyfin</li>
-</ul>
+<p>我第一次用Jellyfin的时候看电影非常卡，我以为是至少要需要独立显卡才能撑得起来，后来发现我N100 miniPC带的核显已经完全足够了，可以使用<code>nyanmisaka/jellyfin:latest</code>这个镜像</p>
 </li>
 <li>
 <p>如果需要添加Jellyfin，可以在<code>config</code>文件夹下先创建<code>jellyfin</code>，然后修改<code>docker-compose.yml</code>，加入</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">jellyfin</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">jellyfin/jellyfin</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nyanmisaka/jellyfin:latest</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">jellyfin</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">user</span>: <span style="color:#e6db74">&#34;1000:1000&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">environment</span>:
@@ -561,6 +562,99 @@
 </span></span></code></pre></div></li>
 <li>
 <p>之后在Sonarr / Radarr的Settings → Connections可以添加Jellyfin，主要作用是下载完成后可以通知Jellyfin刷新一遍</p>
+</li>
+<li>
+<p>配置完成后，整个流程就打通了，在Radarr中搜索电影 → 点击 → qb在后台下载电影本体，Bazarr在后台下载字幕 → 下载完毕后通知Jellyfin，我们直接打开Jellyfin就可以观看了。有时候觉得这一套流程还是很繁琐，要在这干点事儿再去另外的地方干点事儿，有什么办法能把Sonarr和Radarr整合呢？就是JellySeerr</p>
+</li>
+</ul>
+<h3 id="jellyseerr">Jellyseerr<a hidden class="anchor" aria-hidden="true" href="#jellyseerr">#</a></h3>
+<ul>
+<li>
+<p>我觉得Jellyseerr的前端界面非常精美，他主要作用就是整合了剧和电影，用户点击之后它调用Radarr和Sonarr来下载，Radarr和Sonarr是Jellyseerr的后端</p>
+</li>
+<li>
+<p>这时候我已经换成k3s部署了，这是Jellyseerr的部署文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">media</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">http</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5055</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">5055</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">media</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">strategy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">Recreate</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">fallenbagel/jellyseerr:latest</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">LOG_LEVEL</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;info&#34;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">TZ</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;America/Toronto&#34;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">PUID</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;1000&#34;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">PGID</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;1000&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">5055</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">livenessProbe</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">httpGet</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/status</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5055</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">initialDelaySeconds</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">periodSeconds</span>: <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">readinessProbe</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">httpGet</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/status</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5055</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">initialDelaySeconds</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">periodSeconds</span>: <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1Gi&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;256Mi&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">volumeMounts</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/app/config</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">hostPath</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/home/kyxie/k3s/apps/media/config/jellyseerr </span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">type</span>: <span style="color:#ae81ff">DirectoryOrCreate</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="jellyfin-media-player">Jellyfin Media Player<a hidden class="anchor" aria-hidden="true" href="#jellyfin-media-player">#</a></h3>
+<ul>
+<li>
+<p>当然浏览器的解码能力还是比不上电脑自身的，我们可以在电脑上安装<code>jellyfin-media-player</code>，这会使用电脑本地解码，效果比浏览器解码更好</p>
+</li>
+<li>
+<p>MacBook可以使用HomeBrew下载</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install --cask jellyfin-media-player
+</span></span></code></pre></div><p>注意不是App Store自带的Jellyfin Mobile</p>
 </li>
 </ul>
 
@@ -607,7 +701,7 @@
     
 <footer class="footer">
   <span>
-    &copy; 2025 <a href="https://kyxie.me/zh/">Kyxie's Blog</a>
+    &copy; 2026 <a href="https://kyxie.me/zh/">Kyxie's Blog</a>
   </span>
   <span id="umami-stats">
     | Visitors: <span id="uv-count"></span>

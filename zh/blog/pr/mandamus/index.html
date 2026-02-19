@@ -86,8 +86,8 @@
   "keywords": [
     "PR", "OINP", "Canada", "Immigration", "IRCC", "Permanent Resident", "Mandamus"
   ],
-  "articleBody": "背景 我移民加拿大走的是安省硕博通道，我申请加拿大移民的详细时间线详见：OINP移民加拿大🇨🇦时间线 | Kunyang’s Blog。可以看到安调已经很久了，期间我也使用了很多手段催促IRCC快点给我出结果，但是都没有什么用。这篇文章详细介绍一下我的催促手段以及强制令的教程。\n为什么会安调\n提交的材料造假 / 有问题 / IRCC觉得可疑 经历比较敏感，比如学习的专业为工程类，在加拿大以外读过书 但我认为更主要的原因就是运气，被安调就等于点背，我有朋友10043的本科丝滑下卡，有毕业了秒回国的也丝滑下卡，还有初中就来加拿大结果工签和PR双双被安调的 如何知道自己被安调了\n有一个专门跟踪申请的Tracker，和GCKey是单独的，可以单独注册一个。登陆进去后在浏览器点击F12，可以看到console中打印的信息，打开Object → relations → 0 → history，如果出现actStatus=17 \u0026\u0026 key=Security就意味着安调开始，33和108好像是体检的开始和结束\n{ \"actStatus\": 17, \"actType\": 1, \"dateCreated\": \"2024-02-15T14:56:45.000Z\", \"dateLoaded\": \"2024-10-04T19:21:33.159Z\", \"key\": \"Security\" } 去ATIP调档\n催促措施 Webform 没用，可以从这里提交Webform，然后IRCC大概一个周就会回你，告诉你你的case正在处理中，请耐心等待。不要每天都发一个Webform，IRCC会被问烦，控制频率。\nATIP 建议每隔一段时间就去ATIP调档一下，不仅能麻烦一下他们，让他们注意一下你的case，还能在将来强制令过程中作为证据，还能时刻了解一下自己case的progress。网上有好多调档的教程这里我就不再赘述了，强调一点就是有两种调档选择，一种是免费，另外一种要花$5，综合体验下来两种服务除了第二种比第一种贵$5以外没有任何区别。\n一般来说IRCC觉得你得被安调就把你的file丢给CBSA，大概率CBSA再丢给CSIS，一旦进了CSIS就是深度安调两年打底，如果只进了CBSA没进CSIS的话可能半年就出来了（这种比没安调还稀少，可以去买彩票了），可以先调档IRCC，然后再调CBSA，然后再调CSIS。\n现在调档越来越慢了，调档CSIS怎么着得半年起步。\nMP 给选区的议员发邮件，试过屁用没有，跟我说你的file正在被安调，没有办法。\nNSIRA 如果你的Case已经进了CSIS，就可以向NSIRA投诉CSIS处理的慢。\n先向Director of CSIS发送纸质邮件，抱怨一下处理得慢，保存好邮寄出去的信，后面还要用。Director of CSIS的地址为：\nDirector Canadian Security Intelligence Service P.O. Box 9732, Station “T”, Ottawa, Ontario K1G 4G4 如果60天之内没有收到CSIS的回复（我收到了Email），或者对收到的回复不满意，再向NSIRA投诉，重写一封信，加上CSIS的回复和第一次发给CSIS的信，邮寄给NSIRA，详见：CSIS Complaints - National Security and Intelligence Review Agency，地址为：\nNational Security and Intelligence Review Agency P.O. Box 2430 Station “D” Ottawa, Ontario K1P 5W5 具体有什么效果待更新\n强制令 说实话上面所有的手段几乎都没用，强制令就是直接让法院介入催促IRCC快点做决定了。虽然强制令是可以自己搞的，但是还是很建议找个律师弄，GPT写的东西和律师相比还是差的很远。\n强制令的流程是：\n立案阶段\n向法院提交立案申请 (ALJR)（强一）\n从Federal Court的E-Filling: Federal Court - Terms and conditions of use\nCase Information\nProceeding language: English Proceeding type: Immigration Proceeding subject: Non-Refugee Proceeding nature: Imm - Appl. for leave and judicial review Parties一个填自己，另外一个填Respondent，Individual，为IRCC\nDocument File就是你的强一\n可以选一个离你最近的法院，也可以随便选一个，甚至选别的省的都可以\nRespondent应该为IRCC的总部，也就是渥太华那个，地址为\nImmigration, Refugees, and Citizenship Canada Litigation Management Branch 11th Floor, 365 Laurier Avenue West Ottawa, Ontario K1A 1L1 Tel: (613) 437-6528 Fax: (613) 954-4285 Email: IRCC.LMDe-Fax-e-faxDGL.IRCC@cic.gc.ca 法庭发出缴费通知\n完成缴费，$50\n法庭接受申请，分配档案号，通知相关部门\n初步程序\n司法部提交应诉通知 (NOA) - ALJR送达后十天内 IRCC提交书面解释 (No Reason) - 立即进行 但是IRCC一般会赖着不交，后面改了规定不用等他发No Reason就可以直接递交强二Perfection了，但同时递交了强一一定要跟着强二 材料提交\n提交资料和论证 (Perfection) - 收到No Reason后三十天内，或立案75天内（强二） 强二的Perfection很关键，要认真写（最好还是找个律师），如果写得不好，比如被法官认为提供不了足够的理由会被Dismiss，也就是说你打官司告IRCC失败 不能重复提交强一，这样会被认为司法滥用 递交时Perfection的文件类型为Application Record 递交时需要同时提交Affidavit of Service，详见：Federal Court - E-Filing， 收到NOA之后会有一个DOJ，也就是IRCC方的律师，强二提交Perfection的时候有义务给这个律师发个邮件，告知我已经递交强二了 我尝试给律师本人发邮件，律师将我的邮件forward到了多伦多的DOJ的公用邮箱，为AGC_PGC_TORONTO.IMM@JUSTICE.GC.CA，所以应该直接给这个邮箱发送邮件 发邮件之后会受到对方的自动回复，然后把邮件记录放到Affidavit of Service，然后和Perfection一样需要再去做公证，最终提交给法院的是需要有章的 找公证的分为两种，一种是Notary Public，一种是Commissioner of Oaths。前者比后者更正式，可以用在国际范围内。我当时找他们盖章一个章$20，甚至有人报价一个章$40。但是等收到IRCC的回复之后发现对方也只用的Commissioner of Oaths，这种就比较简单了，在Service Ontario或者一些图书馆就可以做，有些甚至免费，可以打电话咨询一下附近的Service Ontario。 我自己提交的时候因为不知道有这个细节所以被法院打回来好几次，这个环节比较复杂所以还是推荐找个律师一起做，感觉我单独找公证官的费用虽然赶不上找律师，但是消耗了我大量的时间 司法部提交答辩资料 (Argument) - 收到Perfection起三十天内 提交回复 (Reply) - 收到Argument起十天内（强三） 强三又有别的人给我发邮件了，但是回复邮件的时候还是发送给AGC_PGC_TORONTO.IMM@JUSTICE.GC.CA，可以抄送到强二和强三的两个不同的律师。 审议和庭审，IRCC一般不会因为这个跟你上庭，因此进行到这之前一般就能出结果，否则需要找律师一起上庭了\n法庭审议 - 约三个月 拒绝申请 (Dismiss) - 申请结束，并不得上诉 同意申请 (Leave) - 进入庭审阶段 法庭通知移民局提供全部资料 移民局上传资料 - 约一个月 法庭安排庭审日期 - 约三个月 三方开庭Hearing 法庭判决 - 一周内 详见：Federal Court - How to file an Application for Leave and for Judicial review (Immigration)\n",
-  "wordCount" : "2662",
+  "articleBody": "背景 我移民加拿大走的是安省硕博通道，我申请加拿大移民的详细时间线详见：OINP移民加拿大🇨🇦时间线 | Kunyang’s Blog。可以看到安调已经很久了，期间我也使用了很多手段催促IRCC快点给我出结果，但是都没有什么用。这篇文章详细介绍一下我的催促手段以及强制令的教程。\n为什么会安调\n提交的材料造假 / 有问题 / IRCC觉得可疑 经历比较敏感，比如学习的专业为工程类，在加拿大以外读过书 但我认为更主要的原因就是运气，被安调就等于点背，我有朋友10043的本科丝滑下卡，有毕业了秒回国的也丝滑下卡，还有初中就来加拿大结果工签和PR双双被安调的 如何知道自己被安调了\n有一个专门跟踪申请的Tracker，和GCKey是单独的，可以单独注册一个。登陆进去后在浏览器点击F12，可以看到console中打印的信息，打开Object → relations → 0 → history，如果出现actStatus=17 \u0026\u0026 key=Security就意味着安调开始，33和108好像是体检的开始和结束\n{ \"actStatus\": 17, \"actType\": 1, \"dateCreated\": \"2024-02-15T14:56:45.000Z\", \"dateLoaded\": \"2024-10-04T19:21:33.159Z\", \"key\": \"Security\" } 去ATIP调档\n催促措施 Webform 没用，可以从这里提交Webform，然后IRCC大概一个周就会回你，告诉你你的case正在处理中，请耐心等待。不要每天都发一个Webform，IRCC会被问烦，控制频率。\nATIP 建议每隔一段时间就去ATIP调档一下，不仅能麻烦一下他们，让他们注意一下你的case，还能在将来强制令过程中作为证据，还能时刻了解一下自己case的progress。网上有好多调档的教程这里我就不再赘述了，强调一点就是有两种调档选择，一种是免费，另外一种要花$5，综合体验下来两种服务除了第二种比第一种贵$5以外没有任何区别。\n一般来说IRCC觉得你得被安调就把你的file丢给CBSA，大概率CBSA再丢给CSIS，一旦进了CSIS就是深度安调两年打底，如果只进了CBSA没进CSIS的话可能半年就出来了（这种比没安调还稀少，可以去买彩票了），可以先调档IRCC，然后再调CBSA，然后再调CSIS。\n现在调档越来越慢了，调档CSIS怎么着得半年起步。\nMP 给选区的议员发邮件，试过屁用没有，跟我说你的file正在被安调，没有办法。\nNSIRA 如果你的Case已经进了CSIS，就可以向NSIRA投诉CSIS处理的慢。\n先向Director of CSIS发送纸质邮件，抱怨一下处理得慢，保存好邮寄出去的信，后面还要用。Director of CSIS的地址为：\nDirector Canadian Security Intelligence Service P.O. Box 9732, Station “T”, Ottawa, Ontario K1G 4G4 如果60天之内没有收到CSIS的回复（我收到了Email），或者对收到的回复不满意，再向NSIRA投诉，重写一封信，加上CSIS的回复和第一次发给CSIS的信，邮寄给NSIRA，详见：CSIS Complaints - National Security and Intelligence Review Agency，地址为：\nNational Security and Intelligence Review Agency P.O. Box 2430 Station “D” Ottawa, Ontario K1P 5W5 Jan 26, 2026 NSIRA回信说我在CSIS阶段已经结束了，转交给了CBSA，问我是否close这个complain，我没理\nFeb 13, 2026，又问了一遍，这时我回复让他不要close，把矛头指向CBSA\n强制令 说实话上面所有的手段几乎都没用，强制令就是直接让法院介入催促IRCC快点做决定了。虽然强制令是可以自己搞的，但是还是很建议找个律师弄，GPT写的东西和律师相比还是差的很远。\n强制令的流程是：\n立案阶段\n向法院提交立案申请 (ALJR)（强一）\n从Federal Court的E-Filling: Federal Court - Terms and conditions of use\nCase Information\nProceeding language: English Proceeding type: Immigration Proceeding subject: Non-Refugee Proceeding nature: Imm - Appl. for leave and judicial review Parties一个填自己，另外一个填Respondent，Individual，为IRCC\nDocument File就是你的强一\n可以选一个离你最近的法院，也可以随便选一个，甚至选别的省的都可以\nRespondent应该为IRCC的总部，也就是渥太华那个，地址为\nImmigration, Refugees, and Citizenship Canada Litigation Management Branch 11th Floor, 365 Laurier Avenue West Ottawa, Ontario K1A 1L1 Tel: (613) 437-6528 Fax: (613) 954-4285 Email: IRCC.LMDe-Fax-e-faxDGL.IRCC@cic.gc.ca 法庭发出缴费通知\n完成缴费，$50\n法庭接受申请，分配档案号，通知相关部门\n初步程序\n司法部提交应诉通知 (NOA) - ALJR送达后十天内 IRCC提交书面解释 (No Reason) - 立即进行 但是IRCC一般会赖着不交，后面改了规定不用等他发No Reason就可以直接递交强二Perfection了，但同时递交了强一一定要跟着强二 材料提交\n提交资料和论证 (Perfection) - 收到No Reason后三十天内，或立案75天内（强二） 强二的Perfection很关键，要认真写（最好还是找个律师），如果写得不好，比如被法官认为提供不了足够的理由会被Dismiss，也就是说你打官司告IRCC失败 不能重复提交强一，这样会被认为司法滥用 递交时Perfection的文件类型为Application Record 递交时需要同时提交Affidavit of Service，详见：Federal Court - E-Filing， 收到NOA之后会有一个DOJ，也就是IRCC方的律师，强二提交Perfection的时候有义务给这个律师发个邮件，告知我已经递交强二了 我尝试给律师本人发邮件，律师将我的邮件forward到了多伦多的DOJ的公用邮箱，为AGC_PGC_TORONTO.IMM@JUSTICE.GC.CA，所以应该直接给这个邮箱发送邮件 发邮件之后会受到对方的自动回复，然后把邮件记录放到Affidavit of Service，然后和Perfection一样需要再去做公证，最终提交给法院的是需要有章的 找公证的分为两种，一种是Notary Public，一种是Commissioner of Oaths。前者比后者更正式，可以用在国际范围内。我当时找他们盖章一个章$20，甚至有人报价一个章$40。但是等收到IRCC的回复之后发现对方也只用的Commissioner of Oaths，这种就比较简单了，在Service Ontario或者一些图书馆就可以做，有些甚至免费，可以打电话咨询一下附近的Service Ontario。 我自己提交的时候因为不知道有这个细节所以被法院打回来好几次，这个环节比较复杂所以还是推荐找个律师一起做，感觉我单独找公证官的费用虽然赶不上找律师，但是消耗了我大量的时间 司法部提交答辩资料 (Argument) - 收到Perfection起三十天内 提交回复 (Reply) - 收到Argument起十天内（强三） 强三又有别的人给我发邮件了，但是回复邮件的时候还是发送给AGC_PGC_TORONTO.IMM@JUSTICE.GC.CA，可以抄送到强二和强三的两个不同的律师 审议和庭审，IRCC一般不会因为这个跟你上庭，因此进行到这之前一般就能出结果，否则需要找律师一起上庭了\n法庭审议 - 约三个月 拒绝申请 (Dismiss) - 申请结束，并不得上诉 同意申请 (Leave) - 进入庭审阶段 法庭通知移民局提供全部资料 移民局上传资料 - 约一个月 法庭安排庭审日期 - 约三个月 三方开庭Hearing 法庭判决 - 一周内 详见：Federal Court - How to file an Application for Leave and for Judicial review (Immigration)\n",
+  "wordCount" : "2745",
   "inLanguage": "zh",
   "datePublished": "2025-08-04T13:54:00-04:00",
   "dateModified": "2025-09-22T23:19:15-04:00",
@@ -174,7 +174,7 @@
     <div class="post-meta">
 
 
-<span title='2025-08-04 13:54:00 -0400 EDT'>2025-08-04</span>&nbsp;·&nbsp;6 分钟&nbsp;·&nbsp;2662 字&nbsp;·&nbsp;Kyxie
+<span title='2025-08-04 13:54:00 -0400 EDT'>2025-08-04</span>&nbsp;·&nbsp;6 分钟&nbsp;·&nbsp;2745 字&nbsp;·&nbsp;Kyxie
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -325,7 +325,10 @@
 </span></span><span style="display:flex;"><span>K1P 5W5
 </span></span></code></pre></div></li>
 <li>
-<p>具体有什么效果待更新</p>
+<p>Jan 26, 2026 NSIRA回信说我在CSIS阶段已经结束了，转交给了CBSA，问我是否close这个complain，我没理</p>
+</li>
+<li>
+<p>Feb 13, 2026，又问了一遍，这时我回复让他不要close，把矛头指向CBSA</p>
 </li>
 </ul>
 <h3 id="强制令">强制令<a hidden class="anchor" aria-hidden="true" href="#强制令">#</a></h3>
@@ -413,7 +416,7 @@
 <li>司法部提交答辩资料 (Argument) - 收到Perfection起三十天内</li>
 <li>提交回复 (Reply) - 收到Argument起十天内（强三）
 <ul>
-<li>强三又有别的人给我发邮件了，但是回复邮件的时候还是发送给<code>AGC_PGC_TORONTO.IMM@JUSTICE.GC.CA</code>，可以抄送到强二和强三的两个不同的律师。</li>
+<li>强三又有别的人给我发邮件了，但是回复邮件的时候还是发送给<code>AGC_PGC_TORONTO.IMM@JUSTICE.GC.CA</code>，可以抄送到强二和强三的两个不同的律师</li>
 </ul>
 </li>
 </ul>
@@ -477,7 +480,7 @@
     
 <footer class="footer">
   <span>
-    &copy; 2025 <a href="https://kyxie.me/zh/">Kyxie's Blog</a>
+    &copy; 2026 <a href="https://kyxie.me/zh/">Kyxie's Blog</a>
   </span>
   <span id="umami-stats">
     | Visitors: <span id="uv-count"></span>

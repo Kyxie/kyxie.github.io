@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>使用k3s &#43; SOPS &#43; FluxCD部署服务 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="k3s, SOPS, FluxCD, k8s">
+<meta name="description" content="安装k3s 可以输入以下命令安装k3s curl -sfL https://get.k3s.io | sh -s - \ --write-kubeconfig-mode 644 \ --node-ip &lt;your_ip&gt; \ --flannel-iface &lt;your_network_interface_name&gt; 我现在使用的是普通用户，--write-kubeconfig-mode参">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/zh/blog/tech/server/debian/k3s/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/debian/k3s/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="使用k3s &#43; SOPS &#43; FluxCD部署服务" />
+<meta property="og:description" content="安装k3s 可以输入以下命令安装k3s curl -sfL https://get.k3s.io | sh -s - \ --write-kubeconfig-mode 644 \ --node-ip &lt;your_ip&gt; \ --flannel-iface &lt;your_network_interface_name&gt; 我现在使用的是普通用户，--write-kubeconfig-mode参" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/zh/blog/tech/server/debian/k3s/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2025-12-14T22:12:50-05:00" />
+<meta property="article:modified_time" content="2025-12-15T19:16:08-05:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用k3s &#43; SOPS &#43; FluxCD部署服务"/>
+<meta name="twitter:description" content="安装k3s 可以输入以下命令安装k3s curl -sfL https://get.k3s.io | sh -s - \ --write-kubeconfig-mode 644 \ --node-ip &lt;your_ip&gt; \ --flannel-iface &lt;your_network_interface_name&gt; 我现在使用的是普通用户，--write-kubeconfig-mode参"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "博客 📒",
+      "item": "https://kyxie.me/zh/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "折腾 🔧",
+      "item": "https://kyxie.me/zh/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "服务器 🐧",
+      "item": "https://kyxie.me/zh/blog/tech/server/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Debian 🌀",
+      "item": "https://kyxie.me/zh/blog/tech/server/debian/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  5 ,
+      "name": "使用k3s + SOPS + FluxCD部署服务",
+      "item": "https://kyxie.me/zh/blog/tech/server/debian/k3s/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "使用k3s + SOPS + FluxCD部署服务",
+  "name": "使用k3s \u002b SOPS \u002b FluxCD部署服务",
+  "description": "安装k3s 可以输入以下命令安装k3s curl -sfL https://get.k3s.io | sh -s - \\ --write-kubeconfig-mode 644 \\ --node-ip \u0026lt;your_ip\u0026gt; \\ --flannel-iface \u0026lt;your_network_interface_name\u0026gt; 我现在使用的是普通用户，--write-kubeconfig-mode参",
+  "keywords": [
+    "k3s", "SOPS", "FluxCD", "k8s"
+  ],
+  "articleBody": "安装k3s 可以输入以下命令安装k3s\ncurl -sfL https://get.k3s.io | sh -s - \\ --write-kubeconfig-mode 644 \\ --node-ip \\ --flannel-iface 我现在使用的是普通用户，--write-kubeconfig-mode参数可以确保普通用户可以直接运行 kubectl 命令，而不需要每次都加 sudo\n--node-ip：我现在是静态IP，这个参数强制 k3s 使用静态 IP\n--flannel-iface：强制使用网卡，现在我在使用Wi-Fi\n换成ethernet之后需要在/etc/systemd/system/k3s.service更新一下网卡\n重新启动\nsudo systemctl daemon-reload sudo systemctl restart k3s 管理密钥 使用k3s最大的好处就是实现GitOps，也就是把所有的部署文件，所有的服务配置放在GitHub上，这样迁移系统的时候只需要Git就能备份，非常方便，但是我们所有的secret.yaml则不能上传到GitHub，哪怕是私有仓库。为了解决这个问题，我们可以使用Age + SOPS。\nAge Age是产生密钥的工具\n首先在Debian中安装Age\nsudo apt update sudo apt install age 生成密钥\nage-keygen -o keys.txt SOPS 有了密钥，还需要工具用密钥来加密secret.yaml，在这里使用了SOPS\n在Debian中安装\ncurl -LO https://github.com/getsops/sops/releases/download/v3.9.4/sops-v3.9.4.linux.amd64 chmod +x sops-v3.9.4.linux.amd64 sudo mv sops-v3.9.4.linux.amd64 /usr/local/bin/sops 在项目文件中创建.sops.yaml\ncreation_rules: - path_regex: .*/secret(\\.enc)?\\.yaml$ age: \"age123...\" encrypted_regex: '^(data|stringData)$' 意思是SOPS会遍历项目文件，寻找名字叫secret.yaml的文件，然后只加密文件中的data或者stringData部分的内容。SOPS 默认会自动查找 ~/.config/sops/age/keys.txt，如果不想在磁盘上留下文件，或者没有这个文件夹，每次加密时可以使用环境变量把这个密钥传递给SOPS\nexport SOPS_AGE_KEY=\"AGE-SECRET-KEY-YOUR-PRIVATE-KEY\" 执行命令，把所有的secret.yaml加密\nfind . -name \"secret.yaml\" -exec sh -c 'sops --encrypt \"$1\" \u003e \"${1%.yaml}.enc.yaml\"' _ {} \\; 如果想单独加密一个文件\nexport SOPS_AGE_KEY=\"AGE-SECRET-KEY-YOUR-PRIVATE-KEY\" sops --encrypt secret.yaml \u003e secret.enc.yaml 解密\nexport SOPS_AGE_KEY=\"AGE-SECRET-KEY-YOUR-PRIVATE-KEY\" sops -d secret.enc.yaml \u003e secret.yaml 加密后所有的secret.yaml就变成了secret.enc.yaml，我们可以把这些secret.enc.yaml上传到GitHub，旧的secret.yaml就可以删除了\nFluxCD 现在有了加密secret.yaml的工具，该如何应用在k3s呢，这时候就要用FluxCD了，它也自带一个SOPS，但是只用来解密，会把secret.enc.yaml文件解密后的内容保存在内存里，供k3s调用\n在Debian中安装，当然也可以使用Helm Charts来安装FluxCD，但是官方强烈建议使用Flux CLI，也就是Bootstrap模式\ncurl -s https://fluxcd.io/install.sh | sudo bash FluxCD默认是寻找k8s的API接口（运行在8080端口），但是现在在用k3s（运行在6443端口），所以刚开始会找不到，需要修改一个文件\nsudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config 检查一下\nflux check --pre 如果出现一些对号，就是成功了\n前往 GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)，生成一个新 Token（Generate new token），勾选repo权限\n在Debian本地运行\nexport GITHUB_TOKEN=Your_GitHub_Token export GITHUB_USER=Your_GitHub_Username flux bootstrap github \\ --owner=$GITHUB_USER \\ --repository=k3s \\ --branch=main \\ --path=./clusters/k3s \\ --personal 由于我是把数据库和Cloudflared这种系统级别的应用放在了infra/目录下，把其他的服务放在了apps目录下，需要在clusters/k3s下创建两个文件infra.yaml和apps.yaml，分别管理这两个Stack\n# infra.yaml apiVersion: kustomize.toolkit.fluxcd.io/v1 kind: Kustomization metadata: name: infra namespace: flux-system spec: interval: 1h path: \"./infra\" prune: true sourceRef: kind: GitRepository name: flux-system decryption: provider: sops secretRef: name: sops-age # 这里对应你在集群里创建的 secret 名字 # apps.yaml apiVersion: kustomize.toolkit.fluxcd.io/v1 kind: Kustomization metadata: name: apps namespace: flux-system spec: interval: 10m path: \"./apps\" prune: true wait: true dependsOn: - name: infra sourceRef: kind: GitRepository name: flux-system decryption: provider: sops secretRef: name: sops-age 在clusters/k3s/flux-system/kustomization.yaml中引用这两个文件\n# clusters/k3s/flux-system/kustomization.yaml apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization resources: - gotk-components.yaml - gotk-sync.yaml - ../apps.yaml - ../infra.yaml 运行\nkubectl create secret generic sops-age \\ --namespace=flux-system \\ --from-file=sops.agekey=keys.txt \\ --from-file=keys.txt=keys.txt 然后粘贴keys.txt里的AGE-SECRET-KEY，它会把敏感信息直接传递给Flux，然后按CTRL+D退出\n到这一步，Flux就可以自动扫描你的GitHub仓库，拉下来帮你部署了，每次做完的改动只要git push到GitHub即可，如果不想等它自动给你拉，运行下面命令可以让他立即拉取\nflux reconcile kustomization apps --with-source flux reconcile kustomization infra --with-source 查看部署情况\nflux get kustomization 使用FluxCD自动更新镜像 FluxCD有类似于watchtower或者keel一样的功能，也可以自动更新镜像\n需要安装这两个组件\nflux bootstrap github \\ --owner=Kyxie \\ --repository=k3s \\ --branch=main \\ --path=./clusters/k3s/flux-system \\ --components-extra=image-reflector-controller,image-automation-controller \\ --personal \\ --token-auth=true 会要求你输入GitHub的PAT，如果忘记了可以重新生成一个\n创建k3s/clusters/k3s/flux-system/images.yaml，需要给每个要更新的镜像写一个配置文件，包括从哪里更新，什么情况下需要更新，这里用statistic-for-strava和homepage举例子\n# Strava --- apiVersion: image.toolkit.fluxcd.io/v1beta2 kind: ImageRepository metadata: name: strava-repo namespace: flux-system spec: image: index.docker.io/robiningelbrecht/strava-statistics interval: 5m --- apiVersion: image.toolkit.fluxcd.io/v1beta2 kind: ImagePolicy metadata: name: strava-policy namespace: flux-system spec: imageRepositoryRef: name: strava-repo policy: semver: range: '\u003e=4.0.0' --- # Homepage apiVersion: image.toolkit.fluxcd.io/v1beta2 kind: ImageRepository metadata: name: homepage-repo namespace: flux-system spec: image: ghcr.io/gethomepage/homepage interval: 5m --- apiVersion: image.toolkit.fluxcd.io/v1beta2 kind: ImagePolicy metadata: name: homepage-policy namespace: flux-system spec: imageRepositoryRef: name: homepage-repo policy: semver: range: '\u003e=1.0.0 \u003c2.0.0' --- # Automation apiVersion: image.toolkit.fluxcd.io/v1beta1 kind: ImageUpdateAutomation metadata: name: k3s-all-images-automation namespace: flux-system spec: interval: 1m sourceRef: kind: GitRepository name: flux-system git: checkout: ref: branch: main commit: author: email: fluxcdbot@users.noreply.github.com name: fluxcdbot messageTemplate: 'chore: Automated update image {{range .UpdatedImages}}{{ . }}{{end}}' push: branch: main update: path: ./clusters/k3s strategy: Setters 在对应的deployment.yaml中加上注释\nimage: robiningelbrecht/strava-statistics:v4.3.4 # {\"$imagepolicy\": \"flux-system:strava-policy\"} 在k3s/clusters/k3s/flux-system/kustomization.yaml添加文件\napiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization resources: - gotk-components.yaml - gotk-sync.yaml - ../apps.yaml - ../infra.yaml - images.yaml 最后push到GitHub即可\n",
+  "wordCount" : "2057",
+  "inLanguage": "zh",
+  "datePublished": "2025-12-14T22:12:50-05:00",
+  "dateModified": "2025-12-15T19:16:08-05:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/zh/blog/tech/server/debian/k3s/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://umami.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/zh/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/en/" title="English🇨🇦"
+                            aria-label="English🇨🇦">English🇨🇦</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://kyxie.me/zh/comment/comments" title="留言板📋">
+                    <span>留言板📋</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/zh/">主页</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/">博客 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/">折腾 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/">服务器 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/zh/blog/tech/server/debian/">Debian 🌀</a></div>
+    <h1 class="post-title">
+      使用k3s &#43; SOPS &#43; FluxCD部署服务
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2025-12-14 22:12:50 -0500 EST'>2025-12-14</span>&nbsp;·&nbsp;5 分钟&nbsp;·&nbsp;2057 字&nbsp;·&nbsp;Kyxie
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">目录</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#%e5%ae%89%e8%a3%85k3s" aria-label="安装k3s">安装k3s</a></li>
+                        <li>
+                            <a href="#%e7%ae%a1%e7%90%86%e5%af%86%e9%92%a5" aria-label="管理密钥">管理密钥</a><ul>
+                                    
+                        <li>
+                            <a href="#age" aria-label="Age">Age</a></li>
+                        <li>
+                            <a href="#sops" aria-label="SOPS">SOPS</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#fluxcd" aria-label="FluxCD">FluxCD</a><ul>
+                                    
+                        <li>
+                            <a href="#%e4%bd%bf%e7%94%a8fluxcd%e8%87%aa%e5%8a%a8%e6%9b%b4%e6%96%b0%e9%95%9c%e5%83%8f" aria-label="使用FluxCD自动更新镜像">使用FluxCD自动更新镜像</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h2 id="安装k3s">安装k3s<a hidden class="anchor" aria-hidden="true" href="#安装k3s">#</a></h2>
+<p>可以输入以下命令安装k3s</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -sfL https://get.k3s.io | sh -s - <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --write-kubeconfig-mode <span style="color:#ae81ff">644</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --node-ip &lt;your_ip&gt; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --flannel-iface &lt;your_network_interface_name&gt;
+</span></span></code></pre></div><ul>
+<li>
+<p>我现在使用的是普通用户，<code>--write-kubeconfig-mode</code>参数可以确保普通用户可以直接运行 <code>kubectl</code> 命令，而不需要每次都加 <code>sudo</code></p>
+</li>
+<li>
+<p><code>--node-ip</code>：我现在是静态IP，这个参数强制 k3s 使用静态 IP</p>
+</li>
+<li>
+<p><code>--flannel-iface</code>：强制使用网卡，现在我在使用Wi-Fi</p>
+<ul>
+<li>
+<p>换成ethernet之后需要在<code>/etc/systemd/system/k3s.service</code>更新一下网卡</p>
+</li>
+<li>
+<p>重新启动</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl daemon-reload
+</span></span><span style="display:flex;"><span>sudo systemctl restart k3s
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h2 id="管理密钥">管理密钥<a hidden class="anchor" aria-hidden="true" href="#管理密钥">#</a></h2>
+<p>使用k3s最大的好处就是实现GitOps，也就是把所有的部署文件，所有的服务配置放在GitHub上，这样迁移系统的时候只需要Git就能备份，非常方便，但是我们所有的<code>secret.yaml</code>则不能上传到GitHub，哪怕是私有仓库。为了解决这个问题，我们可以使用Age + SOPS。</p>
+<h3 id="age">Age<a hidden class="anchor" aria-hidden="true" href="#age">#</a></h3>
+<p>Age是产生密钥的工具</p>
+<ul>
+<li>
+<p>首先在Debian中安装Age</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install age
+</span></span></code></pre></div></li>
+<li>
+<p>生成密钥</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>age-keygen -o keys.txt
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="sops">SOPS<a hidden class="anchor" aria-hidden="true" href="#sops">#</a></h3>
+<p>有了密钥，还需要工具用密钥来加密<code>secret.yaml</code>，在这里使用了SOPS</p>
+<ul>
+<li>
+<p>在Debian中安装</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -LO https://github.com/getsops/sops/releases/download/v3.9.4/sops-v3.9.4.linux.amd64
+</span></span><span style="display:flex;"><span>chmod +x sops-v3.9.4.linux.amd64
+</span></span><span style="display:flex;"><span>sudo mv sops-v3.9.4.linux.amd64 /usr/local/bin/sops
+</span></span></code></pre></div></li>
+<li>
+<p>在项目文件中创建<code>.sops.yaml</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">creation_rules</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path_regex</span>: <span style="color:#ae81ff">.*/secret(\.enc)?\.yaml$</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">age</span>: <span style="color:#e6db74">&#34;age123...&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">encrypted_regex</span>: <span style="color:#e6db74">&#39;^(data|stringData)$&#39;</span>
+</span></span></code></pre></div><p>意思是SOPS会遍历项目文件，寻找名字叫<code>secret.yaml</code>的文件，然后只加密文件中的<code>data</code>或者<code>stringData</code>部分的内容。SOPS 默认会自动查找 <code>~/.config/sops/age/keys.txt</code>，如果不想在磁盘上留下文件，或者没有这个文件夹，每次加密时可以使用环境变量把这个密钥传递给SOPS</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export SOPS_AGE_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;AGE-SECRET-KEY-YOUR-PRIVATE-KEY&#34;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>执行命令，把所有的<code>secret.yaml</code>加密</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>find . -name <span style="color:#e6db74">&#34;secret.yaml&#34;</span> -exec sh -c <span style="color:#e6db74">&#39;sops --encrypt &#34;$1&#34; &gt; &#34;${1%.yaml}.enc.yaml&#34;&#39;</span> _ <span style="color:#f92672">{}</span> <span style="color:#ae81ff">\;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>如果想单独加密一个文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export SOPS_AGE_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;AGE-SECRET-KEY-YOUR-PRIVATE-KEY&#34;</span>
+</span></span><span style="display:flex;"><span>sops --encrypt secret.yaml &gt; secret.enc.yaml
+</span></span></code></pre></div></li>
+<li>
+<p>解密</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export SOPS_AGE_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;AGE-SECRET-KEY-YOUR-PRIVATE-KEY&#34;</span>
+</span></span><span style="display:flex;"><span>sops -d secret.enc.yaml &gt; secret.yaml
+</span></span></code></pre></div></li>
+<li>
+<p>加密后所有的<code>secret.yaml</code>就变成了<code>secret.enc.yaml</code>，我们可以把这些<code>secret.enc.yaml</code>上传到GitHub，旧的<code>secret.yaml</code>就可以删除了</p>
+</li>
+</ul>
+<h2 id="fluxcd">FluxCD<a hidden class="anchor" aria-hidden="true" href="#fluxcd">#</a></h2>
+<p>现在有了加密<code>secret.yaml</code>的工具，该如何应用在k3s呢，这时候就要用FluxCD了，它也自带一个SOPS，但是只用来解密，会把<code>secret.enc.yaml</code>文件解密后的内容保存在内存里，供k3s调用</p>
+<ul>
+<li>
+<p>在Debian中安装，当然也可以使用Helm Charts来安装FluxCD，但是官方强烈建议使用Flux CLI，也就是Bootstrap模式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -s https://fluxcd.io/install.sh | sudo bash
+</span></span></code></pre></div></li>
+<li>
+<p>FluxCD默认是寻找k8s的API接口（运行在8080端口），但是现在在用k3s（运行在6443端口），所以刚开始会找不到，需要修改一个文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+</span></span></code></pre></div></li>
+<li>
+<p>检查一下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>flux check --pre
+</span></span></code></pre></div><p>如果出现一些对号，就是成功了</p>
+</li>
+<li>
+<p>前往 GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)，生成一个新 Token（Generate new token），勾选<code>repo</code>权限</p>
+</li>
+<li>
+<p>在Debian本地运行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export GITHUB_TOKEN<span style="color:#f92672">=</span>Your_GitHub_Token
+</span></span><span style="display:flex;"><span>export GITHUB_USER<span style="color:#f92672">=</span>Your_GitHub_Username
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flux bootstrap github <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --owner<span style="color:#f92672">=</span>$GITHUB_USER <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --repository<span style="color:#f92672">=</span>k3s <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --branch<span style="color:#f92672">=</span>main <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --path<span style="color:#f92672">=</span>./clusters/k3s <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --personal
+</span></span></code></pre></div></li>
+<li>
+<p>由于我是把数据库和Cloudflared这种系统级别的应用放在了<code>infra/</code>目录下，把其他的服务放在了apps目录下，需要在<code>clusters/k3s</code>下创建两个文件<code>infra.yaml</code>和<code>apps.yaml</code>，分别管理这两个Stack</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># infra.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kustomize.toolkit.fluxcd.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Kustomization</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">infra</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">flux-system</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">1h</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">path</span>: <span style="color:#e6db74">&#34;./infra&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sourceRef</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">GitRepository</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">flux-system</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">decryption</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">sops</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">secretRef</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">sops-age    </span> <span style="color:#75715e"># 这里对应你在集群里创建的 secret 名字</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># apps.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kustomize.toolkit.fluxcd.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Kustomization</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">apps</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">flux-system</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">10m</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">path</span>: <span style="color:#e6db74">&#34;./apps&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">prune</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">wait</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dependsOn</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">infra</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sourceRef</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">GitRepository</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">flux-system</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">decryption</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">sops</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">secretRef</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">sops-age</span>
+</span></span></code></pre></div></li>
+<li>
+<p>在<code>clusters/k3s/flux-system/kustomization.yaml</code>中引用这两个文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># clusters/k3s/flux-system/kustomization.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kustomize.config.k8s.io/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Kustomization</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">gotk-components.yaml</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">gotk-sync.yaml</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">../apps.yaml</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">../infra.yaml</span>
+</span></span></code></pre></div></li>
+<li>
+<p>运行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl create secret generic sops-age <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --namespace<span style="color:#f92672">=</span>flux-system <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --from-file<span style="color:#f92672">=</span>sops.agekey<span style="color:#f92672">=</span>keys.txt <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --from-file<span style="color:#f92672">=</span>keys.txt<span style="color:#f92672">=</span>keys.txt
+</span></span></code></pre></div></li>
+<li>
+<p>然后粘贴<code>keys.txt</code>里的AGE-SECRET-KEY，它会把敏感信息直接传递给Flux，然后按<code>CTRL+D</code>退出</p>
+</li>
+<li>
+<p>到这一步，Flux就可以自动扫描你的GitHub仓库，拉下来帮你部署了，每次做完的改动只要git push到GitHub即可，如果不想等它自动给你拉，运行下面命令可以让他立即拉取</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>flux reconcile kustomization apps --with-source
+</span></span><span style="display:flex;"><span>flux reconcile kustomization infra --with-source
+</span></span></code></pre></div></li>
+<li>
+<p>查看部署情况</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>flux get kustomization
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="使用fluxcd自动更新镜像">使用FluxCD自动更新镜像<a hidden class="anchor" aria-hidden="true" href="#使用fluxcd自动更新镜像">#</a></h3>
+<ul>
+<li>
+<p>FluxCD有类似于watchtower或者keel一样的功能，也可以自动更新镜像</p>
+</li>
+<li>
+<p>需要安装这两个组件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>flux bootstrap github <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --owner<span style="color:#f92672">=</span>Kyxie <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --repository<span style="color:#f92672">=</span>k3s <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --branch<span style="color:#f92672">=</span>main <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --path<span style="color:#f92672">=</span>./clusters/k3s/flux-system <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --components-extra<span style="color:#f92672">=</span>image-reflector-controller,image-automation-controller <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --personal <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --token-auth<span style="color:#f92672">=</span>true
+</span></span></code></pre></div><p>会要求你输入GitHub的PAT，如果忘记了可以重新生成一个</p>
+</li>
+<li>
+<p>创建<code>k3s/clusters/k3s/flux-system/images.yaml</code>，需要给每个要更新的镜像写一个配置文件，包括从哪里更新，什么情况下需要更新，这里用statistic-for-strava和homepage举例子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Strava</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">image.toolkit.fluxcd.io/v1beta2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ImageRepository</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">strava-repo</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">flux-system</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">index.docker.io/robiningelbrecht/strava-statistics</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">5m</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">image.toolkit.fluxcd.io/v1beta2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ImagePolicy</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">strava-policy</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">flux-system</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">imageRepositoryRef</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">strava-repo</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">policy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">semver</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">range</span>: <span style="color:#e6db74">&#39;&gt;=4.0.0&#39;</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Homepage</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">image.toolkit.fluxcd.io/v1beta2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ImageRepository</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">homepage-repo</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">flux-system</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ghcr.io/gethomepage/homepage</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">5m</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">image.toolkit.fluxcd.io/v1beta2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ImagePolicy</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">homepage-policy</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">flux-system</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">imageRepositoryRef</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">homepage-repo</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">policy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">semver</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">range</span>: <span style="color:#e6db74">&#39;&gt;=1.0.0 &lt;2.0.0&#39;</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Automation</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">image.toolkit.fluxcd.io/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ImageUpdateAutomation</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">k3s-all-images-automation</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">flux-system</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">1m</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sourceRef</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">GitRepository</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">flux-system</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">git</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">checkout</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">ref</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">commit</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">author</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">email</span>: <span style="color:#ae81ff">fluxcdbot@users.noreply.github.com</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">fluxcdbot</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">messageTemplate: &#39;chore</span>: <span style="color:#ae81ff">Automated update image {{range .UpdatedImages}}{{ . }}{{end}}&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">update</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./clusters/k3s</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">strategy</span>: <span style="color:#ae81ff">Setters</span>
+</span></span></code></pre></div></li>
+<li>
+<p>在对应的<code>deployment.yaml</code>中加上注释</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">image</span>: <span style="color:#ae81ff">robiningelbrecht/strava-statistics:v4.3.4</span> <span style="color:#75715e"># {&#34;$imagepolicy&#34;: &#34;flux-system:strava-policy&#34;}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>在<code>k3s/clusters/k3s/flux-system/kustomization.yaml</code>添加文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kustomize.config.k8s.io/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Kustomization</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">gotk-components.yaml</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">gotk-sync.yaml</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">../apps.yaml</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">../infra.yaml</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">images.yaml</span>
+</span></span></code></pre></div></li>
+<li>
+<p>最后push到GitHub即可</p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/zh/blog/tech/server/debian/auth/">
+    <span class="title">« 上一页</span>
+    <br>
+    <span>为部署的服务添加用户登录</span>
+  </a>
+  <a class="next" href="https://kyxie.me/zh/blog/wool/us-dollar/">
+    <span class="title">下一页 »</span>
+    <br>
+    <span>如何在加拿大兑换美元和其他货币</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>
+    &copy; 2026 <a href="https://kyxie.me/zh/">Kyxie's Blog</a>
+  </span>
+  <span id="umami-stats">
+    | Visitors: <span id="uv-count"></span>
+    Views: <span id="pv-count"></span>
+  </span>
+  <script
+    src="https://umami-api.kyxie.me/script.js"
+    defer
+    init-visitors="42310"
+    init-views="119827"
+    ></script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = '复制';
+
+        function copyingDone() {
+            copybutton.innerText = '已复制！';
+            setTimeout(() => {
+                copybutton.innerText = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

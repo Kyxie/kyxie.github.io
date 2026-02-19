@@ -106,5 +106,14 @@
       <description>把自己的服务暴露在公网之后安全是首要考虑的问题，大部分的应用都有User/Auth Service用来供User注册登录，这篇文章简要介绍一下</description>
     </item>
     
+    <item>
+      <title>使用k3s &#43; SOPS &#43; FluxCD部署服务</title>
+      <link>https://kyxie.me/zh/blog/tech/server/debian/k3s/</link>
+      <pubDate>Sun, 14 Dec 2025 22:12:50 -0500</pubDate>
+      
+      <guid>https://kyxie.me/zh/blog/tech/server/debian/k3s/</guid>
+      <description>安装k3s 可以输入以下命令安装k3s curl -sfL https://get.k3s.io | sh -s - \ --write-kubeconfig-mode 644 \ --node-ip &amp;lt;your_ip&amp;gt; \ --flannel-iface &amp;lt;your_network_interface_name&amp;gt; 我现在使用的是普通用户，--write-kubeconfig-mode参</description>
+    </item>
+    
   </channel>
 </rss>

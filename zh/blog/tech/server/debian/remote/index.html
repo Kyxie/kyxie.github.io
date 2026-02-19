@@ -98,8 +98,8 @@
   "keywords": [
     "Remote Control", "VSCode ssh Server", "VSCode Tunnle", "Wireguard", "code-server"
   ],
-  "articleBody": "其实最根本的远程控制无非也就是三种，VPN，直接开端口和内网穿透。\nCloudflared SSH 之前用Cloudflared代理了好多服务，这些服务都是基础的前后端服务，我们还可以用Cloudflared来代理SSH流量，步骤也很简单，就是在网页端直接新创建一个域名加入之前的Tunnel，以后访问MiniPC就可以直接ssh到这个域名，也可以配合VSCode Remote SSH功能可以很方便地远程开发。\n缺点就是MiniPC和要访问的终端都得安装Cloudflared。而且既然现在MiniPC可以公网访问了，建议最好仅使用密钥进行登录。\ncode-server code-server 是一个网页端的VSCode，我们随便进入一个GitHub仓库，点击句号（注意得是英文），GitHub就会帮我们展现一个网页端的VSCode用于浏览代码（估计很多人都不知道这个功能）。我其实也不知道自己部署一个网页端的IDE有什么用，想来想去可能为了避免在公司连接自己的服务器写自己的项目被发现吧（毕竟这样就走HTTPS不走SSH流量了，一般公司也不会在意员工浏览了什么网站）\nservices: code-server: image: ghcr.io/coder/code-server:latest container_name: code-server restart: unless-stopped environment: - PASSWORD=yourpassword - PUID=1000 - PGID=1000 volumes: - ./config:/home/coder/.config/code-server - ./projects:/home/coder/projects # ports: # - \"8080:8080\" networks: - cloudflared networks: cloudflared: external: true VSCode Tunnel 这个工具是VSCode自己开发的代理，就不是Docker部署了，简而言之刚才的code-server是MiniPC端渲染Electron前端，而这个在MiniPC端就是转发数据，降低miniPC的压力，如果想在容器里开发，Tunnel对Dev Containers支持更好，这也是我目前使用的方案。\n安装方法也很简单，直接在MiniPC上下载CLI以及解压\ncurl -Lk 'https://code.visualstudio.com/sha/download?build=stable\u0026os=cli-alpine-x64' --output vscode_cli.tar.gz tar -xf vscode_cli.tar.gz ./code tunnel 然后可以登录GitHub账号，会直接跳转到VSCode的域名进行开发。\n可以加入Systemd实现开机自启\n创建新的配置文件\nsudo vim /etc/systemd/system/vscode-tunnel.service 填写内容\n[Unit] Description=VSCode Tunnel After=network.target [Service] Type=simple User=kyxie WorkingDirectory=/vscode ExecStart=/vscode/code tunnel Restart=always RestartSec=5 [Install] WantedBy=default.target 重新加载 systemd\nsudo systemctl daemon-reload 设置开机自启动\nsudo systemctl enable vscode-tunnel.service sudo systemctl start vscode-tunnel.service Wireguard Wireguard是一个很轻量级的VPN，内置在Linux中，相比之下它的配置最复杂，详见：OpenWrt配置Wireguard | Kunyang’s Blog。\n然而能干的事儿也最多，之前我的台式机和MiniPC都在家中，有了Wireguard就相当于直接连接了家里的内网，配合Wake On Lan可以很方便的唤醒家里的台式机，以及对台式机远程桌面，和ssh到MiniPC。\n缺点就是Wireguard配置有时候不稳定，假如DDNS更新家里的IP地址不及时，或者运营商中间捣乱封堵UDP流量，会出现连不上的情况。\n",
-  "wordCount" : "1008",
+  "articleBody": "其实最根本的远程控制无非也就是三种，VPN，直接开端口和内网穿透。\nCloudflared SSH 之前用Cloudflared代理了好多服务，这些服务都是基础的前后端服务，我们还可以用Cloudflared来代理SSH流量，步骤也很简单，就是在网页端直接新创建一个域名加入之前的Tunnel，以后访问MiniPC就可以直接ssh到这个域名，也可以配合VSCode Remote SSH功能可以很方便地远程开发。\n缺点就是MiniPC和要访问的终端都得安装Cloudflared。而且既然现在MiniPC可以公网访问了，建议最好仅使用密钥进行登录。\nbrew install cloudflared 修改~/.ssh/config\nHost ssh.example.com ProxyCommand /opt/homebrew/bin/cloudflared access ssh --hostname %h 此外，在Cloudflare里新建一个Application，选择ssh的域名，开启Browser rendering settings也可以直接在网页端ssh到服务器，非常方便，但是注意一定要开启防护。\ncode-server code-server 是一个网页端的VSCode，我们随便进入一个GitHub仓库，点击句号（注意得是英文），GitHub就会帮我们展现一个网页端的VSCode用于浏览代码（估计很多人都不知道这个功能）。我其实也不知道自己部署一个网页端的IDE有什么用，想来想去可能为了避免在公司连接自己的服务器写自己的项目被发现吧（毕竟这样就走HTTPS不走SSH流量了，一般公司也不会在意员工浏览了什么网站）\nservices: code-server: image: ghcr.io/coder/code-server:latest container_name: code-server restart: unless-stopped environment: - PASSWORD=yourpassword - PUID=1000 - PGID=1000 volumes: - ./config:/home/coder/.config/code-server - ./projects:/home/coder/projects # ports: # - \"8080:8080\" networks: - cloudflared networks: cloudflared: external: true VSCode Tunnel 这个工具是VSCode自己开发的代理，就不是Docker部署了，简而言之刚才的code-server是MiniPC端渲染Electron前端，而这个在MiniPC端就是转发数据，降低miniPC的压力，如果想在容器里开发，Tunnel对Dev Containers支持更好，这也是我目前使用的方案。\n安装方法也很简单，直接在MiniPC上下载CLI以及解压\ncurl -Lk 'https://code.visualstudio.com/sha/download?build=stable\u0026os=cli-alpine-x64' --output vscode_cli.tar.gz tar -xf vscode_cli.tar.gz ./code tunnel 然后可以登录GitHub账号，会直接跳转到VSCode的域名进行开发。\n可以加入Systemd实现开机自启\n创建新的配置文件\nsudo vim /etc/systemd/system/vscode-tunnel.service 填写内容\n[Unit] Description=VSCode Tunnel After=network.target [Service] Type=simple User=kyxie WorkingDirectory=/vscode ExecStart=/vscode/code tunnel Restart=always RestartSec=5 [Install] WantedBy=default.target 重新加载 systemd\nsudo systemctl daemon-reload 设置开机自启动\nsudo systemctl enable vscode-tunnel.service sudo systemctl start vscode-tunnel.service Wireguard Wireguard是一个很轻量级的VPN，内置在Linux中，相比之下它的配置最复杂，详见：OpenWrt配置Wireguard | Kunyang’s Blog。\n然而能干的事儿也最多，之前我的台式机和MiniPC都在家中，有了Wireguard就相当于直接连接了家里的内网，配合Wake On Lan可以很方便的唤醒家里的台式机，以及对台式机远程桌面，和ssh到MiniPC。\n缺点就是Wireguard配置有时候不稳定，假如DDNS更新家里的IP地址不及时，或者运营商中间捣乱封堵UDP流量，会出现连不上的情况。\n",
+  "wordCount" : "1126",
   "inLanguage": "zh",
   "datePublished": "2025-10-16T23:53:50-04:00",
   "dateModified": "2025-11-18T00:28:41-05:00",
@@ -268,6 +268,13 @@
 <h2 id="cloudflared-ssh">Cloudflared SSH<a hidden class="anchor" aria-hidden="true" href="#cloudflared-ssh">#</a></h2>
 <p>之前用Cloudflared代理了好多服务，这些服务都是基础的前后端服务，我们还可以用Cloudflared来代理SSH流量，步骤也很简单，就是在网页端直接新创建一个域名加入之前的Tunnel，以后访问MiniPC就可以直接ssh到这个域名，也可以配合VSCode Remote SSH功能可以很方便地远程开发。</p>
 <p>缺点就是MiniPC和要访问的终端都得安装Cloudflared。而且既然现在MiniPC可以公网访问了，建议最好仅使用密钥进行登录。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install cloudflared
+</span></span></code></pre></div><p>修改<code>~/.ssh/config</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Host ssh.example.com
+</span></span><span style="display:flex;"><span>    ProxyCommand /opt/homebrew/bin/cloudflared access ssh --hostname %h
+</span></span></code></pre></div><p>此外，在Cloudflare里新建一个Application，选择ssh的域名，开启Browser rendering settings也可以直接在网页端ssh到服务器，非常方便，但是注意一定要开启防护。</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/12/30a959ec7865fe5d51450a1ca4cccf77.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Browser rendering settings"  />
+</p>
 <h2 id="code-server">code-server<a hidden class="anchor" aria-hidden="true" href="#code-server">#</a></h2>
 <p><code>code-server</code> 是一个网页端的VSCode，我们随便进入一个GitHub仓库，点击句号（注意得是英文），GitHub就会帮我们展现一个网页端的VSCode用于浏览代码（估计很多人都不知道这个功能）。我其实也不知道自己部署一个网页端的IDE有什么用，想来想去可能为了避免在公司连接自己的服务器写自己的项目被发现吧（毕竟这样就走HTTPS不走SSH流量了，一般公司也不会在意员工浏览了什么网站）</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>services:
@@ -376,7 +383,7 @@
     
 <footer class="footer">
   <span>
-    &copy; 2025 <a href="https://kyxie.me/zh/">Kyxie's Blog</a>
+    &copy; 2026 <a href="https://kyxie.me/zh/">Kyxie's Blog</a>
   </span>
   <span id="umami-stats">
     | Visitors: <span id="uv-count"></span>
