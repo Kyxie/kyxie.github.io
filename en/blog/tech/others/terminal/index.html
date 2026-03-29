@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Customizing Terminal | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Windows, OhMyPosh, oh-my-zsh, Bash, Zsh">
+<meta name="description" content="I enjoy tinkering with decorative things and found the default Windows terminal really ugly. I planned to use Oh My Posh to beautify it. This tutorial is based on the Terminal that comes with Windows 11.
+Font I use the CodeNewRoman Nerd Font, which is also the font used for my blog. You can download it from here. After downloading, simply install it. You can also use this font in VS Code.">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/en/blog/tech/others/terminal/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/others/terminal/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/others/terminal/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Customizing Terminal" />
+<meta property="og:description" content="I enjoy tinkering with decorative things and found the default Windows terminal really ugly. I planned to use Oh My Posh to beautify it. This tutorial is based on the Terminal that comes with Windows 11.
+Font I use the CodeNewRoman Nerd Font, which is also the font used for my blog. You can download it from here. After downloading, simply install it. You can also use this font in VS Code." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/en/blog/tech/others/terminal/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-04-01T00:07:17-04:00" />
+<meta property="article:modified_time" content="2023-04-01T00:07:17-04:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Customizing Terminal"/>
+<meta name="twitter:description" content="I enjoy tinkering with decorative things and found the default Windows terminal really ugly. I planned to use Oh My Posh to beautify it. This tutorial is based on the Terminal that comes with Windows 11.
+Font I use the CodeNewRoman Nerd Font, which is also the font used for my blog. You can download it from here. After downloading, simply install it. You can also use this font in VS Code."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs 📒",
+      "item": "https://kyxie.me/en/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Tech 🔧",
+      "item": "https://kyxie.me/en/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Others 🛠️",
+      "item": "https://kyxie.me/en/blog/tech/others/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Customizing Terminal",
+      "item": "https://kyxie.me/en/blog/tech/others/terminal/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Customizing Terminal",
+  "name": "Customizing Terminal",
+  "description": "I enjoy tinkering with decorative things and found the default Windows terminal really ugly. I planned to use Oh My Posh to beautify it. This tutorial is based on the Terminal that comes with Windows 11.\nFont I use the CodeNewRoman Nerd Font, which is also the font used for my blog. You can download it from here. After downloading, simply install it. You can also use this font in VS Code.",
+  "keywords": [
+    "Windows", "OhMyPosh", "oh-my-zsh", "Bash", "Zsh"
+  ],
+  "articleBody": "I enjoy tinkering with decorative things and found the default Windows terminal really ugly. I planned to use Oh My Posh to beautify it. This tutorial is based on the Terminal that comes with Windows 11.\nFont I use the CodeNewRoman Nerd Font, which is also the font used for my blog. You can download it from here. After downloading, simply install it. You can also use this font in VS Code.\nInstall oh-my-posh winget install JanDeDobbeleer.OhMyPosh Terminal Settings I directly modified the configuration of Windows PowerShell. If you don’t want to affect the default configuration, you can also create a new configuration file.\nUnder the Color scheme option, I chose Campbell, but I changed the background of the first theme in the settings JSON file to #0C0C0C to avoid a pure black background.\nUnder the General tab of Windows PowerShell, uncheck “Use parent process directory”. Under the Appearance tab, select the downloaded font CodeNewRoman Nerd Font.\nFile Configuration In the terminal, enter:\necho $profile Find this file, and if you can’t find it, create a new one.\nChoose a theme you like from here, click the theme name to go to the corresponding GitHub page, and download the .json source code. Save it locally and paste the following statement into your profile file, modifying the path to where you saved it.\noh-my-posh init pwsh --config 'C:/Users/Posh/jandedobbeleer.omp.json' | Invoke-Expression After saving, run:\n. $profile FAQ If the execution fails, you may need to update PSReadLine.\nIf icons are not recognized, it’s likely a font issue. Check if you’ve set the font in the PowerShell window to a Nerd font.\nPreview MacOS \u0026 Linux For MacOS and Linux, it’s also highly recommended to use zsh, especially for Linux, since MacOS should have already set zsh as the default shell. The advantage of zsh is that it provides auto-completion and looks much better than bash.\nAfter installing zsh, you can continue to install oh-my-zsh to manage themes and other plugins.\n",
+  "wordCount" : "328",
+  "inLanguage": "en",
+  "datePublished": "2023-04-01T00:07:17-04:00",
+  "dateModified": "2023-04-01T00:07:17-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/en/blog/tech/others/terminal/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://umami.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/en/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/zh/" title="中文🇨🇳"
+                            aria-label="中文🇨🇳">中文🇨🇳</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/en/">Home</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/">Blogs 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/">Tech 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/others/">Others 🛠️</a></div>
+    <h1 class="post-title">
+      Customizing Terminal
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2023-04-01 00:07:17 -0400 EDT'>2023-04-01</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;328 words&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://kyxie.me/zh/blog/tech/others/terminal/">中文🇨🇳</a>
+    </li>
+</ul>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#font" aria-label="Font">Font</a></li>
+                        <li>
+                            <a href="#install-oh-my-posh" aria-label="Install oh-my-posh">Install oh-my-posh</a></li>
+                        <li>
+                            <a href="#terminal-settings" aria-label="Terminal Settings">Terminal Settings</a></li>
+                        <li>
+                            <a href="#file-configuration" aria-label="File Configuration">File Configuration</a></li>
+                        <li>
+                            <a href="#faq" aria-label="FAQ">FAQ</a></li>
+                        <li>
+                            <a href="#preview" aria-label="Preview">Preview</a></li>
+                        <li>
+                            <a href="#macos--linux" aria-label="MacOS &amp;amp; Linux">MacOS &amp; Linux</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><p>I enjoy tinkering with decorative things and found the default Windows terminal really ugly. I planned to use Oh My Posh to beautify it. This tutorial is based on the Terminal that comes with Windows 11.</p>
+<h2 id="font">Font<a hidden class="anchor" aria-hidden="true" href="#font">#</a></h2>
+<p>I use the <code>CodeNewRoman Nerd Font</code>, which is also the font used for my blog. You can download it from <a href="https://www.nerdfonts.com/font-downloads">here</a>. After downloading, simply install it. You can also use this font in VS Code.</p>
+<h2 id="install-oh-my-posh">Install oh-my-posh<a hidden class="anchor" aria-hidden="true" href="#install-oh-my-posh">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>winget install JanDeDobbeleer.OhMyPosh
+</span></span></code></pre></div><h2 id="terminal-settings">Terminal Settings<a hidden class="anchor" aria-hidden="true" href="#terminal-settings">#</a></h2>
+<p>I directly modified the configuration of <code>Windows PowerShell</code>. If you don&rsquo;t want to affect the default configuration, you can also create a new configuration file.</p>
+<p>Under the <code>Color scheme</code> option, I chose <code>Campbell</code>, but I changed the <code>background</code> of the first theme in the settings JSON file to <code>#0C0C0C</code> to avoid a pure black background.</p>
+<p>Under the <code>General</code> tab of <code>Windows PowerShell</code>, uncheck &ldquo;Use parent process directory&rdquo;. Under the <code>Appearance</code> tab, select the downloaded font <code>CodeNewRoman Nerd Font</code>.</p>
+<h2 id="file-configuration">File Configuration<a hidden class="anchor" aria-hidden="true" href="#file-configuration">#</a></h2>
+<p>In the terminal, enter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo $profile
+</span></span></code></pre></div><p>Find this file, and if you can&rsquo;t find it, create a new one.</p>
+<p>Choose a theme you like from <a href="https://ohmyposh.dev/docs/themes">here</a>, click the theme name to go to the corresponding GitHub page, and download the <code>.json</code> source code. Save it locally and paste the following statement into your profile file, modifying the path to where you saved it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>oh-my-posh init pwsh --config <span style="color:#e6db74">&#39;C:/Users/Posh/jandedobbeleer.omp.json&#39;</span> | Invoke-Expression
+</span></span></code></pre></div><p>After saving, run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>. $profile
+</span></span></code></pre></div><h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<p>If the execution fails, you may need to update <a href="https://github.com/PowerShell/PSReadLine#installation">PSReadLine</a>.</p>
+<p>If icons are not recognized, it&rsquo;s likely a font issue. Check if you&rsquo;ve set the font in the PowerShell window to a Nerd font.</p>
+<h2 id="preview">Preview<a hidden class="anchor" aria-hidden="true" href="#preview">#</a></h2>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/5e626f87ed4b70ef936a9bfbd235be8d.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Bash"  />
+</p>
+<h2 id="macos--linux">MacOS &amp; Linux<a hidden class="anchor" aria-hidden="true" href="#macos--linux">#</a></h2>
+<p>For MacOS and Linux, it&rsquo;s also highly recommended to use <code>zsh</code>, especially for Linux, since MacOS should have already set zsh as the default shell. The advantage of zsh is that it provides auto-completion and looks much better than <code>bash</code>.</p>
+<p>After installing zsh, you can continue to install <a href="https://ohmyz.sh/#install">oh-my-zsh</a> to manage themes and other plugins.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/en/blog/pr/timeline/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>OINP Immigration to Canada 🇨🇦 Timeline</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>
+    &copy; 2026 <a href="https://kyxie.me/en/">Kyxie's Blog</a>
+  </span>
+  <span id="umami-stats">
+    | Visitors: <span id="uv-count"></span>
+    Views: <span id="pv-count"></span>
+  </span>
+  <script
+    src="https://umami-api.kyxie.me/script.js"
+    defer
+    init-visitors="42310"
+    init-views="119827"
+    ></script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -5,9 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Web 🌐 | Kunyang&#39;s Blog</title>
+<title>Personal Website 🌐 | Kunyang&#39;s Blog</title>
 <meta name="keywords" content="">
-<meta name="description" content="Web 🌐 - Kunyang&#39;s Blog">
+<meta name="description" content="Personal Website 🌐 - Kunyang&#39;s Blog">
 <meta name="author" content="Kyxie">
 <link rel="canonical" href="https://kyxie.me/en/blog/tech/web/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
@@ -38,13 +38,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 
 
-<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Web 🌐" />
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Personal Website 🌐" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://kyxie.me/en/blog/tech/web/" /><meta property="og:site_name" content="Kyxie" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Web 🌐"/>
+<meta name="twitter:title" content="Personal Website 🌐"/>
 <meta name="twitter:description" content=""/>
 
 
@@ -68,7 +68,7 @@
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "Web 🌐",
+      "name": "Personal Website 🌐",
       "item": "https://kyxie.me/en/blog/tech/web/"
     }
   ]
@@ -125,22 +125,39 @@
 </header>
 <main class="main"> 
 <header class="page-header"><div class="breadcrumbs"><a href="https://kyxie.me/en/">Home</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/">Blogs 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/">Tech 🔧</a></div>
-  <h1>Web 🌐</h1>
+  <h1>Personal Website 🌐</h1>
 </header>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>Building a website using Hugo &amp; PaperMod
+    <h2>Building a Technical Blog with Hugo &#43; PaperMod
     </h2>
   </header>
   <section class="entry-content">
-    <p>Installation process First of all, installing Hugo is required. Installing Hugo needs to use a package management tool. For the Windows system, I recommend using Scoop. Here introduced how to install Scoop. Hogo’s tutorial introduces how to create a project. Among them, Step2 (.yml’s config file) and Step3 (download theme) should be configured according to the guide of Papermod. File introduction content: used to put blog content data: don’t care...</p>
+    <p>Installation Process First, you need to install Hugo. Installing Hugo requires using a package manager. For Windows, Hugo can be installed directly with Winget. Open the terminal and enter: winget install Hugo.Hugo.Extended If you get a “not recognized as the name of cmdlet” message, check if winget.exe exists in C:\Users\Username\AppData\Local\Microsoft\WindowsApps. If it does, add this directory to your environment variables. Otherwise, search for winget in the Microsoft Store - this...</p>
   </section>
   <footer class="entry-footer">
 
 
-<span title='2022-04-15 00:28:55 -0400 EDT'>2022-04-15</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;2555 words&nbsp;·&nbsp;Kyxie</footer>
-  <a class="entry-link" aria-label="post link to Building a website using Hugo &amp; PaperMod" href="https://kyxie.me/en/blog/tech/web/papermod/"></a>
+<span title='2022-04-15 00:28:55 -0400 EDT'>2022-04-15</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;2714 words&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Building a Technical Blog with Hugo &#43; PaperMod" href="https://kyxie.me/en/blog/tech/web/papermod/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Deploying Umami with Docker
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Umami is a personal website analytics tool that supports self-deployment. Using their hosted service, you can track up to three sites. I’ve also tried Plausible, but it seemed a bit heavy for my needs - system load increased significantly after using it.
+Deployment Create docker-compose.yml and modify according to your situation. Here I integrated Cloudflared’s network for public internet access:
+services: umami: container_name: umami image: ghcr.io/umami-software/umami:postgresql-latest environment: DATABASE_URL: postgresql://&lt;db_username&gt;:&lt;db_password&gt;@umami-db:5432/umami DATABASE_TYPE: postgresql APP_SECRET: depends_on: umami-db: condition: service_healthy init: true restart: unless-stopped networks: - umami - cloudflared umami-db: container_name: umami-db image: postgres:15-alpine environment: POSTGRES_DB: umami POSTGRES_USER: POSTGRES_PASSWORD: volumes: - ....</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-06-26 22:20:50 -0400 EDT'>2025-06-26</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;486 words&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Deploying Umami with Docker" href="https://kyxie.me/en/blog/tech/web/umami/"></a>
 </article>
     </main>
     

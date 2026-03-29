@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>OpenWrt 🛜 on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.me/en/blog/tech/server/openwrt/</link>
+    <description>Recent content in OpenWrt 🛜 on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 30 Jun 2025 22:49:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/en/blog/tech/server/openwrt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing OpenWrt on Raspberry Pi 4B&#43; as a Bypass Router</title>
+      <link>https://kyxie.me/en/blog/tech/server/openwrt/raspberrypi-openwrt/</link>
+      <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/openwrt/raspberrypi-openwrt/</guid>
+      <description>My Journey Used Raspberry Pi to install OpenWrt as the main system, but also wanted to build a Minecraft server. The Pi&amp;rsquo;s performance wasn&amp;rsquo;t sufficient, so I needed to upgrade. Purchased a Mini PC for the Minecraft server. Debian could also run a software OpenWrt router, but only as a bypass router. I thought it best to have a dedicated device for network management. Tried various web managers that could run on Debian like Cockpit, but they weren&amp;rsquo;t satisfying.</description>
+    </item>
+    
+    <item>
+      <title>Configuring Wireguard on OpenWrt</title>
+      <link>https://kyxie.me/en/blog/tech/server/openwrt/wireguard/</link>
+      <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/openwrt/wireguard/</guid>
+      <description>Wireguard is a very lightweight VPN with much simpler configuration than the cumbersome OpenVPN. It&amp;rsquo;s perfect for setting up your home VPN, allowing sensitive services to connect to your home VPN first before accessing the internal network.
+The diagram below shows my home network topology (see: Setting up OpenWrt as a Bypass Router Using Raspberry Pi 4B+ | Kunyang&amp;rsquo;s Blog). I use OpenWrt as a bypass router - other devices&amp;rsquo; default gateway and DNS point to OpenWrt.</description>
+    </item>
+    
+    <item>
+      <title>Configuring DDNS on OpenWrt</title>
+      <link>https://kyxie.me/en/blog/tech/server/openwrt/ddns/</link>
+      <pubDate>Sun, 22 Dec 2024 21:37:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/openwrt/ddns/</guid>
+      <description>Configuring DDNS on OpenWrt Since IPv4 resources are very abundant in North America, purchasing a home network plan in Canada typically comes with a public IP. However, ISPs frequently change IP addresses. DDNS binds your home&amp;rsquo;s public IP to your domain name, so you can always find your home regardless of IP changes.
+Prerequisites A domain name
+A public IP address
+Some packages:
+ddns-scripts-cloudflare luci-app-ddns drill Configuration Steps First, create an A record in Cloudflare.</description>
+    </item>
+    
+    <item>
+      <title>Deploying AdGuardHome on OpenWrt</title>
+      <link>https://kyxie.me/en/blog/tech/server/openwrt/adguardhome/</link>
+      <pubDate>Wed, 25 Jun 2025 10:44:22 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/openwrt/adguardhome/</guid>
+      <description>AdGuardHome is an ad-blocking application, but it&amp;rsquo;s not just for blocking ads. It can also serve as a DNS server for your local network.
+Installation Since this application is related to network management, I installed it on OpenWrt. During compilation, simply check the luci-app-adguardhome option.
+Then download the core in the OpenWrt management page (you may need a VPN or proxy).
+Ad Blocking The web management interface is on port 3000 by default.</description>
+    </item>
+    
+  </channel>
+</rss>

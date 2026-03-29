@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Deploying a Home Media Center with Docker | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Cloudflared, Docker, Debian, qBittorrent, prowlarr, radarr, sonarr, bazarr">
+<meta name="description" content="This article introduces how to build a personal home media center using Docker Compose.
+The basic workflow is as follows:
+The core consists of Sonarr and Radarr. Sonarr finds TV shows, Radarr finds movies. Where do they find content? From indexers (think of them as content sources). With multiple indexers, you need a management tool, which is where Prowlarr comes in. It can connect to Sonarr and Radarr, so you only need to add indexers in Prowlarr, and they automatically sync to Sonarr and Radarr.">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/en/blog/tech/server/debian/cinema/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/server/debian/cinema/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/debian/cinema/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Deploying a Home Media Center with Docker" />
+<meta property="og:description" content="This article introduces how to build a personal home media center using Docker Compose.
+The basic workflow is as follows:
+The core consists of Sonarr and Radarr. Sonarr finds TV shows, Radarr finds movies. Where do they find content? From indexers (think of them as content sources). With multiple indexers, you need a management tool, which is where Prowlarr comes in. It can connect to Sonarr and Radarr, so you only need to add indexers in Prowlarr, and they automatically sync to Sonarr and Radarr." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/en/blog/tech/server/debian/cinema/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2025-07-12T11:04:22-04:00" />
+<meta property="article:modified_time" content="2025-07-12T11:04:22-04:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploying a Home Media Center with Docker"/>
+<meta name="twitter:description" content="This article introduces how to build a personal home media center using Docker Compose.
+The basic workflow is as follows:
+The core consists of Sonarr and Radarr. Sonarr finds TV shows, Radarr finds movies. Where do they find content? From indexers (think of them as content sources). With multiple indexers, you need a management tool, which is where Prowlarr comes in. It can connect to Sonarr and Radarr, so you only need to add indexers in Prowlarr, and they automatically sync to Sonarr and Radarr."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs 📒",
+      "item": "https://kyxie.me/en/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Tech 🔧",
+      "item": "https://kyxie.me/en/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Server 🐧",
+      "item": "https://kyxie.me/en/blog/tech/server/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Debian 🌀",
+      "item": "https://kyxie.me/en/blog/tech/server/debian/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  5 ,
+      "name": "Deploying a Home Media Center with Docker",
+      "item": "https://kyxie.me/en/blog/tech/server/debian/cinema/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Deploying a Home Media Center with Docker",
+  "name": "Deploying a Home Media Center with Docker",
+  "description": "This article introduces how to build a personal home media center using Docker Compose.\nThe basic workflow is as follows:\nThe core consists of Sonarr and Radarr. Sonarr finds TV shows, Radarr finds movies. Where do they find content? From indexers (think of them as content sources). With multiple indexers, you need a management tool, which is where Prowlarr comes in. It can connect to Sonarr and Radarr, so you only need to add indexers in Prowlarr, and they automatically sync to Sonarr and Radarr.",
+  "keywords": [
+    "Cloudflared", "Docker", "Debian", "qBittorrent", "prowlarr", "radarr", "sonarr", "bazarr"
+  ],
+  "articleBody": "This article introduces how to build a personal home media center using Docker Compose.\nThe basic workflow is as follows:\nThe core consists of Sonarr and Radarr. Sonarr finds TV shows, Radarr finds movies. Where do they find content? From indexers (think of them as content sources). With multiple indexers, you need a management tool, which is where Prowlarr comes in. It can connect to Sonarr and Radarr, so you only need to add indexers in Prowlarr, and they automatically sync to Sonarr and Radarr. Once content sources are found, you need a downloader. By default, qBittorrent is used, but Aria2 and Transmission are also available. Finally, Bazarr manages subtitles. After setting up the server, you can use a client to watch movies.\nDeployment Create the following folder structure:\n/media ├── config │ ├── bazarr │ ├── prowlarr │ ├── qbittorrent │ ├── radarr │ └── sonarr ├── docker-compose.yml ├── downloads └── library ├── movies └── tv Create a Docker network named media:\ndocker network create media Edit docker-compose.yml:\nservices: sonarr: image: lscr.io/linuxserver/sonarr:latest container_name: sonarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/sonarr:/config - ./downloads:/downloads - ./library/tv:/tv ports: - \"8989:8989\" networks: - media restart: unless-stopped radarr: image: lscr.io/linuxserver/radarr:latest container_name: radarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/radarr:/config - ./downloads:/downloads - ./library/movies:/movies ports: - \"7878:7878\" networks: - media restart: unless-stopped prowlarr: image: lscr.io/linuxserver/prowlarr:latest container_name: prowlarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/prowlarr:/config ports: - \"9696:9696\" networks: - media restart: unless-stopped bazarr: image: lscr.io/linuxserver/bazarr:latest container_name: bazarr environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto volumes: - ./config/bazarr:/config - ./downloads:/downloads - ./library/movies:/movies - ./library/tv:/tv ports: - \"6767:6767\" networks: - media restart: unless-stopped flaresolverr: image: ghcr.io/flaresolverr/flaresolverr:latest container_name: flaresolverr environment: - PUID=1000 - PGID=1000 - LOG_LEVEL=info - TZ=America/Toronto networks: - media restart: unless-stopped qbittorrent: image: lscr.io/linuxserver/qbittorrent:latest container_name: qbittorrent environment: - PUID=1000 - PGID=1000 - TZ=America/Toronto - WEBUI_PORT=8080 volumes: - ./config/qbittorrent:/config - ./downloads:/downloads ports: - \"9090:8080\" - \"6881:6881\" - \"6881:6881/udp\" networks: - media restart: unless-stopped networks: media: external: true Configuration qBittorrent Open qBittorrent. If you see Unauthorized:\nSince my service is deployed on a Debian mini PC with only a command line, accessing qBittorrent from Windows is restricted. It may have external access disabled by default. You need to modify the configuration file.\nFirst, stop the container:\ndocker compose down Open /config/qbittorrent/qBittorrent/qBittorrent.conf:\n[Preferences] WebUI\\Address=0.0.0.0 WebUI\\CSRFProtection=false WebUI\\HostHeaderValidation=false WebUI\\ServerDomains=* WebUI\\Username=admin Change WebUI\\Address to 0.0.0.0\nRestart the container:\ndocker compose up -d View logs to get an initial password:\ndocker logs qbittorrent --tail 50 Enter admin and the initial password in your browser to login\nAfter logging in, go to ⚙ → WebUI → Authentication to change the username and password\nProwlarr Left sidebar, first option is Indexers. Add an Indexer. You can try a few free ones like EZTV and YTS.\nWhen adding 1337x, you’ll see “blocked by CloudFlare Protection”. This is where FlareSolverr comes in:\nSettings → Indexers, add an Index using FlareSolverr. Since it’s on the same Docker network, the Host can be http://flaresolverr:8191/ Set tag to 1337x Go back and add the Indexer, also set the tag to 1337x. Now testing the connection should succeed. Log in to Sonarr and Radarr separately, set usernames and passwords (you’ll get API Keys), then in Prowlarr’s Settings → Apps, add Sonarr and Radarr:\nName: Sonarr Sync Level: Full Sync Prowlarr Server: http://prowlarr:9696 Sonarr Server: http://sonarr:8989 API Key: xxx Name: Radarr Sync Level: Full Sync Prowlarr Server: http://prowlarr:9696 Radarr Server: http://radarr:7878 API Key: xxx In Settings → Download Clients, add the qBittorrent downloader:\nName: qBittorrent Enable: true Host: qbittorrent Port: 8080 Username: xxx Password: xxx Sonarr / Radarr Similar to Prowlarr, enter Settings → Download Clients separately and add the qBittorrent downloader Bazarr Bazarr doesn’t seem to require authentication. In Settings, you can bind Sonarr and Radarr. Like before, use container names for addresses. In Settings → Languages → Language Filter, add Simplified Chinese: Enable Embedded Tracks Language Create a Simplified Chinese profile Set all default profiles to Simplified Chinese In Settings → Providers, add subtitle sources like zimuku and OpenSubtitles.com (the latter requires registration) Finding Movies Once everything is configured, the process is simple:\nTo find movies, search in Radarr directly. Similarly, search for TV shows in Sonarr. Add to wishlist It automatically connects to qBittorrent to download After download, video files are in the mounted folder Watching Movies Infuse I used to no longer use Infuse for watching movies. It accesses files on the server via SMB and watches them locally. Advantages: Uses local hardware decoding, reducing mini PC pressure Disadvantages: Weaker scraping than Jellyfin, no account management, no watch progress tracking Only works on Apple devices: iPhone, iPad, MacBook, or Apple TV Jellyfin Jellyfin benefits from strong scraping capabilities, displaying complete movie posters, actor information, and supporting multiple accounts with separate watch histories.\nThe first time I used Jellyfin, movies were very laggy. I thought it needed a dedicated GPU, but later found that the N100 mini PC’s integrated graphics were more than sufficient. Use the nyanmisaka/jellyfin:latest image.\nTo add Jellyfin, first create a jellyfin folder in the config directory, then modify docker-compose.yml to add:\njellyfin: image: nyanmisaka/jellyfin:latest container_name: jellyfin user: \"1000:1000\" environment: - TZ=America/Toronto volumes: - ./config/jellyfin:/config - ./library:/media ports: - \"8096:8096\" networks: - media restart: unless-stopped Afterward, in Sonarr / Radarr’s Settings → Connections, you can add Jellyfin. The main purpose is to notify Jellyfin to refresh after downloads complete.\nOnce configured, the entire workflow is complete. In Radarr: search for a movie → click → qBittorrent downloads the movie in the background, Bazarr downloads subtitles automatically → after completion, Jellyfin is notified. Open Jellyfin directly to watch. Sometimes this process feels tedious, having to switch between different apps. Is there a way to integrate Sonarr and Radarr? Yes, Jellyseerr.\nJellyseerr I think Jellyseerr has a very beautiful frontend. Its main function is integrating TV shows and movies. Users click and it calls Radarr and Sonarr to download. Radarr and Sonarr are Jellyseerr’s backend.\nBy this time, I had switched to k3s for deployment. Here’s the Jellyseerr deployment file:\napiVersion: v1 kind: Service metadata: name: jellyseerr namespace: media spec: ports: - name: http port: 5055 targetPort: 5055 protocol: TCP selector: app: jellyseerr --- apiVersion: apps/v1 kind: Deployment metadata: name: jellyseerr namespace: media spec: replicas: 1 selector: matchLabels: app: jellyseerr strategy: type: Recreate template: metadata: labels: app: jellyseerr spec: containers: - name: jellyseerr image: fallenbagel/jellyseerr:latest env: - name: LOG_LEVEL value: \"info\" - name: TZ value: \"America/Toronto\" - name: PUID value: \"1000\" - name: PGID value: \"1000\" ports: - containerPort: 5055 livenessProbe: httpGet: path: /status port: 5055 initialDelaySeconds: 10 periodSeconds: 30 readinessProbe: httpGet: path: /status port: 5055 initialDelaySeconds: 10 periodSeconds: 30 resources: limits: memory: \"1Gi\" requests: memory: \"256Mi\" volumeMounts: - name: config mountPath: /app/config volumes: - name: config hostPath: path: /home/kyxie/k3s/apps/media/config/jellyseerr type: DirectoryOrCreate Jellyfin Media Player Browser decoding performance is inferior to local decoding. You can install jellyfin-media-player on your computer for better performance using local decoding.\nOn MacBook, use HomeBrew:\nbrew install --cask jellyfin-media-player Note: This is not the Jellyfin Mobile app from the App Store.\n",
+  "wordCount" : "1168",
+  "inLanguage": "en",
+  "datePublished": "2025-07-12T11:04:22-04:00",
+  "dateModified": "2025-07-12T11:04:22-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/en/blog/tech/server/debian/cinema/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://umami.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/en/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/zh/" title="中文🇨🇳"
+                            aria-label="中文🇨🇳">中文🇨🇳</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/en/">Home</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/">Blogs 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/">Tech 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/server/">Server 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/server/debian/">Debian 🌀</a></div>
+    <h1 class="post-title">
+      Deploying a Home Media Center with Docker
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2025-07-12 11:04:22 -0400 EDT'>2025-07-12</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;1168 words&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://kyxie.me/zh/blog/tech/server/debian/cinema/">中文🇨🇳</a>
+    </li>
+</ul>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#deployment" aria-label="Deployment">Deployment</a></li>
+                        <li>
+                            <a href="#configuration" aria-label="Configuration">Configuration</a><ul>
+                                    
+                        <li>
+                            <a href="#qbittorrent" aria-label="qBittorrent">qBittorrent</a></li>
+                        <li>
+                            <a href="#prowlarr" aria-label="Prowlarr">Prowlarr</a></li>
+                        <li>
+                            <a href="#sonarr--radarr" aria-label="Sonarr / Radarr">Sonarr / Radarr</a></li>
+                        <li>
+                            <a href="#bazarr" aria-label="Bazarr">Bazarr</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#finding-movies" aria-label="Finding Movies">Finding Movies</a></li>
+                        <li>
+                            <a href="#watching-movies" aria-label="Watching Movies">Watching Movies</a><ul>
+                                    
+                        <li>
+                            <a href="#infuse" aria-label="Infuse">Infuse</a></li>
+                        <li>
+                            <a href="#jellyfin" aria-label="Jellyfin">Jellyfin</a></li>
+                        <li>
+                            <a href="#jellyseerr" aria-label="Jellyseerr">Jellyseerr</a></li>
+                        <li>
+                            <a href="#jellyfin-media-player" aria-label="Jellyfin Media Player">Jellyfin Media Player</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><p>This article introduces how to build a personal home media center using Docker Compose.</p>
+<p>The basic workflow is as follows:</p>
+<ul>
+<li>The core consists of Sonarr and Radarr. Sonarr finds TV shows, Radarr finds movies.</li>
+<li>Where do they find content? From indexers (think of them as content sources). With multiple indexers, you need a management tool, which is where Prowlarr comes in. It can connect to Sonarr and Radarr, so you only need to add indexers in Prowlarr, and they automatically sync to Sonarr and Radarr.</li>
+<li>Once content sources are found, you need a downloader. By default, qBittorrent is used, but Aria2 and Transmission are also available.</li>
+<li>Finally, Bazarr manages subtitles.</li>
+</ul>
+<p>After setting up the server, you can use a client to watch movies.</p>
+<h2 id="deployment">Deployment<a hidden class="anchor" aria-hidden="true" href="#deployment">#</a></h2>
+<ul>
+<li>
+<p>Create the following folder structure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/media
+</span></span><span style="display:flex;"><span>├── config
+</span></span><span style="display:flex;"><span>│   ├── bazarr
+</span></span><span style="display:flex;"><span>│   ├── prowlarr
+</span></span><span style="display:flex;"><span>│   ├── qbittorrent
+</span></span><span style="display:flex;"><span>│   ├── radarr
+</span></span><span style="display:flex;"><span>│   └── sonarr
+</span></span><span style="display:flex;"><span>├── docker-compose.yml
+</span></span><span style="display:flex;"><span>├── downloads
+</span></span><span style="display:flex;"><span>└── library
+</span></span><span style="display:flex;"><span>    ├── movies
+</span></span><span style="display:flex;"><span>    └── tv
+</span></span></code></pre></div></li>
+<li>
+<p>Create a Docker network named <code>media</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker network create media
+</span></span></code></pre></div></li>
+<li>
+<p>Edit <code>docker-compose.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sonarr</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/sonarr:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">sonarr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=America/Toronto</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./config/sonarr:/config</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./downloads:/downloads</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./library/tv:/tv</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;8989:8989&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">media</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">radarr</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/radarr:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">radarr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=America/Toronto</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./config/radarr:/config</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./downloads:/downloads</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./library/movies:/movies</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;7878:7878&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">media</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">prowlarr</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/prowlarr:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">prowlarr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=America/Toronto</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./config/prowlarr:/config</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;9696:9696&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">media</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">bazarr</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/bazarr:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">bazarr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=America/Toronto</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./config/bazarr:/config</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./downloads:/downloads</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./library/movies:/movies</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./library/tv:/tv</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;6767:6767&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">media</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">flaresolverr</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ghcr.io/flaresolverr/flaresolverr:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">flaresolverr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">LOG_LEVEL=info</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=America/Toronto</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">media</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">qbittorrent</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/qbittorrent:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">qbittorrent</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=America/Toronto</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">WEBUI_PORT=8080</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./config/qbittorrent:/config</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./downloads:/downloads</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;9090:8080&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;6881:6881&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;6881:6881/udp&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">media</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">media</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="configuration">Configuration<a hidden class="anchor" aria-hidden="true" href="#configuration">#</a></h2>
+<h3 id="qbittorrent">qBittorrent<a hidden class="anchor" aria-hidden="true" href="#qbittorrent">#</a></h3>
+<ul>
+<li>
+<p>Open qBittorrent. If you see <code>Unauthorized</code>:</p>
+<ul>
+<li>
+<p>Since my service is deployed on a Debian mini PC with only a command line, accessing qBittorrent from Windows is restricted. It may have external access disabled by default. You need to modify the configuration file.</p>
+</li>
+<li>
+<p>First, stop the container:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose down
+</span></span></code></pre></div></li>
+<li>
+<p>Open <code>/config/qbittorrent/qBittorrent/qBittorrent.conf</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>[<span style="color:#ae81ff">Preferences]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">WebUI\Address=0.0.0.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">WebUI\CSRFProtection=false</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">WebUI\HostHeaderValidation=false</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">WebUI\ServerDomains=*</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">WebUI\Username=admin</span>
+</span></span></code></pre></div><p>Change <code>WebUI\Address</code> to <code>0.0.0.0</code></p>
+</li>
+<li>
+<p>Restart the container:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div></li>
+<li>
+<p>View logs to get an initial password:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker logs qbittorrent --tail <span style="color:#ae81ff">50</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Enter admin and the initial password in your browser to login</p>
+</li>
+<li>
+<p>After logging in, go to ⚙ → WebUI → Authentication to change the username and password</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="prowlarr">Prowlarr<a hidden class="anchor" aria-hidden="true" href="#prowlarr">#</a></h3>
+<ul>
+<li>
+<p>Left sidebar, first option is Indexers. Add an Indexer. You can try a few free ones like EZTV and YTS.</p>
+</li>
+<li>
+<p>When adding 1337x, you&rsquo;ll see &ldquo;blocked by CloudFlare Protection&rdquo;. This is where FlareSolverr comes in:</p>
+<ul>
+<li>Settings → Indexers, add an Index using FlareSolverr. Since it&rsquo;s on the same Docker network, the Host can be <code>http://flaresolverr:8191/</code></li>
+<li>Set tag to <code>1337x</code></li>
+<li>Go back and add the Indexer, also set the tag to <code>1337x</code>. Now testing the connection should succeed.</li>
+</ul>
+</li>
+<li>
+<p>Log in to Sonarr and Radarr separately, set usernames and passwords (you&rsquo;ll get API Keys), then in Prowlarr&rsquo;s Settings → Apps, add Sonarr and Radarr:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">Name</span>: <span style="color:#ae81ff">Sonarr</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Sync Level</span>: <span style="color:#ae81ff">Full Sync</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Prowlarr Server</span>: <span style="color:#ae81ff">http://prowlarr:9696</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Sonarr Server</span>: <span style="color:#ae81ff">http://sonarr:8989</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">API Key</span>: <span style="color:#ae81ff">xxx</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">Name</span>: <span style="color:#ae81ff">Radarr</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Sync Level</span>: <span style="color:#ae81ff">Full Sync</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Prowlarr Server</span>: <span style="color:#ae81ff">http://prowlarr:9696</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Radarr Server</span>: <span style="color:#ae81ff">http://radarr:7878</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">API Key</span>: <span style="color:#ae81ff">xxx</span>
+</span></span></code></pre></div></li>
+<li>
+<p>In Settings → Download Clients, add the qBittorrent downloader:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">Name</span>: <span style="color:#ae81ff">qBittorrent</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Enable</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Host</span>: <span style="color:#ae81ff">qbittorrent</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Port</span>: <span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Username</span>: <span style="color:#ae81ff">xxx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Password</span>: <span style="color:#ae81ff">xxx</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="sonarr--radarr">Sonarr / Radarr<a hidden class="anchor" aria-hidden="true" href="#sonarr--radarr">#</a></h3>
+<ul>
+<li>Similar to Prowlarr, enter Settings → Download Clients separately and add the qBittorrent downloader</li>
+</ul>
+<h3 id="bazarr">Bazarr<a hidden class="anchor" aria-hidden="true" href="#bazarr">#</a></h3>
+<ul>
+<li>Bazarr doesn&rsquo;t seem to require authentication. In Settings, you can bind Sonarr and Radarr. Like before, use container names for addresses.</li>
+<li>In Settings → Languages → Language Filter, add Simplified Chinese:
+<ul>
+<li>Enable Embedded Tracks Language</li>
+<li>Create a Simplified Chinese profile</li>
+<li>Set all default profiles to Simplified Chinese</li>
+</ul>
+</li>
+<li>In Settings → Providers, add subtitle sources like <code>zimuku</code> and <code>OpenSubtitles.com</code> (the latter requires registration)</li>
+</ul>
+<h2 id="finding-movies">Finding Movies<a hidden class="anchor" aria-hidden="true" href="#finding-movies">#</a></h2>
+<p>Once everything is configured, the process is simple:</p>
+<ul>
+<li>To find movies, search in Radarr directly. Similarly, search for TV shows in Sonarr.</li>
+<li>Add to wishlist</li>
+<li>It automatically connects to qBittorrent to download</li>
+<li>After download, video files are in the mounted folder</li>
+</ul>
+<h2 id="watching-movies">Watching Movies<a hidden class="anchor" aria-hidden="true" href="#watching-movies">#</a></h2>
+<h3 id="infuse">Infuse<a hidden class="anchor" aria-hidden="true" href="#infuse">#</a></h3>
+<ul>
+<li>I <del>used to</del> no longer use Infuse for watching movies. It accesses files on the server via SMB and watches them locally.</li>
+<li>Advantages: Uses local hardware decoding, reducing mini PC pressure</li>
+<li>Disadvantages: Weaker scraping than Jellyfin, no account management, no watch progress tracking</li>
+<li>Only works on Apple devices: iPhone, iPad, MacBook, or Apple TV</li>
+</ul>
+<h3 id="jellyfin">Jellyfin<a hidden class="anchor" aria-hidden="true" href="#jellyfin">#</a></h3>
+<ul>
+<li>
+<p>Jellyfin benefits from strong scraping capabilities, displaying complete movie posters, actor information, and supporting multiple accounts with separate watch histories.</p>
+</li>
+<li>
+<p>The first time I used Jellyfin, movies were very laggy. I thought it needed a dedicated GPU, but later found that the N100 mini PC&rsquo;s integrated graphics were more than sufficient. Use the <code>nyanmisaka/jellyfin:latest</code> image.</p>
+</li>
+<li>
+<p>To add Jellyfin, first create a <code>jellyfin</code> folder in the <code>config</code> directory, then modify <code>docker-compose.yml</code> to add:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">jellyfin</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nyanmisaka/jellyfin:latest</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">jellyfin</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">user</span>: <span style="color:#e6db74">&#34;1000:1000&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">TZ=America/Toronto</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">./config/jellyfin:/config</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">./library:/media</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;8096:8096&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">media</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Afterward, in Sonarr / Radarr&rsquo;s Settings → Connections, you can add Jellyfin. The main purpose is to notify Jellyfin to refresh after downloads complete.</p>
+</li>
+<li>
+<p>Once configured, the entire workflow is complete. In Radarr: search for a movie → click → qBittorrent downloads the movie in the background, Bazarr downloads subtitles automatically → after completion, Jellyfin is notified. Open Jellyfin directly to watch. Sometimes this process feels tedious, having to switch between different apps. Is there a way to integrate Sonarr and Radarr? Yes, Jellyseerr.</p>
+</li>
+</ul>
+<h3 id="jellyseerr">Jellyseerr<a hidden class="anchor" aria-hidden="true" href="#jellyseerr">#</a></h3>
+<ul>
+<li>
+<p>I think Jellyseerr has a very beautiful frontend. Its main function is integrating TV shows and movies. Users click and it calls Radarr and Sonarr to download. Radarr and Sonarr are Jellyseerr&rsquo;s backend.</p>
+</li>
+<li>
+<p>By this time, I had switched to k3s for deployment. Here&rsquo;s the Jellyseerr deployment file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">media</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">http</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5055</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">5055</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">media</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">strategy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">Recreate</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">jellyseerr</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">fallenbagel/jellyseerr:latest</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">LOG_LEVEL</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;info&#34;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">TZ</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;America/Toronto&#34;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">PUID</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;1000&#34;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">PGID</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;1000&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">5055</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">livenessProbe</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">httpGet</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/status</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5055</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">initialDelaySeconds</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">periodSeconds</span>: <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">readinessProbe</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">httpGet</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/status</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5055</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">initialDelaySeconds</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">periodSeconds</span>: <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1Gi&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;256Mi&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">volumeMounts</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/app/config</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">hostPath</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/home/kyxie/k3s/apps/media/config/jellyseerr </span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">type</span>: <span style="color:#ae81ff">DirectoryOrCreate</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="jellyfin-media-player">Jellyfin Media Player<a hidden class="anchor" aria-hidden="true" href="#jellyfin-media-player">#</a></h3>
+<ul>
+<li>
+<p>Browser decoding performance is inferior to local decoding. You can install <code>jellyfin-media-player</code> on your computer for better performance using local decoding.</p>
+</li>
+<li>
+<p>On MacBook, use HomeBrew:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install --cask jellyfin-media-player
+</span></span></code></pre></div><p>Note: This is not the Jellyfin Mobile app from the App Store.</p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/en/blog/tech/server/openwrt/ddns/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>Configuring DDNS on OpenWrt</span>
+  </a>
+  <a class="next" href="https://kyxie.me/en/blog/tech/server/openwrt/adguardhome/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Deploying AdGuardHome on OpenWrt</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>
+    &copy; 2026 <a href="https://kyxie.me/en/">Kyxie's Blog</a>
+  </span>
+  <span id="umami-stats">
+    | Visitors: <span id="uv-count"></span>
+    Views: <span id="pv-count"></span>
+  </span>
+  <script
+    src="https://umami-api.kyxie.me/script.js"
+    defer
+    init-visitors="42310"
+    init-views="119827"
+    ></script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

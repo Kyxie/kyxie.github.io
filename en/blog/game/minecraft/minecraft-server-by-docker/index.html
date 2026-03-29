@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Deploying Minecraft Server with Docker | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Ubuntu, Linux, Debian, Docker, Minecraft">
+<meta name="description" content="The previous article covered downloading and installing Minecraft on Windows so you can play on your own computer. But how do you play with friends? There are three main methods:
+LAN: Similar to high school computer lab class playing CS together, when all devices connect to the same Wi-Fi (same LAN), a friend&rsquo;s Minecraft room broadcasts through the router. If my computer is on the same router, I can find and join their broadcast.">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/en/blog/game/minecraft/minecraft-server-by-docker/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/game/minecraft/minecraft-server-by-docker/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Deploying Minecraft Server with Docker" />
+<meta property="og:description" content="The previous article covered downloading and installing Minecraft on Windows so you can play on your own computer. But how do you play with friends? There are three main methods:
+LAN: Similar to high school computer lab class playing CS together, when all devices connect to the same Wi-Fi (same LAN), a friend&rsquo;s Minecraft room broadcasts through the router. If my computer is on the same router, I can find and join their broadcast." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/en/blog/game/minecraft/minecraft-server-by-docker/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-12-13T00:50:58-05:00" />
+<meta property="article:modified_time" content="2024-12-13T00:50:58-05:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploying Minecraft Server with Docker"/>
+<meta name="twitter:description" content="The previous article covered downloading and installing Minecraft on Windows so you can play on your own computer. But how do you play with friends? There are three main methods:
+LAN: Similar to high school computer lab class playing CS together, when all devices connect to the same Wi-Fi (same LAN), a friend&rsquo;s Minecraft room broadcasts through the router. If my computer is on the same router, I can find and join their broadcast."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs 📒",
+      "item": "https://kyxie.me/en/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Gaming 🎮",
+      "item": "https://kyxie.me/en/blog/game/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Minecraft ⛏️",
+      "item": "https://kyxie.me/en/blog/game/minecraft/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Deploying Minecraft Server with Docker",
+      "item": "https://kyxie.me/en/blog/game/minecraft/minecraft-server-by-docker/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Deploying Minecraft Server with Docker",
+  "name": "Deploying Minecraft Server with Docker",
+  "description": "The previous article covered downloading and installing Minecraft on Windows so you can play on your own computer. But how do you play with friends? There are three main methods:\nLAN: Similar to high school computer lab class playing CS together, when all devices connect to the same Wi-Fi (same LAN), a friend\u0026rsquo;s Minecraft room broadcasts through the router. If my computer is on the same router, I can find and join their broadcast.",
+  "keywords": [
+    "Ubuntu", "Linux", "Debian", "Docker", "Minecraft"
+  ],
+  "articleBody": "The previous article covered downloading and installing Minecraft on Windows so you can play on your own computer. But how do you play with friends? There are three main methods:\nLAN: Similar to high school computer lab class playing CS together, when all devices connect to the same Wi-Fi (same LAN), a friend’s Minecraft room broadcasts through the router. If my computer is on the same router, I can find and join their broadcast. The downside is obvious: devices must be on the same subnet, and we must live together.\nVPN: Since we don’t live together, we can add the friend to my subnet. For example, I run Wireguard VPN at home and let a friend connect. They then join my subnet and can play with me.\nUsing someone else’s server: The above methods have an issue—if a friend wants to join my room, I must be online, otherwise they can’t find it. A server solves this since it runs 24/7. I’ve used server rental services before, but now with a mini PC, I can host my own.\nThis article covers building a Minecraft server on a personal server. You can install everything directly on the server, but I prefer using Docker to isolate and manage programs.\nRequirements A mini PC or old computer running Debian, capable of running 24/7 Installation Guide Preparation Install Docker. Since my Debian has no GUI (only command line), I only need Docker Engine. See Docker’s official docs.\nCreate directories. SSH into your mini PC and create a folder where you want the server, like ~/minecraft:\ncd ~ mkdir minecraft cd minecraft To manage different game versions, create a version folder. If your MC version is 1.18.2, create mc-1182:\nmkdir mc-1182 cd mc-1182 Docker Prepare the Docker Compose config file docker-compose.yml:\nversion: \"3.8\" services: mc: image: itzg/minecraft-server # Image name tty: true # Support container interaction stdin_open: true # Allow command-line input ports: - \"25565:25565\" # Port mapping: host 25565 to container 25565 environment: EULA: \"TRUE\" # Required, agree to Minecraft EULA TYPE: \"FORGE\" # Server core type: PAPER / SPIGOT / VANILLA / FORGE / FABRIC VERSION: \"1.18.2\" # Minecraft version INIT_MEMORY: 1G # Initial JVM memory allocation MAX_MEMORY: 2G # Maximum JVM memory allocation ONLINE_MODE: \"FALSE\" # Enable authentication (FALSE allows offline play) LEVEL: \"world\" # World name LEVEL_SEED: \"Kyxie\" # World seed (string or number) # Add more environment variables as needed, format: KEY: VALUE with space after colon volumes: - ./server:/data # Mount local server folder to container /data for world and config data restart: unless-stopped # Auto-restart unless manually stopped For game version selection: if you want to play large modpacks like Tinkers’ Construct or modded industrial content, 1.18.2 is good with FORGE. For lightweight survival, try 1.20.1 with PAPER.\nRun Docker Compose:\ndocker compose up -d The server is now running. Open HMCL, click Launch Game, wait to enter, click Multiple Player, then Add a server. Enter the server’s IP address:\nConfigure Admin Make yourself an operator (OP) by modifying server data.\nFirst find the container ID:\ndocker ps The first CONTAINER ID is what you need.\nEnter to monitor the container’s main process:\ndocker attach In the terminal, type:\nop My username is Kyxie. Note it’s case-sensitive.\nTo exit, use CTRL P then CTRL Q, not CTRL C.\nCommon Commands Start or restart the container from Linux terminal: docker compose up -d (same as before) After making someone OP, they can type / in-game to open a terminal with the same effect as docker attach Switch game mode: /gamemode creative for Creative mode. Other modes can be auto-completed. Stop server: /stop For detailed documentation, see: Minecraft Server on Docker (Java Edition)\nRemote Access You’ve successfully built a Vanilla Minecraft server. Now expose it to the public internet. You have options:\nNo public IP: Use tunneling like ZeroTier, Cloudflare ZeroTrust, or similar services Have public IP: Use router port forwarding. The 25565 port mentioned in the Docker Compose file is what the router should forward. Requests from the internet to port 25565 reach the router, which forwards to the mini PC’s 25565. Port Forwarding Since I have a public IP, I’ll only cover this method. Many domestic users lack public IPs and have plenty of tunneling tutorials available.\nOpen your router’s Web Manager. Mine is 192.168.2.1 (common alternatives are 192.168.1.1).\nConfigure inbound/outbound rules:\nRule Name Protocol Internal Port External Port Local IP Address Minecraft TCP 25565 25565 Server’s IP Enter the backend (docker attach or in-game terminal) and type:\nwhitelist on Add friends’ usernames to the whitelist (OPs can always join):\nwhitelist add Kyxie whitelist add friend_username whitelist reload Friends can now join using your public IP.\nSome ISPs change IP addresses frequently. If you have a domain, use DDNS to map IP to domain. See: OpenWrt DDNS Configuration | Kunyang’s Blog\n",
+  "wordCount" : "807",
+  "inLanguage": "en",
+  "datePublished": "2024-12-13T00:50:58-05:00",
+  "dateModified": "2024-12-13T00:50:58-05:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/en/blog/game/minecraft/minecraft-server-by-docker/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://umami.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/en/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/zh/" title="中文🇨🇳"
+                            aria-label="中文🇨🇳">中文🇨🇳</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/en/">Home</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/">Blogs 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/game/">Gaming 🎮</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/game/minecraft/">Minecraft ⛏️</a></div>
+    <h1 class="post-title">
+      Deploying Minecraft Server with Docker
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2024-12-13 00:50:58 -0500 EST'>2024-12-13</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;807 words&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://kyxie.me/zh/blog/game/minecraft/minecraft-server-by-docker/">中文🇨🇳</a>
+    </li>
+</ul>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#requirements" aria-label="Requirements">Requirements</a></li>
+                        <li>
+                            <a href="#installation-guide" aria-label="Installation Guide">Installation Guide</a><ul>
+                                    
+                        <li>
+                            <a href="#preparation" aria-label="Preparation">Preparation</a></li>
+                        <li>
+                            <a href="#docker" aria-label="Docker">Docker</a></li>
+                        <li>
+                            <a href="#configure-admin" aria-label="Configure Admin">Configure Admin</a></li>
+                        <li>
+                            <a href="#common-commands" aria-label="Common Commands">Common Commands</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#remote-access" aria-label="Remote Access">Remote Access</a><ul>
+                                    
+                        <li>
+                            <a href="#port-forwarding" aria-label="Port Forwarding">Port Forwarding</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><p>The <a href="/en/blog/game/minecraft/minecraft-client">previous article</a> covered downloading and installing Minecraft on Windows so you can play on your own computer. But how do you play with friends? There are three main methods:</p>
+<ul>
+<li>
+<p>LAN: Similar to high school computer lab class playing CS together, when all devices connect to the same Wi-Fi (same LAN), a friend&rsquo;s Minecraft room broadcasts through the router. If my computer is on the same router, I can find and join their broadcast. The downside is obvious: devices must be on the same subnet, and we must live together.</p>
+</li>
+<li>
+<p>VPN: Since we don&rsquo;t live together, we can add the friend to my subnet. For example, I run Wireguard VPN at home and let a friend connect. They then join my subnet and can play with me.</p>
+</li>
+<li>
+<p>Using someone else&rsquo;s server: The above methods have an issue—if a friend wants to join my room, I must be online, otherwise they can&rsquo;t find it. A server solves this since it runs 24/7. I&rsquo;ve used server rental services before, but now with a mini PC, I can host my own.</p>
+</li>
+</ul>
+<p>This article covers building a Minecraft server on a personal server. You can install everything directly on the server, but I prefer using Docker to isolate and manage programs.</p>
+<h2 id="requirements">Requirements<a hidden class="anchor" aria-hidden="true" href="#requirements">#</a></h2>
+<ul>
+<li>A mini PC or old computer running Debian, capable of running 24/7</li>
+</ul>
+<h2 id="installation-guide">Installation Guide<a hidden class="anchor" aria-hidden="true" href="#installation-guide">#</a></h2>
+<h3 id="preparation">Preparation<a hidden class="anchor" aria-hidden="true" href="#preparation">#</a></h3>
+<ul>
+<li>
+<p>Install Docker. Since my Debian has no GUI (only command line), I only need Docker Engine. See <a href="https://docs.docker.com/engine/install/debian/">Docker&rsquo;s official docs</a>.</p>
+</li>
+<li>
+<p>Create directories. SSH into your mini PC and create a folder where you want the server, like <code>~/minecraft</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ~
+</span></span><span style="display:flex;"><span>mkdir minecraft
+</span></span><span style="display:flex;"><span>cd minecraft
+</span></span></code></pre></div></li>
+<li>
+<p>To manage different game versions, create a version folder. If your MC version is <code>1.18.2</code>, create <code>mc-1182</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir mc-1182
+</span></span><span style="display:flex;"><span>cd mc-1182
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="docker">Docker<a hidden class="anchor" aria-hidden="true" href="#docker">#</a></h3>
+<ul>
+<li>
+<p>Prepare the Docker Compose config file <code>docker-compose.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mc</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">itzg/minecraft-server               </span> <span style="color:#75715e"># Image name</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">tty</span>: <span style="color:#66d9ef">true</span>                                   <span style="color:#75715e"># Support container interaction</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">stdin_open</span>: <span style="color:#66d9ef">true</span>                            <span style="color:#75715e"># Allow command-line input</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;25565:25565&#34;</span>                           <span style="color:#75715e"># Port mapping: host 25565 to container 25565</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">EULA</span>: <span style="color:#e6db74">&#34;TRUE&#34;</span>                              <span style="color:#75715e"># Required, agree to Minecraft EULA</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">TYPE</span>: <span style="color:#e6db74">&#34;FORGE&#34;</span>                             <span style="color:#75715e"># Server core type: PAPER / SPIGOT / VANILLA / FORGE / FABRIC</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">VERSION</span>: <span style="color:#e6db74">&#34;1.18.2&#34;</span>                         <span style="color:#75715e"># Minecraft version</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">INIT_MEMORY</span>: <span style="color:#ae81ff">1G                          </span> <span style="color:#75715e"># Initial JVM memory allocation</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">MAX_MEMORY</span>: <span style="color:#ae81ff">2G                           </span> <span style="color:#75715e"># Maximum JVM memory allocation</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">ONLINE_MODE</span>: <span style="color:#e6db74">&#34;FALSE&#34;</span>                      <span style="color:#75715e"># Enable authentication (FALSE allows offline play)</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">LEVEL</span>: <span style="color:#e6db74">&#34;world&#34;</span>                            <span style="color:#75715e"># World name</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">LEVEL_SEED</span>: <span style="color:#e6db74">&#34;Kyxie&#34;</span>                       <span style="color:#75715e"># World seed (string or number)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Add more environment variables as needed, format: KEY: VALUE with space after colon</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./server:/data                         </span> <span style="color:#75715e"># Mount local server folder to container /data for world and config data</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped                    </span> <span style="color:#75715e"># Auto-restart unless manually stopped</span>
+</span></span></code></pre></div></li>
+<li>
+<p>For game version selection: if you want to play large modpacks like Tinkers&rsquo; Construct or modded industrial content, <code>1.18.2</code> is good with <code>FORGE</code>. For lightweight survival, try <code>1.20.1</code> with <code>PAPER</code>.</p>
+</li>
+<li>
+<p>Run Docker Compose:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div></li>
+<li>
+<p>The server is now running. Open HMCL, click Launch Game, wait to enter, click Multiple Player, then Add a server. Enter the server&rsquo;s IP address:</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/16b2d2c871dfe5d85605716111e99b2b.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Adding Server"  />
+</p>
+</li>
+</ul>
+<h3 id="configure-admin">Configure Admin<a hidden class="anchor" aria-hidden="true" href="#configure-admin">#</a></h3>
+<ul>
+<li>
+<p>Make yourself an operator (OP) by modifying server data.</p>
+</li>
+<li>
+<p>First find the container ID:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker ps
+</span></span></code></pre></div><p>The first <code>CONTAINER ID</code> is what you need.</p>
+</li>
+<li>
+<p>Enter to monitor the container&rsquo;s main process:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker attach &lt;CONTAINER ID&gt;
+</span></span></code></pre></div></li>
+<li>
+<p>In the terminal, type:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>op &lt;Your Username&gt;
+</span></span></code></pre></div><p>My username is <code>Kyxie</code>. Note it&rsquo;s case-sensitive.</p>
+</li>
+<li>
+<p>To exit, use <code>CTRL P</code> then <code>CTRL Q</code>, not <code>CTRL C</code>.</p>
+</li>
+</ul>
+<h3 id="common-commands">Common Commands<a hidden class="anchor" aria-hidden="true" href="#common-commands">#</a></h3>
+<ul>
+<li>Start or restart the container from Linux terminal: <code>docker compose up -d</code> (same as before)</li>
+<li>After making someone OP, they can type <code>/</code> in-game to open a terminal with the same effect as <code>docker attach</code></li>
+<li>Switch game mode: <code>/gamemode creative</code> for Creative mode. Other modes can be auto-completed.</li>
+<li>Stop server: <code>/stop</code></li>
+</ul>
+<p>For detailed documentation, see: <a href="https://docker-minecraft-server.readthedocs.io/en/latest/">Minecraft Server on Docker (Java Edition)</a></p>
+<h2 id="remote-access">Remote Access<a hidden class="anchor" aria-hidden="true" href="#remote-access">#</a></h2>
+<p>You&rsquo;ve successfully built a Vanilla Minecraft server. Now expose it to the public internet. You have options:</p>
+<ul>
+<li>No public IP: Use tunneling like ZeroTier, Cloudflare ZeroTrust, or similar services</li>
+<li>Have public IP: Use router port forwarding. The 25565 port mentioned in the Docker Compose file is what the router should forward. Requests from the internet to port 25565 reach the router, which forwards to the mini PC&rsquo;s 25565.</li>
+</ul>
+<h3 id="port-forwarding">Port Forwarding<a hidden class="anchor" aria-hidden="true" href="#port-forwarding">#</a></h3>
+<p>Since I have a public IP, I&rsquo;ll only cover this method. Many domestic users lack public IPs and have plenty of tunneling tutorials available.</p>
+<ul>
+<li>
+<p>Open your router&rsquo;s Web Manager. Mine is <code>192.168.2.1</code> (common alternatives are <code>192.168.1.1</code>).</p>
+</li>
+<li>
+<p>Configure inbound/outbound rules:</p>
+<table>
+<thead>
+<tr>
+<th>Rule Name</th>
+<th>Protocol</th>
+<th>Internal Port</th>
+<th>External Port</th>
+<th>Local IP Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Minecraft</td>
+<td>TCP</td>
+<td>25565</td>
+<td>25565</td>
+<td>Server&rsquo;s IP</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Enter the backend (<code>docker attach</code> or in-game terminal) and type:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>whitelist on
+</span></span></code></pre></div></li>
+<li>
+<p>Add friends&rsquo; usernames to the whitelist (OPs can always join):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>whitelist add Kyxie
+</span></span><span style="display:flex;"><span>whitelist add friend_username
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>whitelist reload
+</span></span></code></pre></div></li>
+<li>
+<p>Friends can now join using your public IP.</p>
+</li>
+<li>
+<p>Some ISPs change IP addresses frequently. If you have a domain, use DDNS to map IP to domain. See: <a href="/en/blog/tech/server/openwrt/ddns/">OpenWrt DDNS Configuration | Kunyang&rsquo;s Blog</a></p>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/en/blog/tech/server/debian/public/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>Exposing Your Services to the Public Internet</span>
+  </a>
+  <a class="next" href="https://kyxie.me/en/blog/tech/server/openwrt/wireguard/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Configuring Wireguard on OpenWrt</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>
+    &copy; 2026 <a href="https://kyxie.me/en/">Kyxie's Blog</a>
+  </span>
+  <span id="umami-stats">
+    | Visitors: <span id="uv-count"></span>
+    Views: <span id="pv-count"></span>
+  </span>
+  <script
+    src="https://umami-api.kyxie.me/script.js"
+    defer
+    init-visitors="42310"
+    init-views="119827"
+    ></script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

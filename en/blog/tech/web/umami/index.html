@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Deploying Umami with Docker | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Cloudflared, Docker, Debian, Umami">
+<meta name="description" content="Umami is a personal website analytics tool that supports self-deployment. Using their hosted service, you can track up to three sites. I&rsquo;ve also tried Plausible, but it seemed a bit heavy for my needs - system load increased significantly after using it.
+Deployment Create docker-compose.yml and modify according to your situation. Here I integrated Cloudflared&rsquo;s network for public internet access:
+services: umami: container_name: umami image: ghcr.io/umami-software/umami:postgresql-latest environment: DATABASE_URL: postgresql://&lt;db_username&gt;:&lt;db_password&gt;@umami-db:5432/umami DATABASE_TYPE: postgresql APP_SECRET: depends_on: umami-db: condition: service_healthy init: true restart: unless-stopped networks: - umami - cloudflared umami-db: container_name: umami-db image: postgres:15-alpine environment: POSTGRES_DB: umami POSTGRES_USER: POSTGRES_PASSWORD: volumes: - .">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/en/blog/tech/web/umami/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/web/umami/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/web/umami/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Deploying Umami with Docker" />
+<meta property="og:description" content="Umami is a personal website analytics tool that supports self-deployment. Using their hosted service, you can track up to three sites. I&rsquo;ve also tried Plausible, but it seemed a bit heavy for my needs - system load increased significantly after using it.
+Deployment Create docker-compose.yml and modify according to your situation. Here I integrated Cloudflared&rsquo;s network for public internet access:
+services: umami: container_name: umami image: ghcr.io/umami-software/umami:postgresql-latest environment: DATABASE_URL: postgresql://&lt;db_username&gt;:&lt;db_password&gt;@umami-db:5432/umami DATABASE_TYPE: postgresql APP_SECRET: depends_on: umami-db: condition: service_healthy init: true restart: unless-stopped networks: - umami - cloudflared umami-db: container_name: umami-db image: postgres:15-alpine environment: POSTGRES_DB: umami POSTGRES_USER: POSTGRES_PASSWORD: volumes: - ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/en/blog/tech/web/umami/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2025-06-26T22:20:50-04:00" />
+<meta property="article:modified_time" content="2025-06-26T22:20:50-04:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploying Umami with Docker"/>
+<meta name="twitter:description" content="Umami is a personal website analytics tool that supports self-deployment. Using their hosted service, you can track up to three sites. I&rsquo;ve also tried Plausible, but it seemed a bit heavy for my needs - system load increased significantly after using it.
+Deployment Create docker-compose.yml and modify according to your situation. Here I integrated Cloudflared&rsquo;s network for public internet access:
+services: umami: container_name: umami image: ghcr.io/umami-software/umami:postgresql-latest environment: DATABASE_URL: postgresql://&lt;db_username&gt;:&lt;db_password&gt;@umami-db:5432/umami DATABASE_TYPE: postgresql APP_SECRET: depends_on: umami-db: condition: service_healthy init: true restart: unless-stopped networks: - umami - cloudflared umami-db: container_name: umami-db image: postgres:15-alpine environment: POSTGRES_DB: umami POSTGRES_USER: POSTGRES_PASSWORD: volumes: - ."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs 📒",
+      "item": "https://kyxie.me/en/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Tech 🔧",
+      "item": "https://kyxie.me/en/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Personal Website 🌐",
+      "item": "https://kyxie.me/en/blog/tech/web/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Deploying Umami with Docker",
+      "item": "https://kyxie.me/en/blog/tech/web/umami/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Deploying Umami with Docker",
+  "name": "Deploying Umami with Docker",
+  "description": "Umami is a personal website analytics tool that supports self-deployment. Using their hosted service, you can track up to three sites. I\u0026rsquo;ve also tried Plausible, but it seemed a bit heavy for my needs - system load increased significantly after using it.\nDeployment Create docker-compose.yml and modify according to your situation. Here I integrated Cloudflared\u0026rsquo;s network for public internet access:\nservices: umami: container_name: umami image: ghcr.io/umami-software/umami:postgresql-latest environment: DATABASE_URL: postgresql://\u0026lt;db_username\u0026gt;:\u0026lt;db_password\u0026gt;@umami-db:5432/umami DATABASE_TYPE: postgresql APP_SECRET: depends_on: umami-db: condition: service_healthy init: true restart: unless-stopped networks: - umami - cloudflared umami-db: container_name: umami-db image: postgres:15-alpine environment: POSTGRES_DB: umami POSTGRES_USER: POSTGRES_PASSWORD: volumes: - .",
+  "keywords": [
+    "Cloudflared", "Docker", "Debian", "Umami"
+  ],
+  "articleBody": "Umami is a personal website analytics tool that supports self-deployment. Using their hosted service, you can track up to three sites. I’ve also tried Plausible, but it seemed a bit heavy for my needs - system load increased significantly after using it.\nDeployment Create docker-compose.yml and modify according to your situation. Here I integrated Cloudflared’s network for public internet access:\nservices: umami: container_name: umami image: ghcr.io/umami-software/umami:postgresql-latest environment: DATABASE_URL: postgresql://:@umami-db:5432/umami DATABASE_TYPE: postgresql APP_SECRET: depends_on: umami-db: condition: service_healthy init: true restart: unless-stopped networks: - umami - cloudflared umami-db: container_name: umami-db image: postgres:15-alpine environment: POSTGRES_DB: umami POSTGRES_USER: POSTGRES_PASSWORD: volumes: - ./data:/var/lib/postgresql/data restart: unless-stopped healthcheck: test: [\"CMD-SHELL\", \"pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}\"] interval: 5s timeout: 5s retries: 5 networks: - umami networks: cloudflared: external: true umami: name: umami driver: bridge You can generate the secret using OpenSSL:\nopenssl rand -base64 32 Start the containers:\ndocker compose up -d Add the domain in your reverse proxy. Umami automatically listens on port 3000:\nSubdomain: data Domain: your_domain Type: HTTP URL: umami:3000 Default username is admin, default password is umami. You can change these directly through the web interface.\nAfter adding a website, go to Settings → Tracking Code to get the tracking code. My personal blog uses the Hugo theme, so I paste the tracking code into layouts/partials/head.html.\nThe final result looks great! Unfortunately, previous analytics data wasn’t recorded. You can preview the dashboard here: Umami\nEmbedding into Blog Frontend This requires a three-tier proxy architecture: the frontend script embeds code in script.js, which calls the umami-api interface, and the API service uses Umami’s token to call Umami and return data to the frontend, which then displays it. I wrote a small service for this: GitHub - Kyxie/umami-api.\nCreate a Team in Umami and move your blog to that Team.\nCreate a new user with limited permissions (e.g., view-only) and add them to the newly created Team. It’s best not to use a high-privilege user, as token leakage could be dangerous.\nUse Postman or curl to send a request. For username, use the credentials of the new user:\ncurl -X POST https://umami_url/api/auth/login \\ -H \"Content-Type: application/json\" \\ -d '{\"username\":\"username\", \"password\":\"password\"}' You’ll receive a token in the response body.\nCreate a new hostname in Cloudflared. We need umami-api accessible from the public internet:\nSubdomain: umami-api domain: your_domain type: HTTP URL: umami-api:3001 Create a .env file:\nUMAMI_URL=[your_umami_url] UMAMI_TOKEN=[your_token] UMAMI_WEBSITE_ID=[your_website_id] CORS_ALLOW_ORIGIN=[your_blog_url] UMAMI_URL is the Umami URL. Since the API and Umami are in the same container network, you can use the container name (http://umami:3000) UMAMI_TOKEN is the token you just generated UMAMI_WEBSITE_ID is the website’s ID in Umami CORS_ALLOW_ORIGIN is the URL allowed to access the service (e.g., your blog). Multiple URLs can be separated by commas. Create docker-compose.yml:\numami-api: image: kyxie/umami-api:latest container_name: umami-api env_file: .env restart: unless-stopped networks: - umami - cloudflared Add this section to your umami stack and include it in the cloudflared container network.\nStart the containers:\ndocker compose up -d ",
+  "wordCount" : "486",
+  "inLanguage": "en",
+  "datePublished": "2025-06-26T22:20:50-04:00",
+  "dateModified": "2025-06-26T22:20:50-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/en/blog/tech/web/umami/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://umami.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/en/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/zh/" title="中文🇨🇳"
+                            aria-label="中文🇨🇳">中文🇨🇳</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/en/">Home</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/">Blogs 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/">Tech 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/web/">Personal Website 🌐</a></div>
+    <h1 class="post-title">
+      Deploying Umami with Docker
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2025-06-26 22:20:50 -0400 EDT'>2025-06-26</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;486 words&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://kyxie.me/zh/blog/tech/web/umami/">中文🇨🇳</a>
+    </li>
+</ul>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#deployment" aria-label="Deployment">Deployment</a></li>
+                        <li>
+                            <a href="#embedding-into-blog-frontend" aria-label="Embedding into Blog Frontend">Embedding into Blog Frontend</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><p>Umami is a personal website analytics tool that supports self-deployment. Using their hosted service, you can track up to three sites. I&rsquo;ve also tried Plausible, but it seemed a bit heavy for my needs - system load increased significantly after using it.</p>
+<h2 id="deployment">Deployment<a hidden class="anchor" aria-hidden="true" href="#deployment">#</a></h2>
+<ul>
+<li>
+<p>Create <code>docker-compose.yml</code> and modify according to your situation. Here I integrated Cloudflared&rsquo;s network for public internet access:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">umami</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">umami</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ghcr.io/umami-software/umami:postgresql-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">DATABASE_URL</span>: <span style="color:#ae81ff">postgresql://&lt;db_username&gt;:&lt;db_password&gt;@umami-db:5432/umami</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">DATABASE_TYPE</span>: <span style="color:#ae81ff">postgresql</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">APP_SECRET</span>: 
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">umami-db</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">condition</span>: <span style="color:#ae81ff">service_healthy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">init</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">umami</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">cloudflared</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">umami-db</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">umami-db</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:15-alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_DB</span>: <span style="color:#ae81ff">umami</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_USER</span>: 
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: 
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./data:/var/lib/postgresql/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">healthcheck</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">test</span>: [<span style="color:#e6db74">&#34;CMD-SHELL&#34;</span>, <span style="color:#e6db74">&#34;pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}&#34;</span>]
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">5s</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">5s</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">umami</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">cloudflared</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">umami</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">umami</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">bridge</span>
+</span></span></code></pre></div></li>
+<li>
+<p>You can generate the secret using OpenSSL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>openssl rand -base64 <span style="color:#ae81ff">32</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Start the containers:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div></li>
+<li>
+<p>Add the domain in your reverse proxy. Umami automatically listens on port 3000:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">Subdomain</span>: <span style="color:#ae81ff">data</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Domain</span>: <span style="color:#ae81ff">your_domain</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Type</span>: <span style="color:#ae81ff">HTTP</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">URL</span>: <span style="color:#ae81ff">umami:3000</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Default username is <code>admin</code>, default password is <code>umami</code>. You can change these directly through the web interface.</p>
+</li>
+<li>
+<p>After adding a website, go to Settings → Tracking Code to get the tracking code. My personal blog uses the Hugo theme, so I paste the tracking code into <code>layouts/partials/head.html</code>.</p>
+</li>
+</ul>
+<p>The final result looks great! Unfortunately, previous analytics data wasn&rsquo;t recorded. You can preview the dashboard here: <a href="https://umami.kyxie.me/share/teqalaRWsMUKJf9D/kyxie.me">Umami</a></p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/7578bc6136b104bf697e4be7b63628d3.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Umami"  />
+</p>
+<h2 id="embedding-into-blog-frontend">Embedding into Blog Frontend<a hidden class="anchor" aria-hidden="true" href="#embedding-into-blog-frontend">#</a></h2>
+<p>This requires a three-tier proxy architecture: the frontend script embeds code in script.js, which calls the umami-api interface, and the API service uses Umami&rsquo;s token to call Umami and return data to the frontend, which then displays it. I wrote a small service for this: <a href="https://github.com/Kyxie/umami-api.git">GitHub - Kyxie/umami-api</a>.</p>
+<ul>
+<li>
+<p>Create a Team in Umami and move your blog to that Team.</p>
+</li>
+<li>
+<p>Create a new user with limited permissions (e.g., view-only) and add them to the newly created Team. It&rsquo;s best not to use a high-privilege user, as token leakage could be dangerous.</p>
+</li>
+<li>
+<p>Use Postman or curl to send a request. For username, use the credentials of the new user:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X POST https://umami_url/api/auth/login <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -d <span style="color:#e6db74">&#39;{&#34;username&#34;:&#34;username&#34;, &#34;password&#34;:&#34;password&#34;}&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>You&rsquo;ll receive a token in the response body.</p>
+</li>
+<li>
+<p>Create a new hostname in Cloudflared. We need umami-api accessible from the public internet:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">Subdomain</span>: <span style="color:#ae81ff">umami-api</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">domain</span>: <span style="color:#ae81ff">your_domain</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">HTTP</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">URL</span>: <span style="color:#ae81ff">umami-api:3001</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Create a <code>.env</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-env" data-lang="env"><span style="display:flex;"><span>UMAMI_URL<span style="color:#f92672">=[</span>your_umami_url<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>UMAMI_TOKEN<span style="color:#f92672">=[</span>your_token<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>UMAMI_WEBSITE_ID<span style="color:#f92672">=[</span>your_website_id<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>CORS_ALLOW_ORIGIN<span style="color:#f92672">=[</span>your_blog_url<span style="color:#f92672">]</span>
+</span></span></code></pre></div><ul>
+<li>UMAMI_URL is the Umami URL. Since the API and Umami are in the same container network, you can use the container name (http://umami:3000)</li>
+<li>UMAMI_TOKEN is the token you just generated</li>
+<li>UMAMI_WEBSITE_ID is the website&rsquo;s ID in Umami</li>
+<li>CORS_ALLOW_ORIGIN is the URL allowed to access the service (e.g., your blog). Multiple URLs can be separated by commas.</li>
+</ul>
+</li>
+<li>
+<p>Create <code>docker-compose.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span> <span style="color:#f92672">umami-api</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">kyxie/umami-api:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">umami-api</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env_file</span>: <span style="color:#ae81ff">.env</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">umami</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">cloudflared</span>
+</span></span></code></pre></div><p>Add this section to your umami stack and include it in the cloudflared container network.</p>
+</li>
+<li>
+<p>Start the containers:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/en/blog/bike/strava/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>Deploy Strava Data Analytics Dashboard with Docker</span>
+  </a>
+  <a class="next" href="https://kyxie.me/en/blog/tech/server/debian/public/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Exposing Your Services to the Public Internet</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>
+    &copy; 2026 <a href="https://kyxie.me/en/">Kyxie's Blog</a>
+  </span>
+  <span id="umami-stats">
+    | Visitors: <span id="uv-count"></span>
+    Views: <span id="pv-count"></span>
+  </span>
+  <script
+    src="https://umami-api.kyxie.me/script.js"
+    defer
+    init-visitors="42310"
+    init-views="119827"
+    ></script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

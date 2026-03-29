@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Deploying Private Cloud and File Management with Docker | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="FileBrowser, OpenList, BaiduPCS, Docker, Debian">
+<meta name="description" content="Thanks to the mini PC running 24/7, it&rsquo;s great for deploying automated download/upload and file management services. This article mainly covers deploying these services with Docker:
+Samba: Run on Linux to map Linux as a Windows disk. Access mini PC files just by opening Windows File Explorer. FileBrowser: A graphical file manager with a web interface deployed on the internet, essentially a self-hosted cloud drive. BaiduPCS Go: Command-line control for uploading and downloading files to Baidu Cloud.">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/en/blog/tech/server/debian/cloud/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/server/debian/cloud/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/debian/cloud/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Deploying Private Cloud and File Management with Docker" />
+<meta property="og:description" content="Thanks to the mini PC running 24/7, it&rsquo;s great for deploying automated download/upload and file management services. This article mainly covers deploying these services with Docker:
+Samba: Run on Linux to map Linux as a Windows disk. Access mini PC files just by opening Windows File Explorer. FileBrowser: A graphical file manager with a web interface deployed on the internet, essentially a self-hosted cloud drive. BaiduPCS Go: Command-line control for uploading and downloading files to Baidu Cloud." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/en/blog/tech/server/debian/cloud/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2025-06-14T00:41:59-04:00" />
+<meta property="article:modified_time" content="2025-06-14T00:41:59-04:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploying Private Cloud and File Management with Docker"/>
+<meta name="twitter:description" content="Thanks to the mini PC running 24/7, it&rsquo;s great for deploying automated download/upload and file management services. This article mainly covers deploying these services with Docker:
+Samba: Run on Linux to map Linux as a Windows disk. Access mini PC files just by opening Windows File Explorer. FileBrowser: A graphical file manager with a web interface deployed on the internet, essentially a self-hosted cloud drive. BaiduPCS Go: Command-line control for uploading and downloading files to Baidu Cloud."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs 📒",
+      "item": "https://kyxie.me/en/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Tech 🔧",
+      "item": "https://kyxie.me/en/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Server 🐧",
+      "item": "https://kyxie.me/en/blog/tech/server/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Debian 🌀",
+      "item": "https://kyxie.me/en/blog/tech/server/debian/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  5 ,
+      "name": "Deploying Private Cloud and File Management with Docker",
+      "item": "https://kyxie.me/en/blog/tech/server/debian/cloud/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Deploying Private Cloud and File Management with Docker",
+  "name": "Deploying Private Cloud and File Management with Docker",
+  "description": "Thanks to the mini PC running 24/7, it\u0026rsquo;s great for deploying automated download/upload and file management services. This article mainly covers deploying these services with Docker:\nSamba: Run on Linux to map Linux as a Windows disk. Access mini PC files just by opening Windows File Explorer. FileBrowser: A graphical file manager with a web interface deployed on the internet, essentially a self-hosted cloud drive. BaiduPCS Go: Command-line control for uploading and downloading files to Baidu Cloud.",
+  "keywords": [
+    "FileBrowser", "OpenList", "BaiduPCS", "Docker", "Debian"
+  ],
+  "articleBody": "Thanks to the mini PC running 24/7, it’s great for deploying automated download/upload and file management services. This article mainly covers deploying these services with Docker:\nSamba: Run on Linux to map Linux as a Windows disk. Access mini PC files just by opening Windows File Explorer. FileBrowser: A graphical file manager with a web interface deployed on the internet, essentially a self-hosted cloud drive. BaiduPCS Go: Command-line control for uploading and downloading files to Baidu Cloud. OpenList: Open-source version of AList, can mount various cloud drives and local directories. Samba Using Samba, you can map Linux as a local Windows disk, allowing Windows software to directly open Linux folders, greatly facilitating command-line file management on Linux.\nI previously installed Samba directly on Linux, but later found Docker works just as well.\nDirect Linux Installation Install Samba:\nsudo apt update sudo apt install samba Edit the Samba configuration file:\nsudo nano /etc/samba/smb.conf First, it’s recommended to comment out everything under [homes] to avoid automatically sharing all users’ home directories. You can manually control shared directories by adding content at the end of the file:\n[Name] path = /home/user1 browsable = yes read only = no guest ok = yes [Name] is the shared folder name, which will appear as a disk name in Windows.\nSet Samba account password:\nsudo smbpasswd -a user1 sudo smbpasswd -e user1 Restart the Samba service:\nsudo systemctl restart smbd Docker Install Samba using Docker Compose:\nservices: samba: image: dperson/samba container_name: samba restart: unless-stopped ports: - \"137:137/udp\" - \"138:138/udp\" - \"139:139/tcp\" - \"445:445/tcp\" volumes: - [host_path]:/mount/home # Replace with your host directory path environment: - USERID=[your_uid] # Get from `id -u` - GROUPID=[your_gid] # Get from `id -g` command: \u003e -u \"[username];[password]\" -s \"[Name];/mount/home;yes;no;no;[username]\" Replace [username], [password], [Name] with your desired values.\nAfter the Docker container runs, it will create some anonymous volumes, which is normal.\nWindows Open File Explorer Right-click “This PC” and select “Map network drive” Choose a drive letter (e.g., Z:) In the folder field, enter: \\\\Linux IP Address\\[Name] FileBrowser FileBrowser is a file browser for graphically managing files on your mini PC. I personally prefer Samba and Windows File Manager, but FileBrowser has a web interface, so it can be exposed to the internet—essentially a self-hosted cloud drive. If you take photos with friends and want to share large files without using WeChat’s compression, this is perfect. Just plug a USB drive or SD card into the mini PC.\nSince it’s on the internet, you can mount only the SD card contents, so if hacked, the mini PC’s own files remain safe.\nDeployment Create a local folder and create a database.db file, then modify permissions:\ntouch ./database.db chown 1000:1000 ./database.db chmod 664 ./database.db Create docker-compose.yml. I want Cloudflared to manage it, so join its network:\nservices: filebrowser: image: filebrowser/filebrowser container_name: filebrowser restart: unless-stopped volumes: - ./data:/srv - ./database.db:/database.db expose: - \"80\" environment: - PUID=1000 - PGID=1000 - UMASK=022 - TZ=America/Toronto user: \"1000:1000\" networks: - cloudflared networks: cloudflared: external: true Start the container. Default username and password are admin and admin:\ndocker compose up -d Changing Password Stop the container first:\ndocker compose down Reset password:\ndocker run --rm \\ -v $(pwd)/database.db:/database.db \\ filebrowser/filebrowser \\ users update User --password 12345678 --database /database.db Mounting USB Drive / SD Card Stop the container with docker compose down\nFirst, mount the USB to mini PC. For automatic mounting, see: Auto-mounting USB Drives with udev | Kunyang’s Blog. The USB will mount directly to the folder. Below is the manual process:\nSuppose the USB name (Label) is Nikon-1. Manually mount it at ~/filebrowser/Nikon-1. Then accessing ~/filebrowser/Nikon-1 accesses your USB.\nGet the device name:\nlsblk Usually it’s /dev/sdb1\nCreate the mount point directory:\nsudo mkdir -p ~/filebrowser/nikon-1 Mount the device:\nsudo mount /dev/sdb1 ~/filebrowser/nikon-1 Suppose I have two Nikon SD cards, one DJI SD card, named nikon-1, nikon-2, and dji-1. After local mounting, modify FileBrowser’s docker-compose.yml to add logical volumes:\nvolumes: - ./data:/srv - ./database.db:/database.db # Mount SD cards - ./nikon-1/DCIM/102NZ_FC:/srv/nikon/SD1 - ./nikon-2/DCIM/102NZ_FC:/srv/nikon/SD2 - ./dji-1/DCIM/DJI_001:/srv/dji/SD1 # Mount servers (not recommended due to security risks; use VPN instead) - /home/username/:/srv/debian Restart the container:\ndocker compose up -d BaiduPCS Go Although Baidu PCS is often criticized for throttling, I’ve never abandoned it because I’m an early user with 2TB storage, making it perfect for backing up “digital junk” (e.g., RAW photos are 30MB each, DJI videos are several GB, with few useful editing clips). I’ve only used under 300GB of the 2TB, and video files are generally not moderated.\nHowever, Baidu doesn’t run natively on Linux, and my server has no GUI. I need a Docker + command-line version. After searching, I found BaiduPCS Go. I created a Docker image: kyxie/baidupcs-go - Docker Image | Docker Hub\nDeployment Run directly:\ndocker run -d -it --name baidupcs-go \\ -v $(pwd)/data:/data \\ -v $(pwd)/upload:/upload \\ -v $(pwd)/config:/root/.config/BaiduPCS-Go \\ -w /upload \\ kyxie/baidupcs-go:latest Deploy with Docker Compose (recommended):\nservices: baidupcs-go: image: kyxie/baidupcs-go:latest container_name: baidupcs-go stdin_open: true tty: true volumes: - ./data:/data - ./upload:/upload - ./config:/root/.config/BaiduPCS-Go # Mount other directories, e.g., USB directory - /mnt/usb:/u working_dir: /upload Common Commands View container files:\ndocker exec -it baidupcs-go /bin/sh Enter container, login, and display cloud files:\ndocker exec -it baidupcs-go BaiduPCS-Go Login:\nLogin to Baidu PCS in a browser\nPress F12 → Application → Cookies → https://pan.baidu.com → find BDUSS field, copy it\nRun the command:\nlogin -bduss= Upload. It’s recommended to use screen since closing the terminal may pause the upload:\nscreen -S pcs-upload docker exec baidupcs-go \\ BaiduPCS-Go upload # Example docker exec baidupcs-go \\ BaiduPCS-Go upload /nikon-1 \"/Photos and Videos/From: Nikon Zfc/2025 Bottle Islands\" docker exec baidupcs-go \\ BaiduPCS-Go upload /dji-1/MP4 \"/Photos and Videos/From: DJI/2025 Bottle Islands\" ",
+  "wordCount" : "946",
+  "inLanguage": "en",
+  "datePublished": "2025-06-14T00:41:59-04:00",
+  "dateModified": "2025-06-14T00:41:59-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/en/blog/tech/server/debian/cloud/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://umami.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/en/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/zh/" title="中文🇨🇳"
+                            aria-label="中文🇨🇳">中文🇨🇳</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/en/">Home</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/">Blogs 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/">Tech 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/server/">Server 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/server/debian/">Debian 🌀</a></div>
+    <h1 class="post-title">
+      Deploying Private Cloud and File Management with Docker
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2025-06-14 00:41:59 -0400 EDT'>2025-06-14</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;946 words&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://kyxie.me/zh/blog/tech/server/debian/cloud/">中文🇨🇳</a>
+    </li>
+</ul>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#samba" aria-label="Samba">Samba</a><ul>
+                                    
+                        <li>
+                            <a href="#direct-linux-installation" aria-label="Direct Linux Installation">Direct Linux Installation</a></li>
+                        <li>
+                            <a href="#docker" aria-label="Docker">Docker</a></li>
+                        <li>
+                            <a href="#windows" aria-label="Windows">Windows</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#filebrowser" aria-label="FileBrowser">FileBrowser</a><ul>
+                                    
+                        <li>
+                            <a href="#deployment" aria-label="Deployment">Deployment</a></li>
+                        <li>
+                            <a href="#changing-password" aria-label="Changing Password">Changing Password</a></li>
+                        <li>
+                            <a href="#mounting-usb-drive--sd-card" aria-label="Mounting USB Drive / SD Card">Mounting USB Drive / SD Card</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#baidupcs-go" aria-label="BaiduPCS Go">BaiduPCS Go</a><ul>
+                                    
+                        <li>
+                            <a href="#deployment-1" aria-label="Deployment">Deployment</a></li>
+                        <li>
+                            <a href="#common-commands" aria-label="Common Commands">Common Commands</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><p>Thanks to the mini PC running 24/7, it&rsquo;s great for deploying automated download/upload and file management services. This article mainly covers deploying these services with Docker:</p>
+<ul>
+<li>Samba: Run on Linux to map Linux as a Windows disk. Access mini PC files just by opening Windows File Explorer.</li>
+<li>FileBrowser: A graphical file manager with a web interface deployed on the internet, essentially a self-hosted cloud drive.</li>
+<li>BaiduPCS Go: Command-line control for uploading and downloading files to Baidu Cloud.</li>
+<li>OpenList: Open-source version of AList, can mount various cloud drives and local directories.</li>
+</ul>
+<h2 id="samba">Samba<a hidden class="anchor" aria-hidden="true" href="#samba">#</a></h2>
+<p>Using Samba, you can map Linux as a local Windows disk, allowing Windows software to directly open Linux folders, greatly facilitating command-line file management on Linux.</p>
+<p>I previously installed Samba directly on Linux, but later found Docker works just as well.</p>
+<h3 id="direct-linux-installation">Direct Linux Installation<a hidden class="anchor" aria-hidden="true" href="#direct-linux-installation">#</a></h3>
+<ul>
+<li>
+<p>Install Samba:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install samba
+</span></span></code></pre></div></li>
+<li>
+<p>Edit the Samba configuration file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/samba/smb.conf
+</span></span></code></pre></div><p>First, it&rsquo;s recommended to comment out everything under <code>[homes]</code> to avoid automatically sharing all users&rsquo; home directories. You can manually control shared directories by adding content at the end of the file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[Name]
+</span></span><span style="display:flex;"><span>path = /home/user1
+</span></span><span style="display:flex;"><span>browsable = yes
+</span></span><span style="display:flex;"><span>read only = no
+</span></span><span style="display:flex;"><span>guest ok = yes
+</span></span></code></pre></div><p><code>[Name]</code> is the shared folder name, which will appear as a disk name in Windows.</p>
+</li>
+<li>
+<p>Set Samba account password:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo smbpasswd -a user1
+</span></span><span style="display:flex;"><span>sudo smbpasswd -e user1
+</span></span></code></pre></div></li>
+<li>
+<p>Restart the Samba service:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart smbd
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="docker">Docker<a hidden class="anchor" aria-hidden="true" href="#docker">#</a></h3>
+<ul>
+<li>
+<p>Install Samba using Docker Compose:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">samba</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">dperson/samba</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">samba</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;137:137/udp&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;138:138/udp&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;139:139/tcp&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;445:445/tcp&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - [<span style="color:#ae81ff">host_path]:/mount/home    </span> <span style="color:#75715e"># Replace with your host directory path</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">USERID=[your_uid]          </span> <span style="color:#75715e"># Get from `id -u`</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">GROUPID=[your_gid]         </span> <span style="color:#75715e"># Get from `id -g`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      -u &#34;[username];[password]&#34; -s &#34;[Name];/mount/home;yes;no;no;[username]&#34;</span>      
+</span></span></code></pre></div><p>Replace <code>[username]</code>, <code>[password]</code>, <code>[Name]</code> with your desired values.</p>
+</li>
+<li>
+<p>After the Docker container runs, it will create some anonymous volumes, which is normal.</p>
+</li>
+</ul>
+<h3 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h3>
+<ul>
+<li>Open File Explorer</li>
+<li>Right-click &ldquo;This PC&rdquo; and select &ldquo;Map network drive&rdquo;</li>
+<li>Choose a drive letter (e.g., Z:)</li>
+<li>In the folder field, enter: <code>\\Linux IP Address\[Name]</code></li>
+</ul>
+<h2 id="filebrowser">FileBrowser<a hidden class="anchor" aria-hidden="true" href="#filebrowser">#</a></h2>
+<p>FileBrowser is a file browser for graphically managing files on your mini PC. I personally prefer Samba and Windows File Manager, but FileBrowser has a web interface, so it can be exposed to the internet—essentially a self-hosted cloud drive. If you take photos with friends and want to share large files without using WeChat&rsquo;s compression, this is perfect. Just plug a USB drive or SD card into the mini PC.</p>
+<p>Since it&rsquo;s on the internet, you can mount only the SD card contents, so if hacked, the mini PC&rsquo;s own files remain safe.</p>
+<h3 id="deployment">Deployment<a hidden class="anchor" aria-hidden="true" href="#deployment">#</a></h3>
+<ul>
+<li>
+<p>Create a local folder and create a <code>database.db</code> file, then modify permissions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>touch ./database.db
+</span></span><span style="display:flex;"><span>chown 1000:1000 ./database.db
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">664</span> ./database.db
+</span></span></code></pre></div></li>
+<li>
+<p>Create <code>docker-compose.yml</code>. I want Cloudflared to manage it, so join its network:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">filebrowser</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">filebrowser/filebrowser</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">filebrowser</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./data:/srv</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./database.db:/database.db</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">expose</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;80&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">UMASK=022</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=America/Toronto</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">user</span>: <span style="color:#e6db74">&#34;1000:1000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">cloudflared</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">cloudflared</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Start the container. Default username and password are <code>admin</code> and <code>admin</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="changing-password">Changing Password<a hidden class="anchor" aria-hidden="true" href="#changing-password">#</a></h3>
+<ul>
+<li>
+<p>Stop the container first:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose down
+</span></span></code></pre></div></li>
+<li>
+<p>Reset password:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run --rm <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/database.db:/database.db <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  filebrowser/filebrowser <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  users update User --password <span style="color:#ae81ff">12345678</span> --database /database.db
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="mounting-usb-drive--sd-card">Mounting USB Drive / SD Card<a hidden class="anchor" aria-hidden="true" href="#mounting-usb-drive--sd-card">#</a></h3>
+<ul>
+<li>
+<p>Stop the container with <code>docker compose down</code></p>
+</li>
+<li>
+<p>First, mount the USB to mini PC. For automatic mounting, see: <a href="/en/blog/tech/server/others/automount/">Auto-mounting USB Drives with udev | Kunyang&rsquo;s Blog</a>. The USB will mount directly to the folder. Below is the manual process:</p>
+<ul>
+<li>
+<p>Suppose the USB name (Label) is <code>Nikon-1</code>. Manually mount it at <code>~/filebrowser/Nikon-1</code>. Then accessing <code>~/filebrowser/Nikon-1</code> accesses your USB.</p>
+</li>
+<li>
+<p>Get the device name:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>lsblk
+</span></span></code></pre></div><p>Usually it&rsquo;s <code>/dev/sdb1</code></p>
+</li>
+<li>
+<p>Create the mount point directory:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mkdir -p ~/filebrowser/nikon-1
+</span></span></code></pre></div></li>
+<li>
+<p>Mount the device:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mount /dev/sdb1 ~/filebrowser/nikon-1
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Suppose I have two Nikon SD cards, one DJI SD card, named <code>nikon-1</code>, <code>nikon-2</code>, and <code>dji-1</code>. After local mounting, modify FileBrowser&rsquo;s <code>docker-compose.yml</code> to add logical volumes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">./data:/srv</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">./database.db:/database.db</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Mount SD cards</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">./nikon-1/DCIM/102NZ_FC:/srv/nikon/SD1</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">./nikon-2/DCIM/102NZ_FC:/srv/nikon/SD2</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">./dji-1/DCIM/DJI_001:/srv/dji/SD1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Mount servers (not recommended due to security risks; use VPN instead)</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">/home/username/:/srv/debian</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Restart the container:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="baidupcs-go">BaiduPCS Go<a hidden class="anchor" aria-hidden="true" href="#baidupcs-go">#</a></h2>
+<p>Although Baidu PCS is often criticized for throttling, I&rsquo;ve never abandoned it because I&rsquo;m an early user with 2TB storage, making it perfect for backing up &ldquo;digital junk&rdquo; (e.g., RAW photos are 30MB each, DJI videos are several GB, with few useful editing clips). I&rsquo;ve only used under 300GB of the 2TB, and video files are generally not moderated.</p>
+<p>However, Baidu doesn&rsquo;t run natively on Linux, and my server has no GUI. I need a Docker + command-line version. After searching, I found <a href="https://github.com/qjfoidnh/BaiduPCS-Go">BaiduPCS Go</a>. I created a Docker image: <a href="https://hub.docker.com/r/kyxie/baidupcs-go">kyxie/baidupcs-go - Docker Image | Docker Hub</a></p>
+<h3 id="deployment-1">Deployment<a hidden class="anchor" aria-hidden="true" href="#deployment-1">#</a></h3>
+<ul>
+<li>
+<p>Run directly:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -it --name baidupcs-go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/data:/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/upload:/upload <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/config:/root/.config/BaiduPCS-Go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -w /upload <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  kyxie/baidupcs-go:latest
+</span></span></code></pre></div></li>
+<li>
+<p>Deploy with Docker Compose (recommended):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">baidupcs-go</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">kyxie/baidupcs-go:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">baidupcs-go</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">stdin_open</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">tty</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./data:/data</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./upload:/upload</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./config:/root/.config/BaiduPCS-Go</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># Mount other directories, e.g., USB directory</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/mnt/usb:/u</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">working_dir</span>: <span style="color:#ae81ff">/upload</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="common-commands">Common Commands<a hidden class="anchor" aria-hidden="true" href="#common-commands">#</a></h3>
+<ul>
+<li>
+<p>View container files:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it baidupcs-go /bin/sh
+</span></span></code></pre></div></li>
+<li>
+<p>Enter container, login, and display cloud files:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker exec -it baidupcs-go BaiduPCS-Go
+</span></span></code></pre></div></li>
+<li>
+<p>Login:</p>
+<ul>
+<li>
+<p>Login to Baidu PCS in a browser</p>
+</li>
+<li>
+<p>Press <code>F12</code> → Application → Cookies → <code>https://pan.baidu.com</code> → find <code>BDUSS</code> field, copy it</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/c7ac44e0689881a8125b89effc57fb7c.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="BDUSS"  />
+</p>
+</li>
+<li>
+<p>Run the command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>login -bduss<span style="color:#f92672">=</span>&lt;BDUSS&gt;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Upload. It&rsquo;s recommended to use <code>screen</code> since closing the terminal may pause the upload:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>screen -S pcs-upload
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker exec baidupcs-go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  BaiduPCS-Go upload &lt;local_path&gt; &lt;cloud_path&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Example</span>
+</span></span><span style="display:flex;"><span>docker exec baidupcs-go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  BaiduPCS-Go upload /nikon-1 <span style="color:#e6db74">&#34;/Photos and Videos/From: Nikon Zfc/2025 Bottle Islands&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker exec baidupcs-go <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  BaiduPCS-Go upload /dji-1/MP4 <span style="color:#e6db74">&#34;/Photos and Videos/From: DJI/2025 Bottle Islands&#34;</span>
+</span></span></code></pre></div></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/en/blog/tech/server/openwrt/adguardhome/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>Deploying AdGuardHome on OpenWrt</span>
+  </a>
+  <a class="next" href="https://kyxie.me/en/blog/tech/server/debian/dashboard/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Deploying Management Dashboard with Docker</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>
+    &copy; 2026 <a href="https://kyxie.me/en/">Kyxie's Blog</a>
+  </span>
+  <span id="umami-stats">
+    | Visitors: <span id="uv-count"></span>
+    Views: <span id="pv-count"></span>
+  </span>
+  <script
+    src="https://umami-api.kyxie.me/script.js"
+    defer
+    init-visitors="42310"
+    init-views="119827"
+    ></script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

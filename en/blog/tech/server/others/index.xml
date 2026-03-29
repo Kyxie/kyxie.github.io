@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Others 🛠️ on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.me/en/blog/tech/server/others/</link>
+    <description>Recent content in Others 🛠️ on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 30 Jun 2025 22:54:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/en/blog/tech/server/others/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Auto-mounting USB Drives with udev</title>
+      <link>https://kyxie.me/en/blog/tech/server/others/automount/</link>
+      <pubDate>Sat, 14 Jun 2025 17:36:33 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/others/automount/</guid>
+      <description>This is a feature that&amp;rsquo;s now available on virtually all computers - the system automatically searches for devices in the background and mounts them. This feature might not be very useful in headless Linux systems, as USB drives need to be manually mounted each time. So I decided to write a script to automate USB mounting.
+The goal is: when inserting a USB drive, the system automatically mounts it at /path-to-mount/label, where label is the USB drive&amp;rsquo;s name (note: avoid inserting two SD cards with the same label).</description>
+    </item>
+    
+    <item>
+      <title>Installing PVE on x86 Mini PC</title>
+      <link>https://kyxie.me/en/blog/tech/server/others/pve/</link>
+      <pubDate>Sun, 15 Dec 2024 23:20:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/others/pve/</guid>
+      <description>PVE Installation Steps Download PVE from the official website Use Etcher to flash the image to a USB drive Connect HDMI cable to monitor, connect keyboard and mouse to mini PC, insert USB drive, and boot Press F7 to enter BIOS and select USB boot Choose Graphical installation, configure IP address, username, password, and follow the prompts After installation completes, connect the mini PC to the router, then access PVE at &amp;lt;pve_ip_address&amp;gt;:8006.</description>
+    </item>
+    
+    <item>
+      <title>Installing Linux Server with USB</title>
+      <link>https://kyxie.me/en/blog/tech/server/others/linux-server/</link>
+      <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/others/linux-server/</guid>
+      <description>Prerequisites Monitor HDMI cable to connect to monitor Keyboard USB drive with at least 8GB capacity Network cable Installing the System Download the image from Ubuntu or Debian official website Prepare a USB drive with at least 8GB capacity, install Etcher, and flash the Ubuntu image to the USB drive following the instructions Insert the USB drive into the PC, boot, and repeatedly press F7 (different motherboards use different keys) to enter BIOS Allocate the entire disk to Ubuntu.</description>
+    </item>
+    
+    <item>
+      <title>Creating OpenWrt as a Docker Image</title>
+      <link>https://kyxie.me/en/blog/tech/server/others/docker-openwrt/</link>
+      <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/others/docker-openwrt/</guid>
+      <description>Installing Docker Following Docker&amp;rsquo;s official documentation, first uninstall all conflicting packages. apt-get may indicate some packages are not installed.
+Ubuntu:
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done Debian:
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done Set up Docker&amp;rsquo;s apt repository:
+Ubuntu:
+# Add Docker&amp;#39;s official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.</description>
+    </item>
+    
+    <item>
+      <title>Using SSH Keys for Passwordless Linux Access</title>
+      <link>https://kyxie.me/en/blog/tech/server/others/keys/</link>
+      <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/others/keys/</guid>
+      <description>By using SSH keys, we can log into Linux without a password (and this is the recommended approach). This way, you won&amp;rsquo;t need to enter a password every time you SSH to Linux.
+Generating Key Pairs You can generate keys anywhere - on the client, server, or third party. Even in Vaultwarden for easy management, as long as you keep them secure. On Windows/Mac/Linux, enter:
+ssh-keygen Keys are typically generated in C:\Users\Username\.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -8,15 +8,6 @@
     <language>zh</language>
     <lastBuildDate>Sun, 14 Dec 2025 22:12:50 -0500</lastBuildDate><atom:link href="https://kyxie.me/zh/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>地平线5车辆调教指南</title>
-      <link>https://kyxie.me/zh/blog/game/forza-horizon-5/car-turning/</link>
-      <pubDate>Sat, 20 Sep 2025 22:04:53 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/game/forza-horizon-5/car-turning/</guid>
-      <description>B站Up主@奶爸爱赛车的视频笔记 &lt;!DOCTYPE HTML&gt; 基本概念 PI，Performance Index，车辆的性能等级，地平线5共有七个分组 100 – 500 → D级车 501 – 600</description>
-    </item>
-    
-    <item>
       <title>Minecraft安装客户端</title>
       <link>https://kyxie.me/zh/blog/game/minecraft/minecraft-client/</link>
       <pubDate>Fri, 13 Dec 2024 00:55:12 -0500</pubDate>
@@ -143,15 +134,6 @@
     </item>
     
     <item>
-      <title>加拿大券商对比</title>
-      <link>https://kyxie.me/zh/blog/wool/stock-brokers/</link>
-      <pubDate>Sun, 02 Jun 2024 22:48:55 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/wool/stock-brokers/</guid>
-      <description>Wealthsimple 使用链接(https://wealthsimple.com/invite/VXU-UQ)或推荐码VXU-UQ开设账号，在开户后的30天内存</description>
-    </item>
-    
-    <item>
       <title>使用Docker部署家庭影院</title>
       <link>https://kyxie.me/zh/blog/tech/server/debian/cinema/</link>
       <pubDate>Sat, 12 Jul 2025 11:04:22 -0400</pubDate>
@@ -242,15 +224,6 @@
     </item>
     
     <item>
-      <title>如何在加拿大兑换美元和其他货币</title>
-      <link>https://kyxie.me/zh/blog/wool/us-dollar/</link>
-      <pubDate>Tue, 27 May 2025 11:49:55 -0500</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/wool/us-dollar/</guid>
-      <description>我自己试过几种方法，以及在各种场合我会怎么使用美元，文章内容仅供参考，由于我暂时还没有美卡，如果有了美国信用卡有些情况可能有更优解。 购买美国</description>
-    </item>
-    
-    <item>
       <title>加拿大移民被安调经历</title>
       <link>https://kyxie.me/zh/blog/pr/mandamus/</link>
       <pubDate>Mon, 04 Aug 2025 13:54:00 -0400</pubDate>
@@ -266,24 +239,6 @@
       
       <guid>https://kyxie.me/zh/blog/tech/server/others/automount/</guid>
       <description>这是现在基本上所有电脑都能实现的功能了，无非就是后台自动搜索设备，然后自动挂载。可能这个场景在没有GUI版的Linux用处不大，导致每次插入</description>
-    </item>
-    
-    <item>
-      <title>Cities Skylines II 画面设置</title>
-      <link>https://kyxie.me/zh/blog/game/cities-skylines-ii/config/</link>
-      <pubDate>Sat, 31 May 2025 21:07:12 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/game/cities-skylines-ii/config/</guid>
-      <description>设置 选项 → 画面设置： 分辨率：显示器的分辨率 垂直同步：关 景深模式：关 Nvidia DLSS超级分辨率：极致性能 全局画面质量：高 雾气质量设置：关闭 环境光遮蔽</description>
-    </item>
-    
-    <item>
-      <title>Cities Skylines II 模组推荐</title>
-      <link>https://kyxie.me/zh/blog/game/cities-skylines-ii/mods/</link>
-      <pubDate>Sat, 31 May 2025 15:26:12 -0400</pubDate>
-      
-      <guid>https://kyxie.me/zh/blog/game/cities-skylines-ii/mods/</guid>
-      <description>管理模组 Skyve 一个管理其他模组的模组 官方Mod平台下载后重启游戏，会有Install Skyve选项，可以安装Skyve 之后再开始游戏前先打开Sk</description>
     </item>
     
     <item>

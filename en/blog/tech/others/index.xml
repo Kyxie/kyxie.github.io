@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Others 🛠️ on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.me/en/blog/tech/others/</link>
+    <description>Recent content in Others 🛠️ on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 15 Nov 2024 01:01:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/en/blog/tech/others/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Recovering MySQL Password from Homebrew Installation</title>
+      <link>https://kyxie.me/en/blog/tech/others/recover-mysql/</link>
+      <pubDate>Wed, 05 Feb 2025 00:16:46 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/recover-mysql/</guid>
+      <description>I recently forgot the MySQL password on my local machine and found a way to recover it.
+Open and edit the configuration file my.cnf:
+sudo vim /opt/homebrew/etc/my.cnf Add skip-grant-tables to the configuration file:
+# Default Homebrew MySQL server config [mysqld] skip-grant-tables # Only allow connections from localhost bind-address = 127.0.0.1 mysqlx-bind-address = 127.0.0.1 Restart the service:
+sudo brew restart mysql Connect to MySQL:
+mysql -u root -p Flush privileges:
+FLUSH PRIVILEGES; Change the account password:</description>
+    </item>
+    
+    <item>
+      <title>Formatting USB Multiple Partitions</title>
+      <link>https://kyxie.me/en/blog/tech/others/format-usb/</link>
+      <pubDate>Sun, 15 Dec 2024 23:45:35 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/format-usb/</guid>
+      <description>After using a USB drive to install a system, the drive often gets divided into multiple partitions. Below are instructions for merging it back into a single partition and formatting it on both MacOS and Windows.
+MacOS For detailed instructions, see: Setting up OpenWrt as a Bypass Router Using Raspberry Pi 4B+ | Kunyang&amp;rsquo;s Blog
+Windows Open Command Prompt:
+diskpart List disks:
+list disk Disk ### Status Size Free Dyn Gpt -------- ------------- ------- ------- --- --- Disk 0 Online 931 GB 1024 KB * Disk 1 Online 931 GB 1024 KB * Disk 2 Online 7696 MB 5050 MB * Select the disk (be careful not to select the wrong one):</description>
+    </item>
+    
+    <item>
+      <title>Installing Python and Git on M Chip MacBook with Homebrew</title>
+      <link>https://kyxie.me/en/blog/tech/others/python-and-git-for-macos/</link>
+      <pubDate>Mon, 11 Nov 2024 11:11:11 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/python-and-git-for-macos/</guid>
+      <description>Mac users strongly recommend using Homebrew to install software. For Python, downloading directly from the official website will create both IDLE and Python Launcher icons in Launchpad, which I personally find ugly.
+Actually, macOS Catalina comes with Python 3 pre-installed (Python 2 before that). If you only need to handle basic Python functions, you can just use the system&amp;rsquo;s built-in version. However, for the convenience of version control, it&amp;rsquo;s highly recommended to use Homebrew to download another version for easy management, avoiding impacts to the system&amp;rsquo;s Python.</description>
+    </item>
+    
+    <item>
+      <title>Installing GUI on AWS Server</title>
+      <link>https://kyxie.me/en/blog/tech/others/aws-server-gui/</link>
+      <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/aws-server-gui/</guid>
+      <description>Recently I had a project that required a GUI and wanted it to run automatically in the cloud. Initially, I considered using a Windows instance, but found that even downloading a browser was very slow. As a free AWS user, I could only use the command-line-only Ubuntu Server. Then I had a spontaneous idea: what if I could install a GUI on Ubuntu Server? I looked it up and the method seemed feasible (though ultimately it&amp;rsquo;s not very practical - I&amp;rsquo;ve decided to stop tinkering with it, but I did manage to install a GUI successfully).</description>
+    </item>
+    
+    <item>
+      <title>Simple OpenVPN Configuration</title>
+      <link>https://kyxie.me/en/blog/tech/others/openvpn/</link>
+      <pubDate>Fri, 26 Apr 2024 20:38:19 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/openvpn/</guid>
+      <description>Assume we have two Linux virtual machines A and B, where A and B act as Server and Client for each other.
+TLS Mode Assume A acts as the server and B acts as the client.
+TLS Server Download OpenVPN on A:
+sudo apt-get install openvpn In the /usr/share/doc/openvpn/examples/sample-keys/ folder there are sample keys. On the server, copy ca.crt, server.key, server.crt, and dh2048.pem to /etc/openvpn/tls-server:
+sudo cp /usr/share/doc/openvpn/examples/sample-keys/{ca.crt,server.key,server.crt,dh2048.pem} /etc/openvpn/tls-server Write the server configuration file:</description>
+    </item>
+    
+    <item>
+      <title>Simple LDAP Server Configuration</title>
+      <link>https://kyxie.me/en/blog/tech/others/ldap/</link>
+      <pubDate>Tue, 27 Feb 2024 00:18:35 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/ldap/</guid>
+      <description>Linux Download OpenLDAP:
+sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils Configure OpenLDAP:
+sudo dpkg-reconfigure slapd DNS domain name: example.org
+Password: root
+Create user.ldif:
+# ldap is the username dn: uid=ldap,dc=example,dc=org objectClass: inetOrgPerson objectClass: posixAccount uid: ldap sn: LDAP givenName: LDAP cn: LDAP User displayName: LDAP User uidNumber: 10000 gidNumber: 10000 homeDirectory: /home/ldap loginShell: /bin/bash Add the user to the OpenLDAP server:
+ldapadd -x -D &amp;#34;cn=admin,dc=example,dc=org&amp;#34; -W -f user.</description>
+    </item>
+    
+    <item>
+      <title>Customizing Terminal</title>
+      <link>https://kyxie.me/en/blog/tech/others/terminal/</link>
+      <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/terminal/</guid>
+      <description>I enjoy tinkering with decorative things and found the default Windows terminal really ugly. I planned to use Oh My Posh to beautify it. This tutorial is based on the Terminal that comes with Windows 11.
+Font I use the CodeNewRoman Nerd Font, which is also the font used for my blog. You can download it from here. After downloading, simply install it. You can also use this font in VS Code.</description>
+    </item>
+    
+  </channel>
+</rss>

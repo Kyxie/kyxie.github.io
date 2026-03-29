@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Debian 🌀 | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="">
+<meta name="description" content="Debian 🌀 - Kunyang&#39;s Blog">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/en/blog/tech/server/debian/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://kyxie.me/en/blog/tech/server/debian/index.xml">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/server/debian/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/debian/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Debian 🌀" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyxie.me/en/blog/tech/server/debian/" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Debian 🌀"/>
+<meta name="twitter:description" content=""/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs 📒",
+      "item": "https://kyxie.me/en/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Tech 🔧",
+      "item": "https://kyxie.me/en/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Server 🐧",
+      "item": "https://kyxie.me/en/blog/tech/server/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Debian 🌀",
+      "item": "https://kyxie.me/en/blog/tech/server/debian/"
+    }
+  ]
+}
+</script>
+
+<script defer src="https://umami.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class="list dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/en/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/zh/" title="中文🇨🇳"
+                            aria-label="中文🇨🇳">中文🇨🇳</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://kyxie.me/en/">Home</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/">Blogs 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/">Tech 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/server/">Server 🐧</a></div>
+  <h1>Debian 🌀</h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Deploying Minecraft Server with Docker
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p></p>
+  </section>
+  <a class="entry-link" aria-label="post link to Deploying Minecraft Server with Docker" href="https://kyxie.me/en/blog/tech/server/debian/minecraft/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Exposing Your Services to the Public Internet
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>You can test websites locally by typing localhost &#43; port in the browser. But to expose services to the public internet so others can access your URL, you need more configuration. There are two common methods: Nginx and tunneling.
+The conclusion: Nginx is better for cloud servers, while services on home mini PCs are better suited for tunneling. Cloud servers usually have public IPs with open ports 443. After configuration, you can directly access via domain name....</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-06-08 23:26:42 -0400 EDT'>2025-06-08</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;697 words&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Exposing Your Services to the Public Internet" href="https://kyxie.me/en/blog/tech/server/debian/public/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Deploying a Password Manager with Docker
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Vaultwarden is a password manager with cross-platform support. The web version adds a Chrome plugin, and iOS can set Vaultwarden for Auto Fill in Password settings. I previously used iOS’s built-in password manager and Safari on mobile, so I had to re-save passwords on my computer. Fearing forgetfulness, I set all passwords the same, a huge security risk.
+Password managers are best self-hosted. Using official services differs little from iOS/Chrome. This article covers deploying Vaultwarden to a mini PC with Docker Compose and Cloudflared....</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-01-21 11:51:00 -0500 EST'>2025-01-21</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;543 words&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Deploying a Password Manager with Docker" href="https://kyxie.me/en/blog/tech/server/debian/vaultwarden/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Deploying a Home Media Center with Docker
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>This article introduces how to build a personal home media center using Docker Compose.
+The basic workflow is as follows:
+The core consists of Sonarr and Radarr. Sonarr finds TV shows, Radarr finds movies. Where do they find content? From indexers (think of them as content sources). With multiple indexers, you need a management tool, which is where Prowlarr comes in. It can connect to Sonarr and Radarr, so you only need to add indexers in Prowlarr, and they automatically sync to Sonarr and Radarr....</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-07-12 11:04:22 -0400 EDT'>2025-07-12</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;1168 words&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Deploying a Home Media Center with Docker" href="https://kyxie.me/en/blog/tech/server/debian/cinema/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Deploying Private Cloud and File Management with Docker
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Thanks to the mini PC running 24/7, it’s great for deploying automated download/upload and file management services. This article mainly covers deploying these services with Docker:
+Samba: Run on Linux to map Linux as a Windows disk. Access mini PC files just by opening Windows File Explorer. FileBrowser: A graphical file manager with a web interface deployed on the internet, essentially a self-hosted cloud drive. BaiduPCS Go: Command-line control for uploading and downloading files to Baidu Cloud....</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-06-14 00:41:59 -0400 EDT'>2025-06-14</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;946 words&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Deploying Private Cloud and File Management with Docker" href="https://kyxie.me/en/blog/tech/server/debian/cloud/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Deploying Management Dashboard with Docker
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>With so many services deployed on the server, it’s easy to forget ports and hard to find the right service. A proper management dashboard is helpful. Ideally, it should display quick links to all services, show Docker container status, monitor hardware information (though running in Docker containers, this is difficult; command-line top works fine), and ideally provide file services (though Samba can replace this).
+Such Dashboard services can run on port 80, allowing direct browser access via IP....</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-06-15 00:41:59 -0400 EDT'>2025-06-15</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;673 words&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Deploying Management Dashboard with Docker" href="https://kyxie.me/en/blog/tech/server/debian/dashboard/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Deploying Umami with Docker
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p></p>
+  </section>
+  <a class="entry-link" aria-label="post link to Deploying Umami with Docker" href="https://kyxie.me/en/blog/tech/server/debian/umami/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Deploying Strava Data Analysis Dashboard with Docker
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p></p>
+  </section>
+  <a class="entry-link" aria-label="post link to Deploying Strava Data Analysis Dashboard with Docker" href="https://kyxie.me/en/blog/tech/server/debian/strava/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Remote Control
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Fundamentally, remote control boils down to three methods: VPN, direct port opening, and tunneling.
+Cloudflared SSH Previously, I used Cloudflared to proxy many services, but these were front-end/back-end services. You can also use Cloudflared to proxy SSH traffic. The steps are simple: just create a new domain for SSH in the web interface. Afterward, you can SSH to this domain to access the mini PC. Combined with VSCode Remote SSH, it’s very convenient for remote development....</p>
+  </section>
+  <a class="entry-link" aria-label="post link to Remote Control" href="https://kyxie.me/en/blog/tech/server/debian/remote/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>Docker Image Auto-Update
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Docker Compose conveniently manages containers but cannot automatically update images. With so many images, you can’t manually update each one. Fortunately, Watchtower solves this. Recent GitHub commits are from two years ago, showing the code is stable enough to use with confidence.
+Installation Installation is very simple. Here’s the compose file:
+services: watchtower: image: containrrr/watchtower container_name: watchtower restart: unless-stopped environment: - TZ=America/Toronto volumes: - /var/run/docker.sock:/var/run/docker.sock command: --interval 86400 --label-enable --cleanup labels: - &#34;com....</p>
+  </section>
+  <footer class="entry-footer">
+
+
+<span title='2025-10-28 22:38:50 -0400 EDT'>2025-10-28</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;139 words&nbsp;·&nbsp;Kyxie</footer>
+  <a class="entry-link" aria-label="post link to Docker Image Auto-Update" href="https://kyxie.me/en/blog/tech/server/debian/watchtower/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://kyxie.me/en/blog/tech/server/debian/page/2/">Next Page »</a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+  <span>
+    &copy; 2026 <a href="https://kyxie.me/en/">Kyxie's Blog</a>
+  </span>
+  <span id="umami-stats">
+    | Visitors: <span id="uv-count"></span>
+    Views: <span id="pv-count"></span>
+  </span>
+  <script
+    src="https://umami-api.kyxie.me/script.js"
+    defer
+    init-visitors="42310"
+    init-views="119827"
+    ></script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

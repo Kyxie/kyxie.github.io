@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Installing Minecraft Client | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Windows, Minecraft, Forge, HMCL">
+<meta name="description" content="I&rsquo;ve been a Minecraft fan for a long time. I started playing on my phone in junior high school and remember spending evenings after evening self-study sessions in first year of high school building and terraforming. Later, I lost my save when switching phones, Minecraft was licensed to NetEase, and then I got busy with college entrance exams and gradually played less.
+This article provides a detailed guide to downloading and installing Java Edition Minecraft on Windows.">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/en/blog/game/minecraft/minecraft-client/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/game/minecraft/minecraft-client/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/game/minecraft/minecraft-client/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Installing Minecraft Client" />
+<meta property="og:description" content="I&rsquo;ve been a Minecraft fan for a long time. I started playing on my phone in junior high school and remember spending evenings after evening self-study sessions in first year of high school building and terraforming. Later, I lost my save when switching phones, Minecraft was licensed to NetEase, and then I got busy with college entrance exams and gradually played less.
+This article provides a detailed guide to downloading and installing Java Edition Minecraft on Windows." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/en/blog/game/minecraft/minecraft-client/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-12-13T00:55:12-05:00" />
+<meta property="article:modified_time" content="2024-12-13T00:55:12-05:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Installing Minecraft Client"/>
+<meta name="twitter:description" content="I&rsquo;ve been a Minecraft fan for a long time. I started playing on my phone in junior high school and remember spending evenings after evening self-study sessions in first year of high school building and terraforming. Later, I lost my save when switching phones, Minecraft was licensed to NetEase, and then I got busy with college entrance exams and gradually played less.
+This article provides a detailed guide to downloading and installing Java Edition Minecraft on Windows."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs 📒",
+      "item": "https://kyxie.me/en/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Gaming 🎮",
+      "item": "https://kyxie.me/en/blog/game/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Minecraft ⛏️",
+      "item": "https://kyxie.me/en/blog/game/minecraft/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "Installing Minecraft Client",
+      "item": "https://kyxie.me/en/blog/game/minecraft/minecraft-client/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Installing Minecraft Client",
+  "name": "Installing Minecraft Client",
+  "description": "I\u0026rsquo;ve been a Minecraft fan for a long time. I started playing on my phone in junior high school and remember spending evenings after evening self-study sessions in first year of high school building and terraforming. Later, I lost my save when switching phones, Minecraft was licensed to NetEase, and then I got busy with college entrance exams and gradually played less.\nThis article provides a detailed guide to downloading and installing Java Edition Minecraft on Windows.",
+  "keywords": [
+    "Windows", "Minecraft", "Forge", "HMCL"
+  ],
+  "articleBody": "I’ve been a Minecraft fan for a long time. I started playing on my phone in junior high school and remember spending evenings after evening self-study sessions in first year of high school building and terraforming. Later, I lost my save when switching phones, Minecraft was licensed to NetEase, and then I got busy with college entrance exams and gradually played less.\nThis article provides a detailed guide to downloading and installing Java Edition Minecraft on Windows.\nJava Java Edition Minecraft first requires installing Java. You can download the JDK from Oracle’s website. I recommend downloading Java 17. If you’re into backend development, using IntelliJ to download the JDK is easier.\nHMCL HMCL is a Minecraft launcher that can be downloaded from here\nI recommend registering an account on LittleSkin, a skin website, and finding some skins you like\nBind your LittleSkin account directly in HMCL\nThen click Games and download a game instance. I chose version 1.18.2 with Forge version 40.2.0\nAfter downloading, you can launch the game\nMac I tried playing on MacBook as well. Since all the code is written in Java and Java is cross-platform, it works. Still download from HMCL, and it should give you a .jar package. Double-click this .jar package or run in command line:\njava -jar HMCL-3.6.12.jar And HMCL will run.\nMultiplayer To play with friends, the basic steps are:\nBoth you and your friends install the MC client with the same version You or a friend hosts a server. Let’s say you host. Open port forwarding to allow friends to join and add them to the whitelist (or use tunneling) Friends set up an offline account and a LittleSkin account On MC, select Multiple Player, put your public IP address in the address field (or domain, or tunneling address) You can refer to: Deploying Minecraft Server with Docker on Debian | Kunyang’s Blog\nClient Mods You can download mods from CurseForge. Here are some essential mods:\nJEI: Crafting recipe viewer\nOptional dependency: Configured JER: Shows monster drops, ore distribution maps, etc., based on JEI\nAppleSkin: Displays saturation, hunger recovery speed, etc., supplementing HUD information\nMouse Tweaks:\nEnhances mouse dragging experience, quick inventory organization, batch transfers, etc. Double-click left mouse button to sort Hold Shift and drag to put items in chests Scroll wheel also transfers items to inventory JourneyMap: Minimap + real-time fullmap, browsable web interface\nJade: Item tooltips with hover information\nCustom Skin Loader: Skin mod\nForgematica\nForge version of Litematica, design buildings in Creative mode, then use schematics in Survival mode\nRequires dependency: MaFgLib\nUse CTRL + Scroll to switch modes\nMode 1 lets you select blocks and choose box diagonals for making schematics\nPress M to open Forgematica’s main menu, click Selection Editor to save schematics\nSchematics are saved in .minecraft/schematics or find others’ schematics from forums\nThen switch to Mode 5, right-click to paste the schematic where you want. Hold ALT and scroll to fine-tune position\nFor rotation, press M → Schematic Editor → Settings. Rotation is in the bottom right\nPress M → Settings → Render Layers to select single layer rendering, then locate to the player layer\nPlanet Minecraft has others’ creations. Forgematica and Litematica schematics are compatible.\nTweakerge\nForge version of Tweakeroo Shortcut: X + C Game enhancements, like improving Gamma to brighten caves EasierVillagerTrading reForged\nForge version of EasierVillagerTrading Quick village trading Limited version support for 1.18.2 Skins I encountered three skin issues and their solutions:\nCan see your skin in offline mode but not in online mode\nAfter successfully joining the server, my skin didn’t load. In Single Player Mode, the skin loaded fine. I thought the server didn’t send API requests to LittleSkin or needed a mod/plugin. I searched long without finding the answer. Then I found an HMCL article: Changing Skins in Offline Mode - Hello Minecraft! Launcher that solved it\nCreate a new offline account locally with the same username as LittleSkin, then select LittleSkin on the wardrobe button\nFinally, launch with the offline account and join the server to see your skin.\nCan see your skin in online mode, but friends can’t\nMissing Custom Skin Loader mod Skin changed to something you didn’t configure on LittleSkin\nSee: CustomSkinLoader | LittleSkin User Manual ",
+  "wordCount" : "704",
+  "inLanguage": "en",
+  "datePublished": "2024-12-13T00:55:12-05:00",
+  "dateModified": "2024-12-13T00:55:12-05:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/en/blog/game/minecraft/minecraft-client/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://umami.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/en/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/zh/" title="中文🇨🇳"
+                            aria-label="中文🇨🇳">中文🇨🇳</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/en/">Home</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/">Blogs 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/game/">Gaming 🎮</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/game/minecraft/">Minecraft ⛏️</a></div>
+    <h1 class="post-title">
+      Installing Minecraft Client
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2024-12-13 00:55:12 -0500 EST'>2024-12-13</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;704 words&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://kyxie.me/zh/blog/game/minecraft/minecraft-client/">中文🇨🇳</a>
+    </li>
+</ul>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#java" aria-label="Java">Java</a></li>
+                        <li>
+                            <a href="#hmcl" aria-label="HMCL">HMCL</a></li>
+                        <li>
+                            <a href="#mac" aria-label="Mac">Mac</a></li>
+                        <li>
+                            <a href="#multiplayer" aria-label="Multiplayer">Multiplayer</a></li>
+                        <li>
+                            <a href="#client-mods" aria-label="Client Mods">Client Mods</a></li>
+                        <li>
+                            <a href="#skins" aria-label="Skins">Skins</a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><p>I&rsquo;ve been a Minecraft fan for a long time. I started playing on my phone in junior high school and remember spending evenings after evening self-study sessions in first year of high school building and terraforming. Later, I lost my save when switching phones, Minecraft was licensed to NetEase, and then I got busy with college entrance exams and gradually played less.</p>
+<p>This article provides a detailed guide to downloading and installing Java Edition Minecraft on Windows.</p>
+<h2 id="java">Java<a hidden class="anchor" aria-hidden="true" href="#java">#</a></h2>
+<p>Java Edition Minecraft first requires installing Java. You can download the JDK from <a href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">Oracle&rsquo;s website</a>. I recommend downloading Java 17. If you&rsquo;re into backend development, using IntelliJ to download the JDK is easier.</p>
+<h2 id="hmcl">HMCL<a hidden class="anchor" aria-hidden="true" href="#hmcl">#</a></h2>
+<ul>
+<li>
+<p>HMCL is a Minecraft launcher that can be downloaded from <a href="https://hmcl.huangyuhui.net/download/">here</a></p>
+</li>
+<li>
+<p>I recommend registering an account on <a href="https://littleskin.cn/">LittleSkin</a>, a skin website, and finding some skins you like</p>
+</li>
+<li>
+<p>Bind your LittleSkin account directly in HMCL</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/97b8f6370c3a01f1d033da3e81a177f4.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Binding LittleSkin Account"  />
+</p>
+</li>
+<li>
+<p>Then click Games and download a game instance. I chose version <code>1.18.2</code> with Forge version <code>40.2.0</code></p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/7f4e04450823140706c6ee9743b75871.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Game Version"  />
+</p>
+</li>
+<li>
+<p>After downloading, you can launch the game</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/336347bd6190e5d2cceeef7ed750fe55.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Successful Launch"  />
+</p>
+</li>
+</ul>
+<h2 id="mac">Mac<a hidden class="anchor" aria-hidden="true" href="#mac">#</a></h2>
+<p>I tried playing on MacBook as well. Since all the code is written in Java and Java is cross-platform, it works. Still download from HMCL, and it should give you a <code>.jar</code> package. Double-click this <code>.jar</code> package or run in command line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>java -jar HMCL-3.6.12.jar
+</span></span></code></pre></div><p>And HMCL will run.</p>
+<h2 id="multiplayer">Multiplayer<a hidden class="anchor" aria-hidden="true" href="#multiplayer">#</a></h2>
+<p>To play with friends, the basic steps are:</p>
+<ul>
+<li>Both you and your friends install the MC client with the same version</li>
+<li>You or a friend hosts a server. Let&rsquo;s say you host.</li>
+<li>Open port forwarding to allow friends to join and add them to the whitelist (or use tunneling)</li>
+<li>Friends set up an offline account and a LittleSkin account</li>
+<li>On MC, select Multiple Player, put your public IP address in the address field (or domain, or tunneling address)</li>
+</ul>
+<p>You can refer to: <a href="/en/blog/game/minecraft/minecraft-server-by-docker/">Deploying Minecraft Server with Docker on Debian | Kunyang&rsquo;s Blog</a></p>
+<h2 id="client-mods">Client Mods<a hidden class="anchor" aria-hidden="true" href="#client-mods">#</a></h2>
+<p>You can download mods from <a href="https://www.curseforge.com/">CurseForge</a>. Here are some essential mods:</p>
+<ul>
+<li>
+<p><a href="https://www.curseforge.com/minecraft/mc-mods/jei">JEI</a>: Crafting recipe viewer</p>
+<ul>
+<li>Optional dependency: <a href="https://www.curseforge.com/minecraft/mc-mods/configured">Configured</a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer">JER</a>: Shows monster drops, ore distribution maps, etc., based on JEI</p>
+</li>
+<li>
+<p><a href="https://www.curseforge.com/minecraft/mc-mods/appleskin">AppleSkin</a>: Displays saturation, hunger recovery speed, etc., supplementing HUD information</p>
+</li>
+<li>
+<p><a href="https://www.curseforge.com/minecraft/mc-mods/mouse-tweaks">Mouse Tweaks</a>:</p>
+<ul>
+<li>Enhances mouse dragging experience, quick inventory organization, batch transfers, etc.</li>
+<li>Double-click left mouse button to sort</li>
+<li>Hold <code>Shift</code> and drag to put items in chests</li>
+<li>Scroll wheel also transfers items to inventory</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.curseforge.com/minecraft/mc-mods/journeymap">JourneyMap</a>: Minimap + real-time fullmap, browsable web interface</p>
+</li>
+<li>
+<p><a href="https://www.curseforge.com/minecraft/mc-mods/jade">Jade</a>: Item tooltips with hover information</p>
+</li>
+<li>
+<p><a href="https://www.curseforge.com/minecraft/mc-mods/customskinloader">Custom Skin Loader</a>: Skin mod</p>
+</li>
+<li>
+<p><a href="https://www.curseforge.com/minecraft/mc-mods/forgematica">Forgematica</a></p>
+<ul>
+<li>
+<p>Forge version of <a href="https://www.curseforge.com/minecraft/mc-mods/litematica">Litematica</a>, design buildings in Creative mode, then use schematics in Survival mode</p>
+</li>
+<li>
+<p>Requires dependency: <a href="https://www.curseforge.com/minecraft/mc-mods/mafglib">MaFgLib</a></p>
+</li>
+<li>
+<p>Use <code>CTRL + Scroll</code> to switch modes</p>
+<ul>
+<li>
+<p>Mode 1 lets you select blocks and choose box diagonals for making schematics</p>
+</li>
+<li>
+<p>Press <code>M</code> to open Forgematica&rsquo;s main menu, click Selection Editor to save schematics</p>
+</li>
+<li>
+<p>Schematics are saved in <code>.minecraft/schematics</code> or find others&rsquo; schematics from forums</p>
+</li>
+<li>
+<p>Then switch to Mode 5, right-click to paste the schematic where you want. Hold <code>ALT</code> and scroll to fine-tune position</p>
+</li>
+<li>
+<p>For rotation, press <code>M</code> → Schematic Editor → Settings. Rotation is in the bottom right</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/0b5d30d2bc34317e8fa3191aceb1355c.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Schematic Settings"  />
+</p>
+</li>
+<li>
+<p>Press <code>M</code> → Settings → Render Layers to select single layer rendering, then locate to the player layer</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.planetminecraft.com/">Planet Minecraft</a> has others&rsquo; creations. Forgematica and Litematica schematics are compatible.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.curseforge.com/minecraft/mc-mods/tweakerge">Tweakerge</a></p>
+<ul>
+<li>Forge version of <a href="https://www.curseforge.com/minecraft/mc-mods/tweakeroo">Tweakeroo</a></li>
+<li>Shortcut: <code>X + C</code></li>
+<li>Game enhancements, like improving Gamma to brighten caves</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.curseforge.com/minecraft/mc-mods/easiervillagertrading-2">EasierVillagerTrading reForged</a></p>
+<ul>
+<li>Forge version of <a href="https://www.curseforge.com/minecraft/mc-mods/easiervillagertrading">EasierVillagerTrading</a></li>
+<li>Quick village trading</li>
+<li>Limited version support for <code>1.18.2</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="skins">Skins<a hidden class="anchor" aria-hidden="true" href="#skins">#</a></h2>
+<p>I encountered three skin issues and their solutions:</p>
+<ul>
+<li>
+<p>Can see your skin in offline mode but not in online mode</p>
+<ul>
+<li>
+<p>After successfully joining the server, my skin didn&rsquo;t load. In Single Player Mode, the skin loaded fine. I thought the server didn&rsquo;t send API requests to LittleSkin or needed a mod/plugin. I searched long without finding the answer. Then I found an HMCL article: <a href="https://hmcl.huangyuhui.net/help/launcher/offline-skin.html#littleskin">Changing Skins in Offline Mode - Hello Minecraft! Launcher</a> that solved it</p>
+</li>
+<li>
+<p>Create a new offline account locally with the same username as LittleSkin, then select LittleSkin on the wardrobe button</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/7218348033a694f5904bac2ddfc4de53.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Creating Offline Account"  />
+</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2025/06/a301fee7f3f456a9f209d08c08be8743.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Wardrobe Select LittleSkin"  />
+</p>
+</li>
+<li>
+<p>Finally, launch with the offline account and join the server to see your skin.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Can see your skin in online mode, but friends can&rsquo;t</p>
+<ul>
+<li>Missing <code>Custom Skin Loader</code> mod</li>
+</ul>
+</li>
+<li>
+<p>Skin changed to something you didn&rsquo;t configure on LittleSkin</p>
+<ul>
+<li>See: <a href="https://manual.littlesk.in/newbee/csl#14.7+">CustomSkinLoader | LittleSkin User Manual</a></li>
+</ul>
+</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="next" href="https://kyxie.me/en/blog/tech/server/debian/minecraft/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Deploying Minecraft Server with Docker</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>
+    &copy; 2026 <a href="https://kyxie.me/en/">Kyxie's Blog</a>
+  </span>
+  <span id="umami-stats">
+    | Visitors: <span id="uv-count"></span>
+    Views: <span id="pv-count"></span>
+  </span>
+  <script
+    src="https://umami-api.kyxie.me/script.js"
+    defer
+    init-visitors="42310"
+    init-views="119827"
+    ></script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

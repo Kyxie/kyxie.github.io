@@ -6,149 +6,421 @@
     <description>Recent content on Kunyang&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 01 Dec 2024 12:58:22 -0500</lastBuildDate><atom:link href="https://kyxie.me/en/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Dec 2025 22:12:50 -0500</lastBuildDate><atom:link href="https://kyxie.me/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>使用树莓派4B&#43;安装OpenWrt用作旁路由</title>
-      <link>https://kyxie.me/en/blog/tech/router/raspberrypi-openwrt/</link>
+      <title>Installing Minecraft Client</title>
+      <link>https://kyxie.me/en/blog/game/minecraft/minecraft-client/</link>
+      <pubDate>Fri, 13 Dec 2024 00:55:12 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/game/minecraft/minecraft-client/</guid>
+      <description>I&amp;rsquo;ve been a Minecraft fan for a long time. I started playing on my phone in junior high school and remember spending evenings after evening self-study sessions in first year of high school building and terraforming. Later, I lost my save when switching phones, Minecraft was licensed to NetEase, and then I got busy with college entrance exams and gradually played less.
+This article provides a detailed guide to downloading and installing Java Edition Minecraft on Windows.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Minecraft Server with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/minecraft/</link>
+      <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/minecraft/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Installing OpenWrt on Raspberry Pi 4B&#43; as a Bypass Router</title>
+      <link>https://kyxie.me/en/blog/tech/server/openwrt/raspberrypi-openwrt/</link>
       <pubDate>Mon, 11 Nov 2024 13:13:13 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/tech/router/raspberrypi-openwrt/</guid>
-      <description>需要的硬件和软件 硬件 一台有网线接口的电脑 内存2GB以上的树莓派4B+ 8GB以上的小SD卡，可以插在树莓派上 SD卡的读卡器 一根网线 显示器（非必</description>
+      <guid>https://kyxie.me/en/blog/tech/server/openwrt/raspberrypi-openwrt/</guid>
+      <description>My Journey Used Raspberry Pi to install OpenWrt as the main system, but also wanted to build a Minecraft server. The Pi&amp;rsquo;s performance wasn&amp;rsquo;t sufficient, so I needed to upgrade. Purchased a Mini PC for the Minecraft server. Debian could also run a software OpenWrt router, but only as a bypass router. I thought it best to have a dedicated device for network management. Tried various web managers that could run on Debian like Cockpit, but they weren&amp;rsquo;t satisfying.</description>
     </item>
     
     <item>
-      <title>使用Homebrew在M芯片的MacBook安装Python和Git</title>
-      <link>https://kyxie.me/en/blog/tech/utils/python-and-git-for-macos/</link>
-      <pubDate>Mon, 11 Nov 2024 11:11:11 -0400</pubDate>
-      
-      <guid>https://kyxie.me/en/blog/tech/utils/python-and-git-for-macos/</guid>
-      <description>Mac用户非常推荐使用Homebrew来安装一些软件，就Python来说如果在官网直接下载会在Launch Pad出现IDLE和Python L</description>
-    </item>
-    
-    <item>
-      <title>Specialized Tarmac SL6 Bike Building</title>
-      <link>https://kyxie.me/en/blog/life/bike/</link>
+      <title>Specialized Tarmac SL6 Build</title>
+      <link>https://kyxie.me/en/blog/bike/8170/</link>
       <pubDate>Sat, 25 May 2024 00:35:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/life/bike/</guid>
-      <description>Header It&amp;rsquo;s been a while since I tinkered with my bike. I just bought a roval aero handlebar recently and plan to run the cables internally to make it looks better. I disassembled the bike myself to try it out, but dealing with the Shimano 7020 setup with two hydraulic cables and two shift cables (a total of four lines) was quite a challenge. This led me to consider buying</description>
+      <guid>https://kyxie.me/en/blog/bike/8170/</guid>
+      <description>It&amp;rsquo;s been a while since I last worked on my bike. Recently I decided to route the cables internally on my Roval handlebar for a cleaner look. I attempted the disassembly myself but was overwhelmed by the complexity of managing the two hydraulic hoses and two cable housings from my Shimano 7020 groupset. This sparked the idea to upgrade to a Shimano 8170 groupset. After browsing Canadian bike shops, I discovered that a complete 8170 set costs over $3000, ballooning to nearly $4000 after taxes.</description>
     </item>
     
     <item>
-      <title>Building a website using Hugo &amp; PaperMod</title>
+      <title>Building a Technical Blog with Hugo &#43; PaperMod</title>
       <link>https://kyxie.me/en/blog/tech/web/papermod/</link>
       <pubDate>Fri, 15 Apr 2022 00:28:55 -0400</pubDate>
       
       <guid>https://kyxie.me/en/blog/tech/web/papermod/</guid>
-      <description>Installation process First of all, installing Hugo is required. Installing Hugo needs to use a package management tool. For the Windows system, I recommend using Scoop. Here introduced how to install Scoop. Hogo&amp;rsquo;s tutorial introduces how to create a project. Among them, Step2 (.yml&amp;rsquo;s config file) and Step3 (download theme) should be configured according to the guide of Papermod. File introduction content: used to put blog content data: don&amp;rsquo;t care</description>
+      <description>Installation Process First, you need to install Hugo. Installing Hugo requires using a package manager. For Windows, Hugo can be installed directly with Winget. Open the terminal and enter: winget install Hugo.Hugo.Extended If you get a &amp;ldquo;not recognized as the name of cmdlet&amp;rdquo; message, check if winget.exe exists in C:\Users\Username\AppData\Local\Microsoft\WindowsApps. If it does, add this directory to your environment variables. Otherwise, search for winget in the Microsoft Store - this</description>
     </item>
     
     <item>
-      <title>AWS Ubuntu Server安装GUI</title>
-      <link>https://kyxie.me/en/blog/tech/utils/aws-server-gui/</link>
-      <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
+      <title>Deploy Strava Data Analytics Dashboard with Docker</title>
+      <link>https://kyxie.me/en/blog/bike/strava/</link>
+      <pubDate>Thu, 26 Jun 2025 22:51:50 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/tech/utils/aws-server-gui/</guid>
-      <description>最近有一个项目需要使用GUI，又希望放在云端自动运行。一开始是打算用Windows的instance，尝试了一下基本上下载一个chrome都</description>
+      <guid>https://kyxie.me/en/blog/bike/strava/</guid>
+      <description>Found the statistics-for-strava repository on GitHub with frequent updates and comprehensive documentation. Decided to deploy it myself.
+Deployment First, register a new app on Strava&amp;rsquo;s API page. Fill in the Authorization Callback Domain with your deployment domain (mine is strava.kyxie.me). After successful creation, you&amp;rsquo;ll receive Client ID, Client Secret, Access Token, and Refresh Token.
+Create docker-compose.yml and modify according to your setup. I integrated it with cloudflared and deployed it publicly on port 8000 of the host machine:</description>
     </item>
     
     <item>
-      <title>Banff旅行游记</title>
-      <link>https://kyxie.me/en/blog/life/banff/</link>
-      <pubDate>Wed, 11 Sep 2024 12:35:55 -0400</pubDate>
+      <title>Deploying Umami with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/web/umami/</link>
+      <pubDate>Thu, 26 Jun 2025 22:20:50 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/life/banff/</guid>
-      <description>Header 最近妈妈来了加拿大，打算带她去Calgary和Banff旅行，发现Banff旅游真的好多坑啊，正好写一篇游记博客，顺便记录一下Banff旅</description>
+      <guid>https://kyxie.me/en/blog/tech/web/umami/</guid>
+      <description>Umami is a personal website analytics tool that supports self-deployment. Using their hosted service, you can track up to three sites. I&amp;rsquo;ve also tried Plausible, but it seemed a bit heavy for my needs - system load increased significantly after using it.
+Deployment Create docker-compose.yml and modify according to your situation. Here I integrated Cloudflared&amp;rsquo;s network for public internet access:
+services: umami: container_name: umami image: ghcr.io/umami-software/umami:postgresql-latest environment: DATABASE_URL: postgresql://&amp;lt;db_username&amp;gt;:&amp;lt;db_password&amp;gt;@umami-db:5432/umami DATABASE_TYPE: postgresql APP_SECRET: depends_on: umami-db: condition: service_healthy init: true restart: unless-stopped networks: - umami - cloudflared umami-db: container_name: umami-db image: postgres:15-alpine environment: POSTGRES_DB: umami POSTGRES_USER: POSTGRES_PASSWORD: volumes: - .</description>
     </item>
     
     <item>
-      <title>OpenWrt配置Wireguard</title>
-      <link>https://kyxie.me/en/blog/tech/router/wireguard/</link>
+      <title>Exposing Your Services to the Public Internet</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/public/</link>
+      <pubDate>Sun, 08 Jun 2025 23:26:42 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/public/</guid>
+      <description>You can test websites locally by typing localhost + port in the browser. But to expose services to the public internet so others can access your URL, you need more configuration. There are two common methods: Nginx and tunneling.
+The conclusion: Nginx is better for cloud servers, while services on home mini PCs are better suited for tunneling. Cloud servers usually have public IPs with open ports 443. After configuration, you can directly access via domain name.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Minecraft Server with Docker</title>
+      <link>https://kyxie.me/en/blog/game/minecraft/minecraft-server-by-docker/</link>
+      <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/game/minecraft/minecraft-server-by-docker/</guid>
+      <description>The previous article covered downloading and installing Minecraft on Windows so you can play on your own computer. But how do you play with friends? There are three main methods:
+LAN: Similar to high school computer lab class playing CS together, when all devices connect to the same Wi-Fi (same LAN), a friend&amp;rsquo;s Minecraft room broadcasts through the router. If my computer is on the same router, I can find and join their broadcast.</description>
+    </item>
+    
+    <item>
+      <title>Configuring Wireguard on OpenWrt</title>
+      <link>https://kyxie.me/en/blog/tech/server/openwrt/wireguard/</link>
       <pubDate>Sat, 25 May 2024 00:19:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/tech/router/wireguard/</guid>
-      <description>Ubuntu 安装 sudo apt update sudo apt upgrade sudo apt install wireguard 配置 进入/etc/wireguard，并生成密钥对 sudo -i cd /etc/wireguard umask 077 wg genkey | tee privatekey | wg pubkey &amp;gt; publickey 编辑配置文件wg0.conf [Interface] PrivateKey</description>
+      <guid>https://kyxie.me/en/blog/tech/server/openwrt/wireguard/</guid>
+      <description>Wireguard is a very lightweight VPN with much simpler configuration than the cumbersome OpenVPN. It&amp;rsquo;s perfect for setting up your home VPN, allowing sensitive services to connect to your home VPN first before accessing the internal network.
+The diagram below shows my home network topology (see: Setting up OpenWrt as a Bypass Router Using Raspberry Pi 4B+ | Kunyang&amp;rsquo;s Blog). I use OpenWrt as a bypass router - other devices&amp;rsquo; default gateway and DNS point to OpenWrt.</description>
     </item>
     
     <item>
-      <title>OpenWrt配置AList</title>
-      <link>https://kyxie.me/en/blog/tech/router/alist/</link>
-      <pubDate>Sun, 01 Dec 2024 12:58:22 -0500</pubDate>
+      <title>Deploying a Password Manager with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/vaultwarden/</link>
+      <pubDate>Tue, 21 Jan 2025 11:51:00 -0500</pubDate>
       
-      <guid>https://kyxie.me/en/blog/tech/router/alist/</guid>
-      <description>Header 以下是AList的一些常见配置教程，仅作为个人记录和学习使用 挂载Baidu网盘 官方教程 视频教程 挂载Google Drive 官方教程 视频教程 挂载本地 我</description>
+      <guid>https://kyxie.me/en/blog/tech/server/debian/vaultwarden/</guid>
+      <description>Vaultwarden is a password manager with cross-platform support. The web version adds a Chrome plugin, and iOS can set Vaultwarden for Auto Fill in Password settings. I previously used iOS&amp;rsquo;s built-in password manager and Safari on mobile, so I had to re-save passwords on my computer. Fearing forgetfulness, I set all passwords the same, a huge security risk.
+Password managers are best self-hosted. Using official services differs little from iOS/Chrome. This article covers deploying Vaultwarden to a mini PC with Docker Compose and Cloudflared.</description>
     </item>
     
     <item>
-      <title>Algonquin旅行攻略</title>
-      <link>https://kyxie.me/en/blog/life/algonquin/</link>
+      <title>Configuring DDNS on OpenWrt</title>
+      <link>https://kyxie.me/en/blog/tech/server/openwrt/ddns/</link>
+      <pubDate>Sun, 22 Dec 2024 21:37:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/openwrt/ddns/</guid>
+      <description>Configuring DDNS on OpenWrt Since IPv4 resources are very abundant in North America, purchasing a home network plan in Canada typically comes with a public IP. However, ISPs frequently change IP addresses. DDNS binds your home&amp;rsquo;s public IP to your domain name, so you can always find your home regardless of IP changes.
+Prerequisites A domain name
+A public IP address
+Some packages:
+ddns-scripts-cloudflare luci-app-ddns drill Configuration Steps First, create an A record in Cloudflare.</description>
+    </item>
+    
+    <item>
+      <title>Deploying a Home Media Center with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/cinema/</link>
+      <pubDate>Sat, 12 Jul 2025 11:04:22 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/cinema/</guid>
+      <description>This article introduces how to build a personal home media center using Docker Compose.
+The basic workflow is as follows:
+The core consists of Sonarr and Radarr. Sonarr finds TV shows, Radarr finds movies. Where do they find content? From indexers (think of them as content sources). With multiple indexers, you need a management tool, which is where Prowlarr comes in. It can connect to Sonarr and Radarr, so you only need to add indexers in Prowlarr, and they automatically sync to Sonarr and Radarr.</description>
+    </item>
+    
+    <item>
+      <title>Deploying AdGuardHome on OpenWrt</title>
+      <link>https://kyxie.me/en/blog/tech/server/openwrt/adguardhome/</link>
+      <pubDate>Wed, 25 Jun 2025 10:44:22 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/openwrt/adguardhome/</guid>
+      <description>AdGuardHome is an ad-blocking application, but it&amp;rsquo;s not just for blocking ads. It can also serve as a DNS server for your local network.
+Installation Since this application is related to network management, I installed it on OpenWrt. During compilation, simply check the luci-app-adguardhome option.
+Then download the core in the OpenWrt management page (you may need a VPN or proxy).
+Ad Blocking The web management interface is on port 3000 by default.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Private Cloud and File Management with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/cloud/</link>
+      <pubDate>Sat, 14 Jun 2025 00:41:59 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/cloud/</guid>
+      <description>Thanks to the mini PC running 24/7, it&amp;rsquo;s great for deploying automated download/upload and file management services. This article mainly covers deploying these services with Docker:
+Samba: Run on Linux to map Linux as a Windows disk. Access mini PC files just by opening Windows File Explorer. FileBrowser: A graphical file manager with a web interface deployed on the internet, essentially a self-hosted cloud drive. BaiduPCS Go: Command-line control for uploading and downloading files to Baidu Cloud.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Management Dashboard with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/dashboard/</link>
+      <pubDate>Sun, 15 Jun 2025 00:41:59 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/dashboard/</guid>
+      <description>With so many services deployed on the server, it&amp;rsquo;s easy to forget ports and hard to find the right service. A proper management dashboard is helpful. Ideally, it should display quick links to all services, show Docker container status, monitor hardware information (though running in Docker containers, this is difficult; command-line top works fine), and ideally provide file services (though Samba can replace this).
+Such Dashboard services can run on port 80, allowing direct browser access via IP.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Umami with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/umami/</link>
+      <pubDate>Thu, 26 Jun 2025 22:20:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/umami/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deploying Strava Data Analysis Dashboard with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/strava/</link>
+      <pubDate>Thu, 26 Jun 2025 22:51:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/strava/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Remote Control</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/remote/</link>
+      <pubDate>Thu, 16 Oct 2025 23:53:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/remote/</guid>
+      <description>Fundamentally, remote control boils down to three methods: VPN, direct port opening, and tunneling.
+Cloudflared SSH Previously, I used Cloudflared to proxy many services, but these were front-end/back-end services. You can also use Cloudflared to proxy SSH traffic. The steps are simple: just create a new domain for SSH in the web interface. Afterward, you can SSH to this domain to access the mini PC. Combined with VSCode Remote SSH, it&amp;rsquo;s very convenient for remote development.</description>
+    </item>
+    
+    <item>
+      <title>Docker Image Auto-Update</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/watchtower/</link>
+      <pubDate>Tue, 28 Oct 2025 22:38:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/watchtower/</guid>
+      <description>Docker Compose conveniently manages containers but cannot automatically update images. With so many images, you can&amp;rsquo;t manually update each one. Fortunately, Watchtower solves this. Recent GitHub commits are from two years ago, showing the code is stable enough to use with confidence.
+Installation Installation is very simple. Here&amp;rsquo;s the compose file:
+services: watchtower: image: containrrr/watchtower container_name: watchtower restart: unless-stopped environment: - TZ=America/Toronto volumes: - /var/run/docker.sock:/var/run/docker.sock command: --interval 86400 --label-enable --cleanup labels: - &amp;#34;com.</description>
+    </item>
+    
+    <item>
+      <title>Adding User Login to Deployed Services</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/auth/</link>
+      <pubDate>Tue, 28 Oct 2025 22:40:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/auth/</guid>
+      <description>Once your services are exposed to the public internet, security becomes the primary concern. Most applications have User/Auth Services for user registration and login. This article briefly introduces how to add user login functionality to services deployed on the public network.
+Nginx Basic Auth This is the most basic user login, essentially a front-end-less approach with only login functionality. Nginx can handle this. The Stats for Strava image mentioned for Strava data analysis doesn&amp;rsquo;t include user login.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Services with k3s &#43; SOPS &#43; FluxCD</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/k3s/</link>
+      <pubDate>Sun, 14 Dec 2025 22:12:50 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/k3s/</guid>
+      <description>Installing k3s You can install k3s with the following command:
+curl -sfL https://get.k3s.io | sh -s - \ --write-kubeconfig-mode 644 \ --node-ip &amp;lt;your_ip&amp;gt; \ --flannel-iface &amp;lt;your_network_interface_name&amp;gt; I currently use a regular user. The --write-kubeconfig-mode parameter ensures regular users can run kubectl directly without always using sudo.
+--node-ip: I now have a static IP, and this parameter forces k3s to use it.
+--flannel-iface: Force using a network interface. I&amp;rsquo;m currently using Wi-Fi.</description>
+    </item>
+    
+    <item>
+      <title>Experience with Security Clearance for Canadian Immigration</title>
+      <link>https://kyxie.me/en/blog/pr/mandamus/</link>
+      <pubDate>Mon, 04 Aug 2025 13:54:00 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/pr/mandamus/</guid>
+      <description>Background I immigrated to Canada through Ontario&amp;rsquo;s Master&amp;rsquo;s/PhD stream. For detailed timeline of my immigration application, see OINP Immigration to Canada Timeline. As you can see, security clearance has been dragging on. During this period, I&amp;rsquo;ve tried many methods to pressure IRCC to move faster, but with limited success. This article details my pressure tactics and the judicial review process.
+Why security clearance happens
+Fraudulent, problematic, or suspicious submitted documents Sensitive experience, such as engineering studies with overseas education However, I believe the main factor is luck—some applicants with engineering backgrounds got cleared smoothly despite similar profiles, while others got stuck.</description>
+    </item>
+    
+    <item>
+      <title>Auto-mounting USB Drives with udev</title>
+      <link>https://kyxie.me/en/blog/tech/server/others/automount/</link>
+      <pubDate>Sat, 14 Jun 2025 17:36:33 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/others/automount/</guid>
+      <description>This is a feature that&amp;rsquo;s now available on virtually all computers - the system automatically searches for devices in the background and mounts them. This feature might not be very useful in headless Linux systems, as USB drives need to be manually mounted each time. So I decided to write a script to automate USB mounting.
+The goal is: when inserting a USB drive, the system automatically mounts it at /path-to-mount/label, where label is the USB drive&amp;rsquo;s name (note: avoid inserting two SD cards with the same label).</description>
+    </item>
+    
+    <item>
+      <title>Recovering MySQL Password from Homebrew Installation</title>
+      <link>https://kyxie.me/en/blog/tech/others/recover-mysql/</link>
+      <pubDate>Wed, 05 Feb 2025 00:16:46 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/recover-mysql/</guid>
+      <description>I recently forgot the MySQL password on my local machine and found a way to recover it.
+Open and edit the configuration file my.cnf:
+sudo vim /opt/homebrew/etc/my.cnf Add skip-grant-tables to the configuration file:
+# Default Homebrew MySQL server config [mysqld] skip-grant-tables # Only allow connections from localhost bind-address = 127.0.0.1 mysqlx-bind-address = 127.0.0.1 Restart the service:
+sudo brew restart mysql Connect to MySQL:
+mysql -u root -p Flush privileges:
+FLUSH PRIVILEGES; Change the account password:</description>
+    </item>
+    
+    <item>
+      <title>Cancun Travel Log</title>
+      <link>https://kyxie.me/en/blog/tour/cancun/</link>
+      <pubDate>Tue, 21 Jan 2025 11:57:55 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tour/cancun/</guid>
+      <description>Spent four days and three nights in Cancun before Christmas. Here are the pitfalls I encountered and travel tips.
+We stayed at Haven Riviera All Inclusive, which I found excellent. The restaurants had great food. Spent the first three days at the resort, planning a self-drive trip to Chichen Itza on the final day.
+Rented a car from Enterprise near the airport, selecting only this ~USD$20 insurance. Mexico can be risky; self-driving seems unwise, but I&amp;rsquo;m adventurous.</description>
+    </item>
+    
+    <item>
+      <title>Formatting USB Multiple Partitions</title>
+      <link>https://kyxie.me/en/blog/tech/others/format-usb/</link>
+      <pubDate>Sun, 15 Dec 2024 23:45:35 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/format-usb/</guid>
+      <description>After using a USB drive to install a system, the drive often gets divided into multiple partitions. Below are instructions for merging it back into a single partition and formatting it on both MacOS and Windows.
+MacOS For detailed instructions, see: Setting up OpenWrt as a Bypass Router Using Raspberry Pi 4B+ | Kunyang&amp;rsquo;s Blog
+Windows Open Command Prompt:
+diskpart List disks:
+list disk Disk ### Status Size Free Dyn Gpt -------- ------------- ------- ------- --- --- Disk 0 Online 931 GB 1024 KB * Disk 1 Online 931 GB 1024 KB * Disk 2 Online 7696 MB 5050 MB * Select the disk (be careful not to select the wrong one):</description>
+    </item>
+    
+    <item>
+      <title>Installing PVE on x86 Mini PC</title>
+      <link>https://kyxie.me/en/blog/tech/server/others/pve/</link>
+      <pubDate>Sun, 15 Dec 2024 23:20:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/others/pve/</guid>
+      <description>PVE Installation Steps Download PVE from the official website Use Etcher to flash the image to a USB drive Connect HDMI cable to monitor, connect keyboard and mouse to mini PC, insert USB drive, and boot Press F7 to enter BIOS and select USB boot Choose Graphical installation, configure IP address, username, password, and follow the prompts After installation completes, connect the mini PC to the router, then access PVE at &amp;lt;pve_ip_address&amp;gt;:8006.</description>
+    </item>
+    
+    <item>
+      <title>Installing Linux Server with USB</title>
+      <link>https://kyxie.me/en/blog/tech/server/others/linux-server/</link>
+      <pubDate>Sat, 14 Dec 2024 12:36:01 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/others/linux-server/</guid>
+      <description>Prerequisites Monitor HDMI cable to connect to monitor Keyboard USB drive with at least 8GB capacity Network cable Installing the System Download the image from Ubuntu or Debian official website Prepare a USB drive with at least 8GB capacity, install Etcher, and flash the Ubuntu image to the USB drive following the instructions Insert the USB drive into the PC, boot, and repeatedly press F7 (different motherboards use different keys) to enter BIOS Allocate the entire disk to Ubuntu.</description>
+    </item>
+    
+    <item>
+      <title>Creating OpenWrt as a Docker Image</title>
+      <link>https://kyxie.me/en/blog/tech/server/others/docker-openwrt/</link>
+      <pubDate>Thu, 12 Dec 2024 22:33:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/others/docker-openwrt/</guid>
+      <description>Installing Docker Following Docker&amp;rsquo;s official documentation, first uninstall all conflicting packages. apt-get may indicate some packages are not installed.
+Ubuntu:
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done Debian:
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done Set up Docker&amp;rsquo;s apt repository:
+Ubuntu:
+# Add Docker&amp;#39;s official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.</description>
+    </item>
+    
+    <item>
+      <title>Installing Python and Git on M Chip MacBook with Homebrew</title>
+      <link>https://kyxie.me/en/blog/tech/others/python-and-git-for-macos/</link>
+      <pubDate>Mon, 11 Nov 2024 11:11:11 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/python-and-git-for-macos/</guid>
+      <description>Mac users strongly recommend using Homebrew to install software. For Python, downloading directly from the official website will create both IDLE and Python Launcher icons in Launchpad, which I personally find ugly.
+Actually, macOS Catalina comes with Python 3 pre-installed (Python 2 before that). If you only need to handle basic Python functions, you can just use the system&amp;rsquo;s built-in version. However, for the convenience of version control, it&amp;rsquo;s highly recommended to use Homebrew to download another version for easy management, avoiding impacts to the system&amp;rsquo;s Python.</description>
+    </item>
+    
+    <item>
+      <title>Installing GUI on AWS Server</title>
+      <link>https://kyxie.me/en/blog/tech/others/aws-server-gui/</link>
+      <pubDate>Thu, 07 Nov 2024 00:22:51 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/aws-server-gui/</guid>
+      <description>Recently I had a project that required a GUI and wanted it to run automatically in the cloud. Initially, I considered using a Windows instance, but found that even downloading a browser was very slow. As a free AWS user, I could only use the command-line-only Ubuntu Server. Then I had a spontaneous idea: what if I could install a GUI on Ubuntu Server? I looked it up and the method seemed feasible (though ultimately it&amp;rsquo;s not very practical - I&amp;rsquo;ve decided to stop tinkering with it, but I did manage to install a GUI successfully).</description>
+    </item>
+    
+    <item>
+      <title>Algonquin Travel Log</title>
+      <link>https://kyxie.me/en/blog/tour/algonquin/</link>
       <pubDate>Mon, 30 Sep 2024 14:03:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/life/algonquin/</guid>
-      <description>常用链接 实时枫叶变色情况以及历史数据 预定门票，门票$21一天，可以提前5天预定 安省枫叶地图 阿冈昆公园地图 推荐的景点 周边： 白求恩故居 Lions Lookout Dorset Lookout Tower:</description>
+      <guid>https://kyxie.me/en/blog/tour/algonquin/</guid>
+      <description>Useful Links Real-time fall foliage report and historical data Reserve tickets: $21 per day, can book 5 days in advance Ontario fall color map Algonquin Park map Recommended Attractions Nearby:
+Norman Bethune&amp;rsquo;s Birthplace Lions Lookout Dorset Lookout Tower: Appears to have admission fee Big Bend Lookout Highway 60 Corridor:
+13.8km: Hardwood Lookout Trail: Loop (1.61km, 85m, 34min). Right arrows mark trail direction; to skip straight to lookout, turn left opposite the arrows.</description>
     </item>
     
     <item>
-      <title>Windows 11 打造个性化终端</title>
-      <link>https://kyxie.me/en/blog/tech/utils/bash/</link>
-      <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>
+      <title>Banff Travel Log</title>
+      <link>https://kyxie.me/en/blog/tour/banff/</link>
+      <pubDate>Wed, 11 Sep 2024 12:35:55 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/tech/utils/bash/</guid>
-      <description>前言 我就喜欢搞一些简洁而又花里胡哨的东西。 教程基于Windows 11自带的Terminal。 字体 我使用的字体是CodeNewRoman Nerd Fo</description>
+      <guid>https://kyxie.me/en/blog/tour/banff/</guid>
+      <description>Recently, my mom visited Canada, and I planned a Calgary and Banff trip. Discovered Banff tourism has many pitfalls! Here&amp;rsquo;s a detailed log with travel tips.
+Important notes:
+Banff entry requires a National Park Pass, CAD$22/day, valid until 4 PM next day. We picked up our rental Sep 19 evening at 5 PM. At the checkpoint between Canmore and Banff (left lane sells tickets, right lane bypasses), we bought a Sep 20 pass online.</description>
     </item>
     
     <item>
-      <title>OINP移民加拿大🇨🇦时间线</title>
-      <link>https://kyxie.me/en/blog/life/pr/</link>
-      <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
-      
-      <guid>https://kyxie.me/en/blog/life/pr/</guid>
-      <description>Dec 25, 2022，硕士毕业 Jan 3, 2023，收到毕业信 Apr 27, 2023，收到CELPIP成绩，入池，其实毕业之前就该考出来的，没必要等着PGWP下来再申</description>
-    </item>
-    
-    <item>
-      <title>使用Samba将Linux映射为Windows磁盘</title>
-      <link>https://kyxie.me/en/blog/tech/router/samba/</link>
-      <pubDate>Sun, 17 Dec 2023 17:19:19 -0400</pubDate>
-      
-      <guid>https://kyxie.me/en/blog/tech/router/samba/</guid>
-      <description>Header 我有时需要使用虚拟机上的Linux环境，但是有些软件在Linux是上是没有的，需要用Windows的软件但是用Linux的数据。于是找到了</description>
-    </item>
-    
-    <item>
-      <title>OpenVPN的简单配置</title>
-      <link>https://kyxie.me/en/blog/tech/router/openvpn/</link>
+      <title>Simple OpenVPN Configuration</title>
+      <link>https://kyxie.me/en/blog/tech/others/openvpn/</link>
       <pubDate>Fri, 26 Apr 2024 20:38:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/tech/router/openvpn/</guid>
-      <description>假设我们有两台Linux虚拟机A和B，使用A和B互相充当Server和Client TLS模式 假设我们使用A来充当server，B来充当cli</description>
+      <guid>https://kyxie.me/en/blog/tech/others/openvpn/</guid>
+      <description>Assume we have two Linux virtual machines A and B, where A and B act as Server and Client for each other.
+TLS Mode Assume A acts as the server and B acts as the client.
+TLS Server Download OpenVPN on A:
+sudo apt-get install openvpn In the /usr/share/doc/openvpn/examples/sample-keys/ folder there are sample keys. On the server, copy ca.crt, server.key, server.crt, and dh2048.pem to /etc/openvpn/tls-server:
+sudo cp /usr/share/doc/openvpn/examples/sample-keys/{ca.crt,server.key,server.crt,dh2048.pem} /etc/openvpn/tls-server Write the server configuration file:</description>
     </item>
     
     <item>
-      <title>Java Cheat Sheet</title>
-      <link>https://kyxie.me/en/blog/tech/utils/java/</link>
-      <pubDate>Thu, 05 May 2022 17:28:17 -0400</pubDate>
-      
-      <guid>https://kyxie.me/en/blog/tech/utils/java/</guid>
-      <description>Character 判断是否为字母或数字： boolean res = Character.isLetterOrDigit(char); 转小写： char res = Character.toLowerCase(char); 下一个字符： &amp;#39;b&amp;#39; == (char) (&amp;#39;a&amp;#39; + 1); Integer 最大值最小值： int max = Integer.MAX_VALUE; int min = Integer.MIN_VALUE; 比较相等： Integer a = 1; Integer b = 1; a == b; // true</description>
-    </item>
-    
-    <item>
-      <title>Linux配置LDAP Server</title>
-      <link>https://kyxie.me/en/blog/tech/router/ldap/</link>
-      <pubDate>Tue, 27 Feb 2024 00:18:35 -0400</pubDate>
-      
-      <guid>https://kyxie.me/en/blog/tech/router/ldap/</guid>
-      <description>Linux 下载OpenLDAP： sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils 配置OpenLDAP： sudo dpkg-reconfigure slapd DNS domain name: example.org Password: root 创建user.ldif： # ldap是username</description>
-    </item>
-    
-    <item>
-      <title>使用Keys免密ssh到Linux</title>
-      <link>https://kyxie.me/en/blog/tech/router/keys/</link>
+      <title>Using SSH Keys for Passwordless Linux Access</title>
+      <link>https://kyxie.me/en/blog/tech/server/others/keys/</link>
       <pubDate>Thu, 25 Apr 2024 20:47:19 -0400</pubDate>
       
-      <guid>https://kyxie.me/en/blog/tech/router/keys/</guid>
-      <description>通过使用keys我们可以免密登录Linux server，这样以后ssh到Linux的时候就不需要每次填写密码了。 首先在windows上生成一</description>
+      <guid>https://kyxie.me/en/blog/tech/server/others/keys/</guid>
+      <description>By using SSH keys, we can log into Linux without a password (and this is the recommended approach). This way, you won&amp;rsquo;t need to enter a password every time you SSH to Linux.
+Generating Key Pairs You can generate keys anywhere - on the client, server, or third party. Even in Vaultwarden for easy management, as long as you keep them secure. On Windows/Mac/Linux, enter:
+ssh-keygen Keys are typically generated in C:\Users\Username\.</description>
+    </item>
+    
+    <item>
+      <title>Simple LDAP Server Configuration</title>
+      <link>https://kyxie.me/en/blog/tech/others/ldap/</link>
+      <pubDate>Tue, 27 Feb 2024 00:18:35 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/ldap/</guid>
+      <description>Linux Download OpenLDAP:
+sudo apt update sudo apt install slapd ldap-utils sudo apt install ldap-utils Configure OpenLDAP:
+sudo dpkg-reconfigure slapd DNS domain name: example.org
+Password: root
+Create user.ldif:
+# ldap is the username dn: uid=ldap,dc=example,dc=org objectClass: inetOrgPerson objectClass: posixAccount uid: ldap sn: LDAP givenName: LDAP cn: LDAP User displayName: LDAP User uidNumber: 10000 gidNumber: 10000 homeDirectory: /home/ldap loginShell: /bin/bash Add the user to the OpenLDAP server:
+ldapadd -x -D &amp;#34;cn=admin,dc=example,dc=org&amp;#34; -W -f user.</description>
+    </item>
+    
+    <item>
+      <title>OINP Immigration to Canada 🇨🇦 Timeline</title>
+      <link>https://kyxie.me/en/blog/pr/timeline/</link>
+      <pubDate>Thu, 04 Jan 2024 23:37:55 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/pr/timeline/</guid>
+      <description>Dec 30, 2022: Master&amp;rsquo;s graduation Jan 3, 2023: Received diploma Apr 27, 2023: Received CELPIP score, entered pool (should have tested before graduation and PGWPissue to avoid 6+ month delay) Jun 6, 2023: Received nomination, submitted application same day Jun 27, 2023: Requested for additional documents Jun 28, 2023: Received DIP (Deemed Ineligible to Process) Jul 25, 2023: Received provincial nomination letter. Note: Prepare notarized/translated documents early (criminal record, birth certificate, ID, household registration—latter is optional) to save time later.</description>
+    </item>
+    
+    <item>
+      <title>Customizing Terminal</title>
+      <link>https://kyxie.me/en/blog/tech/others/terminal/</link>
+      <pubDate>Sat, 01 Apr 2023 00:07:17 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/others/terminal/</guid>
+      <description>I enjoy tinkering with decorative things and found the default Windows terminal really ugly. I planned to use Oh My Posh to beautify it. This tutorial is based on the Terminal that comes with Windows 11.
+Font I use the CodeNewRoman Nerd Font, which is also the font used for my blog. You can download it from here. After downloading, simply install it. You can also use this font in VS Code.</description>
     </item>
     
     

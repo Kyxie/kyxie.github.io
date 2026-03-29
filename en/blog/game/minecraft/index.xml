@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Minecraft ⛏️ on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.me/en/blog/game/minecraft/</link>
+    <description>Recent content in Minecraft ⛏️ on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 31 May 2025 12:49:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/en/blog/game/minecraft/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing Minecraft Client</title>
+      <link>https://kyxie.me/en/blog/game/minecraft/minecraft-client/</link>
+      <pubDate>Fri, 13 Dec 2024 00:55:12 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/game/minecraft/minecraft-client/</guid>
+      <description>I&amp;rsquo;ve been a Minecraft fan for a long time. I started playing on my phone in junior high school and remember spending evenings after evening self-study sessions in first year of high school building and terraforming. Later, I lost my save when switching phones, Minecraft was licensed to NetEase, and then I got busy with college entrance exams and gradually played less.
+This article provides a detailed guide to downloading and installing Java Edition Minecraft on Windows.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Minecraft Server with Docker</title>
+      <link>https://kyxie.me/en/blog/game/minecraft/minecraft-server-by-docker/</link>
+      <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/game/minecraft/minecraft-server-by-docker/</guid>
+      <description>The previous article covered downloading and installing Minecraft on Windows so you can play on your own computer. But how do you play with friends? There are three main methods:
+LAN: Similar to high school computer lab class playing CS together, when all devices connect to the same Wi-Fi (same LAN), a friend&amp;rsquo;s Minecraft room broadcasts through the router. If my computer is on the same router, I can find and join their broadcast.</description>
+    </item>
+    
+  </channel>
+</rss>

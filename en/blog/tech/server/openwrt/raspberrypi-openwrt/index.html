@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Installing OpenWrt on Raspberry Pi 4B&#43; as a Bypass Router | Kunyang&#39;s Blog</title>
+<meta name="keywords" content="Raspberry Pi, OpenWrt">
+<meta name="description" content="My Journey Used Raspberry Pi to install OpenWrt as the main system, but also wanted to build a Minecraft server. The Pi&rsquo;s performance wasn&rsquo;t sufficient, so I needed to upgrade. Purchased a Mini PC for the Minecraft server. Debian could also run a software OpenWrt router, but only as a bypass router. I thought it best to have a dedicated device for network management. Tried various web managers that could run on Debian like Cockpit, but they weren&rsquo;t satisfying.">
+<meta name="author" content="Kyxie">
+<link rel="canonical" href="https://kyxie.me/en/blog/tech/server/openwrt/raspberrypi-openwrt/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.1922b49974f4fb943cea06098875ffc163ffa54447b089e124d7ae367d9e2801.css" integrity="sha256-GSK0mXT0&#43;5Q86gYJiHX/wWP/pURHsInhJNeuNn2eKAE=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.f61a30837a1dd79c8e15931b0916e2469274f1900212a78e5fcc9b3d40026a16.js" integrity="sha256-9howg3od15yOFZMbCRbiRpJ08ZACEqeOX8ybPUACahY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://kyxie.me/Favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://kyxie.me/Favicon.png">
+<link rel="apple-touch-icon" href="https://kyxie.me/Favicon.png">
+<link rel="mask-icon" href="https://kyxie.me/Favicon.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://kyxie.me/en/blog/tech/server/openwrt/raspberrypi-openwrt/">
+<link rel="alternate" hreflang="zh" href="https://kyxie.me/zh/blog/tech/server/openwrt/raspberrypi-openwrt/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.cdnfonts.com/css/code-new-roman" rel="stylesheet"><meta property="og:title" content="Installing OpenWrt on Raspberry Pi 4B&#43; as a Bypass Router" />
+<meta property="og:description" content="My Journey Used Raspberry Pi to install OpenWrt as the main system, but also wanted to build a Minecraft server. The Pi&rsquo;s performance wasn&rsquo;t sufficient, so I needed to upgrade. Purchased a Mini PC for the Minecraft server. Debian could also run a software OpenWrt router, but only as a bypass router. I thought it best to have a dedicated device for network management. Tried various web managers that could run on Debian like Cockpit, but they weren&rsquo;t satisfying." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://kyxie.me/en/blog/tech/server/openwrt/raspberrypi-openwrt/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-11-11T13:13:13-04:00" />
+<meta property="article:modified_time" content="2024-11-11T13:13:13-04:00" /><meta property="og:site_name" content="Kyxie" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Installing OpenWrt on Raspberry Pi 4B&#43; as a Bypass Router"/>
+<meta name="twitter:description" content="My Journey Used Raspberry Pi to install OpenWrt as the main system, but also wanted to build a Minecraft server. The Pi&rsquo;s performance wasn&rsquo;t sufficient, so I needed to upgrade. Purchased a Mini PC for the Minecraft server. Debian could also run a software OpenWrt router, but only as a bypass router. I thought it best to have a dedicated device for network management. Tried various web managers that could run on Debian like Cockpit, but they weren&rsquo;t satisfying."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blogs 📒",
+      "item": "https://kyxie.me/en/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Tech 🔧",
+      "item": "https://kyxie.me/en/blog/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Server 🐧",
+      "item": "https://kyxie.me/en/blog/tech/server/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "OpenWrt 🛜",
+      "item": "https://kyxie.me/en/blog/tech/server/openwrt/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  5 ,
+      "name": "Installing OpenWrt on Raspberry Pi 4B+ as a Bypass Router",
+      "item": "https://kyxie.me/en/blog/tech/server/openwrt/raspberrypi-openwrt/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Installing OpenWrt on Raspberry Pi 4B+ as a Bypass Router",
+  "name": "Installing OpenWrt on Raspberry Pi 4B\u002b as a Bypass Router",
+  "description": "My Journey Used Raspberry Pi to install OpenWrt as the main system, but also wanted to build a Minecraft server. The Pi\u0026rsquo;s performance wasn\u0026rsquo;t sufficient, so I needed to upgrade. Purchased a Mini PC for the Minecraft server. Debian could also run a software OpenWrt router, but only as a bypass router. I thought it best to have a dedicated device for network management. Tried various web managers that could run on Debian like Cockpit, but they weren\u0026rsquo;t satisfying.",
+  "keywords": [
+    "Raspberry Pi", "OpenWrt"
+  ],
+  "articleBody": "My Journey Used Raspberry Pi to install OpenWrt as the main system, but also wanted to build a Minecraft server. The Pi’s performance wasn’t sufficient, so I needed to upgrade. Purchased a Mini PC for the Minecraft server. Debian could also run a software OpenWrt router, but only as a bypass router. I thought it best to have a dedicated device for network management. Tried various web managers that could run on Debian like Cockpit, but they weren’t satisfying. Webmin was even worse - like a system from 20 years ago. Ran OpenWrt as a Docker container on Debian. First tried Docker’s host mode, but it defeated the purpose of Docker’s isolation and added unnecessary complexity. Then struggled with macvlan - the container couldn’t communicate with the host. Eventually gave up. Used PVE virtual machines to install OpenWrt, then installed Debian on another VM with its gateway pointing to OpenWrt. Had a power outage at home and worried about PVE stability. Returned to the previous setup: Raspberry Pi as OpenWrt gateway, Mini PC as Debian server, each doing their own thing. Planned to sell the Raspberry Pi (didn’t end up selling it because Docker version Home Assistant is crippled, so I’ll use the Pi to run HA). The Raspberry Pi I bought for $70 could suddenly sell for $100. That profit difference could buy another Nanopi R2S as a gateway (didn’t sell the Pi but bought the R2S anyway). Required Hardware and Software Hardware A computer with ethernet port Raspberry Pi 4B+ with 2GB+ RAM 8GB+ microSD card for the Pi SD card reader Ethernet cable Monitor (optional), Micro USB to HDMI cable (optional) Software Balena Etcher. MacBook users can download this or use command line instead. Virtual Box and Ubuntu VM (optional) for compiling OpenWrt firmware. You can also download pre-compiled firmware. Note: the first compilation needs 60GB, but compiling a full firmware library with all features needs more, so 128GB is recommended. SecureCRT or PuTTy (optional). I use my system’s built-in terminal. Getting the Image Official Download You can download the image from OpenWrt’s official website.\nLocal Compilation The official firmware is lightweight and includes nothing extra. We can install what we need later. But if you don’t want to reinstall applications after each firmware flash, you need to compile your own. This repository lets you choose applications and compile them into the kernel. The README has detailed compilation steps. You can compile once locally to familiarize yourself, then use GitHub Actions for future compilations.\nFirst Compilation First, clone the repo on Ubuntu:\ngit clone https://github.com/coolsnowwolf/lede.git Install dependencies:\nsudo apt update -y sudo apt full-upgrade -y sudo apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \\ bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib \\ git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev \\ libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev \\ libssl-dev libtool lrzsz mkisofs msmtp ninja-build p7zip p7zip-full patch pkgconf python3 \\ python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo \\ uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev Update feeds and select configuration:\ncd lede ./scripts/feeds update -a ./scripts/feeds install -a make menuconfig This command opens the configuration page. I use Raspberry Pi 4B. Below is a breakdown of these configurations. Choose as needed:\n# Target system for compilation TargetSystem: - Broadcom BCM27xx Subtarget: - BCM2711 boards (64 bit) TargetProfile: - Raspberry Pi 4B/400/4CM (64bit) # Image parameters TargetImages: - squashfs - KernelPartitionSize: 64 - RootFilesystemPartitionSize: 2048 # LuCI settings LuCI: Collections: - luci # Enable luci Modules: Translations: - Chinese(zh-cn) # Chinese support Themes: - luci-theme-agron # Add theme # LuCI applications Applications: - luci-app-adguardhome # Ad-blocking - luci-app-advanced-reboot - luci-app-alist # File sharing (compilation is time-consuming, better as separate software) - luci-app-aria2 # Download tool - luci-app-cloudflared - luci-app-ddns - luci-app-diskman - luci-app-dockerman # Docker - luci-app-filebrowser # File management - luci-app-filetransfer - luci-app-firewall # Firewall - luci-app-frps - luci-app-frpc # Intranet penetration - luci-app-hd-idle # Hard drive sleep - luci-app-lucky - luci-app-opkg # Package manager - luci-app-openvpn - luci-app-openvpn-server - luci-app-passwall # VPN - luci-app-qos # Quality of service - luci-app-samba # Network sharing - luci-app-smartdns # Optimize VPN - luci-app-upnp # UPnP service - luci-app-usb-printer - luci-app-wol # Wake on LAN Protocols: - luci-protocol-wireguard # Optional tools BaseSystem: - block-mount # Add menu to LuCI - blockd # Auto-mount devices - wireless-tools # Wireless extension tools Administration: - htop # better top # File system KernelModules: Filesystems: - kmod-fs-ext4 - kmod-fs-f2fs - kmod-fs-ntfs - kmod-fs-squashfs - kmod-fs-vfat - kmod-fuse # Network card support NetworkDevices: - kmod-xxx # Wired NIC, select as needed NetworkSupport: - kmod-wireguard WirelessDrivers: - kmod-rt2800-usb # Ralink RT5370 chipset USB wireless NIC driver USBSupport: - kmod-usb-net: - kmod-usb-net-asix # Asix wired NIC - kmod-usb-net-asix-ax88179 # USB 3.0 NIC chip AX88179 - kmod-usb-net-rtl8152 # USB 2/3 NIC RTL8152/3 chip - kmod-usb-net-sr9700 # USB 2.0 NIC SR9700 chip - kmod-usb-core # Enable USB support - kmod-usb-hid # USB keyboard/mouse - kmod-usb-ohci # OHCI support for old USB - kmod-usb-storage # Enable USB storage - kmod-usb-storage-extras - kmod-usb-uhci # UHCI support for old USB - kmod-usb2 # Enable USB2 support - kmod-usb3 # Enable USB3 support # Network tools Network: DownloadManager: - ariang # Aria2 management page FileTransfer: - curl # Add curl command - wget-ssl # Add wget command IP Addresses and Names: - ddns-scripts-cloudflare # For DDNS - drill\t# DDNS VPN: - wireguard-tools # Utilities Utilities: Compression: - bsdtar # tar packing tool - gzip # GZ compression suite Disc: - fdisk # Disk partitioning tool - lsblk # Disk viewing tool Filesystem: - f2fs-tools - ntfs-3g # NTFS read/write support - resize2fs # Partition resize Terminal: - screen # Add screen - losetup - pciutils # Add lspci command - qrencode # wireguard qrcode - usbutils # Add lsusb command My current configuration:\nTargetSystem: - Broadcom BCM27xx Subtarget: - BCM2711 boards (64 bit) TargetProfile: - Raspberry Pi 4B/400/4CM (64bit) TargetImages: - squashfs - KernelPartitionSize: 64 - RootFilesystemPartitionSize: 6144 LuCI: Themes: - luci-theme-agron Applications: - luci-app-adguardhome - luci-app-autoreboot - luci-app-ddns - luci-app-filetransfer - luci-app-firewall - luci-app-nlbwmon - luci-app-opkg - luci-app-passwall - luci-app-ramfree - luci-app-sqm - luci-app-wol Protocols: - luci-protocol-wireguard Network: IP Addresses and Names: - ddns-scripts-cloudflare - drill - tcpdump Utilities: - qrencode A summary of Target Images:\nIf you want to run directly on physical hardware like Raspberry Pi with firmware on SD card, use squashfs. If you want to package OpenWrt as a Docker image, select tar.gz. If you want to run as a PVE virtual machine on a Mini PC, see Installing PVE on x86 Mini PC | Kunyang’s Blog. If you haven’t decided on deployment yet, select all. Different architectures have different options. RootFilesystemPartitionSize is the system size after installation. I chose 6144M for my Pi’s 8GB SD card. If using PVE, you don’t need to worry about this as you assign disk size in PVE. After configuration, select Save. This saves a .config file. Before the final installation step, install screen for persistent sessions (without it, closing SSH loses compilation progress):\nsudo apt install screen screen -S buildlede Finally, download dl library with 8 threads, compile with 1 thread for first build. (I had trouble downloading on AWS Ubuntu, so switched to local Ubuntu and it worked):\nmake download -j8 make V=s -j1 Single Module Compilation Sometimes you discover you need a plugin while using it. You can compile just that module:\nEdit .config file:\nmake menuconfig Find the plugin you want to compile separately, like luci-app-diskman (for managing router disks/partitions). If you selected [*] the first time (built-in module), select [M] this time (module that can be unloaded):\nUse this command to compile:\nmake package/luci-app-diskman/compile V=s Open OpenWrt, go to System → File Transfer to upload the file. Click Install in the bottom-right.\nThe newly installed plugin might not appear immediately - it took some time for me.\nTo compile kernel modules separately, like kmod-wireguard, select it as [M], then run:\nmake package/kernel/linux/compile V=s Compilation finishes quickly. The compiled package is at bin/packages///kmod-wireguard_xxx.ipk\nSecond Compilation Pull the latest feeds:\nsudo sh -c \"apt update \u0026\u0026 apt upgrade -y\" git pull ./scripts/feeds update -a \u0026\u0026 ./scripts/feeds install -a Clean old build artifacts (optional):\nmake clean # Execute after major updates or kernel changes to ensure build quality # Deletes files in /bin and /build_dir make dirclean # For architecture changes from x86_64 to MediaTek Ralink MIPS, recommended to do deep clean # Deletes /bin, /build_dir, /staging_dir, /toolchain, /tmp, and /logs Compile:\nmake defconfig make download -j8 find dl -size -1024c -exec ls -l {} \\; make -j$(nproc) || make -j1 || make -j1 V=s GitHub Actions Compilation After familiarizing yourself with local compilation, use GitHub Actions to offload the work to the cloud. I found this repository and decided not to reinvent the wheel.\nNote: if you want to auto-publish Artifacts to Release, grant PAT permissions in Settings → Developer Settings → Personal access tokens → Tokens (classic) → Your Token. Check workflow and write:packages:\nFlashing For direct flashing, select the image openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz\nWindows Use Balena Etcher or other disk imager software to flash the image to your SD card. It’s very straightforward:\nMacOS MacOS can also use Balena Etcher, or use command line if you prefer:\nFind the SD card’s disk number. Mine is /dev/disk4:\ndiskutil list /dev/disk4 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: FDisk_partition_scheme *7.9 GB disk4 1: Windows_FAT_32 BOOT 67.1 MB disk4s1 2: Linux 109.1 MB disk4s2 (free space) 7.7 GB - I had a previous OpenWrt without GUI, so the SD card had extra partitions. I’m reinstalling with GUI support.\nFirst restore the partition (this also formats the SD card):\ndiskutil eraseDisk FAT32 SDCARD MBRFormat /dev/disk4 After restoring:\ndiskutil list /dev/disk4 (external, physical): #: TYPE NAME SIZE IDENTIFIER 0: FDisk_partition_scheme *7.9 GB disk4 1: DOS_FAT_32 SDCARD 7.9 GB disk4s1 Unmount (but don’t eject) the SD card to avoid “busy” errors:\ndiskutil unmountDisk /dev/disk4 Decompress the downloaded image:\ngunzip ./openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz Use dd to write the decompressed .img file. Be very careful with the disk number - mistakes are irreversible:\nsudo dd if=/Users/xxx/Desktop/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img of=/dev/disk4 bs=1M status=progress No errors usually means success.\nEject the SD card from your computer and insert it into the Raspberry Pi. Start the Pi and connect its ethernet port to your computer’s ethernet port. OpenWrt defaults to bridges the Pi’s eth0 to br-lan with IP 192.168.1.1. Configure your computer’s Ethernet interface to also be on the 192.168.1.x subnet (x can be 2-255):\nOnce they’re on the same subnet, enter 192.168.1.1 in your browser to access OpenWrt’s GUI (LuCI). Default username and password are root and password.\nDone!\nPackaging OpenWrt as a Docker Image See: Creating OpenWrt as a Docker Image | Kunyang’s Blog\nConnecting to Main Router My home main router uses subnet 192.168.2.x. I need to change the Pi to this subnet. Single Network Port Since the Pi has only one eth0 port, I recommend setting it as the LAN port:\nvi /etc/config/network config interface 'lan' option device 'br-lan' option proto 'static' option netmask '255.255.255.0' option ip6assign '60' option ipaddr '192.168.2.66' option gateway '192.168.2.1' option dns '192.168.2.1' Disable DHCP to avoid conflicts with the main router:\nvi /etc/config/dhcp config dhcp 'lan' option interface 'lan' option ignore '1' Check firewall configuration:\nvi /etc/config/firewall config zone option name 'lan' list network 'lan' option input 'ACCEPT' option output 'ACCEPT' option forward 'ACCEPT' Apply settings:\n/etc/init.d/network restart Now your computer is on 192.168.1.x but the Pi is on 192.168.2.x, so connection is lost. Change your computer’s Ethernet to 192.168.2.x to reconnect.\nDisconnect the Pi from your computer and connect it to the router’s LAN port. It should have normal network access, and your computer can access the Pi.\nSetting up Bypass Router The above steps just add the Pi as a network device. Your devices still route through the main router. To make it a bypass router:\nSimply change your WiFi gateway from the main router’s default to the Pi’s IP. If my main router is 192.168.2.1, my computer is 192.168.2.54, and my Pi is 192.168.2.66:\nSame for MacBook:\niPhone configuration is similar.\nI use this non-invasive approach to avoid breaking the entire network. Only affects devices with gateway set to the bypass router.\nTutorial video:\nInstalling Plugins Uninstalling Plugins Go to System → Software → Installed to uninstall plugins Plugins compiled into the firmware cannot be uninstalled Installing Plugins Direct Installation Foreign source ARM:\nsrc/gz openwrt_core https://downloads.openwrt.org/releases/23.05.0/targets/bcm27xx/bcm2711/packages src/gz openwrt_base https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/base src/gz openwrt_luci https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/luci src/gz openwrt_packages https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/packages src/gz openwrt_routing https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/routing src/gz openwrt_telephony https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/telephony Foreign source x86:\nsrc/gz openwrt_core https://downloads.openwrt.org/releases/23.05.0/targets/x86/64/packages src/gz openwrt_base https://downloads.openwrt.org/releases/23.05.0/packages/x86_64/base src/gz openwrt_luci https://downloads.openwrt.org/releases/23.05.0/packages/x86_64/luci src/gz openwrt_packages https://downloads.openwrt.org/releases/23.05.0/packages/x86_64/packages src/gz openwrt_routing https://downloads.openwrt.org/releases/23.05.0/packages/x86_64/routing src/gz openwrt_telephony https://downloads.openwrt.org/releases/23.05.0/packages/x86_64/telephony Domestic source ARM:\nsrc/gz openwrt_core https://mirrors.tencent.com/lede/snapshots/targets/bcm27xx/bcm2711/packages src/gz openwrt_base https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/base src/gz openwrt_luci https://mirrors.tencent.com/lede/releases/18.06.9/packages/aarch64_cortex-a72/luci src/gz openwrt_packages https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/packages src/gz openwrt_routing https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/routing src/gz openwrt_telephony https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/telephony Domestic source x86:\nsrc/gz openwrt_core https://mirrors.tencent.com/lede/releases/24.10.0-rc1/targets/x86/64/packages src/gz openwrt_base https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/base src/gz openwrt_helloworld https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/helloworld src/gz openwrt_luci https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/luci src/gz openwrt_packages https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/packages src/gz openwrt_routing https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/routing src/gz openwrt_telephony https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/telephony Self Compilation First compile the plugin on Ubuntu:\nmake menuconfig In LuCI → Applications, select all plugins (building a firmware library). Modularize by pressing space to add M in brackets. Save and start compiling:\nmake -j1 V=s After compilation, find all compiled plugins in bin\\packages in .ipk format.\nCommon Use Cases DDNS See: Configuring DDNS on OpenWrt | Kunyang’s Blog Ad Blocking See: Deploying AdGuardHome on OpenWrt | Kunyang’s Blog Accessing My Windows Desktop from Outside Wireguard See: Configuring Wireguard on OpenWrt | Kunyang’s Blog ZeroTier Required plugin: luci-app-zerotier OpenVPN Required plugins: luci-app-openvpn luci-app-openvpn-server luci-i18n-openvpn-server-zh-cn luci-i18n-openvpn-zh-cn open-vpn-easy-rsa openvpn-openssl Other Self-Hosted Services See: Debian 🌀 | Kunyang’s Blog ",
+  "wordCount" : "2261",
+  "inLanguage": "en",
+  "datePublished": "2024-11-11T13:13:13-04:00",
+  "dateModified": "2024-11-11T13:13:13-04:00",
+  "author":{
+    "@type": "Person",
+    "name": "Kyxie"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kyxie.me/en/blog/tech/server/openwrt/raspberrypi-openwrt/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kunyang's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://kyxie.me/Favicon.png"
+    }
+  }
+}
+</script>
+
+<script defer src="https://umami.kyxie.me/script.js" data-website-id="f519035f-5ca2-4a99-bbee-e962a7344217"></script>
+</head>
+
+<body class=" dark" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://kyxie.me/en/" accesskey="h" title="Home (Alt + H)">Home</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://kyxie.me/zh/" title="中文🇨🇳"
+                            aria-label="中文🇨🇳">中文🇨🇳</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://kyxie.me/en/">Home</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/">Blogs 📒</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/">Tech 🔧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/server/">Server 🐧</a>&nbsp;»&nbsp;<a href="https://kyxie.me/en/blog/tech/server/openwrt/">OpenWrt 🛜</a></div>
+    <h1 class="post-title">
+      Installing OpenWrt on Raspberry Pi 4B&#43; as a Bypass Router
+    </h1>
+    <div class="post-meta">
+
+
+<span title='2024-11-11 13:13:13 -0400 -0400'>2024-11-11</span>&nbsp;·&nbsp;11 min&nbsp;·&nbsp;2261 words&nbsp;·&nbsp;Kyxie&nbsp;|&nbsp;
+<ul class="i18n_list">Translations:
+    <li>
+        <a href="https://kyxie.me/zh/blog/tech/server/openwrt/raspberrypi-openwrt/">中文🇨🇳</a>
+    </li>
+</ul>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+        <div class="toc">
+            <details  open>
+                <summary accesskey="c" title="(Alt + C)">
+                    <span class="details">Table of Contents</span>
+                </summary>
+
+                <div class="inner"><ul>
+                        <li>
+                            <a href="#my-journey" aria-label="My Journey">My Journey</a></li>
+                        <li>
+                            <a href="#required-hardware-and-software" aria-label="Required Hardware and Software">Required Hardware and Software</a><ul>
+                                    
+                        <li>
+                            <a href="#hardware" aria-label="Hardware">Hardware</a></li>
+                        <li>
+                            <a href="#software" aria-label="Software">Software</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#getting-the-image" aria-label="Getting the Image">Getting the Image</a><ul>
+                                    
+                        <li>
+                            <a href="#official-download" aria-label="Official Download">Official Download</a></li>
+                        <li>
+                            <a href="#local-compilation" aria-label="Local Compilation">Local Compilation</a><ul>
+                                    
+                        <li>
+                            <a href="#first-compilation" aria-label="First Compilation">First Compilation</a></li>
+                        <li>
+                            <a href="#single-module-compilation" aria-label="Single Module Compilation">Single Module Compilation</a></li>
+                        <li>
+                            <a href="#second-compilation" aria-label="Second Compilation">Second Compilation</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#github-actions-compilation" aria-label="GitHub Actions Compilation">GitHub Actions Compilation</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#flashing" aria-label="Flashing">Flashing</a><ul>
+                                    
+                        <li>
+                            <a href="#windows" aria-label="Windows">Windows</a></li>
+                        <li>
+                            <a href="#macos" aria-label="MacOS">MacOS</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#packaging-openwrt-as-a-docker-image" aria-label="Packaging OpenWrt as a Docker Image">Packaging OpenWrt as a Docker Image</a></li>
+                        <li>
+                            <a href="#connecting-to-main-router" aria-label="Connecting to Main Router">Connecting to Main Router</a><ul>
+                                    
+                        <li>
+                            <a href="#single-network-port" aria-label="Single Network Port">Single Network Port</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#setting-up-bypass-router" aria-label="Setting up Bypass Router">Setting up Bypass Router</a></li>
+                        <li>
+                            <a href="#installing-plugins" aria-label="Installing Plugins">Installing Plugins</a><ul>
+                                    
+                        <li>
+                            <a href="#uninstalling-plugins" aria-label="Uninstalling Plugins">Uninstalling Plugins</a></li>
+                        <li>
+                            <a href="#installing-plugins-1" aria-label="Installing Plugins">Installing Plugins</a><ul>
+                                    
+                        <li>
+                            <a href="#direct-installation" aria-label="Direct Installation">Direct Installation</a></li>
+                        <li>
+                            <a href="#self-compilation" aria-label="Self Compilation">Self Compilation</a></li></ul>
+                        </li></ul>
+                        </li>
+                        <li>
+                            <a href="#common-use-cases" aria-label="Common Use Cases">Common Use Cases</a><ul>
+                                    
+                        <li>
+                            <a href="#ddns" aria-label="DDNS">DDNS</a></li>
+                        <li>
+                            <a href="#ad-blocking" aria-label="Ad Blocking">Ad Blocking</a></li>
+                        <li>
+                            <a href="#accessing-my-windows-desktop-from-outside" aria-label="Accessing My Windows Desktop from Outside">Accessing My Windows Desktop from Outside</a><ul>
+                                    
+                        <li>
+                            <a href="#wireguard" aria-label="Wireguard">Wireguard</a></li>
+                        <li>
+                            <a href="#zerotier" aria-label="ZeroTier">ZeroTier</a></li>
+                        <li>
+                            <a href="#openvpn" aria-label="OpenVPN">OpenVPN</a></li></ul>
+                        </li>
+                        <li>
+                            <a href="#other-self-hosted-services" aria-label="Other Self-Hosted Services">Other Self-Hosted Services</a>
+                        </li>
+                    </ul>
+                    </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+    </aside>
+    <script>
+        let activeElement;
+        let elements;
+        window.addEventListener('DOMContentLoaded', function (event) {
+            checkTocPosition();
+
+            elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+            
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        }, false);
+
+        window.addEventListener('resize', function (event) {
+            checkTocPosition();
+        }, false);
+
+        window.addEventListener('scroll', () => {
+            
+            activeElement = Array.from(elements).find((element) => {
+                if ((getOffsetTop(element) - window.pageYOffset) > 0 &&
+                    (getOffsetTop(element) - window.pageYOffset) < window.innerHeight / 2) {
+                    return element;
+                }
+            }) || activeElement
+
+            elements.forEach(element => {
+                const id = encodeURI(element.getAttribute('id')).toLowerCase();
+                if (element === activeElement) {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                } else {
+                    document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                }
+            })
+        }, false);
+
+        const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+        const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+        const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+        function checkTocPosition() {
+            const width = document.body.scrollWidth;
+
+            if (width - main - (toc * 2) - (gap * 4) > 0) {
+                document.getElementById("toc-container").classList.add("wide");
+            } else {
+                document.getElementById("toc-container").classList.remove("wide");
+            }
+        }
+
+        function getOffsetTop(element) {
+            if (!element.getClientRects().length) {
+                return 0;
+            }
+            let rect = element.getBoundingClientRect();
+            let win = element.ownerDocument.defaultView;
+            return rect.top + win.pageYOffset;
+        }
+    </script>
+  <div class="post-content"><h2 id="my-journey">My Journey<a hidden class="anchor" aria-hidden="true" href="#my-journey">#</a></h2>
+<ul>
+<li>Used Raspberry Pi to install OpenWrt as the main system, but also wanted to build a Minecraft server. The Pi&rsquo;s performance wasn&rsquo;t sufficient, so I needed to upgrade.</li>
+<li>Purchased a Mini PC for the Minecraft server. Debian could also run a software OpenWrt router, but only as a bypass router. I thought it best to have a dedicated device for network management.</li>
+<li>Tried various web managers that could run on Debian like Cockpit, but they weren&rsquo;t satisfying. Webmin was even worse - like a system from 20 years ago.</li>
+<li>Ran OpenWrt as a Docker container on Debian. First tried Docker&rsquo;s host mode, but it defeated the purpose of Docker&rsquo;s isolation and added unnecessary complexity. Then struggled with macvlan - the container couldn&rsquo;t communicate with the host. Eventually gave up.</li>
+<li>Used PVE virtual machines to install OpenWrt, then installed Debian on another VM with its gateway pointing to OpenWrt.</li>
+<li>Had a power outage at home and worried about PVE stability. Returned to the previous setup: Raspberry Pi as OpenWrt gateway, Mini PC as Debian server, each doing their own thing.</li>
+<li><del>Planned to sell the Raspberry Pi</del> (didn&rsquo;t end up selling it because Docker version Home Assistant is crippled, so I&rsquo;ll use the Pi to run HA). The Raspberry Pi I bought for $70 could suddenly sell for $100. That profit difference could buy another Nanopi R2S as a gateway (didn&rsquo;t sell the Pi but bought the R2S anyway).</li>
+</ul>
+<h2 id="required-hardware-and-software">Required Hardware and Software<a hidden class="anchor" aria-hidden="true" href="#required-hardware-and-software">#</a></h2>
+<h3 id="hardware">Hardware<a hidden class="anchor" aria-hidden="true" href="#hardware">#</a></h3>
+<ul>
+<li>A computer with ethernet port</li>
+<li>Raspberry Pi 4B+ with 2GB+ RAM</li>
+<li>8GB+ microSD card for the Pi</li>
+<li>SD card reader</li>
+<li>Ethernet cable</li>
+<li>Monitor (optional), Micro USB to HDMI cable (optional)</li>
+</ul>
+<h3 id="software">Software<a hidden class="anchor" aria-hidden="true" href="#software">#</a></h3>
+<ul>
+<li><a href="https://etcher.balena.io/#download-etcher">Balena Etcher</a>. MacBook users can download this or use command line instead.</li>
+<li>Virtual Box and Ubuntu VM (optional) for compiling OpenWrt firmware. You can also download pre-compiled firmware. Note: the first compilation needs 60GB, but compiling a full firmware library with all features needs more, so 128GB is recommended.</li>
+<li>SecureCRT or PuTTy (optional). I use my system&rsquo;s built-in terminal.</li>
+</ul>
+<h2 id="getting-the-image">Getting the Image<a hidden class="anchor" aria-hidden="true" href="#getting-the-image">#</a></h2>
+<h3 id="official-download">Official Download<a hidden class="anchor" aria-hidden="true" href="#official-download">#</a></h3>
+<p>You can download the image from OpenWrt&rsquo;s <a href="https://openwrt.org/toh/views/toh_fwdownload">official website</a>.</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/a2f4260c7818d9c1b8c826a37f6aab0b.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="OpenWrt Images"  />
+</p>
+<h3 id="local-compilation">Local Compilation<a hidden class="anchor" aria-hidden="true" href="#local-compilation">#</a></h3>
+<p>The official firmware is lightweight and includes nothing extra. We can install what we need later. But if you don&rsquo;t want to reinstall applications after each firmware flash, you need to compile your own. This <a href="https://github.com/coolsnowwolf/lede">repository</a> lets you choose applications and compile them into the kernel. The README has detailed compilation steps. You can compile once locally to familiarize yourself, then use GitHub Actions for future compilations.</p>
+<h4 id="first-compilation">First Compilation<a hidden class="anchor" aria-hidden="true" href="#first-compilation">#</a></h4>
+<ul>
+<li>
+<p>First, clone the repo on Ubuntu:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/coolsnowwolf/lede.git
+</span></span></code></pre></div></li>
+<li>
+<p>Install dependencies:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update -y
+</span></span><span style="display:flex;"><span>sudo apt full-upgrade -y
+</span></span><span style="display:flex;"><span>sudo apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>libssl-dev libtool lrzsz mkisofs msmtp ninja-build p7zip p7zip-full patch pkgconf python3 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
+</span></span></code></pre></div></li>
+<li>
+<p>Update feeds and select configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd lede
+</span></span><span style="display:flex;"><span>./scripts/feeds update -a
+</span></span><span style="display:flex;"><span>./scripts/feeds install -a
+</span></span><span style="display:flex;"><span>make menuconfig
+</span></span></code></pre></div></li>
+<li>
+<p><a id="menuconfig"></a>This command opens the configuration page. I use Raspberry Pi 4B. Below is a breakdown of these configurations. Choose as needed:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Target system for compilation</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">TargetSystem</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">Broadcom BCM27xx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Subtarget</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">BCM2711 boards (64 bit)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">TargetProfile</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">Raspberry Pi 4B/400/4CM (64bit)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Image parameters</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">TargetImages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">squashfs</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">KernelPartitionSize</span>: <span style="color:#ae81ff">64</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">RootFilesystemPartitionSize</span>: <span style="color:#ae81ff">2048</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># LuCI settings</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">LuCI</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Collections</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci</span> <span style="color:#75715e"># Enable luci</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Modules</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Translations</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">Chinese(zh-cn)</span> <span style="color:#75715e"># Chinese support</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Themes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-theme-agron</span> <span style="color:#75715e"># Add theme</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># LuCI applications</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Applications</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-adguardhome</span> <span style="color:#75715e"># Ad-blocking</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-advanced-reboot</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-alist</span> <span style="color:#75715e"># File sharing (compilation is time-consuming, better as separate software)</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-aria2</span> <span style="color:#75715e"># Download tool</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-cloudflared</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-ddns</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-diskman</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-dockerman</span> <span style="color:#75715e"># Docker</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-filebrowser</span> <span style="color:#75715e"># File management</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-filetransfer</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-firewall</span> <span style="color:#75715e"># Firewall</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-frps</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-frpc</span> <span style="color:#75715e"># Intranet penetration</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-hd-idle</span> <span style="color:#75715e"># Hard drive sleep</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-lucky</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-opkg</span> <span style="color:#75715e"># Package manager</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-openvpn</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-openvpn-server</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-passwall</span> <span style="color:#75715e"># VPN</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-qos</span> <span style="color:#75715e"># Quality of service</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-samba</span> <span style="color:#75715e"># Network sharing</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-smartdns</span> <span style="color:#75715e"># Optimize VPN</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-upnp</span> <span style="color:#75715e"># UPnP service</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-usb-printer</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-wol</span> <span style="color:#75715e"># Wake on LAN</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Protocols</span>:
+</span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">luci-protocol-wireguard</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional tools</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">BaseSystem</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">block-mount</span> <span style="color:#75715e"># Add &lt;Mount Points&gt; menu to LuCI</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">blockd</span> <span style="color:#75715e"># Auto-mount devices</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">wireless-tools</span> <span style="color:#75715e"># Wireless extension tools</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Administration</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">htop</span> <span style="color:#75715e"># better top</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># File system</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">KernelModules</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Filesystems</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fs-ext4</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fs-f2fs</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fs-ntfs</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fs-squashfs</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fs-vfat</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-fuse</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Network card support</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">NetworkDevices</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-xxx</span> <span style="color:#75715e"># Wired NIC, select as needed</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">NetworkSupport</span>:
+</span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">kmod-wireguard</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">WirelessDrivers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kmod-rt2800-usb</span> <span style="color:#75715e"># Ralink RT5370 chipset USB wireless NIC driver</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">USBSupport</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">kmod-usb-net</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">kmod-usb-net-asix</span> <span style="color:#75715e"># Asix wired NIC</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">kmod-usb-net-asix-ax88179</span> <span style="color:#75715e"># USB 3.0 NIC chip AX88179</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">kmod-usb-net-rtl8152</span> <span style="color:#75715e"># USB 2/3 NIC RTL8152/3 chip</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">kmod-usb-net-sr9700</span> <span style="color:#75715e"># USB 2.0 NIC SR9700 chip</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">kmod-usb-core</span> <span style="color:#75715e"># Enable USB support</span>
+</span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb-hid</span> <span style="color:#75715e"># USB keyboard/mouse</span>
+</span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb-ohci</span> <span style="color:#75715e"># OHCI support for old USB</span>
+</span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb-storage</span> <span style="color:#75715e"># Enable USB storage</span>
+</span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb-storage-extras</span>
+</span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb-uhci</span> <span style="color:#75715e"># UHCI support for old USB</span>
+</span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb2</span> <span style="color:#75715e"># Enable USB2 support</span>
+</span></span><span style="display:flex;"><span>  	  - <span style="color:#ae81ff">kmod-usb3</span> <span style="color:#75715e"># Enable USB3 support</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Network tools</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Network</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">DownloadManager</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">ariang</span> <span style="color:#75715e"># Aria2 management page</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">FileTransfer</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">curl</span> <span style="color:#75715e"># Add curl command</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">wget-ssl</span> <span style="color:#75715e"># Add wget command</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">IP Addresses and Names</span>:
+</span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">ddns-scripts-cloudflare</span> <span style="color:#75715e"># For DDNS</span>
+</span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">drill	# DDNS</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">VPN</span>:
+</span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">wireguard-tools</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Utilities</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Utilities</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Compression</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">bsdtar</span> <span style="color:#75715e"># tar packing tool</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">gzip</span> <span style="color:#75715e"># GZ compression suite</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Disc</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">fdisk</span> <span style="color:#75715e"># Disk partitioning tool</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">lsblk</span> <span style="color:#75715e"># Disk viewing tool</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Filesystem</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">f2fs-tools</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">ntfs-3g</span> <span style="color:#75715e"># NTFS read/write support</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">resize2fs</span> <span style="color:#75715e"># Partition resize</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Terminal</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">screen</span> <span style="color:#75715e"># Add screen</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">losetup</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">pciutils</span> <span style="color:#75715e"># Add lspci command</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">qrencode</span> <span style="color:#75715e"># wireguard qrcode</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">usbutils</span> <span style="color:#75715e"># Add lsusb command</span>
+</span></span></code></pre></div></li>
+<li>
+<p>My current configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">TargetSystem</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">Broadcom BCM27xx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Subtarget</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">BCM2711 boards (64 bit)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">TargetProfile</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">Raspberry Pi 4B/400/4CM (64bit)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">TargetImages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">squashfs</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">KernelPartitionSize</span>: <span style="color:#ae81ff">64</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">RootFilesystemPartitionSize</span>: <span style="color:#ae81ff">6144</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">LuCI</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Themes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-theme-agron</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Applications</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-adguardhome</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-autoreboot</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-ddns</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-filetransfer</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-firewall</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-nlbwmon</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-opkg</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-passwall</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-ramfree</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-sqm</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">luci-app-wol</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Protocols</span>:
+</span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">luci-protocol-wireguard</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Network</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">IP Addresses and Names</span>:
+</span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">ddns-scripts-cloudflare</span>
+</span></span><span style="display:flex;"><span>  	- <span style="color:#ae81ff">drill</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">tcpdump</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Utilities</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">qrencode</span>
+</span></span></code></pre></div></li>
+<li>
+<p>A summary of Target Images:</p>
+<ul>
+<li>If you want to run directly on physical hardware like Raspberry Pi with firmware on SD card, use <code>squashfs</code>.</li>
+<li>If you want to package OpenWrt as a Docker image, select <code>tar.gz</code>.</li>
+<li>If you want to run as a PVE virtual machine on a Mini PC, see <a href="/en/blog/tech/server/others/pve/#compiling-openwrt">Installing PVE on x86 Mini PC | Kunyang&rsquo;s Blog</a>.</li>
+<li>If you haven&rsquo;t decided on deployment yet, select all.</li>
+<li>Different architectures have different options.</li>
+<li><code>RootFilesystemPartitionSize</code> is the system size after installation. I chose 6144M for my Pi&rsquo;s 8GB SD card. If using PVE, you don&rsquo;t need to worry about this as you assign disk size in PVE.</li>
+</ul>
+</li>
+<li>
+<p>After configuration, select Save. This saves a <code>.config</code> file. Before the final installation step, install screen for persistent sessions (without it, closing SSH loses compilation progress):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install screen
+</span></span><span style="display:flex;"><span>screen -S buildlede
+</span></span></code></pre></div></li>
+<li>
+<p>Finally, download dl library with 8 threads, compile with 1 thread for first build. (I had trouble downloading on AWS Ubuntu, so switched to local Ubuntu and it worked):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make download -j8
+</span></span><span style="display:flex;"><span>make V<span style="color:#f92672">=</span>s -j1
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="single-module-compilation">Single Module Compilation<a hidden class="anchor" aria-hidden="true" href="#single-module-compilation">#</a></h4>
+<p>Sometimes you discover you need a plugin while using it. You can compile just that module:</p>
+<ul>
+<li>
+<p>Edit <code>.config</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make menuconfig
+</span></span></code></pre></div></li>
+<li>
+<p>Find the plugin you want to compile separately, like <code>luci-app-diskman</code> (for managing router disks/partitions). If you selected <code>[*]</code> the first time (built-in module), select <code>[M]</code> this time (module that can be unloaded):</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/68ce803d682f4538656ee9062ba819f8.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Compile Module"  />
+</p>
+<p>Use this command to compile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make package/luci-app-diskman/compile V<span style="color:#f92672">=</span>s
+</span></span></code></pre></div></li>
+<li>
+<p>Open OpenWrt, go to System → File Transfer to upload the file. Click Install in the bottom-right.</p>
+</li>
+<li>
+<p>The newly installed plugin might not appear immediately - it took some time for me.</p>
+</li>
+</ul>
+<p>To compile kernel modules separately, like <code>kmod-wireguard</code>, select it as <code>[M]</code>, then run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make package/kernel/linux/compile V<span style="color:#f92672">=</span>s
+</span></span></code></pre></div><p>Compilation finishes quickly. The compiled package is at <code>bin/packages/&lt;target&gt;/&lt;package-repo&gt;/kmod-wireguard_xxx.ipk</code></p>
+<h4 id="second-compilation">Second Compilation<a hidden class="anchor" aria-hidden="true" href="#second-compilation">#</a></h4>
+<ul>
+<li>
+<p>Pull the latest feeds:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo sh -c <span style="color:#e6db74">&#34;apt update &amp;&amp; apt upgrade -y&#34;</span>
+</span></span><span style="display:flex;"><span>git pull
+</span></span><span style="display:flex;"><span>./scripts/feeds update -a <span style="color:#f92672">&amp;&amp;</span> ./scripts/feeds install -a
+</span></span></code></pre></div></li>
+<li>
+<p>Clean old build artifacts (optional):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make clean
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Execute after major updates or kernel changes to ensure build quality</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Deletes files in /bin and /build_dir</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>make dirclean
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># For architecture changes from x86_64 to MediaTek Ralink MIPS, recommended to do deep clean</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Deletes /bin, /build_dir, /staging_dir, /toolchain, /tmp, and /logs</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Compile:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make defconfig
+</span></span><span style="display:flex;"><span>make download -j8
+</span></span><span style="display:flex;"><span>find dl -size -1024c -exec ls -l <span style="color:#f92672">{}</span> <span style="color:#ae81ff">\;</span>
+</span></span><span style="display:flex;"><span>make -j<span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span> <span style="color:#f92672">||</span> make -j1 <span style="color:#f92672">||</span> make -j1 V<span style="color:#f92672">=</span>s
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="github-actions-compilation">GitHub Actions Compilation<a hidden class="anchor" aria-hidden="true" href="#github-actions-compilation">#</a></h3>
+<p>After familiarizing yourself with local compilation, use GitHub Actions to offload the work to the cloud. I found this <a href="https://github.com/P3TERX/Actions-OpenWrt">repository</a> and decided not to reinvent the wheel.</p>
+<p>Note: if you want to auto-publish Artifacts to Release, grant PAT permissions in Settings → Developer Settings → Personal access tokens → Tokens (classic) → Your Token. Check <code>workflow</code> and <code>write:packages</code>:</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/12/a38ff4328d53689478ed3404a0750d17.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="GitHub PAT Permissions"  />
+</p>
+<h2 id="flashing">Flashing<a hidden class="anchor" aria-hidden="true" href="#flashing">#</a></h2>
+<blockquote>
+<p>For direct flashing, select the image <code>openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz</code></p>
+</blockquote>
+<h3 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h3>
+<p>Use <a href="https://etcher.balena.io/#download-etcher">Balena Etcher</a> or other disk imager software to flash the image to your SD card. It&rsquo;s very straightforward:</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/ab0a5f269428a6dd01000e95d5797b90.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Balena Etcher for Windows"  />
+</p>
+<h3 id="macos">MacOS<a hidden class="anchor" aria-hidden="true" href="#macos">#</a></h3>
+<p>MacOS can also use Balena Etcher, or use command line if you prefer:</p>
+<ul>
+<li>
+<p>Find the SD card&rsquo;s disk number. Mine is <code>/dev/disk4</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>diskutil list
+</span></span><span style="display:flex;"><span>/dev/disk4 <span style="color:#f92672">(</span>external, physical<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">#:                       TYPE NAME                    SIZE       IDENTIFIER</span>
+</span></span><span style="display:flex;"><span>   0:     FDisk_partition_scheme                        *7.9 GB     disk4
+</span></span><span style="display:flex;"><span>   1:             Windows_FAT_32 BOOT                    67.1 MB    disk4s1
+</span></span><span style="display:flex;"><span>   2:                      Linux                         109.1 MB   disk4s2
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">(</span>free space<span style="color:#f92672">)</span>                         7.7 GB     -
+</span></span></code></pre></div><p>I had a previous OpenWrt without GUI, so the SD card had extra partitions. I&rsquo;m reinstalling with GUI support.</p>
+</li>
+<li>
+<p>First restore the partition (this also formats the SD card):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>diskutil eraseDisk FAT32 SDCARD MBRFormat /dev/disk4
+</span></span></code></pre></div><p>After restoring:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>diskutil list
+</span></span><span style="display:flex;"><span>/dev/disk4 <span style="color:#f92672">(</span>external, physical<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">#:                       TYPE NAME                    SIZE       IDENTIFIER</span>
+</span></span><span style="display:flex;"><span>   0:     FDisk_partition_scheme                        *7.9 GB     disk4
+</span></span><span style="display:flex;"><span>   1:                 DOS_FAT_32 SDCARD                  7.9 GB     disk4s1
+</span></span></code></pre></div></li>
+<li>
+<p>Unmount (but don&rsquo;t eject) the SD card to avoid &ldquo;busy&rdquo; errors:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>diskutil unmountDisk /dev/disk4
+</span></span></code></pre></div></li>
+<li>
+<p>Decompress the downloaded image:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gunzip ./openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img.gz
+</span></span></code></pre></div></li>
+<li>
+<p>Use <code>dd</code> to write the decompressed <code>.img</code> file. <strong>Be very careful with the disk number - mistakes are irreversible</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dd <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>/Users/xxx/Desktop/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-factory.img of<span style="color:#f92672">=</span>/dev/disk4 bs<span style="color:#f92672">=</span>1M status<span style="color:#f92672">=</span>progress
+</span></span></code></pre></div><p>No errors usually means success.</p>
+</li>
+<li>
+<p>Eject the SD card from your computer and insert it into the Raspberry Pi. Start the Pi and connect its ethernet port to your computer&rsquo;s ethernet port. OpenWrt defaults to bridges the Pi&rsquo;s <code>eth0</code> to <code>br-lan</code> with IP <code>192.168.1.1</code>. Configure your computer&rsquo;s Ethernet interface to also be on the <code>192.168.1.x</code> subnet (x can be 2-255):</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/2779ee13253f5ef403e70bed2319c428.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="IP Config"  />
+</p>
+<p>Once they&rsquo;re on the same subnet, enter <code>192.168.1.1</code> in your browser to access OpenWrt&rsquo;s GUI (LuCI). Default username and password are <code>root</code> and <code>password</code>.</p>
+</li>
+<li>
+<p>Done!</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/80b4b9243748b380bdb4ca2dc581dd9c.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Initial Page"  />
+</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/e34987940f77787e00bb09a1f7d6e8e2.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Status Page"  />
+</p>
+</li>
+</ul>
+<h2 id="packaging-openwrt-as-a-docker-image">Packaging OpenWrt as a Docker Image<a hidden class="anchor" aria-hidden="true" href="#packaging-openwrt-as-a-docker-image">#</a></h2>
+<p>See: <a href="/en/blog/tech/server/others/docker-openwrt/">Creating OpenWrt as a Docker Image | Kunyang&rsquo;s Blog</a></p>
+<h2 id="connecting-to-main-router">Connecting to Main Router<a hidden class="anchor" aria-hidden="true" href="#connecting-to-main-router">#</a></h2>
+<ul>
+<li>My home main router uses subnet <code>192.168.2.x</code>. I need to change the Pi to this subnet.</li>
+</ul>
+<h3 id="single-network-port">Single Network Port<a hidden class="anchor" aria-hidden="true" href="#single-network-port">#</a></h3>
+<ul>
+<li>
+<p>Since the Pi has only one <code>eth0</code> port, I recommend setting it as the LAN port:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vi /etc/config/network
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>config interface <span style="color:#e6db74">&#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span>        option device <span style="color:#e6db74">&#39;br-lan&#39;</span>
+</span></span><span style="display:flex;"><span>        option proto <span style="color:#e6db74">&#39;static&#39;</span>
+</span></span><span style="display:flex;"><span>        option netmask <span style="color:#e6db74">&#39;255.255.255.0&#39;</span>
+</span></span><span style="display:flex;"><span>        option ip6assign <span style="color:#e6db74">&#39;60&#39;</span>
+</span></span><span style="display:flex;"><span>        option ipaddr <span style="color:#e6db74">&#39;192.168.2.66&#39;</span>
+</span></span><span style="display:flex;"><span>        option gateway <span style="color:#e6db74">&#39;192.168.2.1&#39;</span>
+</span></span><span style="display:flex;"><span>        option dns <span style="color:#e6db74">&#39;192.168.2.1&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Disable DHCP to avoid conflicts with the main router:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vi /etc/config/dhcp
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">config dhcp &#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option interface &#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option ignore &#39;1&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Check firewall configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vi /etc/config/firewall
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">config zone</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option name &#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">list network &#39;lan&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option input &#39;ACCEPT&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option output &#39;ACCEPT&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">option forward &#39;ACCEPT&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Apply settings:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/etc/init.d/network restart
+</span></span></code></pre></div></li>
+<li>
+<p>Now your computer is on <code>192.168.1.x</code> but the Pi is on <code>192.168.2.x</code>, so connection is lost. Change your computer&rsquo;s Ethernet to <code>192.168.2.x</code> to reconnect.</p>
+</li>
+<li>
+<p>Disconnect the Pi from your computer and connect it to the router&rsquo;s LAN port. It should have normal network access, and your computer can access the Pi.</p>
+</li>
+</ul>
+<h2 id="setting-up-bypass-router">Setting up Bypass Router<a hidden class="anchor" aria-hidden="true" href="#setting-up-bypass-router">#</a></h2>
+<p>The above steps just add the Pi as a network device. Your devices still route through the main router. To make it a bypass router:</p>
+<ul>
+<li>
+<p>Simply change your WiFi gateway from the main router&rsquo;s default to the Pi&rsquo;s IP. If my main router is <code>192.168.2.1</code>, my computer is <code>192.168.2.54</code>, and my Pi is <code>192.168.2.66</code>:</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/ebc48f4926e3e6a4c7ac32105e507350.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="Windows Configure Gateway"  />
+</p>
+</li>
+<li>
+<p>Same for MacBook:</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/0e7163529845eb6e94424df952cb2c44.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0cyBEYXVnaHRlcg" alt="MacBook Configure Gateway"  />
+</p>
+<p><img loading="lazy" src="https://e8dd19b.webp.li/2024/11/2bac0f8e0a365ae7e9d7cc020f59d443.png?visual_effect=watermark,text__QEt5eGll,width__0.15,height__0.05,offset_x__0.8,offset_y__0.9,color__D3D3D3,font__QXJjaGl0ZWN0syBEYXVnaHRlcg" alt="MacBook Configure DNS"  />
+</p>
+</li>
+<li>
+<p>iPhone configuration is similar.</p>
+</li>
+<li>
+<p>I use this non-invasive approach to avoid breaking the entire network. Only affects devices with gateway set to the bypass router.</p>
+</li>
+</ul>
+<p>Tutorial video:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube-nocookie.com/embed/w7rwNF2Q3lM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="installing-plugins">Installing Plugins<a hidden class="anchor" aria-hidden="true" href="#installing-plugins">#</a></h2>
+<h3 id="uninstalling-plugins">Uninstalling Plugins<a hidden class="anchor" aria-hidden="true" href="#uninstalling-plugins">#</a></h3>
+<ul>
+<li>Go to System → Software → Installed to uninstall plugins</li>
+<li>Plugins compiled into the firmware cannot be uninstalled</li>
+</ul>
+<h3 id="installing-plugins-1">Installing Plugins<a hidden class="anchor" aria-hidden="true" href="#installing-plugins-1">#</a></h3>
+<h4 id="direct-installation">Direct Installation<a hidden class="anchor" aria-hidden="true" href="#direct-installation">#</a></h4>
+<p>Foreign source ARM:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>src/gz openwrt_core https://downloads.openwrt.org/releases/23.05.0/targets/bcm27xx/bcm2711/packages
+</span></span><span style="display:flex;"><span>src/gz openwrt_base https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/base
+</span></span><span style="display:flex;"><span>src/gz openwrt_luci https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/luci
+</span></span><span style="display:flex;"><span>src/gz openwrt_packages https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/packages
+</span></span><span style="display:flex;"><span>src/gz openwrt_routing https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/routing
+</span></span><span style="display:flex;"><span>src/gz openwrt_telephony https://downloads.openwrt.org/releases/23.05.0/packages/aarch64_cortex-a72/telephony
+</span></span></code></pre></div><p>Foreign source x86:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>src/gz openwrt_core https://downloads.openwrt.org/releases/23.05.0/targets/x86/64/packages
+</span></span><span style="display:flex;"><span>src/gz openwrt_base https://downloads.openwrt.org/releases/23.05.0/packages/x86_64/base
+</span></span><span style="display:flex;"><span>src/gz openwrt_luci https://downloads.openwrt.org/releases/23.05.0/packages/x86_64/luci
+</span></span><span style="display:flex;"><span>src/gz openwrt_packages https://downloads.openwrt.org/releases/23.05.0/packages/x86_64/packages
+</span></span><span style="display:flex;"><span>src/gz openwrt_routing https://downloads.openwrt.org/releases/23.05.0/packages/x86_64/routing
+</span></span><span style="display:flex;"><span>src/gz openwrt_telephony https://downloads.openwrt.org/releases/23.05.0/packages/x86_64/telephony
+</span></span></code></pre></div><p>Domestic source ARM:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>src/gz openwrt_core https://mirrors.tencent.com/lede/snapshots/targets/bcm27xx/bcm2711/packages
+</span></span><span style="display:flex;"><span>src/gz openwrt_base https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/base
+</span></span><span style="display:flex;"><span>src/gz openwrt_luci https://mirrors.tencent.com/lede/releases/18.06.9/packages/aarch64_cortex-a72/luci
+</span></span><span style="display:flex;"><span>src/gz openwrt_packages https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/packages
+</span></span><span style="display:flex;"><span>src/gz openwrt_routing https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/routing
+</span></span><span style="display:flex;"><span>src/gz openwrt_telephony https://mirrors.tencent.com/lede/snapshots/packages/aarch64_cortex-a72/telephony
+</span></span></code></pre></div><p>Domestic source x86:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>src/gz openwrt_core https://mirrors.tencent.com/lede/releases/24.10.0-rc1/targets/x86/64/packages
+</span></span><span style="display:flex;"><span>src/gz openwrt_base https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/base
+</span></span><span style="display:flex;"><span>src/gz openwrt_helloworld https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/helloworld
+</span></span><span style="display:flex;"><span>src/gz openwrt_luci https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/luci
+</span></span><span style="display:flex;"><span>src/gz openwrt_packages https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/packages
+</span></span><span style="display:flex;"><span>src/gz openwrt_routing https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/routing
+</span></span><span style="display:flex;"><span>src/gz openwrt_telephony https://mirrors.tencent.com/lede/releases/24.10.0-rc1/packages/x86_64/telephony
+</span></span></code></pre></div><h4 id="self-compilation">Self Compilation<a hidden class="anchor" aria-hidden="true" href="#self-compilation">#</a></h4>
+<ul>
+<li>
+<p>First compile the plugin on Ubuntu:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make menuconfig
+</span></span></code></pre></div><p>In LuCI → Applications, select all plugins (building a firmware library). Modularize by pressing space to add <code>M</code> in brackets. Save and start compiling:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make -j1 V<span style="color:#f92672">=</span>s
+</span></span></code></pre></div></li>
+<li>
+<p>After compilation, find all compiled plugins in <code>bin\packages</code> in <code>.ipk</code> format.</p>
+</li>
+</ul>
+<h2 id="common-use-cases">Common Use Cases<a hidden class="anchor" aria-hidden="true" href="#common-use-cases">#</a></h2>
+<h3 id="ddns">DDNS<a hidden class="anchor" aria-hidden="true" href="#ddns">#</a></h3>
+<ul>
+<li>See: <a href="/en/blog/tech/server/openwrt/ddns/">Configuring DDNS on OpenWrt | Kunyang&rsquo;s Blog</a></li>
+</ul>
+<h3 id="ad-blocking">Ad Blocking<a hidden class="anchor" aria-hidden="true" href="#ad-blocking">#</a></h3>
+<ul>
+<li>See: <a href="/en/blog/tech/server/openwrt/adguardhome/">Deploying AdGuardHome on OpenWrt | Kunyang&rsquo;s Blog</a></li>
+</ul>
+<h3 id="accessing-my-windows-desktop-from-outside">Accessing My Windows Desktop from Outside<a hidden class="anchor" aria-hidden="true" href="#accessing-my-windows-desktop-from-outside">#</a></h3>
+<h4 id="wireguard">Wireguard<a hidden class="anchor" aria-hidden="true" href="#wireguard">#</a></h4>
+<ul>
+<li>See: <a href="/en/blog/tech/server/openwrt/wireguard/">Configuring Wireguard on OpenWrt | Kunyang&rsquo;s Blog</a></li>
+</ul>
+<h4 id="zerotier">ZeroTier<a hidden class="anchor" aria-hidden="true" href="#zerotier">#</a></h4>
+<ul>
+<li>Required plugin:
+<ul>
+<li>luci-app-zerotier</li>
+</ul>
+</li>
+</ul>
+<h4 id="openvpn">OpenVPN<a hidden class="anchor" aria-hidden="true" href="#openvpn">#</a></h4>
+<ul>
+<li>Required plugins:
+<ul>
+<li>luci-app-openvpn</li>
+<li>luci-app-openvpn-server</li>
+<li>luci-i18n-openvpn-server-zh-cn</li>
+<li>luci-i18n-openvpn-zh-cn</li>
+<li>open-vpn-easy-rsa</li>
+<li>openvpn-openssl</li>
+</ul>
+</li>
+</ul>
+<h3 id="other-self-hosted-services">Other Self-Hosted Services<a hidden class="anchor" aria-hidden="true" href="#other-self-hosted-services">#</a></h3>
+<ul>
+<li>See: <a href="/en/blog/tech/server/debian/">Debian 🌀 | Kunyang&rsquo;s Blog</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+<nav class="paginav">
+  <a class="prev" href="https://kyxie.me/en/blog/tech/server/debian/minecraft/">
+    <span class="title">« Prev Page</span>
+    <br>
+    <span>Deploying Minecraft Server with Docker</span>
+  </a>
+  <a class="next" href="https://kyxie.me/en/blog/bike/8170/">
+    <span class="title">Next Page »</span>
+    <br>
+    <span>Specialized Tarmac SL6 Build</span>
+  </a>
+</nav>
+
+
+
+
+  </footer>
+<div>
+    <div class="pagination__title">
+        <span class="pagination__title-h" style="font-size: 20px;">Tell me something...</span>
+        <hr />
+    </div>
+    <div id="tcomment"></div>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.5.10/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            envId: "https://twikoo-kyxie.vercel.app/",  
+            el: "#tcomment",
+            lang: 'en-US',
+            region: '',  
+            path: window.TWIKOO_MAGIC_PATH || window.location.pathname,
+        });
+    </script>
+</div>
+</article>
+    </main>
+    
+<footer class="footer">
+  <span>
+    &copy; 2026 <a href="https://kyxie.me/en/">Kyxie's Blog</a>
+  </span>
+  <span id="umami-stats">
+    | Visitors: <span id="uv-count"></span>
+    Views: <span id="pv-count"></span>
+  </span>
+  <script
+    src="https://umami-api.kyxie.me/script.js"
+    defer
+    init-visitors="42310"
+    init-views="119827"
+    ></script>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

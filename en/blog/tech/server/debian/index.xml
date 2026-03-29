@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Debian 🌀 on Kunyang&#39;s Blog</title>
+    <link>https://kyxie.me/en/blog/tech/server/debian/</link>
+    <description>Recent content in Debian 🌀 on Kunyang&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 30 Jun 2025 22:50:32 -0400</lastBuildDate><atom:link href="https://kyxie.me/en/blog/tech/server/debian/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deploying Minecraft Server with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/minecraft/</link>
+      <pubDate>Fri, 13 Dec 2024 00:50:58 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/minecraft/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Exposing Your Services to the Public Internet</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/public/</link>
+      <pubDate>Sun, 08 Jun 2025 23:26:42 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/public/</guid>
+      <description>You can test websites locally by typing localhost + port in the browser. But to expose services to the public internet so others can access your URL, you need more configuration. There are two common methods: Nginx and tunneling.
+The conclusion: Nginx is better for cloud servers, while services on home mini PCs are better suited for tunneling. Cloud servers usually have public IPs with open ports 443. After configuration, you can directly access via domain name.</description>
+    </item>
+    
+    <item>
+      <title>Deploying a Password Manager with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/vaultwarden/</link>
+      <pubDate>Tue, 21 Jan 2025 11:51:00 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/vaultwarden/</guid>
+      <description>Vaultwarden is a password manager with cross-platform support. The web version adds a Chrome plugin, and iOS can set Vaultwarden for Auto Fill in Password settings. I previously used iOS&amp;rsquo;s built-in password manager and Safari on mobile, so I had to re-save passwords on my computer. Fearing forgetfulness, I set all passwords the same, a huge security risk.
+Password managers are best self-hosted. Using official services differs little from iOS/Chrome. This article covers deploying Vaultwarden to a mini PC with Docker Compose and Cloudflared.</description>
+    </item>
+    
+    <item>
+      <title>Deploying a Home Media Center with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/cinema/</link>
+      <pubDate>Sat, 12 Jul 2025 11:04:22 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/cinema/</guid>
+      <description>This article introduces how to build a personal home media center using Docker Compose.
+The basic workflow is as follows:
+The core consists of Sonarr and Radarr. Sonarr finds TV shows, Radarr finds movies. Where do they find content? From indexers (think of them as content sources). With multiple indexers, you need a management tool, which is where Prowlarr comes in. It can connect to Sonarr and Radarr, so you only need to add indexers in Prowlarr, and they automatically sync to Sonarr and Radarr.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Private Cloud and File Management with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/cloud/</link>
+      <pubDate>Sat, 14 Jun 2025 00:41:59 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/cloud/</guid>
+      <description>Thanks to the mini PC running 24/7, it&amp;rsquo;s great for deploying automated download/upload and file management services. This article mainly covers deploying these services with Docker:
+Samba: Run on Linux to map Linux as a Windows disk. Access mini PC files just by opening Windows File Explorer. FileBrowser: A graphical file manager with a web interface deployed on the internet, essentially a self-hosted cloud drive. BaiduPCS Go: Command-line control for uploading and downloading files to Baidu Cloud.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Management Dashboard with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/dashboard/</link>
+      <pubDate>Sun, 15 Jun 2025 00:41:59 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/dashboard/</guid>
+      <description>With so many services deployed on the server, it&amp;rsquo;s easy to forget ports and hard to find the right service. A proper management dashboard is helpful. Ideally, it should display quick links to all services, show Docker container status, monitor hardware information (though running in Docker containers, this is difficult; command-line top works fine), and ideally provide file services (though Samba can replace this).
+Such Dashboard services can run on port 80, allowing direct browser access via IP.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Umami with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/umami/</link>
+      <pubDate>Thu, 26 Jun 2025 22:20:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/umami/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deploying Strava Data Analysis Dashboard with Docker</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/strava/</link>
+      <pubDate>Thu, 26 Jun 2025 22:51:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/strava/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Remote Control</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/remote/</link>
+      <pubDate>Thu, 16 Oct 2025 23:53:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/remote/</guid>
+      <description>Fundamentally, remote control boils down to three methods: VPN, direct port opening, and tunneling.
+Cloudflared SSH Previously, I used Cloudflared to proxy many services, but these were front-end/back-end services. You can also use Cloudflared to proxy SSH traffic. The steps are simple: just create a new domain for SSH in the web interface. Afterward, you can SSH to this domain to access the mini PC. Combined with VSCode Remote SSH, it&amp;rsquo;s very convenient for remote development.</description>
+    </item>
+    
+    <item>
+      <title>Docker Image Auto-Update</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/watchtower/</link>
+      <pubDate>Tue, 28 Oct 2025 22:38:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/watchtower/</guid>
+      <description>Docker Compose conveniently manages containers but cannot automatically update images. With so many images, you can&amp;rsquo;t manually update each one. Fortunately, Watchtower solves this. Recent GitHub commits are from two years ago, showing the code is stable enough to use with confidence.
+Installation Installation is very simple. Here&amp;rsquo;s the compose file:
+services: watchtower: image: containrrr/watchtower container_name: watchtower restart: unless-stopped environment: - TZ=America/Toronto volumes: - /var/run/docker.sock:/var/run/docker.sock command: --interval 86400 --label-enable --cleanup labels: - &amp;#34;com.</description>
+    </item>
+    
+    <item>
+      <title>Adding User Login to Deployed Services</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/auth/</link>
+      <pubDate>Tue, 28 Oct 2025 22:40:50 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/auth/</guid>
+      <description>Once your services are exposed to the public internet, security becomes the primary concern. Most applications have User/Auth Services for user registration and login. This article briefly introduces how to add user login functionality to services deployed on the public network.
+Nginx Basic Auth This is the most basic user login, essentially a front-end-less approach with only login functionality. Nginx can handle this. The Stats for Strava image mentioned for Strava data analysis doesn&amp;rsquo;t include user login.</description>
+    </item>
+    
+    <item>
+      <title>Deploying Services with k3s &#43; SOPS &#43; FluxCD</title>
+      <link>https://kyxie.me/en/blog/tech/server/debian/k3s/</link>
+      <pubDate>Sun, 14 Dec 2025 22:12:50 -0500</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/tech/server/debian/k3s/</guid>
+      <description>Installing k3s You can install k3s with the following command:
+curl -sfL https://get.k3s.io | sh -s - \ --write-kubeconfig-mode 644 \ --node-ip &amp;lt;your_ip&amp;gt; \ --flannel-iface &amp;lt;your_network_interface_name&amp;gt; I currently use a regular user. The --write-kubeconfig-mode parameter ensures regular users can run kubectl directly without always using sudo.
+--node-ip: I now have a static IP, and this parameter forces k3s to use it.
+--flannel-iface: Force using a network interface. I&amp;rsquo;m currently using Wi-Fi.</description>
+    </item>
+    
+  </channel>
+</rss>
