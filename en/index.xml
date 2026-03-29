@@ -254,6 +254,24 @@ The goal is: when inserting a USB drive, the system automatically mounts it at /
     </item>
     
     <item>
+      <title>Cities Skylines II Graphics Settings</title>
+      <link>https://kyxie.me/en/blog/game/cities-skylines-ii/config/</link>
+      <pubDate>Sat, 31 May 2025 21:07:12 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/game/cities-skylines-ii/config/</guid>
+      <description>Settings Options → Graphics Settings: Resolution: Your monitor&amp;rsquo;s resolution Vertical Sync: Off Depth of Field Mode: Off Nvidia DLSS Super Resolution: Extreme Performance Global Picture Quality: High Fog Quality Settings: Off Ambient Occlusion Quality: Off Global Light and Shadow Quality: Off Depth of Field Quality: Off Motion Blur: Off Go to advanced settings in the upper right corner, scroll down to shadow quality settings, and uncheck Terrain Shadow Reference Video</description>
+    </item>
+    
+    <item>
+      <title>Cities Skylines II Recommended Mods</title>
+      <link>https://kyxie.me/en/blog/game/cities-skylines-ii/mods/</link>
+      <pubDate>Sat, 31 May 2025 15:26:12 -0400</pubDate>
+      
+      <guid>https://kyxie.me/en/blog/game/cities-skylines-ii/mods/</guid>
+      <description>Managing Mods Skyve A mod for managing other mods Download from the official Mod platform and restart the game. There will be an Install Skyve option, which allows you to install Skyve Before starting the game next time, open Skyve to check for mod updates before playing Prerequisite Mods Unified Icon Library Asset Icon Library Extra Lib I18n EveryWhere Recommended Move It Reference video: 都市天际线2</description>
+    </item>
+    
+    <item>
       <title>Recovering MySQL Password from Homebrew Installation</title>
       <link>https://kyxie.me/en/blog/tech/others/recover-mysql/</link>
       <pubDate>Wed, 05 Feb 2025 00:16:46 -0500</pubDate>

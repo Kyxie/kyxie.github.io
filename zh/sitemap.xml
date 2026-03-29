@@ -81,7 +81,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/wool/credit-cards/</loc>
-    <lastmod>2025-12-15T19:16:08-05:00</lastmod>
+    <lastmod>2026-03-28T21:45:37-04:00</lastmod>
   </url><url>
     <loc>https://kyxie.me/zh/blog/tech/</loc>
     <lastmod>2025-07-29T00:17:50-04:00</lastmod>
@@ -428,7 +428,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/</loc>
-    <lastmod>2026-02-19T11:32:18-05:00</lastmod>
+    <lastmod>2026-03-28T21:45:37-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -441,7 +441,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/pr/mandamus/</loc>
-    <lastmod>2026-02-19T11:32:18-05:00</lastmod>
+    <lastmod>2026-03-28T21:45:37-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -464,6 +464,45 @@
                 rel="alternate"
                 hreflang="zh"
                 href="https://kyxie.me/zh/blog/tech/server/others/automount/"
+                />
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/game/cities-skylines-ii/config/</loc>
+    <lastmod>2025-05-31T21:07:12-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.me/en/blog/game/cities-skylines-ii/config/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.me/zh/blog/game/cities-skylines-ii/config/"
+                />
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/game/cities-skylines-ii/mods/</loc>
+    <lastmod>2025-05-31T15:26:12-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.me/en/blog/game/cities-skylines-ii/mods/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.me/zh/blog/game/cities-skylines-ii/mods/"
+                />
+  </url><url>
+    <loc>https://kyxie.me/zh/blog/game/cities-skylines-ii/</loc>
+    <lastmod>2025-05-31T12:51:32-04:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://kyxie.me/en/blog/game/cities-skylines-ii/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://kyxie.me/zh/blog/game/cities-skylines-ii/"
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/game/minecraft/</loc>
@@ -597,7 +636,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/tour/algonquin/</loc>
-    <lastmod>2025-09-22T23:19:15-04:00</lastmod>
+    <lastmod>2026-03-28T21:45:37-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -662,7 +701,7 @@
                 />
   </url><url>
     <loc>https://kyxie.me/zh/blog/pr/timeline/</loc>
-    <lastmod>2026-02-19T11:32:18-05:00</lastmod>
+    <lastmod>2026-03-28T21:45:37-04:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
