@@ -7,6 +7,4 @@ If you're interested in how this site was built (themes, configuration, deployme
 - 🇨🇳 https://kyxie.me/zh/blog/tech/web/papermod/
 - 🇨🇦 https://kyxie.me/en/blog/tech/web/papermod/
 
-Currently working on a little translation tool to get all my blog posts translated automatically.
-
 Thanks for visiting!
