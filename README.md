@@ -1,10 +1,6 @@
-## My Personal Website
+## Archived blog
 
-This repository contains the static site files for [Kunyang's Blog](https://kyxie.me), automatically generated using the [Hugo](https://gohugo.io/) framework.
+This GitHub Pages site now exists only as a simple profile page at
+[kyxie.github.io](https://kyxie.github.io/).
 
-If you're interested in how this site was built (themes, configuration, deployment, etc.), feel free to check out the full guide:
-
-- 🇨🇳 https://kyxie.me/zh/blog/tech/web/papermod/
-- 🇨🇦 https://kyxie.me/en/blog/tech/web/papermod/
-
-Thanks for visiting!
+Welcome to view my new blog: [Kyxie's Blog](https://kyxie.me).
